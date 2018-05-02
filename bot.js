@@ -25,11 +25,7 @@ client.on('message', message => {
         newMessage.react(message.guild.emojis.get('433791162411646988'))
              .catch(console.error);
          })
-        const filter = (reaction, user) => reaction.emoji.name === '433791162411646988' && user.id === '441086851642687488'
-    newMessage.awaitReactions(filter, { time: 15000 })
-       .then(collected => client.channels.get('441093729290289152').send(`Collected ${collected.size} reactions`))
-        .catch(console.error);
-        
+ 
          
        
   	}
