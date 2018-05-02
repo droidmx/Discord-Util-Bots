@@ -20,7 +20,8 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content === '!afk') {
         
-         client.channels.get('441093729290289152').send("@here afk check testing").react(message.guild.emojis.get('433791162411646988'));
+         var new=client.channels.get('441093729290289152').send("@here afk check testing");
+        new.react(message.guild.emojis.get('433791162411646988'));
         
          
        
