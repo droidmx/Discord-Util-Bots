@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 
+var user = args.slice(0).join("");
+
 client.on('ready', () => {
     console.log('I am ready!');
 });
