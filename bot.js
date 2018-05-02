@@ -4,6 +4,8 @@ const snekfetch = require("snekfetch");
 
 var user = args.slice(0).join("");
 
+let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
+
 client.on('ready', () => {
     console.log('I am ready!');
 });
