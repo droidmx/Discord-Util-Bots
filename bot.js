@@ -35,13 +35,12 @@ client.on('message', message => {
         newMessage.react(message.guild.emojis.get('433791162411646988'))
         newMessage.react(message.guild.emojis.get('434134124631031810'))
              .catch(console.error);
-              const reactionFilter = (reaction, user) => {
-                return reaction.emoji.id === shattersEmoji.id || reaction.emoji.id === keyEmoji.id;
-            });
+              const reactionFilter = (reaction, user) => reaction.emoji.id === shattersEmoji.id || reaction.emoji.id === keyEmoji.id;
+            
         let respChannel = client.channels.get('441093729290289152');
             newMessage.awaitReactions(reactionFilter, { time: REACT_TIMEOUT })
                 .then(collectedEmojis => respChannel.send(`Collected ${collectedEmojis.size}`)).catch(console.error);
-         })
+         
          })
  
          
