@@ -14,7 +14,8 @@ bot.on('message', message => {
 });
 bot.on('message', message => {
     if (message.content === '!headcount') {
-    	bot.channels.get('433789873690902532').send("@here a headcount is starting! React with :Shatters: if you wish to participate, and :Key: if you have a key!")
+    	// bot.channels.get('433789873690902532').send("@here a headcount is starting! React with :Shatters: if you wish to participate, and :Key: if you have a key!")
+        message.reply('test');
     }
 });
 
