@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 
+let api = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
+
 var user = args.slice(0).join("");
 
 let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
