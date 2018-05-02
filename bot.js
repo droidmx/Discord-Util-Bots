@@ -5,6 +5,11 @@ const args = message.content.slice(prefix.length).trim().split(/ +/g);
 const command = args.shift().toLowerCase();
 
 let prefix = "()";
+//todo can parameterize later
+let REACT_TIMEOUT = 20 * 1000; // 20sec
+let isHeadcounting = false; // manaages state
+let shattersEmoji = message.guild.emojis.get('433791162411646988');
+let keyEmoji = message.guild.emojis.get('434134124631031810');
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -27,9 +32,9 @@ client.on('message', message => {
     if (command == 'headcount') {
     	client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
              
-        oldMessage.react(message.guild.emojis.get('433791162411646988'))
-        oldMessage.react(message.guild.emojis.get('434134124631031810'))
-             .catch(console.error);
+            oldMessage.react(shattersEmoji)
+            oldMessage.react(keyEmoji).catch(console.error);
+            
          })
  
   	}
@@ -45,6 +50,12 @@ client.on('message', message => {
         newMessage.react(message.guild.emojis.get('433791162411646988'))
              .catch(console.error);
          })
+        const reactionFilter = (reaction, user) => {
+                return reaction.emoji.id === shattersEmoji.id || reaction.emoji.id === keyEmoji.id;
+            });
+        let respChannel = client.channels.get('441093729290289152');
+            newMessage.awaitReactions(reactionFilter, { time: REACT_TIMEOUT })
+                .then(collectedEmojis => respChannel.send(`Collected ${collectedEmojis.size}`)).catch(console.error);
  
          
        
