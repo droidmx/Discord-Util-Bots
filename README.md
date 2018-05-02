@@ -1,3 +1,3 @@
 # super-super-heroku-bot
 Bot using heroku, 24/7!
-ynx0's branch; bot will be running on master
+original branch; bot will be running on this branch
