@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./package.json");
+const args = message.content.slice(prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
 
 let prefix = "()";
 
@@ -11,10 +13,10 @@ client.on('ready', () => {
 client.on('message', message => {
      if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  if (message.content.startsWith(prefix + "ping")) {
+  if (command == 'ping') {
     message.channel.send("pong!");
   } else
-  if (message.content.startsWith(prefix + "foo")) {
+  if (command == 'foo') {
     message.channel.send("bar!");
   }
 });
@@ -22,7 +24,7 @@ client.on('message', message => {
 client.on('message', message => {
      if (!message.content.startsWith(prefix) || message.author.bot) return;
     
-    if (message.content.startsWith(prefix + 'headcount')) {
+    if (command == 'headcount') {
     	client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
              
         oldMessage.react(message.guild.emojis.get('433791162411646988'))
@@ -36,7 +38,7 @@ client.on('message', message => {
 client.on('message', message => {
      if (!message.content.startsWith(prefix) || message.author.bot) return;
     
-    if (message.content === '!afk') {
+    if (command == 'afk') {
         
          client.channels.get('441093729290289152').send("@here We are starting an afk check now, join queue and react with <:Shatters:433791162411646988> to be moved in!").then(newMessage => {
              
