@@ -20,7 +20,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content === '!afk') {
         
-         client.channels.get('441093729290289152').send("@here afk check testing").then(newMessage => {
+         client.channels.get('441093729290289152').send("@here We are starting an afk check now, join queue and react with <:Shatters:433791162411646988> to be moved in!").then(newMessage => {
              
         newMessage.react(message.guild.emojis.get('433791162411646988'))
              .catch(console.error);
