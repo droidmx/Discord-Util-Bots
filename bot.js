@@ -2,6 +2,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+let shattersEmoji = message.guild.emojis.get('433791162411646988');
+let KeysEmoji = message.guild.emojis.get('434134124631031810');
+
 client.on('ready', () => {
     console.log('I am ready!');
 });
@@ -27,9 +30,10 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content === '!afk') {
         
-         client.channels.get('441093729290289152').send("@here We are starting an afk check now, join queue and react with <:Shatters:433791162411646988> to be moved in!").then(newMessage => {
+         client.channels.get('441093729290289152').send("@here We are starting an afk check now, join queue and react with <:Shatters:433791162411646988> to be moved in, and and <:Key:434134124631031810> if you have a key and are willing to pop!").then(newMessage => {
              
         newMessage.react(message.guild.emojis.get('433791162411646988'))
+        newMessage.react(message.guild.emojis.get('434134124631031810'))
              .catch(console.error);
          })
  
