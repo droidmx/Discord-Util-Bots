@@ -8,6 +8,18 @@ var user = args.slice(0).join("");
 
 let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 
+client.on('message', function(message) {
+    var args = message.content.split(" ");
+    var cmd = args[0];
+  
+    args = args.splice(1);
+  
+         switch(cmd) {
+                 case "!headcount":
+client.channels.get('433789873690902532').send("@here Headcount! React with :Shatters: to participate and :Key: if you have a key and are willing to pop!")
+break;
+         }
+
 client.on('ready', () => {
     console.log('I am ready!');
 });
