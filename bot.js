@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 let shattersEmoji = message.guild.emojis.get('433791162411646988');
-let KeysEmoji = message.guild.emojis.get('434134124631031810');
+let keysEmoji = message.guild.emojis.get('434134124631031810');
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -22,6 +22,12 @@ client.on('message', message => {
         oldMessage.react(message.guild.emojis.get('433791162411646988'))
         oldMessage.react(message.guild.emojis.get('434134124631031810'))
              .catch(console.error);
+             const reactionFilter = (reaction, user) => {
+                return reaction.emoji.id === shattersEmoji.id || reaction.emoji.id === keyEmoji.id;
+            });
+        let respChannel = client.channels.get('441093729290289152');
+            newMessage.awaitReactions(reactionFilter, { time: REACT_TIMEOUT })
+                .then(collectedEmojis => respChannel.send(`Collected ${collectedEmojis.size}`)).catch(console.error);
          })
  
   	}
