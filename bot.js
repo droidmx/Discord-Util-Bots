@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const YTDL = require("ytdl-core");
 const prefix = '!';
-const ownerid =  "368756694114893825"
+const ownerid =  "438692179054034947"
 const music = require('discord.js-musicbot-addon');
 const snekfetch = require("snekfetch");
 
@@ -16,7 +16,7 @@ music(client, {
   helpCmd: 'mhelp',
   leaveCmd: 'leave',
   ownerOverMember: true,
-  botOwner: '368756694114893825',
+  botOwner: '438692179054034947',
   youtubeKey: 'AIzaSyCGPHuK7cKaWyJ-_eUDjQGE-jvbkCa7aCw'
 });
 
