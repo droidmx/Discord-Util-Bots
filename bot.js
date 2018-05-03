@@ -94,7 +94,7 @@ message.channel.send({embed: {
   .then(ausers => {
       Users.foreach(aser => {
           Msg.guild.fetchmember(auser).setVoiceChannel("441417309169385482")
-        }, 120000
+        }, 10000
 )
   })
 })
