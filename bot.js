@@ -262,6 +262,44 @@ break;
   }
 });
   break;
+           
+  case "!commands":
+    message.channel.send({embed: {
+    color: 0xff040b,
+    author: {
+    },
+    thumbnail: {
+      url: "http://simpleicon.com/wp-content/uploads/gear-2.png"
+    },
+    title: "__**Commands**__",
+    fields: [{
+        name: "`!rotmgchars**__",
+        value: "This command shows all existing characters in ROTMG"
+      },
+      {
+        name: "`!commands`",
+        value: "This command displays all available commands."
+      },
+      {
+        name: "`!suggest`",
+        value: "This command will send your suggestions for the bot."
+      },
+      {
+        name: "`!info",
+        value: "Shows details about the bot!"
+      },
+      {
+        name: "__**!userinfo**__",
+        value: "This command will display your Discord account information."
+      }
+    ],
+    footer: {
+      icon_url: client.user.avatarURL,
+      text: "Please use commands responsibly!"
+    }
+  }
+});
+break;
        }
 });
 
