@@ -121,8 +121,8 @@ message.channel.send({embed: {
   setTimeout(() => {
   const ausers = m.reactions.get("👍").fetchUsers
   .then(ausers => {
-      Users.foreach(aser => {
-          m.guild.fetchMember(auser).setVoiceChannel("437973965789462530")
+      Users.foreach(ausers => {
+          m.guild.fetchMember(ausers).setVoiceChannel("437973965789462530")
         }, 10000
   
 )
