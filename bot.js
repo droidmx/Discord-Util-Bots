@@ -139,6 +139,129 @@ message.channel.send({embed: {
 }
 });
 break;
+           
+case "!userinfo":
+
+let uiembed = new Discord.RichEmbed()
+.setAuthor(message.author.username)
+.setDescription("This is " + message.author.username + "'s info!")
+.setThumbnail(message.author.avatarURL)
+.setColor("0xff040b")
+.addField("Full Username:", `${message.author.username}#${message.author.discriminator}`)
+.addField("User ID:", message.author.id)
+.addField("Created At:", message.author.createdAt);
+
+message.channel.sendEmbed(uiembed)
+break;
+
+case "!suggest":
+let suggestion = args.slice(0).join(' ');
+
+if (!suggestion)
+return message.reply("Please include a suggestion for the bot!")
+
+message.delete();
+message.reply("Thank you for the suggestion!")
+client.channels.get("441416698420265000").send({embed: {
+    color: 0xff040b,
+    author: {
+      name: "New Suggestion!",
+      icon_url: client.user.avatarURL,
+    },
+    title: "**Suggestion:**",
+    description: suggestion,
+    fields: [{
+        name: "*Idea Sent in by:*",
+        value: "" + message.author + "\n*Vote whether or not this is a good suggestion.*",
+    }],
+    timestamp: new Date(),
+    footer: {
+      icon_url: client.user.avatarURL,
+    }
+  }
+})
+.then(message=>{
+    message.react("✅")
+    message.react("❎")
+  })
+break;
+
+  case "!rotmgchars":
+    message.channel.send({embed: {
+    color: 0xff040b,
+    author: {
+      name: client.user.username,
+      icon_url: client.user.avatarURL
+    },
+    thumbnail: {
+      url: 'https://steamuserimages-a.akamaihd.net/ugc/615025248066186198/CCF7A2CA7AAC3180249A4C8E8346C0DA68A4D839/'
+    },
+    title: "**Realm Characters**",
+    description: "These are all of the current Realm of the Mad God characters.",
+    fields: [{
+        name: "__**Rogue**__ : Uses a medium ranged dagger. Special ability is cloaking.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Archer**__ : Uses a long ranged bow. Special ability is shooting debuffs.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Wizard**__ : Uses a long ranged staff. Special ability is burst of damage within a range.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Priest**__ : Uses a long ranged wand. Special ability is AoE healing.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Warrior**__ : Uses a short ranged sword. Special ability is berserk mode.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Knight**__ : Uses a short ranged sword. Special ability is shield bash.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Paladin**__ : Uses a short ranged sword. Special ability is AoE buff.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Assassin**__ : Uses a medium ranged dagger. Special ability is throwing poisons that damage over time.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Necromancer**__ : Uses a long ranged staff. Special ability is lifesteal.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Huntress**__ : Uses a long ranged bow. Special ability is placing damaging traps.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Mystic**__ : Uses a long ranged staff. Special ability is stasising enemies.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Trickster**__ : Uses a medium ranged dagger. Special ability is sending out decoys.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Sorcerer**__ : Uses a long ranged wand. Special ability is damage dealt across enemies.",
+        value: "\u200b"
+      },
+      {
+        name: "__**Ninja**__ : Uses a medium ranged katana. Special ability is shooting damaging shuriken.",
+        value: "\u200b"
+      }
+    ],
+    timestamp: new Date(),
+    footer: {
+      icon_url: client.user.avatarURL,
+    }
+  }
+});
+  break;
        }
 });
 
