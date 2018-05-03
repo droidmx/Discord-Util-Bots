@@ -3,6 +3,32 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 
+client.on('guildMemberAdd', member => {
+  
+client.channels.get("409362377126182922").send({embed: {
+    color: 0xff040b,
+    author: {
+      name: `New User | ${member.user.tag}`,
+      icon_url: member.user.avatarURL
+    },
+    fields: [{
+        name: "__**Username:**__",
+        value: `${member.user}`,
+        inline: true,
+      },
+      {
+        name: "__**Account Created:**__",
+        value: `${member.user.createdAt}`,
+        inline: true,
+      }
+    ],
+    footer: {
+      text: "~Droid~#5799",
+    }
+  }
+  });
+  });
+
 client.on('message', function(message) {
   var args = message.content.split(" ");
   var cmd = args[0];
@@ -93,7 +119,7 @@ message.channel.send({embed: {
   const ausers = m.reactions.get("👍").fetchUsers
   .then(ausers => {
       Users.foreach(aser => {
-          message.guild.fetchMember(auser).setVoiceChannel("441417309169385482")
+          message.guild.fetchMember(auser).setVoiceChannel("437973965789462530")
         }, 10000
 )
   })
