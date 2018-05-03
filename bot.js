@@ -3,6 +3,14 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 
+client.on('message', function(message) {
+  var args = message.content.split(" ");
+  var cmd = args[0];
+
+  args = args.splice(1);
+
+       switch(cmd) {
+
 case "!verify":
 let ruser = args.slice(0).join("");
 let rcode = ("DROID" + Math.floor(Math.random(11111) * 99999));
@@ -60,6 +68,8 @@ snekfetch.get(rapi).then(r => {
 }, 60000);
 })
 break;
+       }
+});
 
 
 client.login(process.env.BOT_TOKEN);
