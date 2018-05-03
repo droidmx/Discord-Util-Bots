@@ -125,7 +125,7 @@ message.channel.send({embed: {
     {
       name: "__**Information**__",
       value: "The LHGS Utility Bot was coded using JavaScript and has been functional since 5/2/18"
-    }
+    },
     {
       name: "__**LHGS Invite**__",
       value: "Invite people to LHGS to run Lost Halls! : https://discord.gg/uF4S8p6"
