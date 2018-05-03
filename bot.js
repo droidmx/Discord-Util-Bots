@@ -102,6 +102,43 @@ message.channel.send({embed: {
 })
 })
 break;
+           
+case "!info":
+message.delete();
+
+message.channel.send({embed: {
+  color: 0xff040b,
+  author: {
+    name: "LHGS Utility Bot Info",
+    icon_url: client.user.avatarURL
+  },
+  fields: [{
+      name: "__**Version**__",
+      value: "1.0.0",
+      inline: true,
+    },
+    {
+      name: "__**Release Date**__",
+      value: "5/2/18",
+      inline: true,
+    },
+    {
+      name: "__**Information**__",
+      value: "The LHGS Utility Bot was coded using JavaScript and has been functional since 5/2/18"
+    }
+    {
+      name: "__**LHGS Invite**__",
+      value: "Invite people to LHGS to run Lost Halls! : https://discord.gg/uF4S8p6"
+    }
+  ],
+  timestamp: new Date(),
+  footer: {
+    icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
+    text: "~Droid~#5799"
+  }
+}
+});
+break;
        }
 });
 
