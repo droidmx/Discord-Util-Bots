@@ -11,12 +11,13 @@ let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 client.on('message', function(message) {
     var args = message.content.split(" ");
     var cmd = args[0];
+    var user = args.slice(0).join("");
   
     args = args.splice(1);
   
          switch(cmd) {
                  case "!headcount":
-client.channels.get('433789873690902532').send("@here Headcount! React with :Shatters: to participate and :Key: if you have a key and are willing to pop!")
+client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!")
 break;
          }
 
