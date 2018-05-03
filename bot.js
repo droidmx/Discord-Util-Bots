@@ -442,6 +442,39 @@ break;
   }
 });
 break;
+           
+  case "!staffcommands":
+    message.channel.send({embed: {
+    color: 0xff040b,
+    author: {
+    },
+    thumbnail: {
+      url: "http://simpleicon.com/wp-content/uploads/gear-2.png"
+    },
+    title: "__**Staff Commands**__",
+    fields: [{
+        name: "`!warn <@user> <reason>`",
+        value: "Warns a user of an infraction, be sure to include reason."
+      },
+      {
+        name: "`!kick <@user> <reason>`",
+        value: "Kicks a user from the server."
+      },
+      {
+        name: "`!ban <@user> <reason>`",
+        value: "Bans user from the server."
+      },
+      {
+        name: "`!suspend <@user> <time: h, d, w> <reason>`",
+        value: "Suspendsa user from participating in runs for a set amount of time. (Not functional as ofnow)"
+      }
+    ],
+    footer: {
+      text: "Use these commands only when necessary"
+    }
+  }
+});
+break;
        }
 });
 
