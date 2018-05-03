@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
+const YTDL = require("ytdl-core");
 
 case "!verify":
 let ruser = args.slice(0).join("");
