@@ -293,9 +293,8 @@ break;
         value: "This command will display your Discord account information."
       }
     ],
-      timestamp: new Date(),
     footer: {
-      icon_url: client.user.avatarURL,
+      text: "If you have any question, feel free to pm Droid!"
     }
   }
 });
