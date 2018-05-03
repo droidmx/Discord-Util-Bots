@@ -405,6 +405,60 @@ let bmember = message.mentions.members.first();
   message.channel.send(`***✅ ${bmember.user.tag} was banned!***`);
 break;
            
+case "!vote":
+let agree = "👍"
+let disagree = "👎"
+let pollresponse = args.slice(0).join(' ');
+let polltime = args.slice(1).join(' ');
+
+if(!pollresponse)
+return message.reply("Please include a question:\n``!vote test 5``\n*Command, Question, Time (In Seconds)*")
+
+if(!polltime)
+return message.reply("Please include a time limit (in seconds):\n``!vote test 5``\n*Command, Question, Time (In Seconds)*")
+
+message.channel.send({embed: {
+  color: 0xff040b,
+  author: {
+    name: client.user.username,
+    icon_url: client.user.avatarURL
+  },
+  description: "Vote 👍 or 👎 for the below questionarre.",
+  fields: [{
+      name: "**" + pollresponse + "**",
+      value: "Time: " + polltime + " seconds",
+    }
+  ],
+  timestamp: new Date(),
+}
+})
+
+.then(function (message) {
+message.react('👍') 
+message.react('👎');
+
+const vfilter = (reaction, user) => {
+    return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
+};
+
+message.awaitReactions(vfilter, { time: polltime*1000, errors: ['time'] })
+    .then(collected => {
+        const reaction = collected.first();
+
+        if (reaction.emoji.name === '👍') {
+            message.channel.send('you reacted with a thumbs up.');
+        }
+        else {
+            message.channel.send('you reacted with a thumbs down.');
+        }
+    })
+    .catch(collected => {
+        console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+        message.channel.send('you didn\'t react with neither a thumbs up, nor a thumbs down.');
+    });
+  })
+break;
+           
   case "!commands":
     message.channel.send({embed: {
     color: 0xff040b,
