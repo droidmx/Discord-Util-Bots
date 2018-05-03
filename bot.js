@@ -70,7 +70,7 @@ return message.author.send("You do not have enough stars to be verified! You hav
   if(!rlocation.includes("hidden"))
 return message.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
     
-if(rfame < (1500))
+if(rfame < (250))
 return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
 
   if(rdesc.includes(rcode))
