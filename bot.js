@@ -46,7 +46,7 @@ message.author.send({embed: {
     },
   ],
   footer: {
-    text: "*The bot will check in 90 seconds to see if you followed directions.*",
+    text: "The bot will check in 60 seconds to see if you followed directions.",
   }
 }
 });
