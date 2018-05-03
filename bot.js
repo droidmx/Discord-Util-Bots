@@ -273,7 +273,7 @@ break;
     },
     title: "__**Commands**__",
     fields: [{
-        name: "`!rotmgchars**__",
+        name: "`!rotmgchars`",
         value: "This command shows all existing characters in ROTMG"
       },
       {
@@ -285,11 +285,11 @@ break;
         value: "This command will send your suggestions for the bot."
       },
       {
-        name: "`!info",
+        name: "`!info`",
         value: "Shows details about the bot!"
       },
       {
-        name: "__**!userinfo**__",
+        name: "`!userinfo`",
         value: "This command will display your Discord account information."
       }
     ],
