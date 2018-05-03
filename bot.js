@@ -41,7 +41,7 @@ message.author.send({embed: {
       inline: true,
     },
     {
-      name: `Place your code in the __**first line**__ of your Realmeye description, replacing everything else.`,
+      name: `Place your verification code on the __**first line**__ of your Realmeye description, __replacing everything else__.`,
       value: `Your original Realmeye description will be sent back shortly.`,
     },
   ],
