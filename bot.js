@@ -113,13 +113,13 @@ case "!afkcheck":
     }
 }).then(function (m) {
     m.react("👍").then(m => {
-        setTimeout(const ausers = m.reactions.get("👍").fetchUsers().then(ausers => {
-                Users.foreach(ausers => {
-                    m.guild.fetchMember(ausers).setVoiceChannel("441417309169385482")
+        setTimeout(() => {
+            const ausers = m.reactions.get("👍").fetchUsers().then(ausers => {
+                Users.foreach(aser => {
+                    m.guild.fetchMember(auser).setVoiceChannel("437973965789462530")
                 })
-            }), 10000)
-            
-        
+            })
+        }, 10000)
     })
 })
 break;
