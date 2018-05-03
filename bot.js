@@ -293,9 +293,9 @@ break;
         value: "This command will display your Discord account information."
       }
     ],
+      timestamp: new Date(),
     footer: {
       icon_url: client.user.avatarURL,
-      text: "Please use commands responsibly!"
     }
   }
 });
