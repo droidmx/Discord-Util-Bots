@@ -308,6 +308,103 @@ let members = message.mentions.members.first();
   message.mentions.users.first().send(`You were warned in LH Group System, ${reason}`);
 break;
            
+case "!kick":
+if(!message.member.roles.some(r=>["Administrator", "Moderator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+
+    let member = message.mentions.members.first();
+
+    if(!member)
+      return message.reply("Please mention a valid member of this server");
+    if(!member.kickable) 
+      return message.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
+
+      let kreason = args.slice(1).join(" ");
+    if(!kreason)
+      return message.reply("Please indicate a reason for the kick!");
+
+      let kkreason = args.slice(1).join(' ');
+      member.kick(kreason)
+      .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
+      client.channels.get("437973965789462530").send({embed: {
+        color: 0xff040b,
+        author: {
+          name: `Ban | ${member.user.tag} `,
+          icon_url: member.user.avatarURL
+        },
+        fields: [{
+            name: "User",
+            value: `${member.user}`,
+            inline: true,
+          },
+          {
+            name: "Moderator",
+            value: `${message.author}`,
+            inline: true,
+          },
+          {
+            name: "Reason",
+            value: `${kreason}`,
+            inline: true,
+          }
+        ],
+        timestamp: new Date(),
+        footer: {
+          text: `ID: ${member.user.id}`,
+        }
+      }
+    });
+    message.channel.send(`***${member.user.tag} was kicked.***`);
+break;
+
+case "!ban":
+let bmember = message.mentions.members.first();
+
+  if(!message.member.roles.some(r=>["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+    return message.reply("Sorry, you don't have permissions to use this!");
+  
+  if(!bmember)
+    return message.reply("Please mention a valid member of this server");
+  if(!bmember.bannable) 
+    return message.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
+
+  let breason = args.slice(1).join(' ');
+  if(!breason)
+    return message.reply("Please indicate a reason for the ban!");
+  
+  bmember.ban(breason)
+    .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+    client.channels.get("437973965789462530").send({embed: {
+      color: 0xff040b,
+      author: {
+        name: `Ban | ${bmember.user.tag} `,
+        icon_url: bmember.user.avatarURL
+      },
+      fields: [{
+          name: "User",
+          value: `${bmember.user}`,
+          inline: true,
+        },
+        {
+          name: "Moderator",
+          value: `${message.author}`,
+          inline: true,
+        },
+        {
+          name: "Reason",
+          value: `${breason}`,
+          inline: true,
+        }
+      ],
+      timestamp: new Date(),
+      footer: {
+        text: `ID: ${bmember.user.id}`,
+      }
+    }
+  });
+  message.channel.send(`***✅ ${bmember.user.tag} was banned!***`);
+break;
+           
   case "!commands":
     message.channel.send({embed: {
     color: 0xff040b,
