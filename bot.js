@@ -83,52 +83,45 @@ return message.author.send("Your do not have enough fame to be verified! You hav
 break;
            
 case "!afkcheck":
-message.channel.send("@ here")
-message.channel.send({embed: {
-  color: 0xff040b,
-  author: {
-    name: client.user.username,
-    icon_url: client.user.avatarURL
-  },
-  title: "**An AFK-check has started!**",
-  description: "React with 👍 to stay in the voice channel! You have 120 seconds to react and join the run!",
-  // Once roles and emojis are set up, add codes to fields. Ask Dylan for embed source :D
-  /*fields: [{
-      name: "If you have a key, and are willing to pop, react with",
-      value: `__**${rcode}**__`,
-      inline: true,
-    },
-    {
-      name: "**Realmeye Link:**",
-      value: `https://www.realmeye.com/player/${ruser}`,
-      inline: true,
-    },
-    {
-      name: `Place your verification code on the __**first line**__ of your Realmeye description, __replacing everything else__.`,
-      value: `Your original Realmeye description will be sent back shortly.`,
-    },
-  ],*/
-  timestamp: new Date(),
-  footer: {
-    icon_url: client.user.avatarURL,
-  }
-}
-})
-.then(function (m) {
-  m.react("👍")
-  
-  .then(m => {
-  setTimeout(() => {
-  const ausers = m.reactions.get("👍").fetchUsers
-  .then(ausers => {
-      Users.foreach(ausers => {
-          m.guild.fetchMember(ausers).setVoiceChannel("437973965789462530")
-        }, 10000
-  
-)
-  })
-})
-})
+    message.channel.send("@ here")
+    message.channel.send({embed: {
+        color: 0xff040b,
+        author: {
+            name: client.user.username,
+            icon_url: client.user.avatarURL
+        },
+        title: "**An AFK-check has started!**",
+        description: "React with 👍 to stay in the voice channel! You have 120 seconds to react and join the run!",
+        // Once roles and emojis are set up, add codes to fields. Ask Dylan for embed source :D
+        /*fields: [{
+            name: "If you have a key, and are willing to pop, react with",
+            value: `__**${rcode}**__`,
+            inline: true,
+        },
+            {
+            name: "**Realmeye Link:**",
+            value: `https://www.realmeye.com/player/${ruser}`,
+            inline: true,
+        },
+        {
+            name: `Place your verification code on the __**first line**__ of your Realmeye description, __replacing everything else__.`,
+            value: `Your original Realmeye description will be sent back shortly.`,
+        }],*/
+        timestamp: new Date(),
+        footer: {
+            icon_url: client.user.avatarURL,
+        }
+    }
+}).then(function (m) {
+    m.react("👍").then(m => {
+        setTimeout(() => {
+            const ausers = m.reactions.get("👍").fetchUsers().then(ausers => {
+                Users.foreach(ausers => {
+                    m.guild.fetchMember(ausers).setVoiceChannel("437973965789462530")
+                })
+            })
+        }, 10000)
+    })
 })
 break;
            
