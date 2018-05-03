@@ -3,31 +3,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 
-client.on('guildMemberAdd', member => {
-  
-client.channels.get("438696256836206612").send({embed: {
-    color: 0xff040b,
-    author: {
-      name: `New User | ${member.user.tag}`,
-      icon_url: member.user.avatarURL
-    },
-    fields: [{
-        name: "__**Username:**__",
-        value: `${member.user}`,
-        inline: true,
-      },
-      {
-        name: "__**Account Created:**__",
-        value: `${member.user.createdAt}`,
-        inline: true,
-      }
-    ],
-    footer: {
-      text: "~Droid~#5799",
-    }
-  }
-  });
-  });
 
 client.on('message', function(message) {
   var args = message.content.split(" ");
