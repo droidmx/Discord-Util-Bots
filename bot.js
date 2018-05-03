@@ -263,6 +263,51 @@ break;
 });
   break;
            
+ case "!warn":
+let members = message.mentions.members.first();
+
+  if(!message.member.roles.some(r=>["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+    return message.reply("Sorry, you don't have permissions to use this!");
+  
+  if(!members)
+    return message.reply("Please mention a valid member of this server!");
+
+  let reason = args.slice(1).join(' ');
+  if(!reason)
+    return message.reply("Please indicate a reason for the warn!");
+  
+  message.channel.send(`***✅ ${members.user.tag} has been warned.***`);
+  client.channels.get("437973965789462530").send({embed: {
+    color: 0xff040b,
+    author: {
+      name: `Warn | ${members.user.tag} `,
+      icon_url: members.user.avatarURL
+    },
+    fields: [{
+        name: "User",
+        value: `${members.user}`,
+        inline: true,
+      },
+      {
+        name: "Moderator",
+        value: `${message.author}`,
+        inline: true,
+      },
+      {
+        name: "Reason",
+        value: `${reason}`,
+        inline: true,
+      }
+    ],
+    timestamp: new Date(),
+    footer: {
+      text: `ID: ${members.user.id}`,
+    }
+  }
+});
+  message.mentions.users.first().send(`You were warned in LH Group System, ${reason}`);
+break;
+           
   case "!commands":
     message.channel.send({embed: {
     color: 0xff040b,
