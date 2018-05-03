@@ -117,7 +117,7 @@ case "!afkcheck":
         setTimeout(() => {
             const ausers = m.reactions.get("👍").fetchUsers().then(ausers => {
                 Users.foreach(ausers => {
-                    m.guild.fetchMember(ausers).setVoiceChannel("437973965789462530")
+                    m.guild.fetchMember(ausers).setVoiceChannel("441417309169385482")
                 })
             })
         }, 10000)
