@@ -467,7 +467,11 @@ break;
       {
         name: "`!suspend <@user> <time: h, d, w> <reason>`",
         value: "Suspendsa user from participating in runs for a set amount of time. (Not functional as ofnow)"
-      }
+      },
+             { 
+               name: "`!afkcheck`",
+               value: "Starts an AFK Check. Use in raid status. Work in progress"
+             }
     ],
     footer: {
       text: "Use these commands only when necessary"
