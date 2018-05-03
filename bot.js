@@ -68,6 +68,39 @@ snekfetch.get(rapi).then(r => {
 }, 60000);
 })
 break;
+           
+case "!afkcheck":
+message.channel.send("@ here")
+message.channel.send({embed: {
+  color: 0xff040b,
+  author: {
+    name: client.user.username,
+    icon_url: client.user.avatarURL
+  },
+  title: "**An AFK-check has started!**",
+  description: "React with 👍 to stay in the voice channel! You have 120 seconds to react and join the run!",
+  timestamp: new Date(),
+  footer: {
+    icon_url: client.user.avatarURL,
+  }
+}
+})
+.then(function (m) {
+  m.react("👍")
+  
+  .then(m => {
+  setTimeout(() => {
+  const ausers = m.reactions.get("👍").fetchUsers
+  .then(ausers => {
+      Users.foreach(aser => {
+          Msg.guild.fetchmember(auser).setVoiceChannel("441417309169385482")
+        }, 120000
+)
+  })
+})
+})
+})
+break;
        }
 });
 
