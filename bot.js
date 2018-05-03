@@ -40,7 +40,7 @@ client.channels.get("437973965789462530").send({embed: {
       }
     ],
     footer: {
-      text: "© ok hand#6327",
+      text: "~Droid~#5799",
     }
   }
   });
