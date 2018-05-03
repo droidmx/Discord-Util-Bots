@@ -45,9 +45,6 @@ client.channels.get("437973965789462530").send({embed: {
   }
   });
 
-  var joinrole = member.guild.roles.find('name', 'Members');
-  
-  member.addRole(joinrole)
 });
 
 client.on('message', function(message) {
@@ -109,23 +106,19 @@ message.channel.send({embed: {
   },
   fields: [{
       name: "__**Version**__",
-      value: "2.1.8",
+      value: "1.0.0",
       inline: true,
     },
     {
       name: "__**Release Date**__",
       value: "4/3/18",
       inline: true,
-    },
-    {
-      name: "__**Recent Update:**__",
-      value: "Music command added. !mhelp in <#379104814056865793> will list the commands."
     }
   ],
   timestamp: new Date(),
   footer: {
     icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
-    text: "© ok hand#6327"
+    text: "~Droid~#5799"
   }
 }
 });
@@ -165,74 +158,11 @@ message.channel.send({embed: {
   timestamp: new Date(),
   footer: {
     icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
-    text: "© ok hand#6327"
+    text: "~Droid~#5799"
   }
 }
 });
 break;
-
-
-
-
-
-  case "!owranks":
-    message.channel.send({embed: {
-    color: 0xff040b,
-    author: {
-      name: client.user.username,
-      icon_url: 'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/thumb/7/73/Badge_8_Top_500.png/32px-Badge_8_Top_500.png?version=8fa9c593427e57990da33f762710042f'
-    },
-    thumbnail: {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Overwatch_circle_logo.svg/600px-Overwatch_circle_logo.svg.png'
-    },
-    title: "**Overwatch Ranks**",
-    description: "These are all of the current Overwatch Commands.",
-    fields: [{
-        name: "__**Bronze**__",
-        value: "Bronze is acheived in the SR range 1-1499."
-      },
-      {
-        name: "__**Silver**__",
-        value: "Silver is acheived in the SR range 1500-1999."
-      },
-      {
-        name: "__**Gold**__",
-        value: "Gold is acheived in the SR range 2000-2499."
-      },
-      {
-        name: "__**Platinum**__",
-        value: "Platinum is acheived in the SR range 2500-2999."
-      },
-      {
-        name: "__**Diamond**__",
-        value: "Diamond is acheived in the SR range 3000-3499."
-      },
-      {
-        name: "__**Master**__",
-        value: "Master is acheived in the SR range 3500-3999."
-      },
-      {
-        name: "__**Grandmaster**__",
-        value: "Grandmaster is acheived in any SR at 4000+."
-      },
-      {
-        name: "__**Top 500**__",
-        value: "To get Top 500, you must be among the __**top 500**__ players in your region. "
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      icon_url: client.user.avatarURL,
-    }
-  }
-});
-  break;
-
-
-
-
-
-
 
 
 
@@ -298,7 +228,7 @@ snekfetch.get(rapi).then(r => {
 
   if(rdesc.includes(rcode))
   message.guild.member(message.author).setNickname(`${rname}`)
-  message.guild.member(message.author).addRole("429429646879358984")
+  message.guild.member(message.author).addRole("437853950033526785")
   message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
 })
 }, 60000);
@@ -347,7 +277,7 @@ message.channel.send({embed: {
   const ausers = m.reactions.get("👍").fetchUsers
   .then(ausers => {
       Users.foreach(aser => {
-          Msg.guild.fetchmember(auser).setVoiceChannel("408041503903055872")
+          Msg.guild.fetchmember(auser).setVoiceChannel("441417309169385482")
         }, 120000
 )
   })
@@ -661,10 +591,6 @@ footer: {
 });
 break;
 
-case "!youtube":
-  let youtube = args.slice(0).join("+");
-  message.channel.send("https://www.youtube.com/results?search_query=" + youtube);
-break;
 
 case "!hello":
   message.channel.send("Hey there!");
@@ -723,7 +649,7 @@ else {
 break;
 
 case "!kick":
-if(!message.member.roles.some(r=>["Administrator", "Moderator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+if(!message.member.roles.some(r=>["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
 
     let member = message.mentions.members.first();
