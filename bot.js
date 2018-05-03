@@ -1,12 +1,11 @@
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const ownerid =  "368756694114893825"
 const snekfetch = require("snekfetch");
 
 case "!verify":
 let ruser = args.slice(0).join("");
-let rcode = ("CH" + Math.floor(Math.random(11111) * 99999));
+let rcode = ("DROID" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
 
 snekfetch.get(rapi).then(h => {
