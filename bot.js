@@ -16,9 +16,11 @@ let ruser = args.slice(0).join("");
 let rcode = ("DROID" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
 
+snekfetch.get(rapi).then(h => {
+  let brdesc = h.body.description;
 
 if(!ruser)
-return message.author.send("Please include a username after !verify. Be sure that your IGN had no typos!")
+return message.author.send("Please include a username after !verify! Any typos will cause your verification process to fail.")
 
 message.delete();
 
@@ -39,18 +41,17 @@ message.author.send({embed: {
       inline: true,
     },
     {
-      name: `Place your verification code on any line of your Realmeye description, however, it  __**must replace everything else**__.`,
-      value: `Your code must be the only text in one line of your Realmeye description.`,
+      name: `Place your verification code on the __**first line**__ of your Realmeye description, __replacing everything else__.`,
+      value: `Your original Realmeye description will be sent back shortly.`,
     },
   ],
   footer: {
-    text: "Once you have entered the code, type `!done` here!",
+    text: "The bot will check in 60 seconds to see if you followed directions.",
   }
 }
 });
 
-.then(client.on('message', message => {
-    if (message.content === '!done') {
+setTimeout(function(){ 
 
 snekfetch.get(rapi).then(r => {
   let rdesc = r.body.description;
@@ -60,23 +61,23 @@ snekfetch.get(rapi).then(r => {
   let rfame = r.body.fame
 
   if(!rdesc.includes(rcode))
-  return message.author.send("Your code was not found in your Realmeye description. Be sure that the code is the ONLY text in one line of your description.")
+  return message.author.send("Your code was not found in the first line of your Realmeye description. Your previous Realmeye description was:\n```" + brdesc + "```")
   
   if(rstars < (30))
 return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**30**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
   
   if(!rlocation.includes("hidden"))
-return message.author.send("Your location is not hidden so you cannot be verified!")
+return message.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
     
 if(rfame < (250))
-return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.")
+return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
 
   if(rdesc.includes(rcode))
   message.guild.member(message.author).setNickname(`${rname}`)
   message.guild.member(message.author).addRole("437853950033526785")
-  message.author.send("You have successfully been verified!");
+  message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
 })
-}}));
+}, 60000);
 })
 break;
            
