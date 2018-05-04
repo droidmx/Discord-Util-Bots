@@ -49,7 +49,7 @@ message.author.send({embed: {
 }
 });
 
-client.on('message', message => {
+.then(client.on('message', message => {
     if (message.content === '!done') {
 
 snekfetch.get(rapi).then(r => {
@@ -76,7 +76,7 @@ return message.author.send("Your do not have enough fame to be verified! You hav
   message.guild.member(message.author).addRole("437853950033526785")
   message.author.send("You have successfully been verified!");
 })
-}});
+}}));
 })
 break;
            
