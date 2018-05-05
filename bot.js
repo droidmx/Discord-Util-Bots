@@ -146,7 +146,7 @@ return message.author.send("Your do not have enough fame to be verified! You hav
          
 break;
            
-case "!realmeye":
+/*case "!realmeye":
 let user = args.slice(0).join("");
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
           
@@ -219,7 +219,7 @@ snekfetch.get(rapi).then(r => {
   		}
 	}})
 });
-break;
+break;*/
 
            
            
