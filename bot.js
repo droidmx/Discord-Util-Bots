@@ -169,7 +169,7 @@ let guild = r.body.guild
            message.channel.send({embed: {
   color: 0xfbd27a,
   author: {
-    name: "Realmeye Info for" + ruser,
+    name: "Realmeye Info for" + user,
     icon_url: client.user.avatarURL
   },
   fields: [{
