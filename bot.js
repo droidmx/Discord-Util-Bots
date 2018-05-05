@@ -146,6 +146,84 @@ return message.author.send("Your do not have enough fame to be verified! You hav
          
 break;
            
+           case: '!realmeye":
+           let user = args.slice(0).join("");
+           let api = "http://www.tiffit.net/RealmInfo/api/user?u=" + rruser + "&f=c;";
+          
+           message.delete();
+           if(!ruser)
+return message.channel.send("Please include a username after `!realmeye`.")
+           
+           snekfetch.get(api).then(r => {
+let desc = r.body.description;
+let name = r.body.name
+let stars = r.body.rank
+let location = r.body.last_seen
+let fame = r.body.fame
+let count = r.body.characterCount
+let acctfame = r.body.account_fame
+let created = r.body.created
+let skins = r.body.skins
+let guild = r.body.guild
+           
+           message.channel.send({embed: {
+  color: 0xfbd27a,
+  author: {
+    name: "Realmeye Info for" + ruser,
+    icon_url: client.user.avatarURL
+  },
+  fields: [{
+      name: "Description",
+      value: desc,
+      inline: true,
+    },
+    {
+      name: "Stars",
+      value: stars,
+      inline: true,
+    },
+    {
+      name: "Last-seen Location",
+      value: location, 
+      inline: true,
+    },
+    {
+      name: "Character Fame",
+      value: fame, 
+      inline: true,
+    },
+           {
+             name: "Account Fame",
+             value: acctfame, 
+             inlint: true,
+           },
+           {
+             name: "Account Created",
+             value: created,
+             inline: true,
+           },
+           {
+             name: "Skin Count",
+             value: skins,
+             inline: true,
+           },
+           {
+             name: "Guild",
+             value: guild,
+             inline: true,
+           }
+  ],
+  timestamp: new Date(),
+  footer: {
+    icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
+    text: "~Droid~#5799"
+  }
+})
+});
+  break;
+
+           
+           
 case "!afkcheck":
     
     client.channels.get("437853227397021696").send('@here', {embed: {
