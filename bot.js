@@ -82,8 +82,8 @@ return message.author.send("Your do not have enough fame to be verified! You hav
 break;
            
 case "!afkcheck":
-    message.channel.send("@ here")
-    message.channel.send({embed: {
+    
+    client.channels.get("437853227397021696").send('@here', {embed: {
         color: 0xff040b,
         author: {
             name: client.user.username,
