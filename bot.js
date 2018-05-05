@@ -61,7 +61,7 @@ snekfetch.get(rapi).then(r => {
   let rfame = r.body.fame
 
   if(!rdesc.includes(rcode))
-  return message.author.send("Your code was not found in the first line of your Realmeye description. Your previous Realmeye description was:\n```" + brdesc + "```")
+  return message.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description. Your previous Realmeye description was:\n```" + brdesc + "```")
   
   if(rstars < (30))
 return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**30**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
