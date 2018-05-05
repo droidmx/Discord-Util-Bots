@@ -102,9 +102,47 @@ return message.author.send("Your do not have enough fame to be verified! You hav
   message.guild.member(message.author).setNickname(`${rname}`)
   message.guild.member(message.author).addRole("437853950033526785")
   message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
+  
+  
 })
+  client.channels.get("442232062116757504").send({embed: {
+  color: 0xff040b,
+  author: {
+    name: `User Verified | ${message.author.tag}`,
+    icon_url: message.author.avatarURL
+  },
+  fields: [
+    {
+      name: "**Realmeye Link:**",
+      value: `https://www.realmeye.com/player/${ruser}`,
+      inline: true,
+    },
+    {
+      name:  "__**User IGN**__",
+      value: "`${ruser}`",
+      inline : true,
+    },
+    {
+    name: "__**Character Fame**__",
+    value: "`${rfame} Fame`",
+    inline: true,
+    },
+    {
+      name: "__**Stars**__",
+      value:"${rstars} Stars",
+      inline: true,
+    }
+    
+      
+  ],
+  footer: {
+    text: "User has been verified by the bot.",
+  }
+}
+});
 }, 60000);
 })
+         
 break;
            
 case "!afkcheck":
