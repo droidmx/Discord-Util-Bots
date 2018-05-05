@@ -155,37 +155,46 @@ case "!afkcheck":
             icon_url: client.user.avatarURL
         },
         title: "**An AFK-check has started!**",
-        description: "React with 👍 to ensure you are in the next run! Raid Leaders will end this afk-check soon!",
+        description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! Raid Leaders will end this afk-check soon!",
         // Once roles and emojis are set up, add codes to fields. Ask Dylan for embed source :D
-        /*fields: [{
-            name: "If you have a key, and are willing to pop, react with",
-            value: `__**${rcode}**__`,
+        fields: [{
+            name: "If you have a key, and are willing to pop",
+            value: "react with <:Key:442253877790900235>",
             inline: true,
         },
             {
-            name: "**Realmeye Link:**",
-            value: `https://www.realmeye.com/player/${ruser}`,
+            name: "If you have a Priest you are willing to bring",
+            value: "react with <:priest:442254299347812354>",
             inline: true,
         },
         {
-            name: `Place your verification code on the __**first line**__ of your Realmeye description, __replacing everything else__.`,
-            value: `Your original Realmeye description will be sent back shortly.`,
-        }],*/
+            name: "If you have a Paladin you are willing to bring",
+            value: "react with <:paladin:442258388621983754>",
+          inline: true,
+        },
+                 {
+                   name: "If you have a Warrior you are willing to bring",
+                   value: "react with <:warrior:442262372011212800>",
+                   inline: true,
+                 },
+                 {
+                   name: "If you have an Assassin you are willing to bring",
+                   value: "react with <:assassin:442254256242688002>",
+                   inline: true,
+                 }
+                ],
         timestamp: new Date(),
         footer: {
             icon_url: client.user.avatarURL,
         }
     }
 }).then(function (m) {
-    m.react("👍").then(m => {
-        setTimeout(() => {
-            const ausers = m.reactions.get("👍").fetchUsers().then(ausers => {
-                Users.foreach(aser => {
-                    m.guild.fetchMember(auser).setVoiceChannel("437973965789462530")
-                })
-            })
-        }, 10000)
-    })
+    m.react(message.guild.emojis.get('442253877790900235'))
+    m.react(message.guild.emojis.get('442258388621983754'))
+    m.react(message.guild.emojis.get('442254299347812354'))
+    m.react(message.guild.emojis.get('442254256242688002'))
+    m.react(message.guild.emojis.get('442262372011212800'))
+    m.react(message.guild.emojis.get('442254585193693184'))
 })
 break;
            
