@@ -155,13 +155,18 @@ case "!afkcheck":
             icon_url: client.user.avatarURL
         },
         title: "**An AFK-check has started!**",
-        description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! Raid Leaders will end this afk-check soon!",
+        description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! Raid Leaders will end this afk-check soon! If you react with a vial, key, or classes, but do not bring them, you may be suspended.",
         // Once roles and emojis are set up, add codes to fields. Ask Dylan for embed source :D
         fields: [{
             name: "If you have a key, and are willing to pop",
             value: "react with <:Key:442253877790900235>",
             inline: true,
         },
+                 {
+                   name: "If you have a vial from our server",
+                   value: "react with <:vial:442254030857568268>",
+                   inline: true,
+                 },
             {
             name: "If you have a Priest you are willing to bring",
             value: "react with <:priest:442254299347812354>",
@@ -195,6 +200,7 @@ case "!afkcheck":
     m.react(message.guild.emojis.get('442254256242688002'))
     m.react(message.guild.emojis.get('442262372011212800'))
     m.react(message.guild.emojis.get('442254585193693184'))
+    m.react(message.guild.emojis.get('442254030857568268'))
 })
 break;
            
