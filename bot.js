@@ -10,7 +10,10 @@ client.on('message', function(message) {
   args = args.splice(1);
 
        switch(cmd) {
-
+case "ping":
+           const m = await message.channel.send("Ping?");
+m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+ break;
 case "!verify":
 let ruser = args.slice(0).join("");
 let rcode = ("DROID" + Math.floor(Math.random(11111) * 99999));
