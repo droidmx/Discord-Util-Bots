@@ -102,9 +102,6 @@ return message.author.send("Your do not have enough fame to be verified! You hav
   message.guild.member(message.author).setNickname(`${rname}`)
   message.guild.member(message.author).addRole("437853950033526785")
   message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
-  
-  
-})
   client.channels.get("442232062116757504").send({embed: {
   color: 0xff040b,
   author: {
@@ -140,6 +137,10 @@ return message.author.send("Your do not have enough fame to be verified! You hav
   }
 }
 });
+  
+  
+})
+  
 }, 60000);
 })
          
