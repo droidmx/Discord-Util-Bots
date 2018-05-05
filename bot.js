@@ -492,7 +492,23 @@ break;
              { 
                name: "`!afkcheck`",
                value: "Starts an AFK Check. Use in raid status. Work in progress"
-             }
+             },
+             {
+               name: "`!vial <@user>`",
+               value: "Gives User the Vial Role to log that they have a vial."
+             },
+             {
+               name: "`!unvial <@user>`",
+               value: "Removes Vial role from user once they have popped."
+             },
+             {
+               name: "`!movequeue`",
+               value: "Moves users from Queue to Raiding"
+             }, 
+             {
+               name: "`!movegroup <group number>`",
+               value: "Moves Users from Raiding to appropriate group vcall"
+             }  
     ],
     footer: {
       text: "Use these commands only when necessary"
@@ -500,6 +516,117 @@ break;
   }
 });
 break;
+           
+           case "!unvial":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+                 
+let vialpopped = message.mentions.users.first();
+
+if(!vialpopped)
+return message.reply("Please mention a user to remove the vial role from.")
+
+message.guild.member(vialpopped).removeRole("442131046247694336");
+
+message.channel.send("Vial removed from " + vialpopped);
+break;
+
+case "!vial":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+                 
+let vialtaker = message.mentions.users.first();
+
+if(!vialtaker)
+return message.reply("Please mention a user to give the vial role to.")
+
+message.guild.member(vialtaker).addRole("442131046247694336");
+
+message.channel.send("Vial added to " + vialtaker);
+break;
+           
+           case "!movequeue":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+
+var msg = message.channel.send("Moving!")
+var people = client.channels.get('437816756275380234').members.array();
+var promises = [];
+people.forEach(person => {
+    promises.push(person.setVoiceChannel('441417309169385482'));
+});
+Promise.all(promises);
+
+break;
+                     case "!movegroup1":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+
+var msg = message.channel.send("Moving!")
+var people = client.channels.get('441417309169385482').members.array();
+var promises = [];
+people.forEach(person => {
+    promises.push(person.setVoiceChannel('437853360398270477'));
+});
+Promise.all(promises);
+
+break;
+           case "!movegroup2":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+
+var msg = message.channel.send("Moving!")
+var people = client.channels.get('441417309169385482').members.array();
+var promises = [];
+people.forEach(person => {
+    promises.push(person.setVoiceChannel('442129832336424970'));
+});
+Promise.all(promises);
+
+break;
+           
+           case "!movegroup3":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+
+var msg = message.channel.send("Moving!")
+var people = client.channels.get('441417309169385482').members.array();
+var promises = [];
+people.forEach(person => {
+    promises.push(person.setVoiceChannel('442129990335725579'));
+});
+Promise.all(promises);
+
+break;
+           case "!movegroup4":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+
+var msg = message.channel.send("Moving!")
+var people = client.channels.get('441417309169385482').members.array();
+var promises = [];
+people.forEach(person => {
+    promises.push(person.setVoiceChannel('442130021885149194'));
+});
+Promise.all(promises);
+
+break;
+           case "!movegroup5":
+if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+
+var msg = message.channel.send("Moving!")
+var people = client.channels.get('441417309169385482').members.array();
+var promises = [];
+people.forEach(person => {
+    promises.push(person.setVoiceChannel('442130048456327169'));
+});
+Promise.all(promises);
+
+break;
+        
+           
+           
        }
 });
 
