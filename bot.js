@@ -6,7 +6,7 @@ const snekfetch = require("snekfetch");
 client.on('guildMemberAdd', member => {
   
 client.channels.get("438696256836206612").send({embed: {
-    color: 0xff040b,
+    color: 0x00FFFF,
     author: {
       name: `New User | ${member.user.tag}`,
       icon_url: member.user.avatarURL
@@ -51,7 +51,7 @@ return message.author.send("Please include a username after !verify! Any typos w
 message.delete();
 
 message.author.send({embed: {
-  color: 0xff040b,
+  color: 0xa3fb7a,
   author: {
     name: `Verification | ${message.author.tag}`,
     icon_url: message.author.avatarURL
@@ -103,7 +103,7 @@ return message.author.send("Your do not have enough fame to be verified! You hav
   message.guild.member(message.author).addRole("437853950033526785")
   message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
   client.channels.get("442232062116757504").send({embed: {
-  color: 0xff040b,
+  color: 0xfb7ae4,
   author: {
     name: `User Verified | ${message.author.tag}`,
     icon_url: message.author.avatarURL
@@ -149,7 +149,7 @@ break;
 case "!afkcheck":
     
     client.channels.get("437853227397021696").send('@here', {embed: {
-        color: 0xff040b,
+        color: 0xfbd27a,
         author: {
             name: client.user.username,
             icon_url: client.user.avatarURL
@@ -208,7 +208,7 @@ case "!info":
 message.delete();
 
 message.channel.send({embed: {
-  color: 0xff040b,
+  color: 0xfbd27a,
   author: {
     name: "LHGS Utility Bot Info",
     icon_url: client.user.avatarURL
@@ -264,7 +264,7 @@ return message.reply("Please include a suggestion for the bot!")
 message.delete();
 message.reply("Thank you for the suggestion!")
 client.channels.get("441416698420265000").send({embed: {
-    color: 0xff040b,
+    color: 0x927afb,
     author: {
       name: "New Suggestion!",
       icon_url: client.user.avatarURL,
@@ -518,7 +518,7 @@ break;
            
   case "!commands":
     message.channel.send({embed: {
-    color: 0xff040b,
+    color: 0x7aa3fb,
     author: {
     },
     thumbnail: {
@@ -563,7 +563,7 @@ break;
            
   case "!staffcommands":
     message.channel.send({embed: {
-    color: 0xff040b,
+    color: 0x7aa3fb,
     author: {
     },
     thumbnail: {
