@@ -491,6 +491,15 @@ let bmember = message.mentions.members.first();
   message.channel.send(`***✅ ${bmember.user.tag} was banned!***`);
 break;
            
+           case "!rotmg":
+message.guild.member(message.author).addRole("442240483327213578");
+message.channel.send("The user " + message.author + " was given the role ``RotMG``");
+break;
+           case "!rrotmg":
+message.guild.member(message.author).removeRole("442240483327213578");
+message.channel.send("The user " + message.author + " got ``RotMG`` removed.");
+break;
+           
            
   case "!commands":
     message.channel.send({embed: {
@@ -520,7 +529,15 @@ break;
       {
         name: "`!userinfo`",
         value: "This command will display your Discord account information."
-      }
+      },
+             {
+               name: "`!rotmg`",
+               value:"Will give you the ROTMG Role, which has access to special text channels and updates"
+             },
+             {
+               name: "`!rrotmg`",
+               value: "Will remove the ROTMG role."
+             }
     ],
     footer: {
       text: "If you have any question, feel free to pm Droid!"
@@ -633,7 +650,7 @@ people.forEach(person => {
 Promise.all(promises);
 
 break;
-                     case "!movegroup1":
+                     case "!movegroup 1":
 if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
 
@@ -646,7 +663,7 @@ people.forEach(person => {
 Promise.all(promises);
 
 break;
-           case "!movegroup2":
+           case "!movegroup 2":
 if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
 
@@ -660,7 +677,7 @@ Promise.all(promises);
 
 break;
            
-           case "!movegroup3":
+           case "!movegroup 3":
 if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
 
@@ -673,7 +690,7 @@ people.forEach(person => {
 Promise.all(promises);
 
 break;
-           case "!movegroup4":
+           case "!movegroup 4":
 if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
 
@@ -686,7 +703,7 @@ people.forEach(person => {
 Promise.all(promises);
 
 break;
-           case "!movegroup5":
+           case "!movegroup 5":
 if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
 
