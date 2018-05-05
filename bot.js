@@ -90,7 +90,7 @@ case "!afkcheck":
             icon_url: client.user.avatarURL
         },
         title: "**An AFK-check has started!**",
-        description: "React with 👍 to stay in the voice channel! You have 120 seconds to react and join the run!",
+        description: "React with 👍 to ensure you are in the next run! Raid Leaders will end this afk-check soon!",
         // Once roles and emojis are set up, add codes to fields. Ask Dylan for embed source :D
         /*fields: [{
             name: "If you have a key, and are willing to pop, react with",
@@ -548,6 +548,16 @@ break;
            case "!movequeue":
 if(!message.member.roles.some(r=>["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
+           client.channels.get("437853227397021696").send({embed: {
+        color: 0xff040b,
+        author: {
+            name: client.user.username,
+            icon_url: client.user.avatarURL
+        },
+             title: "**The AFK-Check has ended!**",
+        description: "Please be patient and wait for the next afk-check",
+           }})
+                                                          
 
 var msg = message.channel.send("Moving!")
 var people = client.channels.get('437816756275380234').members.array();
