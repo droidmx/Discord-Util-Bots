@@ -5,7 +5,7 @@ const snekfetch = require("snekfetch");
 
 client.on('guildMemberAdd', member => {
   
-client.channels.get("409362377126182922").send({embed: {
+client.channels.get("438696256836206612").send({embed: {
     color: 0xff040b,
     author: {
       name: `New User | ${member.user.tag}`,
