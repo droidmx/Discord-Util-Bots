@@ -146,7 +146,7 @@ return message.author.send("Your do not have enough fame to be verified! You hav
          
 break;
            
-          /* case: "!realmeye":
+           case: "!realmeye":
            let user = args.slice(0).join("");
            let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
           
@@ -175,42 +175,42 @@ let guild = r.body.guild
   fields: [{
       name: "Description",
       value: desc,
-      inline: true,
+      inline: true
     },
     {
       name: "Stars",
       value: stars,
-      inline: true,
+      inline: true
     },
     {
       name: "Last-seen Location",
       value: location, 
-      inline: true,
+      inline: true
     },
     {
       name: "Character Fame",
       value: fame, 
-      inline: true,
+      inline: true
     },
            {
              name: "Account Fame",
              value: acctfame, 
-             inlint: true,
+             inlint: true
            },
            {
              name: "Account Created",
              value: created,
-             inline: true,
+             inline: true
            },
            {
              name: "Skin Count",
              value: skins,
-             inline: true,
+             inline: true
            },
            {
              name: "Guild",
              value: guild,
-             inline: true,
+             inline: true
            }
   ],
   timestamp: new Date(),
@@ -220,7 +220,7 @@ let guild = r.body.guild
   }
 })
 });
-  break;*/
+  break;
 
            
            
