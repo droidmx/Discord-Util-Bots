@@ -148,7 +148,7 @@ break;
            
            case: "!realmeye":
            let user = args.slice(0).join("");
-           let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + rruser + "&f=c;";
+           let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
           
            message.delete();
            if(!user)
