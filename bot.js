@@ -148,13 +148,13 @@ break;
            
            case: '!realmeye":
            let user = args.slice(0).join("");
-           let api = "http://www.tiffit.net/RealmInfo/api/user?u=" + rruser + "&f=c;";
+           let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + rruser + "&f=c;";
           
            message.delete();
-           if(!ruser)
+           if(!user)
 return message.channel.send("Please include a username after `!realmeye`.")
            
-           snekfetch.get(api).then(r => {
+           snekfetch.get(rapi).then(r => {
 let desc = r.body.description;
 let name = r.body.name
 let stars = r.body.rank
