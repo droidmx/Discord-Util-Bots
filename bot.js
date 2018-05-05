@@ -121,12 +121,12 @@ return message.author.send("Your do not have enough fame to be verified! You hav
     },
     {
     name: "__**Character Fame**__",
-    value: rfame + "Fame",
+    value: rfame + " Fame",
     inline: true,
     },
     {
       name: "__**Stars**__",
-      value: rstars + "Stars",
+      value: rstars + " Stars",
       inline: true,
     }
     
