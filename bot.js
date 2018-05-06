@@ -285,15 +285,15 @@ let guild = r.body.guild
                             m.react(message.guild.emojis.get('442262372011212800'))
                             m.react(message.guild.emojis.get('442254585193693184'))
                             m.react(message.guild.emojis.get('442254030857568268'))
-                        }).then((m) => {
+                        }).then(async (m) => {
                                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
-                                const reactions = m.awaitReactions(filter, {
+                                const reactions = await m.awaitReactions(filter, {
                                         time: 20000
                                     }).then((collected) => {
                                             var promises = [];
                                             var people = reactions.members.array();
-                                            m.forEach(people => {
-                                                promises.push(people.setVoiceChannel('441417309169385482'));
+                                            people.forEach(person => {
+                                                promises.push(person.setVoiceChannel('441417309169385482'));
                                             });
                                             });
                                     Promise.all(promises);
