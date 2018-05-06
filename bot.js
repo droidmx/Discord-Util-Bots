@@ -285,9 +285,9 @@ let guild = r.body.guild
                             m.react(message.guild.emojis.get('442262372011212800'))
                             m.react(message.guild.emojis.get('442254585193693184'))
                             m.react(message.guild.emojis.get('442254030857568268'))
-                        }).then(async (m) => {
+                        }).then((m) => {
                                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
-                                const reactions = await m.awaitReactions(filter, {
+                                const reactions = m.awaitReactions(filter, {
                                         time: 10000
                                     }).then((collected) => {
                                             var promises = [];
