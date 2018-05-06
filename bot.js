@@ -231,7 +231,7 @@ let guild = r.body.guild
 
                 case "!afkcheck":
 
-                    client.channels.get("437853227397021696").send('@here', {
+                    client.channels.get("437853227397021696").send('@ here', {
                             embed: {
                                 color: 0xfbd27a,
                                 author: {
