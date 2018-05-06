@@ -304,7 +304,7 @@ let guild = r.body.guild
                     description: "Please be patient and wait for the next afk-check",
                 }
             })
-            }, 120000))
+            }, 20000))
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
