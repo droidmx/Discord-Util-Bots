@@ -288,7 +288,7 @@ let guild = r.body.guild
                         }).then((m) => {
                                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                                 const reactions = m.awaitReactions(filter, {
-                                        time: 10000
+                                        time: 20000
                                     }).then((collected) => {
                                             var promises = [];
                                             m.forEach(user => {
