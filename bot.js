@@ -240,7 +240,7 @@ let guild = r.body.guild
                     },
                     title: "**An AFK-check has started!**",
                     description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! Raid Leaders will end this afk-check soon! If you react with a vial, key, or classes, but do not bring them, you may be suspended.",
-                    // Once roles and emojis are set up, add codes to fields. Ask Dylan for embed source :D
+                    
                     fields: [{
                             name: "If you have a key, and are willing to pop",
                             value: "react with <:Key:442253877790900235>",
@@ -293,7 +293,7 @@ let guild = r.body.guild
 
                     const users = collected.map(m => m.users.map(u => u.id))
                     users.forEach(user => {
-                        guild.member(user.id).setVoiceChannel('441417309169385482');
+                        guild.member(users).setVoiceChannel('441417309169385482');
                     });
 
                 });
