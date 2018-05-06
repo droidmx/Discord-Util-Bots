@@ -90,120 +90,18 @@ client.on('message', function(message) {
 
                                 if (!rdesc.includes(rcode))
                                     return message.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description. Your previous Realmeye description was:\n```" + brdesc + "```")
-                                    client.channels.get("442232062116757504").send({
-                                    embed: {
-                                        color: 0xfb7ae4,
-                                        author: {
-                                            name: `User attempted to Verify | ${message.author.tag}`,
-                                            icon_url: message.author.avatarURL
-                                        },
-                                        fields: [{
-                                                name: "**Realmeye Link:**",
-                                                value: `https://www.realmeye.com/player/${ruser}`,
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**User IGN**__",
-                                                value: ruser,
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**Character Fame**__",
-                                                value: rfame + " Fame",
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**Stars**__",
-                                                value: rstars + " Stars",
-                                                inline: true,
-                                            }
-
-
-                                        ],
-                                        footer: {
-                                            text: "User attempted to verify, code was not found in realmeye page.",
-                                        }
-                                    }
-                                });
+                                    
 
                                 if (rstars < (30))
                                     return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**30**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
-                                    client.channels.get("442232062116757504").send({
-                                    embed: {
-                                        color: 0xfb7ae4,
-                                        author: {
-                                            name: `User attempted to verify | ${message.author.tag}`,
-                                            icon_url: message.author.avatarURL
-                                        },
-                                        fields: [{
-                                                name: "**Realmeye Link:**",
-                                                value: `https://www.realmeye.com/player/${ruser}`,
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**User IGN**__",
-                                                value: ruser,
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**Character Fame**__",
-                                                value: rfame + " Fame",
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**Stars**__",
-                                                value: rstars + " Stars",
-                                                inline: true,
-                                            }
-
-
-                                        ],
-                                        footer: {
-                                            text: "User attempted to verify, did not have 30 stars.",
-                                        }
-                                    }
-                                });
+                                    
 
                                 if (!rlocation.includes("hidden"))
                                     return message.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
 
                                 if (rfame < (250))
                                     return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
-                                    client.channels.get("442232062116757504").send({
-                                    embed: {
-                                        color: 0xfb7ae4,
-                                        author: {
-                                            name: `User attempted to verify | ${message.author.tag}`,
-                                            icon_url: message.author.avatarURL
-                                        },
-                                        fields: [{
-                                                name: "**Realmeye Link:**",
-                                                value: `https://www.realmeye.com/player/${ruser}`,
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**User IGN**__",
-                                                value: ruser,
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**Character Fame**__",
-                                                value: rfame + " Fame",
-                                                inline: true,
-                                            },
-                                            {
-                                                name: "__**Stars**__",
-                                                value: rstars + " Stars",
-                                                inline: true,
-                                            }
-
-
-                                        ],
-                                        footer: {
-                                            text: "User attempted to verify, did not meet character fame requirement.",
-                                        }
-                                    }
-                                });
+                                    
 
                                 if (rdesc.includes(rcode))
                                     message.guild.member(message.author).setNickname(`${rname}`)
