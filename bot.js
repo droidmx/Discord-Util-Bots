@@ -231,7 +231,7 @@ let guild = r.body.guild
 
         case "!afkcheck":
 
-            client.channels.get("437853227397021696").send('@ here', {
+            client.channels.get("437853227397021696").send('@here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
@@ -793,7 +793,7 @@ let guild = r.body.guild
             Promise.all(promises);
 
             break;
-        case "!movegroup 1":
+        case "!movegroup1":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
 
@@ -806,7 +806,7 @@ let guild = r.body.guild
             Promise.all(promises);
 
             break;
-        case "!movegroup 2":
+        case "!movegroup2":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
 
@@ -820,7 +820,7 @@ let guild = r.body.guild
 
             break;
 
-        case "!movegroup 3":
+        case "!movegroup3":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
 
@@ -833,7 +833,7 @@ let guild = r.body.guild
             Promise.all(promises);
 
             break;
-        case "!movegroup 4":
+        case "!movegroup4":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
 
@@ -846,7 +846,7 @@ let guild = r.body.guild
             Promise.all(promises);
 
             break;
-        case "!movegroup 5":
+        case "!movegroup5":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
 
