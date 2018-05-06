@@ -283,20 +283,21 @@ let guild = r.body.guild
                             m.react(message.guild.emojis.get('442254299347812354'))
                             m.react(message.guild.emojis.get('442254256242688002'))
                             m.react(message.guild.emojis.get('442262372011212800'))
-                            m.react(message.guild.emojis.get('442254585193693184'))
+                            m.react(message.guild.emojis.get('442254585193693184')) // Voidentity 
                             m.react(message.guild.emojis.get('442254030857568268'))
                         }).then(async (m) => {
                                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                                 const reactions = await m.awaitReactions(filter, {
                                         time: 20000
                                     }).then((collected) => {
-                                            var promises = [];
-                                            var people = reaction.users();
-                                            people.forEach(person => {
-                                                promises.push(person.setVoiceChannel('441417309169385482'));
+                                            
+                                            const users = collected.map(m => m.users.map(u => u.id))
+                                            users.forEach(user => {
+                                                guild.member(user.id).setVoiceChannel('441417309169385482');
                                             });
+                                    
                                             });
-                                    Promise.all(promises);
+                                   
                                 })
                                     
 
