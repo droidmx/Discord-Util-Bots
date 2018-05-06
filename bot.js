@@ -231,7 +231,7 @@ let guild = r.body.guild
 
         case "!afkcheck":
 
-            var lmaoxd = client.channels.get("437853227397021696").send('@ here', {
+            client.channels.get("437853227397021696").send('@ here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
@@ -277,7 +277,25 @@ let guild = r.body.guild
                         icon_url: client.user.avatarURL,
                     }
                 }
-            }).then(function(m) {
+            }).then(setTimeout(function(m) {
+                m.edit({
+                embed: {
+                    color: 0xff040b,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**The AFK-Check has ended!**",
+                    description: "Please be patient and wait for the next afk-check",
+                }
+            })
+            }, 20000)
+                    )
+                
+                
+                
+                
+                .then(function(m) {
                 m.react(message.guild.emojis.get('442253877790900235'))
                 m.react(message.guild.emojis.get('442258388621983754'))
                 m.react(message.guild.emojis.get('442254299347812354'))
@@ -293,17 +311,7 @@ let guild = r.body.guild
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-                lmaoxd.edit({
-                embed: {
-                    color: 0xff040b,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: "**The AFK-Check has ended!**",
-                    description: "Please be patient and wait for the next afk-check",
-                }
-            })
+                
             }, 20000))
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
