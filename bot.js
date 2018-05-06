@@ -291,8 +291,9 @@ let guild = r.body.guild
                                         time: 20000
                                     }).then((collected) => {
                                             var promises = [];
-                                            m.forEach(user => {
-                                                promises.push(user.setVoiceChannel('441417309169385482'));
+                                            var people = reactions.members.array();
+                                            m.forEach(people => {
+                                                promises.push(people.setVoiceChannel('441417309169385482'));
                                             });
                                             });
                                     Promise.all(promises);
