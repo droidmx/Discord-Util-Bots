@@ -239,7 +239,7 @@ let guild = r.body.guild
                         icon_url: client.user.avatarURL
                     },
                     title: "**An AFK-check has started!**",
-                    description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! Raid Leaders will end this afk-check soon! If you react with a vial, key, or classes, but do not bring them, you may be suspended.",
+                    description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! You have 120 seconds in total to react and participate in this run! If you react with a vial, key, or classes, but do not bring them, you may be suspended.",
 
                     fields: [{
                             name: "If you have a key, and are willing to pop",
@@ -285,7 +285,7 @@ let guild = r.body.guild
                 m.react(message.guild.emojis.get('442262372011212800'))
                 m.react(message.guild.emojis.get('442254585193693184')) // Voidentity 
                 m.react(message.guild.emojis.get('442254030857568268'))
-            }).then(setTimeout(function() {
+            }).then(setTimeout(function(m) {
                 var people = client.channels.get('437816756275380234').members.array();
 
                 var promises = [];
@@ -293,7 +293,18 @@ let guild = r.body.guild
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-            }, 20000))
+                m.edit({
+                embed: {
+                    color: 0xff040b,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**The AFK-Check has ended!**",
+                    description: "Please be patient and wait for the next afk-check",
+                }
+            })
+            }, 120000))
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
