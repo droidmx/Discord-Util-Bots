@@ -1,5 +1,5 @@
 {
-    "name": "Citrust Bot",
+    "name": "Citrus Bot",
     "version": "1.0.0",
     "description": "Utility Bot for Lemon Guild",
     "main": "bot.js",
@@ -8,7 +8,7 @@
         "async": "^2.6.0",
         "core-js": "^2.5.3",
         "core.js": "^0.4.2",
-        "discord.js": "github:hydrabolt/discord.js#11.3-dev",
+        "discord.js": "11.1.0",
         "enmap": "^2.0.1",
         "enmap-level": "^2.0.0",
         "enmap-rethink": "^2.0.1",
