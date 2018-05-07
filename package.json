@@ -1,7 +1,7 @@
 {
     "name": "Citrus Bot",
     "version": "1.0.0",
-    "description": "Utility Bot for LHGS",
+    "description": "Lemon Guild Bot",
     "main": "bot.js",
     "author": "DroidMX",
     "dependencies": {
