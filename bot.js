@@ -223,7 +223,7 @@ let asguild = r.body.guild
                 embed: {
                     color: 0xfbd27a,
                     author: {
-                        name: "L E M O N B O T Info",
+                        name: "Citrus Bot Info",
                         icon_url: client.user.avatarURL
                     },
                     fields: [{
@@ -238,7 +238,7 @@ let asguild = r.body.guild
                         },
                         {
                             name: "__**Information**__",
-                            value: "L E M O N B O T has served this guild since its creation on 5/7/2018"
+                            value: "Citrus Bot has served this guild since its creation on 5/7/2018"
                         },
                         {
                             name: "__**L E M O N Guild Invite**__",
