@@ -8,7 +8,7 @@ const snekfetch = require("snekfetch");
 
 client.on('guildMemberAdd', member => {
 
-    client.channels.get("442232062116757504").send({
+    client.channels.get("443146570788110347").send({
         embed: {
             color: 0x00FFFF,
             author: {
@@ -41,118 +41,7 @@ client.on('message', function(message) {
 
     switch (cmd) {
 
-        case "!verify":
-            let ruser = args.slice(0).join("");
-            let rcode = ("DROID" + Math.floor(Math.random(11111) * 99999));
-            let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
-
-            snekfetch.get(rapi).then(h => {
-                let brdesc = h.body.description;
-
-                if (!ruser)
-                    return message.author.send("Please include a username after !verify! Any typos will cause your verification process to fail.")
-
-                message.delete();
-
-                message.author.send({
-                    embed: {
-                        color: 0xa3fb7a,
-                        author: {
-                            name: `Verification | ${message.author.tag}`,
-                            icon_url: message.author.avatarURL
-                        },
-                        fields: [{
-                                name: "**Your Code:**",
-                                value: `__**${rcode}**__`,
-                                inline: true,
-                            },
-                            {
-                                name: "**Realmeye Link:**",
-                                value: `https://www.realmeye.com/player/${ruser}`,
-                                inline: true,
-                            },
-                            {
-                                name: `Place your verification code on any line of your description, but __*it must be the only piece of text on that line.*__`,
-                                value: `Your original Realmeye description will be sent back shortly.`,
-                            },
-                        ],
-                        footer: {
-                            text: "The bot will check in 60 seconds to see if you followed directions.",
-                        }
-                    }
-                });
-
-                setTimeout(function() {
-
-                    snekfetch.get(rapi).then(r => {
-                        let rdesc = r.body.description;
-                        let rname = r.body.name
-                        let rstars = r.body.rank
-                        let rlocation = r.body.last_seen
-                        let rfame = r.body.fame
-
-                        if (!rdesc.includes(rcode))
-                            return message.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description. Your previous Realmeye description was:\n```" + brdesc + "```")
-
-
-                        if (rstars < (30))
-                            return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**30**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
-
-
-                        if (!rlocation.includes("hidden"))
-                            return message.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
-
-                        if (rfame < (250))
-                            return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
-
-
-                        if (rdesc.includes(rcode))
-                            message.guild.member(message.author).setNickname(`${rname}`)
-                        message.guild.member(message.author).addRole("437853950033526785")
-                        message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
-                        client.channels.get("442232062116757504").send({
-                            embed: {
-                                color: 0xfb7ae4,
-                                author: {
-                                    name: `User Verified | ${message.author.tag}`,
-                                    icon_url: message.author.avatarURL
-                                },
-                                fields: [{
-                                        name: "**Realmeye Link:**",
-                                        value: `https://www.realmeye.com/player/${ruser}`,
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**User IGN**__",
-                                        value: ruser,
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**Character Fame**__",
-                                        value: rfame + " Fame",
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**Stars**__",
-                                        value: rstars + " Stars",
-                                        inline: true,
-                                    }
-
-
-                                ],
-                                footer: {
-                                    text: "User has been verified by the bot.",
-                                }
-                            }
-                        });
-
-
-                    })
-
-                }, 60000);
-            })
-
-            break;
+        
 
             case "!realmeye":
            let user = args.slice(0).join("");
@@ -238,7 +127,7 @@ let asguild = r.body.guild
 
         case "!afkcheck":
 
-            client.channels.get("437853227397021696").send('@here', {
+            client.channels.get("443147956137230348").send('@here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
@@ -246,36 +135,32 @@ let asguild = r.body.guild
                         icon_url: client.user.avatarURL
                     },
                     title: "**An AFK-check has started!**",
-                    description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! You have 120 seconds in total to react and participate in this run! If you react with a vial, key, or classes, but do not bring them, you may be suspended.",
+                    description: "React with <:various:443148353400995841> to ensure you are in the next run! You have 120 seconds in total to react and participate in this run! If you react with specific classes, but do not bring them, you may be suspended from runs or demoted.",
 
                     fields: [{
                             name: "If you have a key, and are willing to pop",
-                            value: "react with <:Key:442253877790900235>",
+                            value: "react with <:Key:443148678589579274>",
                             inline: true,
                         },
-                        {
-                            name: "If you have a vial from our server",
-                            value: "react with <:vial:442254030857568268>",
-                            inline: true,
-                        },
+                   
                         {
                             name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:442254299347812354>",
+                            value: "react with <:priest:443148817290887168>",
                             inline: true,
                         },
                         {
                             name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:442258388621983754>",
+                            value: "react with <:paladin:443148832209895434>",
                             inline: true,
                         },
                         {
                             name: "If you have a Warrior you are willing to bring",
-                            value: "react with <:warrior:442262372011212800>",
+                            value: "react with <:warrior:443148845581598720>",
                             inline: true,
                         },
                         {
                             name: "If you have an Assassin you are willing to bring",
-                            value: "react with <:assassin:442254256242688002>",
+                            value: "react with <:assassin:443148906923294732>",
                             inline: true,
                         }
                     ],
@@ -285,22 +170,22 @@ let asguild = r.body.guild
                     }
                 }
             }).then(function(m) {
-                m.react(message.guild.emojis.get('442253877790900235'))
-                m.react(message.guild.emojis.get('442258388621983754'))
-                m.react(message.guild.emojis.get('442254299347812354'))
-                m.react(message.guild.emojis.get('442254256242688002'))
-                m.react(message.guild.emojis.get('442262372011212800'))
-                m.react(message.guild.emojis.get('442254585193693184')) // Voidentity 
-                m.react(message.guild.emojis.get('442254030857568268'))
+                m.react(message.guild.emojis.get('443148817290887168')) //priest
+                m.react(message.guild.emojis.get('443148353400995841')) //various
+                m.react(message.guild.emojis.get('443148832209895434'))//paladin
+                m.react(message.guild.emojis.get('443148845581598720')) //warrior
+                m.react(message.guild.emojis.get('443148906923294732'))//assassin
+                m.react(message.guild.emojis.get('443148678589579274')) //key
+                
             }).then(setTimeout(function() {
-                var people = client.channels.get('437816756275380234').members.array();
+                var people = client.channels.get('443147998583848970').members.array();
 
                 var promises = [];
                 people.forEach(person => {
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-                client.channels.get("437853227397021696").send({
+                client.channels.get("443147956137230348").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -338,7 +223,7 @@ let asguild = r.body.guild
                 embed: {
                     color: 0xfbd27a,
                     author: {
-                        name: "LHGS Utility Bot Info",
+                        name: "L E M O N B O T Info",
                         icon_url: client.user.avatarURL
                     },
                     fields: [{
@@ -348,16 +233,16 @@ let asguild = r.body.guild
                         },
                         {
                             name: "__**Release Date**__",
-                            value: "5/2/18",
+                            value: "5/7/18",
                             inline: true,
                         },
                         {
                             name: "__**Information**__",
-                            value: "The LHGS Utility Bot was coded using JavaScript and has been functional since 5/2/18"
+                            value: "L E M O N B O T has served this guild since its creation on 5/7/2018"
                         },
                         {
-                            name: "__**LHGS Invite**__",
-                            value: "Invite people to LHGS to run Lost Halls! : https://discord.gg/uF4S8p6"
+                            name: "__**L E M O N Guild Invite**__",
+                            value: "Invite qualified people to join L E M O N! : https://discord.gg/uF4S8p6"
                         }
                     ],
                     timestamp: new Date(),
@@ -383,26 +268,26 @@ let asguild = r.body.guild
             message.channel.sendEmbed(uiembed)
             break;
 
-        case "!suggest":
+        case "!sendapp":
             let suggestion = args.slice(0).join(' ');
 
             if (!suggestion)
-                return message.reply("Please include a suggestion for the bot!")
+                return message.reply("Please answer the questions in order for your application to be valid! Follow the example above!")
 
             message.delete();
             message.reply("Thank you for the suggestion!")
-            client.channels.get("441416698420265000").send({
+            client.channels.get("443151992358174730").send({
                     embed: {
                         color: 0x927afb,
                         author: {
-                            name: "New Suggestion!",
+                            name: "New Application!",
                             icon_url: client.user.avatarURL,
                         },
                         title: "**Suggestion:**",
                         description: suggestion,
                         fields: [{
-                            name: "*Idea Sent in by:*",
-                            value: "" + message.author + "\n*Vote whether or not this is a good suggestion.*",
+                            name: "*Application Sent in by:*",
+                            value: "" + message.author + "\n*Vote whether or not this member is a qualified to join!*",
                         }],
                         timestamp: new Date(),
                         footer: {
@@ -497,7 +382,7 @@ let asguild = r.body.guild
         case "!warn":
             let members = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Guild Founder", "Guild Officer", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!members)
@@ -508,7 +393,7 @@ let asguild = r.body.guild
                 return message.reply("Please indicate a reason for the warn!");
 
             message.channel.send(`***✅ ${members.user.tag} has been warned.***`);
-            client.channels.get("437973965789462530").send({
+            client.channels.get("443146570788110347").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -541,7 +426,7 @@ let asguild = r.body.guild
             break;
 
         case "!kick":
-            if (!message.member.roles.some(r => ["Administrator", "Moderator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Guild Founder", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             let member = message.mentions.members.first();
@@ -558,7 +443,7 @@ let asguild = r.body.guild
             let kkreason = args.slice(1).join(' ');
             member.kick(kreason)
                 .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-            client.channels.get("437973965789462530").send({
+            client.channels.get("443146570788110347").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -593,7 +478,7 @@ let asguild = r.body.guild
         case "!ban":
             let bmember = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Guild Founder", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!bmember)
@@ -607,7 +492,7 @@ let asguild = r.body.guild
 
             bmember.ban(breason)
                 .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-            client.channels.get("437973965789462530").send({
+            client.channels.get("443146570788110347").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -639,14 +524,14 @@ let asguild = r.body.guild
             message.channel.send(`***✅ ${bmember.user.tag} was banned!***`);
             break;
 
-        case "!rotmg":
+        /*case "!rotmg":
             message.guild.member(message.author).addRole("442240483327213578");
             message.channel.send("The user " + message.author + " was given the role ``RotMG``");
             break;
         case "!rrotmg":
             message.guild.member(message.author).removeRole("442240483327213578");
             message.channel.send("The user " + message.author + " got ``RotMG`` removed.");
-            break;
+            break;*/
 
 
         case "!commands":
@@ -667,7 +552,7 @@ let asguild = r.body.guild
                             value: "This command displays all available commands."
                         },
                         {
-                            name: "`!suggest`",
+                            name: "`!sendapp`",
                             value: "This command will send your suggestions for the bot."
                         },
                         {
@@ -678,14 +563,14 @@ let asguild = r.body.guild
                             name: "`!userinfo`",
                             value: "This command will display your Discord account information."
                         },
-                        {
+                        /*{
                             name: "`!rotmg`",
                             value: "Will give you the ROTMG Role, which has access to special text channels and updates"
                         },
                         {
                             name: "`!rrotmg`",
                             value: "Will remove the ROTMG role."
-                        },
+                        },*/
                         {
                             name: "`!realmeye <IGN>`",
                             value: "Gives basic data of a RotMG Player"
@@ -719,15 +604,15 @@ let asguild = r.body.guild
                             name: "`!ban <@user> <reason>`",
                             value: "Bans user from the server."
                         },
-                        {
+                        /*{
                             name: "`!suspend <@user> <time: h, d, w> <reason>`",
                             value: "Suspendsa user from participating in runs for a set amount of time. (Not functional as ofnow)"
-                        },
+                        },*/
                         {
                             name: "`!afkcheck`",
                             value: "Starts an AFK Check. Use in raid status. Work in progress"
-                        },
-                        {
+                        }
+                        /*{
                             name: "`!vial <@user>`",
                             value: "Gives User the Vial Role to log that they have a vial."
                         },
@@ -742,7 +627,7 @@ let asguild = r.body.guild
                         {
                             name: "`!movegroup <group number>`",
                             value: "Moves Users from Raiding to appropriate group vcall"
-                        }
+                        }*/
                     ],
                     footer: {
                         text: "Use these commands only when necessary"
@@ -751,7 +636,7 @@ let asguild = r.body.guild
             });
             break;
 
-        case "!unvial":
+        /*case "!unvial":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
 
@@ -777,9 +662,9 @@ let asguild = r.body.guild
             message.guild.member(vialtaker).addRole("442131046247694336");
 
             message.channel.send("Vial added to " + vialtaker);
-            break;
+            break;*/
 
-        case "!movequeue":
+        /*case "!movequeue":
             if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
                 return;
             client.channels.get("437853227397021696").send({
@@ -869,7 +754,7 @@ let asguild = r.body.guild
             });
             Promise.all(promises);
 
-            break;
+            break;*/
 
 
 
