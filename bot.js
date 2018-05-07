@@ -182,7 +182,7 @@ let asguild = r.body.guild
 
                 var promises = [];
                 people.forEach(person => {
-                    promises.push(person.setVoiceChannel('441417309169385482'));
+                    promises.push(person.setVoiceChannel('443148021065187329'));
                 });
                 Promise.all(promises);
                 client.channels.get("443147956137230348").send({
@@ -382,7 +382,7 @@ let asguild = r.body.guild
         case "!warn":
             let members = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "Guild Founder", "Guild Officer", "Guild Leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Guild Founder", "Guild Officer", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!members)
@@ -422,11 +422,11 @@ let asguild = r.body.guild
                     }
                 }
             });
-            message.mentions.users.first().send(`You were warned in LH Group System, ${reason}`);
+            message.mentions.users.first().send(`You were warned the L E M O N guild, ${reason}`);
             break;
 
         case "!kick":
-            if (!message.member.roles.some(r => ["Administrator", "Guild Founder", "Guild Leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Guild Founder", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             let member = message.mentions.members.first();
@@ -478,7 +478,7 @@ let asguild = r.body.guild
         case "!ban":
             let bmember = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "Guild Founder", "Guild Leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Guild Founder", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!bmember)
