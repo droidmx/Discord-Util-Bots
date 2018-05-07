@@ -182,44 +182,45 @@ let asguild = r.body.guild
     name: "Realmeye Info for" + user,
     icon_url: client.user.avatarURL
   },
-  fields: [{
+  fields: [
+      {
       name: "Description",
-      value: asdesc,
+      value: "Desc: " + asdesc,
       inline: true
     },
     {
       name: "Stars",
-      value: asstars,
+      value: "Stars: " + asstars,
       inline: true
     },
     {
       name: "Last-seen Location",
-      value: aslocation, 
+      value: "server: " + aslocation, 
       inline: true
     },
     {
       name: "Character Fame",
-      value: asfame, 
+      value: "Fame: " + asfame, 
       inline: true
     },
            {
              name: "Account Fame",
-             value: asacctfame, 
+             value: "Fame: " + asacctfame, 
              inlint: true
            },
            {
              name: "Account Created",
-             value: ascreated,
+             value: "Date: " + ascreated,
              inline: true
            },
            {
              name: "Skin Count",
-             value: asskins,
+             value: "Skins: " + asskins,
              inline: true
            },
            {
              name: "Guild",
-             value: asguild,
+             value: "Guild:" + asguild,
              inline: true
            }
   ],
