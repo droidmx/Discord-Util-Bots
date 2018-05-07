@@ -154,7 +154,7 @@ client.on('message', function(message) {
 
             break;
 
-            /*case: "!realmeye":
+            case "!realmeye":
            let user = args.slice(0).join("");
            let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
           
@@ -173,6 +173,8 @@ let acctfame = r.body.account_fame
 let created = r.body.created
 let skins = r.body.skins
 let guild = r.body.guild
+
+
            
            message.channel.send({embed: {
   color: 0xfbd27a,
@@ -225,10 +227,11 @@ let guild = r.body.guild
   footer: {
     icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
     text: "~Droid~#5799"
-  }
+  }//end
+  }})
 })
-});
-  break;*/
+
+  break;
 
 
 
