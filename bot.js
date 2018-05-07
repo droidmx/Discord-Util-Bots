@@ -156,23 +156,23 @@ client.on('message', function(message) {
 
             case "!realmeye":
            let user = args.slice(0).join("");
-           let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
+           let rapii = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
           
            message.delete();
            if(!user)
 return message.channel.send("Please include a username after `!realmeye`.")
            
-           snekfetch.get(rapi).then(r => {
-let desc = r.body.description;
-let name = r.body.name
-let stars = r.body.rank
-let location = r.body.last_seen
-let fame = r.body.fame
-let count = r.body.characterCount
-let acctfame = r.body.account_fame
-let created = r.body.created
-let skins = r.body.skins
-let guild = r.body.guild
+           snekfetch.get(rapii).then(r => {
+let asdesc = r.body.description;
+let asname = r.body.name
+let asstars = r.body.rank
+let aslocation = r.body.last_seen
+let asfame = r.body.fame
+let ascount = r.body.characterCount
+let asacctfame = r.body.account_fame
+let ascreated = r.body.created
+let asskins = r.body.skins
+let asguild = r.body.guild
 
 
            
@@ -184,42 +184,42 @@ let guild = r.body.guild
   },
   fields: [{
       name: "Description",
-      value: desc,
+      value: asdesc,
       inline: true
     },
     {
       name: "Stars",
-      value: stars,
+      value: asstars,
       inline: true
     },
     {
       name: "Last-seen Location",
-      value: location, 
+      value: aslocation, 
       inline: true
     },
     {
       name: "Character Fame",
-      value: fame, 
+      value: asfame, 
       inline: true
     },
            {
              name: "Account Fame",
-             value: acctfame, 
+             value: asacctfame, 
              inlint: true
            },
            {
              name: "Account Created",
-             value: created,
+             value: ascreated,
              inline: true
            },
            {
              name: "Skin Count",
-             value: skins,
+             value: asskins,
              inline: true
            },
            {
              name: "Guild",
-             value: guild,
+             value: asguild,
              inline: true
            }
   ],
