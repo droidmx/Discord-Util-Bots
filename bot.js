@@ -292,7 +292,7 @@ let asguild = r.body.guild
                 m.react(message.guild.emojis.get('442262372011212800'))
                 m.react(message.guild.emojis.get('442254585193693184')) // Voidentity 
                 m.react(message.guild.emojis.get('442254030857568268'))
-            }).then(setTimeout(function() {
+            })/*.then(setTimeout(function() {
                 var people = client.channels.get('437816756275380234').members.array();
 
                 var promises = [];
@@ -312,8 +312,8 @@ let asguild = r.body.guild
                 }
             })
                 
-            }, 120000))
-            /*.then(async (m) => {
+            }, 120000))*/
+            .then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
                     time: 20000
@@ -326,7 +326,7 @@ let asguild = r.body.guild
 
                 });
 
-            })*/
+            })
 
 
             break;
