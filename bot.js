@@ -275,7 +275,7 @@ let asguild = r.body.guild
                 return message.reply("Please answer the questions in order for your application to be valid! Follow the example above!")
 
             message.delete();
-            message.reply("Thank you for the suggestion!")
+            message.author.send("Thank you for the suggestion!")
             client.channels.get("443151992358174730").send({
                     embed: {
                         color: 0x927afb,
