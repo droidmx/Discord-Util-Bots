@@ -3,7 +3,10 @@ const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 
 //line 123 is where lhgs specific starts. 
-
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({ game: { name: `L E M O N's Realm`, type: 0 }});
+});
 
 
 client.on('guildMemberAdd', member => {
@@ -272,6 +275,9 @@ let asguild = r.body.guild
 
         case "!sendapp":
             let suggestion = args.slice(0).join(' ');
+            
+            if (message.member.roles.some(r => ["Guild Initiate"].includes(r.name)))
+                return message.reply("You're already in the guild!");
 
             if (!suggestion)
                 return message.reply("Please answer the questions in order for your application to be valid! Follow the example above!")
@@ -555,7 +561,7 @@ let asguild = r.body.guild
                         },
                         {
                             name: "`!sendapp`",
-                            value: "This command will send your suggestions for the bot."
+                            value: "This command if for new users to apply to the guild!"
                         },
                         {
                             name: "`!info`",
