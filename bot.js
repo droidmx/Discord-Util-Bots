@@ -41,7 +41,9 @@ client.on('message', function(message) {
 
     switch (cmd) {
 
-        
+        case "!homeserver":
+            message.channel.send("Our Home Server is: `USE`")
+            break;
 
             case "!realmeye":
            let user = args.slice(0).join("");
@@ -574,7 +576,11 @@ let asguild = r.body.guild
                         {
                             name: "`!realmeye <IGN>`",
                             value: "Gives basic data of a RotMG Player"
-                        }
+                        },
+                             {
+                                 name: '`!homeserver`',
+                                 value: 'Sends our current Home Server'
+                             }
                     ],
                     footer: {
                         text: "If you have any question, feel free to pm Droid!"
