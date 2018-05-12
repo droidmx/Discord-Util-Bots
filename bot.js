@@ -302,6 +302,8 @@ let asguild = r.body.guild
 
 
         case "!afkcheck":
+            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Raid Leader", "Trial Raid Leader", "Head Raid leader"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
 
             client.channels.get("437853227397021696").send('@here', {
                 embed: {
