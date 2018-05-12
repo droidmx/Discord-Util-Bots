@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
-const yourID = "MzY4NzU2Njk0MTE0ODkzODI1.Db9Png.eF6iN7PzyQV5KUbzNXUCEielXPw"; //Instructions on how to get this: https://redd.it/40zgse
+const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
 const roles = ["RotMG", "NSFW", "Raid Ping"];
