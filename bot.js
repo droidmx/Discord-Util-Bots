@@ -43,6 +43,20 @@ client.on('message', function(message) {
     args = args.splice(1);
 
     switch (cmd) {
+        
+        case "!rotmg":
+        if (!message.member.roles.some(r => ["L E M O N", "Guild Leader"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+        
+        
+           
+        let memberss = message.mentions.membersss.first();
+        if(!memberss)
+          return message.channel.send("Specify the member you wish to invite to the guild!")
+        
+        memberss.addRole('443152751107637249')
+            client.channels.get('443152751107637249').send("The user " + memberss+ "was accepted into the guild!");
+            break;
 
         case "!homeserver":
             message.channel.send("Our Home Server is: `USE`")
