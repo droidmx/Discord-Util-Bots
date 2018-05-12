@@ -44,7 +44,7 @@ client.on('message', function(message) {
 
     switch (cmd) {
         
-        case "!rotmg":
+       /* case "!rotmg":
         if (!message.member.roles.some(r => ["L E M O N", "Guild Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
         
@@ -57,7 +57,7 @@ client.on('message', function(message) {
         memberss.addRole('443152751107637249')
             client.channels.get('443152751107637249').send("The user " + memberss+ "was accepted into the guild!");
             break;
-
+*/
         case "!homeserver":
             message.channel.send("Our Home Server is: `USE`")
             break;
