@@ -321,7 +321,7 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);
-            var omgg = client.channels.get("437853227397021696").send('@ here', {
+            client.channels.get("437853227397021696").send('@ here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
@@ -375,7 +375,7 @@ let asguild = r.body.guild
                 m.react(message.guild.emojis.get('442262372011212800'))
                 m.react(message.guild.emojis.get('442254585193693184')) // Voidentity 
                 m.react(message.guild.emojis.get('442254030857568268'))
-            }).then(setTimeout(function() {
+            }).then(setTimeout(function(m) {
                 var people = client.channels.get('437816756275380234').members.array();
 
                 var promises = [];
@@ -383,7 +383,7 @@ let asguild = r.body.guild
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-                omgg.edit({
+                m.message.edit({
                 embed: {
                     color: 0xff040b,
                     author: {
