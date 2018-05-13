@@ -321,7 +321,7 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);
-            client.channels.get("437853227397021696").send('@here @Raid Ping', {
+            client.channels.get("437853227397021696").send('@here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
@@ -368,12 +368,12 @@ let asguild = r.body.guild
                     }
                 }
             }).then(function(m) {
+                m.react(message.guild.emojis.get('442254585193693184'))// void entity
                 m.react(message.guild.emojis.get('442253877790900235'))
                 m.react(message.guild.emojis.get('442258388621983754'))
                 m.react(message.guild.emojis.get('442254299347812354'))
                 m.react(message.guild.emojis.get('442254256242688002'))
                 m.react(message.guild.emojis.get('442262372011212800'))
-                m.react(message.guild.emojis.get('442254585193693184')) // Voidentity 
                 m.react(message.guild.emojis.get('442254030857568268'))
             }).then(setTimeout(function(m) {
                 var people = client.channels.get('437816756275380234').members.array();
@@ -395,7 +395,7 @@ let asguild = r.body.guild
                 }
             })
                 
-            }, 10000))
+            }, 120000))
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
