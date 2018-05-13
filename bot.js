@@ -383,7 +383,7 @@ let asguild = r.body.guild
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-                client.channels.get("437853227397021696").send({
+                message.edit({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -395,7 +395,7 @@ let asguild = r.body.guild
                 }
             })
                 
-            }, 120000))
+            }, 10000))
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
