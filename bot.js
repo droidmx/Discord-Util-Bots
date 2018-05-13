@@ -321,7 +321,7 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);
-            client.channels.get("437853227397021696").send('@ here', {
+            client.channels.get("437853227397021696").send('@here @Raid Ping', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
@@ -383,7 +383,7 @@ let asguild = r.body.guild
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-                m.edit({
+                client.channels.get("437853227397021696").send({
                 embed: {
                     color: 0xff040b,
                     author: {
