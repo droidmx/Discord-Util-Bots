@@ -305,6 +305,22 @@ let asguild = r.body.guild
             if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Raid Leader", "Trial Raid Leader", "Head Raid leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
+            
+            var peoplee = client.channels.get('441417309169385482').members.array();
+
+                var promisess = [];
+                peoplee.forEach(person => {
+                    promisess.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);
+            
+            var peopleee = client.channels.get('437816756275380234').members.array();
+
+                var promisesss = [];
+                peopleee.forEach(person => {
+                    promisesss.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);
             client.channels.get("437853227397021696").send('@here', {
                 embed: {
                     color: 0xfbd27a,
