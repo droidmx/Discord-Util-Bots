@@ -383,7 +383,7 @@ let asguild = r.body.guild
                     promises.push(person.setVoiceChannel('441417309169385482'));
                 });
                 Promise.all(promises);
-                m.message.edit({
+                m.edit({
                 embed: {
                     color: 0xff040b,
                     author: {
