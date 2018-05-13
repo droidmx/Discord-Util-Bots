@@ -613,7 +613,7 @@ let asguild = r.body.guild
         case "!warn":
             let members = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader", "Raid Leader", "Trial Raid Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!members)
