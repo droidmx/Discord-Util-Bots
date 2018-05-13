@@ -321,7 +321,7 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);
-            client.channels.get("437853227397021696").send('@here', {
+            client.channels.get("437853227397021696").send('@ here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
