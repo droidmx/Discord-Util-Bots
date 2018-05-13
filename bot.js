@@ -105,6 +105,42 @@ client.on('message', function(message) {
     args = args.splice(1);
 
     switch (cmd) {
+            
+            case "@everyone":
+if (!message.member.roles.some(r => ["Administrator", "LH Group System"].includes(r.name)))
+return;
+message.delete();
+message.channel.send(`***✅ ${message.author.tag} has been warned.***`);
+client.channels.get("437973965789462530").send({embed: {
+  color: 0xff040b,
+  author: {
+    name: `Warn | ${message.author.tag} `,
+    icon_url: message.author.avatarURL
+  },
+  fields: [{
+      name: "User",
+      value: `${message.author}`,
+      inline: true,
+    },
+    {
+      name: "Moderator",
+      value: `${client.user}`,
+      inline: true,
+    },
+    {
+      name: "Reason",
+      value: `Using @everyone`,
+      inline: true,
+    }
+  ],
+  timestamp: new Date(),
+  footer: {
+    text: `ID: ${message.author.id}`,
+  }
+}
+});
+message.author.send(`You were warned in LHGS, Using @everyone.`);
+break;
 
         case "!verify":
             let ruser = args.slice(0).join("");
