@@ -9,8 +9,8 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === 'ping') {
-    	message.reply('pong');
+    if (message.content === 'abcdefghiklmnopqrstuvwxyz') {
+    	message.guild.member(message.author).addRole("357184507989852170");
   	}
 });
 
