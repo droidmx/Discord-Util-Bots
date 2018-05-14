@@ -2,11 +2,12 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 
-
-
 client.on('ready', () => {
-    console.log('I am ready!');
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({ game: { name: `on ${client.guilds.size} servers | !!help`, type: 0 }});
 });
+
+
 
 client.on('message', message => {
     if (message.content === 'abcdefghiklmnopqrstuvwxyz') {
