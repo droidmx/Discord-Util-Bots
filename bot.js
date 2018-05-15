@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
-let initialMessage =  {embed: {
+let initialMessage =  ({embed: {
   color: 0xff040b,
   author: {
     name: `Warn | ${message.author.tag} `,
@@ -29,7 +29,7 @@ let initialMessage =  {embed: {
     text: `ID: ${message.author.id}`,
   }
 }
-});
+})
 const roles = ["Town", "Park", "Bar"];
 const reactions = ["🏙", "🏞", "🍹"];
 
