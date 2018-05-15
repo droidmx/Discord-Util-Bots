@@ -2,7 +2,34 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
-let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
+let initialMessage =  {embed: {
+  color: 0xff040b,
+  author: {
+    name: `Warn | ${message.author.tag} `,
+    icon_url: message.author.avatarURL
+  },
+  fields: [{
+      name: "User",
+      value: `${message.author}`,
+      inline: true,
+    },
+    {
+      name: "Moderator",
+      value: `${client.user}`,
+      inline: true,
+    },
+    {
+      name: "Reason",
+      value: `Using @everyone`,
+      inline: true,
+    }
+  ],
+  timestamp: new Date(),
+  footer: {
+    text: `ID: ${message.author.id}`,
+  }
+}
+});
 const roles = ["Town", "Park", "Bar"];
 const reactions = ["🏙", "🏞", "🍹"];
 
