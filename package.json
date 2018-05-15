@@ -1,5 +1,5 @@
 {
-    "name": "After Hours Bot",
+    "name": "AfterHoursBot",
     "version": "1.0.0",
     "description": "Bot for late night fun",
     "main": "bot.js",
