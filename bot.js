@@ -6,7 +6,7 @@ let initialMessage = `**React to the messages below to receive the associated ro
 const roles = ["Town", "Park", "Bar"];
 const reactions = ["🏙", "🏞", "🍹"];
 
-
+//hi?
 //Load up the bot...
 
 
