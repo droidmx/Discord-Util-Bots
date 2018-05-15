@@ -2,15 +2,16 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 
-
-
 client.on('ready', () => {
-    console.log('I am ready!');
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({ game: { name: `on ${client.guilds.size} servers | !!help`, type: 0 }});
 });
 
+
+
 client.on('message', message => {
-    if (message.content === 'ping') {
-    	message.reply('pong');
+    if (message.content === 'abcdefghiklmnopqrstuvwxyz') {
+    	message.guild.member(message.author).addRole("411277964723093504");
   	}
 });
 
@@ -30,3 +31,4 @@ client.on('message', message => {
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
+//test
