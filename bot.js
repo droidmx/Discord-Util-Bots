@@ -13,7 +13,7 @@ const reactions = ["🏙", "🏞", "🍹"];
 //hi?
 //Load up the bot...
 
-
+/**/
 
 //If there isn't a reaction for every role, scold the user!
 if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
@@ -22,7 +22,11 @@ if (roles.length !== reactions.length) throw "Roles list and reactions list are 
 function generateMessages(){
     var messages = [];
     messages.push(initialMessage);
-    for (let role of roles) messages.push(`React below to get the **"${role}"** role!`); //DONT CHANGE THIS
+    for (let role of roles) messages.push(({embed: {
+  color: 0xF5F5DC,
+title: "React below to get the **"${role}"** role!",
+}
+})); //DONT CHANGE THIS
     return messages;
 }
 
