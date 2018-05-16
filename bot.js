@@ -6,10 +6,13 @@ let initialMessage = `"**React to the messages below to receive the associated r
 const roles = ["Town", "Park", "Bar"];
 const reactions = ["🏙", "🏞", "🍹"];
 
-//hi?
+
 //Load up the bot...
 
-/**/
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({ game: { name: `after hours | !help`, type: 0 }});
+});
 
 //If there isn't a reaction for every role, scold the user!
 if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
