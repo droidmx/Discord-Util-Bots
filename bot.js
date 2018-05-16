@@ -5,29 +5,10 @@ const setupCMD = "!createrolemessage"
 let initialMessage =  ({embed: {
   color: 0xff040b,
   author: {
-    name: `Warn | ${message.author.tag} `,
-    icon_url: message.author.avatarURL
-  },
-  fields: [{
-      name: "User",
-      value: `${message.author}`,
-      inline: true,
-    },
-    {
-      name: "Moderator",
-      value: `${client.user}`,
-      inline: true,
-    },
-    {
-      name: "Reason",
-      value: `Using @everyone`,
-      inline: true,
-    }
-  ],
-  timestamp: new Date(),
-  footer: {
-    text: `ID: ${message.author.id}`,
-  }
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+title: "**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**",
 }
 })
 const roles = ["Town", "Park", "Bar"];
