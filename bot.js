@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
+const yourID = "368756694114893825"; 
 const setupCMD = "!createrolemessage"
 let initialMessage = `"**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**"`
 const roles = ["Town", "Park", "Bar"];
@@ -22,7 +22,7 @@ const answers = [
 
 client.on('message', msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
-
+let args = msg.content.split(" ").slice(1);
   if (msg.content.startsWith(prefix + 'ping')) {
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
       sent.edit(`:ping_pong: Pong! | Time Taken: ${sent.createdTimestamp - msg.createdTimestamp}ms`)
@@ -68,7 +68,7 @@ client.on('message', msg => { // START MESSAGE HANDLER
 >>kick :: Kicks the user specified
 >>softban :: Softbans the specified user\`\`\``)
   }
-let args = msg.content.split(" ").slice(1);
+
   
 
   if (msg.content.startsWith(prefix + 'ban')) {
@@ -90,7 +90,7 @@ let args = msg.content.split(" ").slice(1);
     .addField("Responsible Moderator:", `${msg.author.tag} (${msg.author.id})\n\nReason: ${reason}`)
     .setTimestamp(new Date(msg.createdTimestamp))
 
-    msg.guild.channels.find("name", "mod-logs").send({embed});
+    msg.guild.channels.find("name", "👑mod-logs").send({embed});
   }
 
   if (msg.content.startsWith(prefix + 'kick')) {
@@ -114,17 +114,10 @@ let args = msg.content.split(" ").slice(1);
     .addField("Responsible Moderator:", `${msg.author.tag} (${msg.author.id})\n\nReason: ${reason}`)
     .setTimestamp(new Date(msg.createdTimestamp))
 
-    msg.guild.channels.find("name", "mod-logs").send({embed});
+    msg.guild.channels.find("name", "👑mod-logs").send({embed});
   }
 
-  if (msg.content.startsWith(prefix + 'restart')) {
-   if (msg.author.id !== '260246864979296256') return;
-   msg.channel.send('Rebooting...').then(() => {
-     client.destroy().then(() => {
-       process.exit();
-     })
-   })
- }
+  
 
  if (msg.content.startsWith(prefix + 'softban')) {
    var reason = msg.content.split(' ').slice(2).join(' ');
@@ -147,25 +140,9 @@ let args = msg.content.split(" ").slice(1);
      .addField("Responsible Moderator:", `${msg.author.tag} (${msg.author.id})\n\nReason: ${reason}`)
      .setTimestamp(new Date(msg.createdTimestamp))
 
-     msg.guild.channels.find("name", "mod-logs").send({embed});
+     msg.guild.channels.find("name", "👑mod-logs").send({embed});
   }
 
-  if (msg.content.startsWith(prefix + 'eval')) {
-  if(msg.author.id !== "260246864979296256") return;
-  let evall = msg.content.split(' ')[0];
-  let evalstuff = msg.content.split(" ").slice(1).join(" ")
-  try {
-      const code = msg.content.split(" ").slice(1).join(" ")
-      let evaled = eval(code);
-
-      if (typeof evaled !== 'string')
-        evaled = require('util').inspect(evaled);
-
-        msg.channel.send(`:inbox_tray: Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
-    } catch (err) {
-        msg.channel.send(`:inbox_tray: Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(err)}\`\`\``)
-    }
-}
 });
  
 //If there isn't a reaction for every role, scold the user!
