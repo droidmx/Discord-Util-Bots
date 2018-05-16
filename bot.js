@@ -3,11 +3,7 @@ const client = new Discord.Client();
 const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage =  ({embed: {
-  color: 0xff040b,
-  author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
+  color: 0x00FFFF,
 title: "**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**",
 }
 })
