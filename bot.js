@@ -118,7 +118,11 @@ let args = msg.content.split(" ").slice(1);
   }
 
   
-
+if (msg.content.startsWith(prefix + 'info')) {
+  client.channel.send("Bot coded by Droid")
+}
+  
+  
  if (msg.content.startsWith(prefix + 'softban')) {
    var reason = msg.content.split(' ').slice(2).join(' ');
    if (!msg.member.permissions.has("BAN_MEMBERS")) return msg.channel.send(":warning: Insufficient Permissions").catch(console.error);
