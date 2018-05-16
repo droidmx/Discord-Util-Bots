@@ -2,11 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
-let initialMessage =  ({embed: {
-  color: 0x00FFFF,
-title: "**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**",
-}
-})
+let initialMessage = `"**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**"`
 const roles = ["Town", "Park", "Bar"];
 const reactions = ["🏙", "🏞", "🍹"];
 
@@ -22,11 +18,7 @@ if (roles.length !== reactions.length) throw "Roles list and reactions list are 
 function generateMessages(){
     var messages = [];
     messages.push(initialMessage);
-    for (let role of roles) messages.push(({embed: {
-  color: 0xF5F5DC,
-title: "React below to get the **"${role}"** role!",
-}
-})); //DONT CHANGE THIS
+    for (let role of roles) messages.push(`React below to get the **"${role}"** role!`); //DONT CHANGE THIS
     return messages;
 }
 
