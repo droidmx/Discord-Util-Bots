@@ -31,6 +31,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content === '!1100354821') {
     	message.guild.member(message.author).addRole("433785459408109571");
+        .catch(console.error);
   	}
 });
 
