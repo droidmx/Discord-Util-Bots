@@ -16,6 +16,8 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.content === '!headcount') {
+        if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Head Raid leader"].includes(r.name)))
+return message.reply("Sorry, you don't have permissions to use this!");
     	client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
              
         oldMessage.react(message.guild.emojis.get('433791162411646988'))
@@ -28,12 +30,7 @@ client.on('message', message => {
 
 //
 
-client.on('message', message => {
-    if (message.content === '!1100354821') {
-    	message.guild.member(message.author).addRole("433785459408109571");
-        .catch(console.error);
-  	}
-});
+
 
 
 
