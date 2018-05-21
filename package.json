@@ -1,7 +1,7 @@
 {
-    "name": "LH Utility",
+    "name": "",
     "version": "1.0.0",
-    "description": "Utility Bot for LHGS",
+    "description": "something",
     "main": "bot.js",
     "author": "DroidMX",
     "dependencies": {
