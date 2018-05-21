@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
-const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
+/* const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
 const roles = ["RotMG", "NSFW", "Raid Ping"];
@@ -65,7 +65,7 @@ client.on('raw', event => {
         })
  
     }   
-});
+});*/
 
 //line 123 is where lhgs specific starts. 
 
@@ -73,7 +73,7 @@ client.on('raw', event => {
 
 client.on('guildMemberAdd', member => {
 
-    client.channels.get("442232062116757504").send({
+    client.channels.get("448199265177567234").send({
         embed: {
             color: 0x00FFFF,
             author: {
@@ -106,40 +106,8 @@ client.on('message', function(message) {
 
     switch (cmd) {
             
-            case "@everyone":
-if (!message.member.roles.some(r => ["Administrator", "LH Group System"].includes(r.name)))
-return;
-message.delete();
-message.channel.send(`***✅ ${message.author.tag} has been warned.***`);
-client.channels.get("437973965789462530").send({embed: {
-  color: 0xff040b,
-  author: {
-    name: `Warn | ${message.author.tag} `,
-    icon_url: message.author.avatarURL
-  },
-  fields: [{
-      name: "User",
-      value: `${message.author}`,
-      inline: true,
-    },
-    {
-      name: "Moderator",
-      value: `${client.user}`,
-      inline: true,
-    },
-    {
-      name: "Reason",
-      value: `Using @everyone`,
-      inline: true,
-    }
-  ],
-  timestamp: new Date(),
-  footer: {
-    text: `ID: ${message.author.id}`,
-  }
-}
-});
-message.author.send(`You were warned in LHGS, Using @everyone.`);
+           
+;
 break;
 
         case "!verify":
@@ -157,7 +125,7 @@ break;
 
                 message.author.send({
                     embed: {
-                        color: 0xa3fb7a,
+                        color: 0x421541,
                         author: {
                             name: `Verification | ${message.author.tag}`,
                             icon_url: message.author.avatarURL
@@ -209,7 +177,7 @@ break;
 
                         if (rdesc.includes(rcode))
                             message.guild.member(message.author).setNickname(`${rname}`)
-                        message.guild.member(message.author).addRole("437853950033526785")
+                        message.guild.member(message.author).addRole("419922397916037132")
                         message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
                         client.channels.get("442232062116757504").send({
                             embed: {
@@ -336,7 +304,7 @@ let asguild = r.body.guild
   break;
 
 
-
+/*
         case "!afkcheck":
             if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Raid Leader", "Trial Raid Leader", "Head Raid leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
@@ -443,7 +411,7 @@ let asguild = r.body.guild
                     });
                 });
             })*/
-
+*/
 
             break;
 
@@ -454,7 +422,7 @@ let asguild = r.body.guild
                 embed: {
                     color: 0xfbd27a,
                     author: {
-                        name: "LHGS Utility Bot Info",
+                        name: "Army of the Void",
                         icon_url: client.user.avatarURL
                     },
                     fields: [{
@@ -507,7 +475,7 @@ let asguild = r.body.guild
 
             message.delete();
             message.reply("Thank you for the suggestion!")
-            client.channels.get("441416698420265000").send({
+            client.channels.get("448199265177567234").send({
                     embed: {
                         color: 0x927afb,
                         author: {
