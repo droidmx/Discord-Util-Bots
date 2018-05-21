@@ -1,4 +1,4 @@
-# Lh Group Systems Utility Bot
-Custom bot for LHGS to use for afk checks and verification!
+# Army of the Void Bot
+Custom bot for the Army of the Void Guild on RotMG
 
 feel free to use source as reference, if you copy, please credit \~Droid~#5799 :D
