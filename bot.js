@@ -9,53 +9,7 @@ const reactions = ["🎮", "🏫", "448227216590110732"];
 const fs = require('fs');
 let XP = JSON.parse(fs.readFileSync('./XP.json', 'utf8'));
 
-client.on("message", msg => {
-	let prefix = "!";
-	
-	console.log(0)
-	if(!msg.content.startsWith(prefix)) return;
-	
-	//console.log(0.1)
-	//if(msg.author.id != "Your ID") return;
-	//Only use the above for testing as only the person with that ID can use the bot.
-	
-	
-	
-	let userData = XP[msg.author.id];
-	if (!userData) userData = {XP: 0, level: 0};
-	
-	let userXP = XP[msg.author.id] ? XP[msg.author.id].XP : 0;
-	let curLevel = Math.floor(0.1 * Math.sqrt(userXP));
-	if (curLevel > userData.level) {
-		userData.level = curLevel;
-		msg.reply(`You have lvled ^ to lvl **${curLevel}**!`);
-	}
-	
-	console.log("level")
-	if (msg.content.startsWith(prefix + "level")) {
-		msg.reply(`You are lvl ${userData.level}, with ${userData.XP} XP Right Now.`);
-	}
-	
-	if (!XP[msg.author.id]) XP[msg.author.id] = {XP: 0, level: 0}
-	
-	
-	
-	console.log("Slime")
-	if (msg.content.startsWith(prefix + "killSlime")) {
-		userData.XP += 10
-		msg.channel.sendMessage(`${msg.author} has killed an Slime!`)
-	}
-  
-  	console.log("Oryx")
-	if (msg.content.startsWith(prefix + "killOryx")) {
-		userData.XP += 20
-		msg.channel.sendMessage(`${msg.author} has killed Oryx the Mad God!!`)
-	}
-	
-	console.log(XP)
-	fs.writeFile('./XP.json', JSON.stringify(XP), console.error);
-	
-});
+
 
 
 //Load up the bot...
@@ -133,7 +87,50 @@ client.on('message', msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
 let args = msg.content.split(" ").slice(1);
     
-    
+  let userData = XP[msg.author.id];
+	if (!userData) userData = {XP: 0, level: 0};
+	
+	let userXP = XP[msg.author.id] ? XP[msg.author.id].XP : 0;
+	let curLevel = Math.floor(0.1 * Math.sqrt(userXP));
+	if (curLevel > userData.level) {
+		userData.level = curLevel;
+		msg.reply(`You have lvled ^ to lvl **${curLevel}**!`);
+	}
+	
+	console.log("level")
+	if (msg.content.startsWith(prefix + "level")) {
+		msg.reply(`You are lvl ${userData.level}, with ${userData.XP} XP Right Now.`);
+	}
+	
+	if (!XP[msg.author.id]) XP[msg.author.id] = {XP: 0, level: 0}
+	
+	
+	
+	console.log("HW")
+	if (msg.content.startsWith(prefix + "homework")) {
+		userData.XP += 20
+		msg.channel.sendMessage(`${msg.author} has finished their Homework!`)
+	}
+	console.log("work")
+	if (msg.content.startsWith(prefix + "work")) {
+		userData.XP += 20
+		msg.channel.sendMessage(`${msg.author} has worked and made some money!`)
+	}
+	console.log("crime")
+	if (msg.content.startsWith(prefix + "crime")) {
+		userData.XP += 20
+		msg.channel.sendMessage(`${msg.author} has stolen some XP!`)
+	}
+	console.log("enemy")
+	if (msg.content.startsWith(prefix + "kill")) {
+		userData.XP += 20
+		msg.channel.sendMessage(`${msg.author} has killed someone!`)
+	}
+	
+	console.log(XP)
+	fs.writeFile('./XP.json', JSON.stringify(XP), console.error);
+	
+	
   if (msg.content.startsWith(prefix + 'ping')) {
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
       sent.edit(`:ping_pong: Pong! | Time Taken: ${sent.createdTimestamp - msg.createdTimestamp}ms`)
