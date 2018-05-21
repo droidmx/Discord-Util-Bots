@@ -107,8 +107,8 @@ client.on('message', function(message) {
     switch (cmd) {
             
            
-;
-break;
+
+
 
         case "!verify":
             let ruser = args.slice(0).join("");
@@ -411,7 +411,7 @@ let asguild = r.body.guild
                     });
                 });
             })*/
-*/
+
 
             break;
 
@@ -466,7 +466,7 @@ let asguild = r.body.guild
 
             message.channel.sendEmbed(uiembed)
             break;
-
+/*
         case "!suggest":
             let suggestion = args.slice(0).join(' ');
 
@@ -955,7 +955,7 @@ let asguild = r.body.guild
 
             break;
 
-
+*/
 
     }
 });
