@@ -4,6 +4,9 @@
     "description": "Utility Bot for LHGS",
     "main": "bot.js",
     "author": "DroidMX",
+    "scripts": {
+    "start": "node bot.js"
+},
     "dependencies": {
         "async": "^2.6.0",
         "core-js": "^2.5.3",
