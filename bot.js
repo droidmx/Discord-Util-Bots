@@ -176,6 +176,13 @@ let args = msg.content.split(" ").slice(1);
 >>ban :: Bans the user specified
 >>kick :: Kicks the user specified
 >>softban :: Softbans the specified user\`\`\``)
+msg.channel.send(`\`\`\`asciidoc
+= XP System =
+>>level :: See what level you currently are
+>>homework :: Complete HW and gain XP
+>>crime :: Rob someone and gain XP
+>>work :: Work and gain XP
+>>kill :: Kill someone and gain XP\`\`\``)
   }
 
   
