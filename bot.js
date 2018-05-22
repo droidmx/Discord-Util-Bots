@@ -138,7 +138,7 @@ let args = msg.content.split(" ").slice(1);
 		let asd = urmom.level
 		let boii = urmom.XP
 		let xx = `<@${i}> is level ${asd} and has ${boii} XP`
-		.addField("__**User**__", xx, true);
+		.addField("__**User**__", "${xx}, true);
 			
 		
 		
