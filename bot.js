@@ -153,6 +153,9 @@ ${i} is level ${asd} and has ${boii} XP\`\`\``))
 	console.log(XP)
 	fs.writeFile('./XP.json', JSON.stringify(XP), console.error);
 	
+	if (msg.content.startsWith(prefix + 'invite')) {
+		msg.channel.send("https://discord.gg/QDgCRxa")
+	}
 	
   if (msg.content.startsWith(prefix + 'ping')) {
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
