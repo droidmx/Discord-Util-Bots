@@ -136,8 +136,8 @@ let args = msg.content.split(" ").slice(1);
 		let urmom = XP[i]
 		
 		let asd = urmom.level
-		let boii = urmom.XP
-		.addField("__**User**__", `<@${i}> is level ${asd} and has ${boii} XP`, true);
+		//let boii = urmom.XP
+		.addField("__**User**__", `<@${i}> is level ${asd} and has test XP`, true);
 			
 		
 		
