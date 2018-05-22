@@ -136,6 +136,8 @@ Contact Droid/Sonu if there are any issues.\`\`\``)
 		
 		let asd = urmom.level
 		let boii = urmom.XP
+		if (boii === (0))
+			return;
 		
 			msg.channel.send((`\`\`\`asciidoc
 ${i} is level ${asd} and has ${boii} XP\`\`\``))
@@ -203,7 +205,8 @@ msg.channel.send(`\`\`\`asciidoc
 >>homework :: Complete HW and gain XP
 >>crime :: Rob someone and gain XP
 >>work :: Work and gain XP
->>kill :: Kill someone and gain XP\`\`\``)
+>>kill :: Kill someone and gain XP
+>>leaderboard :: Shows people and their xp levels.\`\`\``)
   }
 
   
