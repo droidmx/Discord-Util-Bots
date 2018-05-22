@@ -133,11 +133,11 @@ let args = msg.content.split(" ").slice(1);
 Contact Droid/Sonu if there are any issues.\`\`\``)
 		for (i in XP) {
 		let urmom = XP[i]
-		
+		let test = i.displayName
 		let asd = urmom.level
 		let boii = urmom.XP
 		const embed = new Discord.RichEmbed()
-		.addField(`<@!${i}>`, `is level ${asd} and has ${boii} XP`)
+		.addField(`${test}`, `is level ${asd} and has ${boii} XP`)
 		msg.channel.send({embed})
 		
 			
