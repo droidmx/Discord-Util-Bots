@@ -87,10 +87,10 @@ client.on('message', msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
 let args = msg.content.split(" ").slice(1);
     
-  let userData = XP[msg.author.id];
+  let userData = XP[msg.author.displayName];
 	if (!userData) userData = {XP: 0, level: 0};
 	
-	let userXP = XP[msg.author.id] ? XP[msg.author.id].XP : 0;
+	let userXP = XP[msg.author.displayName] ? XP[msg.author.displayName].XP : 0;
 	let curLevel = Math.floor(0.1 * Math.sqrt(userXP));
 	if (curLevel > userData.level) {
 		userData.level = curLevel;
@@ -133,11 +133,11 @@ let args = msg.content.split(" ").slice(1);
 Contact Droid/Sonu if there are any issues.\`\`\``)
 		for (i in XP) {
 		let urmom = XP[i]
-		let test = i.displayName
+		
 		let asd = urmom.level
 		let boii = urmom.XP
 		const embed = new Discord.RichEmbed()
-		.addField(`${test}`, `is level ${asd} and has ${boii} XP`)
+		.addField(`${i}`, `is level ${asd} and has ${boii} XP`)
 		msg.channel.send({embed})
 		
 			
