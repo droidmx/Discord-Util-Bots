@@ -128,7 +128,13 @@ let args = msg.content.split(" ").slice(1);
 	}
 	console.log("leaderboard")
 	if (msg.content.startsWith(prefix + "leaderboard")) {
-		msg.channel.sendMessage(`test ${userData.level}`)
+		for (i in XP) {
+		let urmom = XP[i]
+		msg.channel.sendMessage(urmom.level)
+		msg.channel.sendMessage(urmom.XP)
+		
+		}
+		
 	}
 	
 	console.log(XP)
