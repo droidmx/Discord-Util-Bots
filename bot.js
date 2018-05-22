@@ -86,7 +86,9 @@ const answers = [
 client.on('message', msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
 let args = msg.content.split(" ").slice(1);
-    
+    if (!msg.content.startsWith(prefix)) {
+    return;
+    }
   let userData = XP[msg.author.tag];
 	if (!userData) userData = {XP: 0, level: 0};
 	
