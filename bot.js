@@ -1,8 +1,21 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const YTDL = require("ytdl-core");
+const music = require('discord.js-musicbot-addon');
 
 
-
+music(client, {
+  prefix: ">>",
+  maxQueueSize: "100",
+  disableLoop: true,
+  leaveHelp: "Leaves the channel.",
+  leaveAlt: ["lve","leev","un1c0rns"],
+  helpCmd: 'mhelp',
+  leaveCmd: 'leave',
+  ownerOverMember: true,
+  botOwner: '368756694114893825',
+  youtubeKey: 'AIzaSyCGPHuK7cKaWyJ-_eUDjQGE-jvbkCa7aCw'
+});
 
 client.on('ready', () => {
     console.log('I am ready!');
