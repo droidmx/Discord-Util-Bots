@@ -137,7 +137,7 @@ Contact Droid/Sonu if there are any issues.\`\`\``)
 		let asd = urmom.level
 		let boii = urmom.XP
 		const embed = new Discord.RichEmbed()
-		.addField(`<@${i}> is level ${asd} and has ${boii} XP`)
+		.addField(`<@!${i}>`, `is level ${asd} and has ${boii} XP`)
 		msg.channel.send({embed})
 		
 			
