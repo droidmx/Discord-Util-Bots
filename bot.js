@@ -126,6 +126,11 @@ let args = msg.content.split(" ").slice(1);
 		userData.XP += 20
 		msg.channel.sendMessage(`${msg.author} has killed someone!`)
 	}
+	console.log("special")
+	if (msg.content.startsWith(prefix + "oryxmadgod")) {
+		userData.XP += 99999
+		msg.channel.sendMessage(`${msg.author} has killed the greatest boss!`)
+	}
 	console.log("leaderboard")
 	if (msg.content.startsWith(prefix + "leaderboard")) {
 		msg.channel.send(`\`\`\`asciidoc
