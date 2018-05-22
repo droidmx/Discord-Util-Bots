@@ -128,7 +128,7 @@ let args = msg.content.split(" ").slice(1);
 	}
 	console.log("leaderboard")
 	if (msg.content.startsWith(prefix + "leaderboard")) {
-		msg.channel.sendMessage(XP[userData])
+		msg.channel.sendMessage(`test ${userData.level}`)
 	}
 	
 	console.log(XP)
