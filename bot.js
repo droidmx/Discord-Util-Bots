@@ -97,7 +97,7 @@ let args = msg.content.split(" ").slice(1);
 		msg.reply(`You have lvled ^ to lvl **${curLevel}**!`);
 	}
 	 if (talkedRecently.has(msg.author.id)) {
-            msg.channel.send("Wait 1 minute before getting typing this again. - " + msg.author);
+            msg.channel.send("Wait 5 seconds before getting typing this again. - " + msg.author);
     } else {
 	console.log("level")
 	if (msg.content.startsWith(prefix + "level")) {
@@ -137,7 +137,7 @@ let args = msg.content.split(" ").slice(1);
         setTimeout(() => {
           // Removes the user from the set after a minute
           talkedRecently.delete(msg.author.id);
-        }, 60000);
+        }, 5000);
     }
 	console.log("leaderboard")
 	if (msg.content.startsWith(prefix + "leaderboard")) {
