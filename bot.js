@@ -87,10 +87,10 @@ client.on('message', msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
 let args = msg.content.split(" ").slice(1);
     
-  let userData = XP[msg.author.id];
+  let userData = XP[guild.fetchMember(msg.author)];
 	if (!userData) userData = {XP: 0, level: 0};
 	
-	let userXP = XP[msg.author.id] ? XP[msg.author.id].XP : 0;
+	let userXP = XP[guild.fetchMember(msg.author)] ? XP[guild.fetchMember(msg.author)].XP : 0;
 	let curLevel = Math.floor(0.1 * Math.sqrt(userXP));
 	if (curLevel > userData.level) {
 		userData.level = curLevel;
@@ -102,7 +102,7 @@ let args = msg.content.split(" ").slice(1);
 		msg.reply(`You are lvl ${userData.level}, with ${userData.XP} XP Right Now.`);
 	}
 	
-	if (!XP[msg.author.id]) XP[msg.author.id] = {XP: 0, level: 0}
+	if (!XP[guild.fetchMember(msg.author)]) XP[guild.fetchMember(msg.author)] = {XP: 0, level: 0}
 	
 	
 	
@@ -138,7 +138,7 @@ Contact Droid/Sonu if there are any issues.\`\`\``)
 		let boii = urmom.XP
 		
 			msg.channel.send((`\`\`\`asciidoc
-<@${i}> is level ${asd} and has ${boii} XP\`\`\``))
+${i} is level ${asd} and has ${boii} XP\`\`\``))
 		
 			
 		
