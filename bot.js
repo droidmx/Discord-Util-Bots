@@ -130,9 +130,10 @@ let args = msg.content.split(" ").slice(1);
 	if (msg.content.startsWith(prefix + "leaderboard")) {
 		for (i in XP) {
 		let urmom = XP[i]
+		let mummy = XP[i][1]
 		let asd = urmom.level
 		let boi = urmom.XP
-		msg.channel.sendMessage(`User: <@${urmom}> is level ${asd} and has ${boi} XP`)
+		msg.channel.sendMessage(`User: <@${mummy}> is level ${asd} and has ${boi} XP`)
 		
 		
 		}
