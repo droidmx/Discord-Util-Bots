@@ -128,22 +128,23 @@ let args = msg.content.split(" ").slice(1);
 	}
 	console.log("leaderboard")
 	if (msg.content.startsWith(prefix + "leaderboard")) {
-		let uiembed = new Discord.RichEmbed()
-			.setTitle("XP System Leaderboard")
-			.setAuthor("Sonu's Slave", "https://i.imgur.com/jiwwxJy.png")
-		        .setFooter("IF you have any questions, contact Droid/Sonu")
+		msg.channel.send(`\`\`\`asciidoc
+= XP System User's =
+Contact Droid/Sonu if there are any issues.\`\`\``)
 		for (i in XP) {
 		let urmom = XP[i]
 		
 		let asd = urmom.level
 		let boii = urmom.XP
-		let xx = `<@${i}> is level ${asd} and has ${boii} XP`
-		.addField("__**User**__", "${xx}", true);
+		const embed = new Discord.RichEmbed()
+		.addField(`<@${i}> is level ${asd} and has ${boii} XP`)
+		msg.channel.send({embed})
+		
 			
 		
 		
 		}
-		msg.channel.send({uiembed})
+		
 		
 	}
 	
