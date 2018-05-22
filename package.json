@@ -8,6 +8,13 @@
   },
   "dependencies": {
     "discord.js": "11.1.0",
-    "request": "2.81.0"
+    "request": "2.81.0",
+    "youtube-audio-stream": "^0.2.0",
+        "youtube-dl": "^1.12.2",
+        "youtube-dl.js": "^1.0.7",
+        "youtube-playlist-info": "^1.1.2",
+        "ytdl": "^0.10.0",
+        "ytdl-core": "^0.20.2",
+        "ytsearcher": "^1.0.3"
   }
 }
