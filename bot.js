@@ -166,9 +166,7 @@ ${i} is level ${asd} and has ${boii} XP\`\`\``))
 	console.log(XP)
 	fs.writeFile('./XP.json', JSON.stringify(XP), console.error);
 	
-	if (msg.content.startsWith(prefix + 'invite')) {
-		msg.channel.send("https://discord.gg/QDgCRxa")
-	}
+	
 	
   if (msg.content.startsWith(prefix + 'ping')) {
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
@@ -208,7 +206,6 @@ ${i} is level ${asd} and has ${boii} XP\`\`\``))
 >>ping :: Hm. I wonder what this does? /sarcasm
 >>8ball :: Ask the magic 8ball a question. Pretty self explanatory
 >>help :: Brings up this menu
->>invite :: Shows HeatZone's Invite URL
 >>serverinfo :: Shows information about the server\`\`\``)
   msg.channel.send(`\`\`\`asciidoc
 = Moderation =
