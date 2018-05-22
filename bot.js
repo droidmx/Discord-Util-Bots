@@ -126,6 +126,10 @@ let args = msg.content.split(" ").slice(1);
 		userData.XP += 20
 		msg.channel.sendMessage(`${msg.author} has killed someone!`)
 	}
+	console.log("leaderboard")
+	if (msg.content.startsWith(prefix + "leaderboard")) {
+		msg.channel.sendMessage(XP)
+	}
 	
 	console.log(XP)
 	fs.writeFile('./XP.json', JSON.stringify(XP), console.error);
