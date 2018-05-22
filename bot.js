@@ -136,13 +136,13 @@ let args = msg.content.split(" ").slice(1);
 		let urmom = XP[i]
 		
 		let asd = urmom.level
-		let boi = urmom.XP
-		.addField(`User: <@${i}> is level ${asd} and has ${boi} XP`)
+		let boii = urmom.XP
+		.addField("__**User**__", `<@${i}> is level ${asd} and has ${boii} XP`, true);
 			
 		
 		
 		}
-		msg.channel.sendMessage({uiembed})
+		msg.channel.send({uiembed})
 		
 	}
 	
