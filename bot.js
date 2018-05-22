@@ -156,6 +156,7 @@ Contact Droid/Sonu if there are any issues.\`\`\``)
 		
 			msg.channel.send((`\`\`\`asciidoc
 ${i} is level ${asd} and has ${boii} XP\`\`\``))
+			console.log(`${i} was logged`)
 		
 			
 		
