@@ -8,7 +8,7 @@ const roles = ["Gamer", "School Kid", "Coder"];
 const reactions = ["🎮", "🏫", "448227216590110732"];
 const fs = require('fs');
 let XP = JSON.parse(fs.readFileSync('./XP.json', 'utf8'));
-
+const talkedRecently = new Set();
 
 
 
@@ -96,7 +96,9 @@ let args = msg.content.split(" ").slice(1);
 		userData.level = curLevel;
 		msg.reply(`You have lvled ^ to lvl **${curLevel}**!`);
 	}
-	
+	 if (talkedRecently.has(msg.author.id)) {
+            msg.channel.send("Wait 1 minute before getting typing this again. - " + msg.author);
+    } else {
 	console.log("level")
 	if (msg.content.startsWith(prefix + "level")) {
 		msg.reply(`You are lvl ${userData.level}, with ${userData.XP} XP Right Now.`);
@@ -131,6 +133,12 @@ let args = msg.content.split(" ").slice(1);
 		userData.XP += 99999
 		msg.channel.sendMessage(`${msg.author} has killed the greatest boss!`)
 	}
+	     talkedRecently.add(msg.author.id);
+        setTimeout(() => {
+          // Removes the user from the set after a minute
+          talkedRecently.delete(msg.author.id);
+        }, 60000);
+    }
 	console.log("leaderboard")
 	if (msg.content.startsWith(prefix + "leaderboard")) {
 		msg.channel.send(`\`\`\`asciidoc
