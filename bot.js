@@ -4,7 +4,7 @@ const YTDL = require("ytdl-core");
 const music = require('discord.js-musicbot-addon');
 
 
-music(client, {
+music.start(client, {
   prefix: ">>",
   maxQueueSize: "100",
   disableLoop: true,
