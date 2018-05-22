@@ -130,7 +130,7 @@ let args = msg.content.split(" ").slice(1);
 	}
 	console.log("special")
 	if (msg.content.startsWith(prefix + "oryxmadgod")) {
-		userData.XP += 99999
+		userData.XP += 1000000
 		msg.channel.sendMessage(`${msg.author} has killed the greatest boss!`)
 	}
 	     talkedRecently.add(msg.author.id);
