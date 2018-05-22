@@ -138,7 +138,7 @@ Contact Droid/Sonu if there are any issues.\`\`\``)
 		let boii = urmom.XP
 		
 			msg.channel.send((`\`\`\`asciidoc
-<@${i}> is level ${asd} and has ${boii} XP\`\`\``)
+<@${i}> is level ${asd} and has ${boii} XP\`\`\``))
 		
 			
 		
