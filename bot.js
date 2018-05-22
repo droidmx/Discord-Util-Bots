@@ -87,10 +87,10 @@ client.on('message', msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
 let args = msg.content.split(" ").slice(1);
     
-  let userData = XP[msg.guild.fetchMember(msg.author)];
+  let userData = XP[msg.guild.fetchMember(msg.author.displayName)];
 	if (!userData) userData = {XP: 0, level: 0};
 	
-	let userXP = XP[msg.guild.fetchMember(msg.author)] ? XP[msg.guild.fetchMember(msg.author)].XP : 0;
+	let userXP = XP[msg.guild.fetchMember(msg.author.displayName)] ? XP[msg.guild.fetchMember(msg.author.displayName)].XP : 0;
 	let curLevel = Math.floor(0.1 * Math.sqrt(userXP));
 	if (curLevel > userData.level) {
 		userData.level = curLevel;
@@ -102,7 +102,7 @@ let args = msg.content.split(" ").slice(1);
 		msg.reply(`You are lvl ${userData.level}, with ${userData.XP} XP Right Now.`);
 	}
 	
-	if (!XP[msg.guild.fetchMember(msg.author)]) XP[msg.guild.fetchMember(msg.author)] = {XP: 0, level: 0}
+	if (!XP[msg.guild.fetchMember(msg.author.displayName)]) XP[msg.guild.fetchMember(msg.author.displayName)] = {XP: 0, level: 0}
 	
 	
 	
