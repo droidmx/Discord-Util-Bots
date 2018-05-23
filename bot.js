@@ -151,8 +151,7 @@ Contact Droid/Sonu if there are any issues.\`\`\``)
 		
 		let asd = urmom.level
 		let boii = urmom.XP
-		if (boii === (0))
-			return;
+		
 		
 			msg.channel.send((`\`\`\`asciidoc
 ${i} is level ${asd} and has ${boii} XP\`\`\``))
