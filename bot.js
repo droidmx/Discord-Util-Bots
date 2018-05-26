@@ -11,7 +11,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content === 'abcdefghiklmnopqrstuvwxyz') {
-    	message.guild.member(message.author).addRole("357184507989852170");
+    	message.guild.member(message.author).addRole("325863963487240203");
   	}
 });
 
