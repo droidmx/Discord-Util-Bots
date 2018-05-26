@@ -279,15 +279,15 @@ if (msg.content.startsWith(prefix + 'info')) {
 }
   
 if (msg.content.startsWith(prefix + 'suspend')) {
-	var args = msg.content.split(" ");
+	var argsss = msg.content.split(" ");
 if (!msg.member.hasPermission("ADMINISTRATOR"))
                 return msg.reply(":x: Sorry, you don't have permissions to use this!");
           let member2 = msg.mentions.members.first();
           if(!member2) return msg.reply(":x: " + "| You need to mention a user/member!");
           let muteRole2 = msg.guild.roles.find("name", "Suspended");
           if(!muteRole2) return msg.reply(":x: " + "| You do not have the \"Suspended\" role created!");
-          let time2 = args[2];
-          let reasonxd = args[3];
+          let time2 = argsss[2];
+          let reasonxd = argsss[3];
             if(!reasonxd) return msg.reply(":x: " + "| Please provide a reason for the suspension!");
           if(!time2) {
             msg.channel.send("Please provide a time for the suspension!");
