@@ -7,6 +7,7 @@ let initialMessage = `**React to the messages below to receive the associated ro
 const roles = ["Gamer", "School Kid", "Coder"];
 const reactions = ["🎮", "🏫", "448227216590110732"];
 const fs = require('fs');
+const ms = require('ms');
 let XP = JSON.parse(fs.readFileSync('./XP.json', 'utf8'));
 const talkedRecently = new Set();
 
@@ -277,6 +278,31 @@ if (msg.content.startsWith(prefix + 'info')) {
   client.channel.send("Bot coded by Droid")
 }
   
+if (msg.content.startsWith(prefix + 'suspend')) {
+	var args = msg.content.split(" ");
+if (!msg.member.hasPermission("ADMINISTRATOR"))
+                return msg.reply(":x: Sorry, you don't have permissions to use this!");
+          let member2 = msg.mentions.members.first();
+          if(!member2) return msg.reply(":x: " + "| You need to mention a user/member!");
+          let muteRole2 = msg.guild.roles.find("name", "Suspended");
+          if(!muteRole2) return msg.reply(":x: " + "| You do not have the \"Suspended\" role created!");
+          let time2 = args[2];
+          let reasonxd = args[3];
+            if(!reasonxd) return msg.reply(":x: " + "| Please provide a reason for the suspension!");
+          if(!time2) {
+            msg.channel.send("Please provide a time for the suspension!");
+          }else {
+            member2.addRole(muteRole2.id);
+            msg.channel.send(member2 + ` has been suspended for: ${ms(ms(time2), {long: true})}, Reason: ${reasonxd}!`);
+
+            setTimeout(function(){
+              member2.removeRole(muteRole2.id);
+              msg.channel.send(member2 + ` has been unsuspended, suspension lasted for ${ms(ms(time2), {long: true})}`)
+
+            }, ms(time2));
+
+};	
+}
   
  if (msg.content.startsWith(prefix + 'softban')) {
    var reason = msg.content.split(' ').slice(2).join(' ');
