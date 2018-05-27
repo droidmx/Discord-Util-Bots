@@ -1,9 +1,12 @@
 {
-    "name": "LH Utility",
+    "name": "",
     "version": "1.0.0",
-    "description": "Utility Bot for LHGS",
+    "description": "",
     "main": "bot.js",
     "author": "DroidMX",
+    "scripts": {
+    "start": "node bot.js"
+},
     "dependencies": {
         "async": "^2.6.0",
         "core-js": "^2.5.3",
