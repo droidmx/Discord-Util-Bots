@@ -439,7 +439,7 @@ let asguild = r.body.guild
 
             break;
             
-        case "!endafk shatters":
+        case "!endafk":
             var people = client.channels.get('437782399175098368').members.array();
 
                 var promises = [];
