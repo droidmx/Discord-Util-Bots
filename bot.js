@@ -1,7 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
-const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
+const fs = require('fs');
+const ms = require('ms');
+
+/*const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
 const roles = ["RotMG", "NSFW", "Raid Ping"];
@@ -66,14 +69,14 @@ client.on('raw', event => {
  
     }   
 });
-
+*/
 //line 123 is where lhgs specific starts. 
 
 
 
 client.on('guildMemberAdd', member => {
 
-    client.channels.get("442232062116757504").send({
+    client.channels.get("450362350734934016").send({
         embed: {
             color: 0x00FFFF,
             author: {
@@ -107,12 +110,13 @@ client.on('message', function(message) {
     switch (cmd) {
             
             case "!suspend":
-        if (!message.member.roles.some(r => ["Administrator", ":ok_hand:", "Raid Leader", "Trial Raid Leader", "Head Raid leader"].includes(r.name)))
+        if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply(":x: Sorry, you don't have permissions to use this!");
           let member2 = message.mentions.members.first();
           if(!member2) return message.reply(":x: " + "| You need to mention a user/member!");
-          let muteRole2 = message.guild.roles.find("name", "Suspended");
+          let muteRole2 = message.guild.roles.find("name", "Suspended Raider");
           if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended\" role created!");
+          let verifiedrole = message.guild.roles.find("name", "Raider");
           let time2 = args[2];
           let reasonxd = args[3];
             if(!reasonxd) return message.reply(":x: " + "| Please provide a reason for the suspension!");
@@ -120,56 +124,24 @@ client.on('message', function(message) {
             message.channel.send("Please provide a time for the suspension!");
           }else {
             member2.addRole(muteRole2.id);
-            message.channel.send(member2 + ` has been suspended for: ${ms(ms(time2), {long: true})}, Reason: ${reasonxd}!`);
+            member2.removeRole(verifiedrole.id);
+            client.channels.get("437842250119249920").send(member2 + ` has been suspended for ${ms(ms(time2), {long: true})}, Reason: ${reasonxd}!`);
 
             setTimeout(function(){
               member2.removeRole(muteRole2.id);
-              message.channel.send(member2 + ` has been unsuspended, suspension lasted for ${ms(ms(time2), {long: true})}`)
+              member2.addRole(verifiedrole.id);
+              client.channels.get("437842250119249920").send(member2 + ` has been unsuspended, suspension lasted for ${ms(ms(time2), {long: true})}`)
 
             }, ms(time2));
 
             };
             
 break;
-            case "@everyone":
-if (!message.member.roles.some(r => ["Administrator", "LH Group System"].includes(r.name)))
-return;
-message.delete();
-message.channel.send(`***✅ ${message.author.tag} has been warned.***`);
-client.channels.get("437973965789462530").send({embed: {
-  color: 0xff040b,
-  author: {
-    name: `Warn | ${message.author.tag} `,
-    icon_url: message.author.avatarURL
-  },
-  fields: [{
-      name: "User",
-      value: `${message.author}`,
-      inline: true,
-    },
-    {
-      name: "Moderator",
-      value: `${client.user}`,
-      inline: true,
-    },
-    {
-      name: "Reason",
-      value: `Using @everyone`,
-      inline: true,
-    }
-  ],
-  timestamp: new Date(),
-  footer: {
-    text: `ID: ${message.author.id}`,
-  }
-}
-});
-message.author.send(`You were warned in LHGS, Using @everyone.`);
-break;
+            
 
         case "!verify":
             let ruser = args.slice(0).join("");
-            let rcode = ("DROID" + Math.floor(Math.random(11111) * 99999));
+            let rcode = ("RR" + Math.floor(Math.random(11111) * 99999));
             let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
 
             snekfetch.get(rapi).then(h => {
@@ -234,9 +206,9 @@ break;
 
                         if (rdesc.includes(rcode))
                             message.guild.member(message.author).setNickname(`${rname}`)
-                        message.guild.member(message.author).addRole("437853950033526785")
+                        message.guild.member(message.author).addRole("437779304915664897")
                         message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
-                        client.channels.get("442232062116757504").send({
+                        client.channels.get("450362350734934016").send({
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
@@ -362,12 +334,12 @@ let asguild = r.body.guild
 
 
 
-        case "!afkcheck":
-            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Raid Leader", "Trial Raid Leader", "Head Raid leader"].includes(r.name)))
+        case "!afk shatters":
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raider", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             
-            var peoplee = client.channels.get('441417309169385482').members.array();
+            /*var peoplee = client.channels.get('437782399175098368').members.array();
 
                 var promisess = [];
                 peoplee.forEach(person => {
@@ -381,45 +353,40 @@ let asguild = r.body.guild
                 peopleee.forEach(person => {
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
-                Promise.all(promises);
-            client.channels.get("437853227397021696").send('@here', {
+                Promise.all(promises);*/
+            var testmsgasd = client.channels.get("437843820357353472").send('@here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
                         name: client.user.username,
                         icon_url: client.user.avatarURL
                     },
-                    title: "**An AFK-check has started!**",
-                    description: "React with <:voidentity:442254585193693184> to ensure you are in the next run! You have 120 seconds in total to react and participate in this run! If you react with a vial, key, or classes, but do not bring them, you may be suspended.",
+                    title: "**An AFK-check for The Shatters has started!**",
+                    description: "React with <:shatters:437861607792443395> and join queue to ensure you are in the next run!",
 
                     fields: [{
                             name: "If you have a key, and are willing to pop",
-                            value: "react with <:Key:442253877790900235>",
-                            inline: true,
-                        },
-                        {
-                            name: "If you have a vial from our server",
-                            value: "react with <:vial:442254030857568268>",
+                            value: "react with <:shatterskey:450369696085180427>",
                             inline: true,
                         },
                         {
                             name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:442254299347812354>",
+                            value: "react with <:priest:450369875467173890>",
                             inline: true,
                         },
                         {
                             name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:442258388621983754>",
+                            value: "react with <:paladin:450369854231412766>",
                             inline: true,
                         },
                         {
                             name: "If you have a Warrior you are willing to bring",
-                            value: "react with <:warrior:442262372011212800>",
+                            value: "react with <:warrior:450369890721857596>",
                             inline: true,
                         },
                         {
                             name: "If you have an Assassin you are willing to bring",
-                            value: "react with <:assassin:442254256242688002>",
+                            value: "react with <:assassin:450369909755478028>",
                             inline: true,
                         }
                     ],
@@ -429,22 +396,22 @@ let asguild = r.body.guild
                     }
                 }
             }).then(function(m) {
-                m.react(message.guild.emojis.get('442254585193693184'))// void entity
-                m.react(message.guild.emojis.get('442253877790900235'))
-                m.react(message.guild.emojis.get('442258388621983754'))
-                m.react(message.guild.emojis.get('442254299347812354'))
-                m.react(message.guild.emojis.get('442254256242688002'))
-                m.react(message.guild.emojis.get('442262372011212800'))
+                m.react(message.guild.emojis.get('437861607792443395'))// shatters entity
+                m.react(message.guild.emojis.get('450369696085180427')) // key
+                m.react(message.guild.emojis.get('450369854231412766'))
+                m.react(message.guild.emojis.get('450369875467173890'))
+                m.react(message.guild.emojis.get('450369909755478028'))
+                m.react(message.guild.emojis.get('450369890721857596'))
                 m.react(message.guild.emojis.get('442254030857568268'))
-            }).then(setTimeout(function(m) {
-                var people = client.channels.get('437816756275380234').members.array();
+            })/*.then(setTimeout(function(m) {
+                var people = client.channels.get('437782399175098368').members.array();
 
                 var promises = [];
                 people.forEach(person => {
-                    promises.push(person.setVoiceChannel('441417309169385482'));
+                    promises.push(person.setVoiceChannel('450366721543503892'));
                 });
                 Promise.all(promises);
-                client.channels.get("437853227397021696").send({
+                m.edit({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -456,7 +423,7 @@ let asguild = r.body.guild
                 }
             })
                 
-            }, 120000))
+            }, 120000))*/
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
@@ -471,6 +438,26 @@ let asguild = r.body.guild
 
 
             break;
+            
+        case "!endafk shatters":
+            var people = client.channels.get('437782399175098368').members.array();
+
+                var promises = [];
+                people.forEach(person => {
+                    promises.push(person.setVoiceChannel('450366721543503892'));
+                });
+                Promise.all(promises);
+                testmsgasd.edit({
+                embed: {
+                    color: 0xff040b,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**The AFK-Check has ended!**",
+                    description: "Please be patient and wait for the next afk-check",
+                }
+            })
 
         case "!info":
             message.delete();
@@ -479,7 +466,7 @@ let asguild = r.body.guild
                 embed: {
                     color: 0xfbd27a,
                     author: {
-                        name: "LHGS Utility Bot Info",
+                        name: "Janus Bot Ingo",
                         icon_url: client.user.avatarURL
                     },
                     fields: [{
@@ -489,16 +476,16 @@ let asguild = r.body.guild
                         },
                         {
                             name: "__**Release Date**__",
-                            value: "5/2/18",
+                            value: "5/27/18",
                             inline: true,
                         },
                         {
                             name: "__**Information**__",
-                            value: "The LHGS Utility Bot was coded using JavaScript and has been functional since 5/2/18"
+                            value: "The LHGS Utility Bot was coded using JavaScript and serves Realm Raiders."
                         },
                         {
-                            name: "__**LHGS Invite**__",
-                            value: "Invite people to LHGS to run Lost Halls! : https://discord.gg/uF4S8p6"
+                            name: "__**Realm Raiders Invite**__",
+                            value: "Invite people to Realm Raiders! : https://discord.gg/M8EZcw6"
                         }
                     ],
                     timestamp: new Date(),
@@ -524,7 +511,7 @@ let asguild = r.body.guild
             message.channel.sendEmbed(uiembed)
             break;
 
-        case "!suggest":
+      /*  case "!suggest":
             let suggestion = args.slice(0).join(' ');
 
             if (!suggestion)
@@ -556,7 +543,7 @@ let asguild = r.body.guild
                     message.react("❎")
                 })
             break;
-
+*/
         case "!rotmgchars":
             message.channel.send({
                 embed: {
@@ -638,7 +625,7 @@ let asguild = r.body.guild
         case "!warn":
             let members = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Moderator", "Security", "Raid Leader", "Trial Raid Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!members)
@@ -649,7 +636,7 @@ let asguild = r.body.guild
                 return message.reply("Please indicate a reason for the warn!");
 
             message.channel.send(`***✅ ${members.user.tag} has been warned.***`);
-            client.channels.get("437973965789462530").send({
+            client.channels.get("450362350734934016").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -682,7 +669,7 @@ let asguild = r.body.guild
             break;
 
         case "!kick":
-            if (!message.member.roles.some(r => ["Administrator", "Moderator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Admin", "Moderator", "Security"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             let member = message.mentions.members.first();
@@ -699,7 +686,7 @@ let asguild = r.body.guild
             let kkreason = args.slice(1).join(' ');
             member.kick(kreason)
                 .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-            client.channels.get("437973965789462530").send({
+            client.channels.get("450362350734934016").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -734,7 +721,7 @@ let asguild = r.body.guild
         case "!ban":
             let bmember = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "LH Group System", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Admin", "Moderator"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!bmember)
@@ -780,7 +767,7 @@ let asguild = r.body.guild
             message.channel.send(`***✅ ${bmember.user.tag} was banned!***`);
             break;
 
-        case "!rotmg":
+        /*case "!rotmg":
             message.guild.member(message.author).addRole("442240483327213578");
             message.channel.send("The user " + message.author + " was given the role ``RotMG``");
             break;
@@ -838,7 +825,7 @@ let asguild = r.body.guild
                 }
             });
             break;
-
+*/
         case "!staffcommands":
             message.channel.send({
                 embed: {
@@ -862,28 +849,13 @@ let asguild = r.body.guild
                         },
                         {
                             name: "`!suspend <@user> <time: h, d, w> <reason>`",
-                            value: "Suspendsa user from participating in runs for a set amount of time. (Not functional as ofnow)"
+                            value: "Suspends a user from participating in runs for a set amount of time. Example `!suspend @Droid 5d hacking`"
                         },
                         {
-                            name: "`!afkcheck`",
-                            value: "Starts an AFK Check. Use in raid status. Work in progress"
-                        },
-                        {
-                            name: "`!vial <@user>`",
-                            value: "Gives User the Vial Role to log that they have a vial."
-                        },
-                        {
-                            name: "`!unvial <@user>`",
-                            value: "Removes Vial role from user once they have popped."
-                        },
-                        {
-                            name: "`!movequeue`",
-                            value: "Moves users from Queue to Raiding"
-                        },
-                        {
-                            name: "`!movegroup <group number>`",
-                            value: "Moves Users from Raiding to appropriate group vcall"
+                            name: "`!afkcheck <dungeon>`",
+                            value: "Starts an AFK Check. Use in afk status. Work in progress"
                         }
+                        
                     ],
                     footer: {
                         text: "Use these commands only when necessary"
@@ -892,125 +864,7 @@ let asguild = r.body.guild
             });
             break;
 
-        case "!unvial":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            let vialpopped = message.mentions.users.first();
-
-            if (!vialpopped)
-                return message.reply("Please mention a user to remove the vial role from.")
-
-            message.guild.member(vialpopped).removeRole("442131046247694336");
-
-            message.channel.send("Vial removed from " + vialpopped);
-            break;
-
-        case "!vial":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            let vialtaker = message.mentions.users.first();
-
-            if (!vialtaker)
-                return message.reply("Please mention a user to give the vial role to.")
-
-            message.guild.member(vialtaker).addRole("442131046247694336");
-
-            message.channel.send("Vial added to " + vialtaker);
-            break;
-
-        case "!movequeue":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-            client.channels.get("437853227397021696").send({
-                embed: {
-                    color: 0xff040b,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: "**The AFK-Check has ended!**",
-                    description: "Please be patient and wait for the next afk-check",
-                }
-            })
-
-
-            var msg = message.channel.send("Moving!")
-            var people = client.channels.get('437816756275380234').members.array();
-            var promises = [];
-            people.forEach(person => {
-                promises.push(person.setVoiceChannel('441417309169385482'));
-            });
-            Promise.all(promises);
-
-            break;
-        case "!movegroup1":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            var msg = message.channel.send("Moving!")
-            var people = client.channels.get('441417309169385482').members.array();
-            var promises = [];
-            people.forEach(person => {
-                promises.push(person.setVoiceChannel('437853360398270477'));
-            });
-            Promise.all(promises);
-
-            break;
-        case "!movegroup2":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            var msg = message.channel.send("Moving!")
-            var people = client.channels.get('441417309169385482').members.array();
-            var promises = [];
-            people.forEach(person => {
-                promises.push(person.setVoiceChannel('442129832336424970'));
-            });
-            Promise.all(promises);
-
-            break;
-
-        case "!movegroup3":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            var msg = message.channel.send("Moving!")
-            var people = client.channels.get('441417309169385482').members.array();
-            var promises = [];
-            people.forEach(person => {
-                promises.push(person.setVoiceChannel('442129990335725579'));
-            });
-            Promise.all(promises);
-
-            break;
-        case "!movegroup4":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            var msg = message.channel.send("Moving!")
-            var people = client.channels.get('441417309169385482').members.array();
-            var promises = [];
-            people.forEach(person => {
-                promises.push(person.setVoiceChannel('442130021885149194'));
-            });
-            Promise.all(promises);
-
-            break;
-        case "!movegroup5":
-            if (!message.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)))
-                return;
-
-            var msg = message.channel.send("Moving!")
-            var people = client.channels.get('441417309169385482').members.array();
-            var promises = [];
-            people.forEach(person => {
-                promises.push(person.setVoiceChannel('442130048456327169'));
-            });
-            Promise.all(promises);
-
-            break;
+        
 
 
 
