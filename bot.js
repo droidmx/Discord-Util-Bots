@@ -340,7 +340,7 @@ let asguild = r.body.guild
             if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
-            
+            console.log("afk check for shatters started")
             /*var peoplee = client.channels.get('437782399175098368').members.array();
 
                 var promisess = [];
@@ -369,27 +369,27 @@ let asguild = r.body.guild
                     fields: [{
                             name: "If you have a key, and are willing to pop",
                             value: "react with <:shatterskey:450369696085180427>",
-                            inline: true,
+                            
                         },
                         {
                             name: "If you have a Priest you are willing to bring",
                             value: "react with <:priest:450369875467173890>",
-                            inline: true,
+                            
                         },
                         {
                             name: "If you have a Paladin you are willing to bring",
                             value: "react with <:paladin:450369854231412766>",
-                            inline: true,
+                            
                         },
                         {
                             name: "If you have a Warrior you are willing to bring",
                             value: "react with <:warrior:450369890721857596>",
-                            inline: true,
+                           
                         },
                         {
                             name: "If you have an Assassin you are willing to bring",
                             value: "react with <:assassin:450369909755478028>",
-                            inline: true,
+                            
                         }
                     ],
                     timestamp: new Date(),
@@ -413,7 +413,9 @@ let asguild = r.body.guild
                     promises.push(person.setVoiceChannel('450366721543503892'));
                 });
                 Promise.all(promises);
-                m.edit({
+               
+                
+            }, 120000)).then(nmsg => nmsg.edit({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -421,11 +423,9 @@ let asguild = r.body.guild
                         icon_url: client.user.avatarURL
                     },
                     title: "**The AFK-Check has ended!**",
-                    description: "Please be patient and wait for the next afk-check",
+                    description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
                 }
-            })
-                
-            }, 120000))
+            }))
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
