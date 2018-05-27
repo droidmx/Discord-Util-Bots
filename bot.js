@@ -194,7 +194,7 @@ break;
 
 
                         if (rstars < (14))
-                            return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**30**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
+                            return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**14**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
 
 
                         if (!rlocation.includes("hidden"))
