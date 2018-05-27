@@ -101,6 +101,49 @@ client.on('guildMemberAdd', member => {
     });
 });
 
+let testmsgasd = ('@here', {
+                embed: {
+                    color: 0xfbd27a,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**An AFK-check for The Shatters has started!**",
+                    description: "React with <:shatters:437861607792443395> and join queue to ensure you are in the next run!",
+
+                    fields: [{
+                            name: "If you have a key, and are willing to pop",
+                            value: "react with <:shatterskey:450369696085180427>",
+                            inline: true,
+                        },
+                        {
+                            name: "If you have a Priest you are willing to bring",
+                            value: "react with <:priest:450369875467173890>",
+                            inline: true,
+                        },
+                        {
+                            name: "If you have a Paladin you are willing to bring",
+                            value: "react with <:paladin:450369854231412766>",
+                            inline: true,
+                        },
+                        {
+                            name: "If you have a Warrior you are willing to bring",
+                            value: "react with <:warrior:450369890721857596>",
+                            inline: true,
+                        },
+                        {
+                            name: "If you have an Assassin you are willing to bring",
+                            value: "react with <:assassin:450369909755478028>",
+                            inline: true,
+                        }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                    }
+                }
+            })
+
 client.on('message', function(message) {
     var args = message.content.split(" ");
     var cmd = args[0];
@@ -354,48 +397,7 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);*/
-            var testmsgasd = client.channels.get("437843820357353472").send('@here', {
-                embed: {
-                    color: 0xfbd27a,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: "**An AFK-check for The Shatters has started!**",
-                    description: "React with <:shatters:437861607792443395> and join queue to ensure you are in the next run!",
-
-                    fields: [{
-                            name: "If you have a key, and are willing to pop",
-                            value: "react with <:shatterskey:450369696085180427>",
-                            inline: true,
-                        },
-                        {
-                            name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:450369875467173890>",
-                            inline: true,
-                        },
-                        {
-                            name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:450369854231412766>",
-                            inline: true,
-                        },
-                        {
-                            name: "If you have a Warrior you are willing to bring",
-                            value: "react with <:warrior:450369890721857596>",
-                            inline: true,
-                        },
-                        {
-                            name: "If you have an Assassin you are willing to bring",
-                            value: "react with <:assassin:450369909755478028>",
-                            inline: true,
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                    }
-                }
-            }).then(function(m) {
+            client.channels.get("437843820357353472").send(testmsgasd).then(function(m) {
                 m.react(message.guild.emojis.get('437861607792443395'))// shatters entity
                 m.react(message.guild.emojis.get('450369696085180427')) // key
                 m.react(message.guild.emojis.get('450369854231412766'))
