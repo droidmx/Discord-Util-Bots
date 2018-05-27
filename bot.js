@@ -117,7 +117,7 @@ client.on('message', function(message) {
           let member2 = message.mentions.members.first();
           if(!member2) return message.reply(":x: " + "| You need to mention a user/member!");
           let muteRole2 = message.guild.roles.find("name", "Suspended Raider");
-          if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended\" role created!");
+          if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended Raider\" role created!");
           let verifiedrole = message.guild.roles.find("name", "Raider");
           let time2 = args[2];
           let reasonxd = args[3];
