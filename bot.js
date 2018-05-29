@@ -112,6 +112,7 @@ client.on('message', function(message) {
     switch (cmd) {
             
             case "!suspend":
+            var argsss = msg.content.split(" ");
         if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply(":x: Sorry, you don't have permissions to use this!");
           let member2 = message.mentions.members.first();
@@ -119,8 +120,8 @@ client.on('message', function(message) {
           let muteRole2 = message.guild.roles.find("name", "Suspended Raider");
           if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended Raider\" role created!");
           let verifiedrole = message.guild.roles.find("name", "Raider");
-          let time2 = args[2];
-          let reasonxd = args[3];
+          let time2 = argsss[2];
+let reasonxd = argsss[3];
             if(!reasonxd) return message.reply(":x: " + "| Please provide a reason for the suspension!");
           if(!time2) {
             message.channel.send("Please provide a time for the suspension!");
@@ -405,7 +406,7 @@ let asguild = r.body.guild
                 m.react(message.guild.emojis.get('450369909755478028'))
                 m.react(message.guild.emojis.get('450369890721857596'))
                 m.react(message.guild.emojis.get('442254030857568268'))
-            }).then(setTimeout(function(m) {
+            })/*.then(setTimeout(function(m) {
                 var people = client.channels.get('437782399175098368').members.array();
 
                 var promises = [];
@@ -425,18 +426,20 @@ let asguild = r.body.guild
                     title: "**The AFK-Check has ended!**",
                     description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
                 }
-            }))
-            /*.then(async (m) => {
+            }))*/
+            .then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
                 const reactions = await m.awaitReactions(filter, {
                     time: 20000
                 }).then((collected) => {
-                    const users = collected.map(m => m.users.map(u => u.id))
-                    users.forEach(user => {
-                        guild.member(users).setVoiceChannel('441417309169385482');
-                    });
+                    let mapped = collected.map(m => m.users.id);
+mapped.forEach(id => {
+  const member = guild.member(id);
+  if (!member || !member.voiceChannel) return;
+  member.setVoiceChannel('441417309169385482').catch(e => {});
+});
                 });
-            })*/
+            })
 
 
             break;
