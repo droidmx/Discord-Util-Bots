@@ -112,7 +112,7 @@ client.on('message', function(message) {
     switch (cmd) {
             
             case "!suspend":
-            var argsss = msg.content.split(" ");
+            var argsss = message.content.split(" ");
         if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply(":x: Sorry, you don't have permissions to use this!");
           let member2 = message.mentions.members.first();
