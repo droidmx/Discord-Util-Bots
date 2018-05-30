@@ -338,9 +338,13 @@ let asguild = r.body.guild
 
 
         case "!afk":
+            
+            
             let dungeontype = args.slice(0).join("");
             if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
+            if (!dungeontype)
+                return message.reply("Please provide a valid dungeon type!")
 
             console.log("afk check started")
             /*var peoplee = client.channels.get('437782399175098368').members.array();
