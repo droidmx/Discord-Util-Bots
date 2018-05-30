@@ -76,7 +76,7 @@ client.on('raw', event => {
 
 client.on('guildMemberAdd', member => {
 
-    client.channels.get("450362350734934016").send({
+    client.channels.get("451179074593751040").send({
         embed: {
             color: 0x00FFFF,
             author: {
@@ -113,13 +113,13 @@ client.on('message', function(message) {
             
             case "!suspend":
             var argsss = message.content.split(" ");
-        if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
+        if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply(":x: Sorry, you don't have permissions to use this!");
           let member2 = message.mentions.members.first();
           if(!member2) return message.reply(":x: " + "| You need to mention a user/member!");
-          let muteRole2 = message.guild.roles.find("name", "Suspended Raider");
+          let muteRole2 = message.guild.roles.find("name", "Suspended");
           if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended Raider\" role created!");
-          let verifiedrole = message.guild.roles.find("name", "Raider");
+          let verifiedrole = message.guild.roles.find("name", "Shatters");
           let time2 = argsss[2];
 let reasonxd = argsss[3];
             if(!reasonxd) return message.reply(":x: " + "| Please provide a reason for the suspension!");
@@ -128,12 +128,12 @@ let reasonxd = argsss[3];
           }else {
             member2.addRole(muteRole2.id);
             member2.removeRole(verifiedrole.id);
-            client.channels.get("437842250119249920").send(member2 + ` has been suspended for ${ms(ms(time2), {long: true})}, Reason: ${reasonxd}!`);
+            client.channels.get("433798601148334081").send(member2 + ` has been suspended for ${ms(ms(time2), {long: true})}, Reason: ${reasonxd}!`);
 
             setTimeout(function(){
               member2.removeRole(muteRole2.id);
               member2.addRole(verifiedrole.id);
-              client.channels.get("437842250119249920").send(member2 + ` has been unsuspended, suspension lasted for ${ms(ms(time2), {long: true})}`)
+              client.channels.get("433798601148334081").send(member2 + ` has been unsuspended, suspension lasted for ${ms(ms(time2), {long: true})}`)
 
             }, ms(time2));
 
@@ -203,15 +203,15 @@ break;
                         if (!rlocation.includes("hidden"))
                             return message.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
 
-                        if (rfame < (250))
-                            return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
+                        if (rfame < (500))
+                            return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**500**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
 
 
                         if (rdesc.includes(rcode))
                             message.guild.member(message.author).setNickname(`${rname}`)
-                        message.guild.member(message.author).addRole("437779304915664897")
+                        message.guild.member(message.author).addRole("433784738998910977")
                         message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
-                        client.channels.get("450362350734934016").send({
+                        client.channels.get("451179074593751040").send({
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
@@ -337,8 +337,8 @@ let asguild = r.body.guild
 
 
 
-        case "!afkshatters":
-            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
+        case "!afkcheck":
+            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             console.log("afk check for shatters started")
@@ -357,39 +357,39 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);*/
-            client.channels.get("437843820357353472").send('@here', {
+            client.channels.get("433789873690902532").send('@here', {
                 embed: {
                     color: 0xfbd27a,
                     author: {
                         name: client.user.username,
                         icon_url: client.user.avatarURL
                     },
-                    title: "**An AFK-check for The Shatters has started!**",
-                    description: "React with <:shatters:437861607792443395> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
+                    title: "**An AFK-check for a Shatters Raid has started!**",
+                    description: "React with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
 
                     fields: [{
                             name: "If you have a key, and are willing to pop",
-                            value: "react with <:shatterskey:450369696085180427>",
+                            value: "react with <:shatterskey:434134124631031810>",
                             
                         },
                         {
                             name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:450369875467173890>",
+                            value: "react with <:priest:437301626118602774>",
                             
                         },
                         {
                             name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:450369854231412766>",
+                            value: "react with <:paladin:437301465384484874>",
                             
                         },
                         {
                             name: "If you have a Warrior you are willing to bring",
-                            value: "react with <:warrior:450369890721857596>",
+                            value: "react with <:warrior:437301360304848899>",
                            
                         },
                         {
-                            name: "If you have an Assassin you are willing to bring",
-                            value: "react with <:assassin:450369909755478028>",
+                            name: "If you have a Mystic you are willing to bring",
+                            value: "react with <:mystic:448582513716101122>",
                             
                         }
                     ],
@@ -399,22 +399,21 @@ let asguild = r.body.guild
                     }
                 }
             }).then(function(m) {
-                m.react(message.guild.emojis.get('437861607792443395'))// shatters entity
-                m.react(message.guild.emojis.get('450369696085180427')) // key
-                m.react(message.guild.emojis.get('450369854231412766'))
-                m.react(message.guild.emojis.get('450369875467173890'))
-                m.react(message.guild.emojis.get('450369909755478028'))
-                m.react(message.guild.emojis.get('450369890721857596'))
-                m.react(message.guild.emojis.get('442254030857568268'))
+                m.react(message.guild.emojis.get('433791162411646988'))// shatters entity
+                m.react(message.guild.emojis.get('434134124631031810')) // key
+                m.react(message.guild.emojis.get('437301626118602774'))
+                m.react(message.guild.emojis.get('437301465384484874'))
+                m.react(message.guild.emojis.get('437301360304848899'))
+                m.react(message.guild.emojis.get('448582513716101122'))
             }).then(setTimeout(function(m) {
-                var people = client.channels.get('437782399175098368').members.array();
+                var people = client.channels.get('433784986072776714').members.array();
 
                 var promises = [];
                 people.forEach(person => {
-                    promises.push(person.setVoiceChannel('450366721543503892'));
+                    promises.push(person.setVoiceChannel('433788028264120326'));
                 });
                 Promise.all(promises);
-                 client.channels.get("437843820357353472").send({
+                 client.channels.get("433789873690902532").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -454,7 +453,7 @@ mapped.forEach(id => {
                 embed: {
                     color: 0xfbd27a,
                     author: {
-                        name: "Janus Bot Ingo",
+                        name: "Bridge Guardian Info",
                         icon_url: client.user.avatarURL
                     },
                     fields: [{
@@ -469,11 +468,11 @@ mapped.forEach(id => {
                         },
                         {
                             name: "__**Information**__",
-                            value: "The LHGS Utility Bot was coded using JavaScript and serves Realm Raiders."
+                            value: "The Bridge Guardian was coded using JavaScript and serves Shatters Central."
                         },
                         {
-                            name: "__**Realm Raiders Invite**__",
-                            value: "Invite people to Realm Raiders! : https://discord.gg/M8EZcw6"
+                            name: "__**Shatters Central Invite**__",
+                            value: "Invite people to Shatters Central! : https://discord.gg/zNZUHbe"
                         }
                     ],
                     timestamp: new Date(),
@@ -535,7 +534,7 @@ mapped.forEach(id => {
         case "!rotmgchars":
             message.channel.send({
                 embed: {
-                    color: 0xff040b,
+                    color: 0x000000,
                     author: {
                         name: client.user.username,
                         icon_url: client.user.avatarURL
@@ -613,7 +612,7 @@ mapped.forEach(id => {
         case "!warn":
             let members = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Moderator", "Security", "Raid Leader", "Trial Raid Leader"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Officer", "Chat Mod", "Raid Leader", "Almost Raid Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!members)
@@ -624,7 +623,7 @@ mapped.forEach(id => {
                 return message.reply("Please indicate a reason for the warn!");
 
             message.channel.send(`***✅ ${members.user.tag} has been warned.***`);
-            client.channels.get("450362350734934016").send({
+            client.channels.get("433798601148334081").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -653,11 +652,11 @@ mapped.forEach(id => {
                     }
                 }
             });
-            message.mentions.users.first().send(`You were warned in LH Group System, ${reason}`);
+            message.mentions.users.first().send(`You were warned in Shatters Central, Reason: ${reason}`);
             break;
 
         case "!kick":
-            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Admin", "Moderator", "Security"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Owner", "Admin", "Officer", "Head Raid Leader"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             let member = message.mentions.members.first();
@@ -674,7 +673,7 @@ mapped.forEach(id => {
             let kkreason = args.slice(1).join(' ');
             member.kick(kreason)
                 .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-            client.channels.get("450362350734934016").send({
+            client.channels.get("433798601148334081").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -709,7 +708,7 @@ mapped.forEach(id => {
         case "!ban":
             let bmember = message.mentions.members.first();
 
-            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Admin", "Moderator"].includes(r.name)))
+            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Admin", "Owner"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
             if (!bmember)
@@ -723,7 +722,7 @@ mapped.forEach(id => {
 
             bmember.ban(breason)
                 .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-            client.channels.get("437973965789462530").send({
+            client.channels.get("433798601148334081").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -762,7 +761,7 @@ mapped.forEach(id => {
         case "!rrotmg":
             message.guild.member(message.author).removeRole("442240483327213578");
             message.channel.send("The user " + message.author + " got ``RotMG`` removed.");
-            break;
+            break;*/
 
 
         case "!commands":
@@ -782,10 +781,7 @@ mapped.forEach(id => {
                             name: "`!commands`",
                             value: "This command displays all available commands."
                         },
-                        {
-                            name: "`!suggest`",
-                            value: "This command will send your suggestions for the bot."
-                        },
+                        
                         {
                             name: "`!info`",
                             value: "Shows details about the bot!"
@@ -794,14 +790,7 @@ mapped.forEach(id => {
                             name: "`!userinfo`",
                             value: "This command will display your Discord account information."
                         },
-                        {
-                            name: "`!rotmg`",
-                            value: "Will give you the ROTMG Role, which has access to special text channels and updates"
-                        },
-                        {
-                            name: "`!rrotmg`",
-                            value: "Will remove the ROTMG role."
-                        },
+                        
                         {
                             name: "`!realmeye <IGN>`",
                             value: "Gives basic data of a RotMG Player"
@@ -813,7 +802,15 @@ mapped.forEach(id => {
                 }
             });
             break;
-*/
+        case "!headcount":
+              if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Head Raid leader"].includes(r.name)))
+return message.reply("Sorry, you don't have permissions to use this!");
+    	client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
+             
+        oldMessage.react(message.guild.emojis.get('433791162411646988'))
+        oldMessage.react(message.guild.emojis.get('434134124631031810'))
+             .catch(console.error);
+})
         case "!staffcommands":
             message.channel.send({
                 embed: {
@@ -840,8 +837,8 @@ mapped.forEach(id => {
                             value: "Suspends a user from participating in runs for a set amount of time. Example `!suspend @Droid 5d hacking`"
                         },
                         {
-                            name: "`!afkcheck <dungeon>`",
-                            value: "Starts an AFK Check. Use in afk status. Work in progress"
+                            name: "`!afkcheck`",
+                            value: "Starts an AFK Check. Use in #leader-bot-commands. Work in progress, but it is functional."
                         }
                         
                     ],
