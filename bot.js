@@ -365,7 +365,7 @@ let asguild = r.body.guild
                         icon_url: client.user.avatarURL
                     },
                     title: "**An AFK-check for The Shatters has started!**",
-                    description: "React with <:shatters:437861607792443395> and join queue to ensure you are in the next run!",
+                    description: "React with <:shatters:437861607792443395> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
 
                     fields: [{
                             name: "If you have a key, and are willing to pop",
@@ -406,7 +406,7 @@ let asguild = r.body.guild
                 m.react(message.guild.emojis.get('450369909755478028'))
                 m.react(message.guild.emojis.get('450369890721857596'))
                 m.react(message.guild.emojis.get('442254030857568268'))
-            })/*.then(setTimeout(function(m) {
+            }).then(setTimeout(function(m) {
                 var people = client.channels.get('437782399175098368').members.array();
 
                 var promises = [];
@@ -414,9 +414,7 @@ let asguild = r.body.guild
                     promises.push(person.setVoiceChannel('450366721543503892'));
                 });
                 Promise.all(promises);
-               
-                
-            }, 120000)).then(nmsg => nmsg.edit({
+                 client.channels.get("437843820357353472").send({
                 embed: {
                     color: 0xff040b,
                     author: {
@@ -426,8 +424,11 @@ let asguild = r.body.guild
                     title: "**The AFK-Check has ended!**",
                     description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
                 }
-            }))*/
-            .then(async (m) => {
+            })
+               
+                
+            }, 120000))
+            /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
                 const reactions = await m.awaitReactions(filter, {
                     time: 20000
@@ -439,7 +440,7 @@ mapped.forEach(id => {
   member.setVoiceChannel('450366721543503892').catch(e => {});
 });
                 });
-            })
+            })*/
 
 
             break;
