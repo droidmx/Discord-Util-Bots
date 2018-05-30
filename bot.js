@@ -334,36 +334,13 @@ let asguild = r.body.guild
 })
 
   break;
-
-
-
-        case "!afk":
+ case "!afktomb":
             
             
-            let dungeontype = args.slice(0).join("");
+            
             if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
-            if (!dungeontype)
-                return message.reply("Please provide a valid dungeon type!")
-
-            console.log("afk check started")
-            /*var peoplee = client.channels.get('437782399175098368').members.array();
-
-                var promisess = [];
-                peoplee.forEach(person => {
-                    promisess.push(person.setVoiceChannel('442250419994099714'));
-                });
-                Promise.all(promises);
-            
-            var peopleee = client.channels.get('437816756275380234').members.array();
-
-                var promisesss = [];
-                peopleee.forEach(person => {
-                    promisesss.push(person.setVoiceChannel('442250419994099714'));
-                });
-                Promise.all(promises);*/
-            if (dungeontype = "tomb") {
-                console.log("tomb")
+console.log("tomb")
             client.channels.get("437843820357353472").send('@here', {
                 embed: {
                     color: 0xFFFFAC,
@@ -435,9 +412,114 @@ let asguild = r.body.guild
                
                 
             }, 120000))
-            }
+            break;
+            case "!afknest":
             
-              if (dungeontype = "ot") {
+            
+            
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+console.log("nest")
+            client.channels.get("437843820357353472").send('@here', {
+                embed: {
+                    color: 0xFFFFAC,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**An AFK-check for the Nest has started!**",
+                    description: "React with <:nest:437861607884980226> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
+
+                    fields: [{
+                            name: "If you have a key, and are willing to pop",
+                            value: "react with <:nestkey:451381919993692191>",
+                            
+                        },
+                        {
+                            name: "If you have a Priest you are willing to bring",
+                            value: "react with <:priest:450369875467173890>",
+                            
+                        },
+                        {
+                            name: "If you have a Paladin you are willing to bring",
+                            value: "react with <:paladin:450369854231412766>",
+                            
+                        },
+                        {
+                            name: "If you have a Warrior you are willing to bring",
+                            value: "react with <:warrior:450369890721857596>",
+                           
+                        },
+                        {
+                            name: "If you have a QOT you are willing to bring",
+                            value: "react with <:qot:451516866876145664>",
+                            
+                        }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                    }
+                }
+            }).then(function(m) {
+                m.react(message.guild.emojis.get('437861607884980226'))// shatters entity
+                m.react(message.guild.emojis.get('451381919993692191')) // key
+                m.react(message.guild.emojis.get('450369854231412766'))
+                m.react(message.guild.emojis.get('450369875467173890'))
+                
+                m.react(message.guild.emojis.get('450369890721857596'))
+                m.react(message.guild.emojis.get('451516866876145664'))
+            }).then(setTimeout(function(m) {
+                var people = client.channels.get('437782399175098368').members.array();
+
+                var promises = [];
+                people.forEach(person => {
+                    promises.push(person.setVoiceChannel('437834118412369940'));
+                });
+                Promise.all(promises);
+                 client.channels.get("437843820357353472").send({
+                embed: {
+                    color: 0xff040b,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**The AFK-Check has ended!**",
+                    description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
+                }
+            })
+               
+                
+            }, 120000))
+            break;
+
+        case "!afkot":
+            
+            
+          
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+           
+
+           
+            /*var peoplee = client.channels.get('437782399175098368').members.array();
+
+                var promisess = [];
+                peoplee.forEach(person => {
+                    promisess.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);
+            
+            var peopleee = client.channels.get('437816756275380234').members.array();
+
+                var promisesss = [];
+                peopleee.forEach(person => {
+                    promisesss.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);*/
+            
+            
+              
                 console.log("ot")
             client.channels.get("437843820357353472").send('@here', {
                 embed: {
@@ -507,7 +589,7 @@ let asguild = r.body.guild
                
                 
             }, 120000))
-            }
+            
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
                 const reactions = await m.awaitReactions(filter, {
