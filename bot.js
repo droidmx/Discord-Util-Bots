@@ -73,6 +73,8 @@ client.on('raw', event => {
 //line 123 is where lhgs specific starts. 
 
 
+client.user.setPresence({ game: { name: `in Shatters! | !commands`, type: 0 }});
+
 
 client.on('guildMemberAdd', member => {
 
@@ -797,7 +799,7 @@ mapped.forEach(id => {
                         }
                     ],
                     footer: {
-                        text: "If you have any question, feel free to pm Droid!"
+                        text: "If you have any question, feel free to pm Droid! More commands are coming!"
                     }
                 }
             });
