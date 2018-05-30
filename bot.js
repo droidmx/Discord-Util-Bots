@@ -428,7 +428,7 @@ let asguild = r.body.guild
                 }
             }))*/
             .then(async (m) => {
-                const filter = (reaction, user) => reaction.emoji.id === '442254585193693184';
+                const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
                 const reactions = await m.awaitReactions(filter, {
                     time: 20000
                 }).then((collected) => {
@@ -436,7 +436,7 @@ let asguild = r.body.guild
 mapped.forEach(id => {
   const member = guild.member(id);
   if (!member || !member.voiceChannel) return;
-  member.setVoiceChannel('441417309169385482').catch(e => {});
+  member.setVoiceChannel('450366721543503892').catch(e => {});
 });
                 });
             })
