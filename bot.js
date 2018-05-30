@@ -994,8 +994,8 @@ mapped.forEach(id => {
                             value: "Suspends a user from participating in runs for a set amount of time. Example `!suspend @Droid 5d hacking`"
                         },
                         {
-                            name: "`!afkcheck <dungeon>`",
-                            value: "Starts an AFK Check. Use in afk status. Work in progress"
+                            name: "`!afkcheck<dungeon>`",
+                            value: "Starts an AFK Check. Use in raid commands. Example: `!afkot`. Current dungeons supported are `nest, ot, tomb`."
                         }
                         
                     ],
