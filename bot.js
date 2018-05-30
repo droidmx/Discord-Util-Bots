@@ -72,8 +72,10 @@ client.on('raw', event => {
 */
 //line 123 is where lhgs specific starts. 
 
-
+client.on('ready', () => {
+console.log(`Logged in as ${client.user.tag}!`);
 client.user.setPresence({ game: { name: `in Shatters! | !commands`, type: 0 }});
+    });
 
 
 client.on('guildMemberAdd', member => {
