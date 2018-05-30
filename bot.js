@@ -815,6 +815,7 @@ return message.reply("Sorry, you don't have permissions to use this!");
         oldMessage.react(message.guild.emojis.get('434134124631031810'))
              .catch(console.error);
 })
+            break;
         case "!staffcommands":
             message.channel.send({
                 embed: {
