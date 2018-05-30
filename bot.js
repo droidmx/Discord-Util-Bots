@@ -337,11 +337,12 @@ let asguild = r.body.guild
 
 
 
-        case "!afkshatters":
+        case "!afk":
+            let dungeontype = args.slice(0).join("");
             if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
-            console.log("afk check for shatters started")
+            console.log("afk check started")
             /*var peoplee = client.channels.get('437782399175098368').members.array();
 
                 var promisess = [];
@@ -357,6 +358,8 @@ let asguild = r.body.guild
                     promisesss.push(person.setVoiceChannel('442250419994099714'));
                 });
                 Promise.all(promises);*/
+            if (dungeontype = "shatters") {
+                console.log("shatters")
             client.channels.get("437843820357353472").send('@here', {
                 embed: {
                     color: 0xfbd27a,
@@ -428,6 +431,7 @@ let asguild = r.body.guild
                
                 
             }, 120000))
+            }
             /*.then(async (m) => {
                 const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
                 const reactions = await m.awaitReactions(filter, {
@@ -763,7 +767,7 @@ mapped.forEach(id => {
             message.guild.member(message.author).removeRole("442240483327213578");
             message.channel.send("The user " + message.author + " got ``RotMG`` removed.");
             break;
-
+*/
 
         case "!commands":
             message.channel.send({
@@ -795,14 +799,6 @@ mapped.forEach(id => {
                             value: "This command will display your Discord account information."
                         },
                         {
-                            name: "`!rotmg`",
-                            value: "Will give you the ROTMG Role, which has access to special text channels and updates"
-                        },
-                        {
-                            name: "`!rrotmg`",
-                            value: "Will remove the ROTMG role."
-                        },
-                        {
                             name: "`!realmeye <IGN>`",
                             value: "Gives basic data of a RotMG Player"
                         }
@@ -813,7 +809,7 @@ mapped.forEach(id => {
                 }
             });
             break;
-*/
+
         case "!staffcommands":
             message.channel.send({
                 embed: {
