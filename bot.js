@@ -213,7 +213,9 @@ break;
 
                         if (rdesc.includes(rcode))
                             message.guild.member(message.author).setNickname(`${rname}`)
-                        message.guild.member(message.author).addRole("433784738998910977")
+                        let lelxdppebtw = message.guild.roles.find("name", "Shatters");
+                        // id wasnt working some times, 433784738998910977
+                        message.guild.member(message.author).addRole(lelxdppebtw.id)
                         message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
                         client.channels.get("451179074593751040").send({
                             embed: {
