@@ -639,7 +639,7 @@ mapped.forEach(id => {
                         name: client.user.username,
                         icon_url: client.user.avatarURL
                     },
-                    title: "**An AFK-check for a ${dungeontype} has started!**",
+                    title: `**An AFK-check for a ${dungeontype} has started!**`,
                     description: "React with <:various:437859855668215808> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
 
                     fields: [{
