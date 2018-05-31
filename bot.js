@@ -116,6 +116,38 @@ client.on('message', function(message) {
     args = args.splice(1);
 
     switch (cmd) {
+            case "!finduser":
+if(!message.member.roles.some(r=>["Raid Leader", "Almost Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+                 
+let foundusr = args.splice(0).join(" ");
+
+if(!foundusr)
+return message.channel.send("Please include someone to search!")
+
+let founderusr = client.users.get("name", foundusr).id;
+
+message.channel.send(`<@${founderusr}>`)
+break;
+            
+            case "!find":
+if(!message.member.roles.some(r=>["Raid Leader", "Almost Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
+return;
+                 
+let users = client.users;
+let searchTerm = args[0];
+
+if(!searchTerm) 
+return message.channel.send("Please provide a name to search for!")
+
+let matches = users.filter(u => u.nickname.toLowerCase().includes(searchTerm.toLowerCase()))
+let foundppl = matches.map(users => users.nickname)
+
+if(!foundppl)
+return message.channel.send("There is nobody that matches that username!")
+
+message.channel.send(foundppl);
+break;
             
             case "!suspend":
             var argsss = message.content.split(" ");
