@@ -608,9 +608,9 @@ mapped.forEach(id => {
                 return message.reply("Sorry, you don't have permissions to use this!");
            
 
-           var argh = message.content.split(" ");
+           
             
-            let dungeontype = argh[1]
+            let dungeontype = args.slice(0).join(' ');
             if (!dungeontype)
                 return message.reply('Please enter a dungeon for the afk check!')
             /*var peoplee = client.channels.get('437782399175098368').members.array();
