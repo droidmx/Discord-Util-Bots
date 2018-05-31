@@ -610,6 +610,120 @@ mapped.forEach(id => {
 
             break;
             
+             case "!afkevent":
+            
+            
+          
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+           
+
+           
+            /*var peoplee = client.channels.get('437782399175098368').members.array();
+
+                var promisess = [];
+                peoplee.forEach(person => {
+                    promisess.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);
+            
+            var peopleee = client.channels.get('437816756275380234').members.array();
+
+                var promisesss = [];
+                peopleee.forEach(person => {
+                    promisesss.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);*/
+            
+            
+              
+                console.log("event")
+            client.channels.get("437843820357353472").send('@here', {
+                embed: {
+                    color: 0x6FA8DC,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**An AFK-check for an Event Dungeon has started!**",
+                    description: "React with <:event:437859834843496448> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
+
+                    fields: [{
+                            name: "If you have a key, and are willing to pop",
+                            value: "react with <:eventkey:451504659685965826>",
+                            
+                        },
+                        {
+                            name: "If you have a Priest you are willing to bring",
+                            value: "react with <:priest:450369875467173890>",
+                            
+                        },
+                        {
+                            name: "If you have a Paladin you are willing to bring",
+                            value: "react with <:paladin:450369854231412766>",
+                            
+                        },
+                        {
+                            name: "If you have a Warrior you are willing to bring",
+                            value: "react with <:warrior:450369890721857596>",
+                           
+                        },
+                        {
+                            name: "If you have a Rogue you are willing to bring",
+                            value: "react with <:rogue:451510300727050242>",
+                            
+                        }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                    }
+                }
+            }).then(function(m) {
+                m.react(message.guild.emojis.get('437859834843496448'))// shatters entity
+                m.react(message.guild.emojis.get('451504659685965826'))// key
+                m.react(message.guild.emojis.get('450369890721857596'))
+                m.react(message.guild.emojis.get('451510300727050242'))
+            }).then(setTimeout(function(m) {
+                var people = client.channels.get('437782399175098368').members.array();
+
+                var promises = [];
+                people.forEach(person => {
+                    promises.push(person.setVoiceChannel('451824704182026252'));
+                });
+                Promise.all(promises);
+                 client.channels.get("437843820357353472").send({
+                embed: {
+                    color: 0xff040b,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**The AFK-Check has ended!**",
+                    description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
+                }
+            })
+               
+                
+            }, 120000))
+            
+            /*.then(async (m) => {
+                const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
+                const reactions = await m.awaitReactions(filter, {
+                    time: 20000
+                }).then((collected) => {
+                    let mapped = collected.map(m => m.users.id);
+mapped.forEach(id => {
+  const member = guild.member(id);
+  if (!member || !member.voiceChannel) return;
+  member.setVoiceChannel('450366721543503892').catch(e => {});
+});
+                });
+            })*/
+
+
+            break;
+            
         
 
         case "!info":
