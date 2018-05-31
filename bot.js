@@ -116,7 +116,7 @@ client.on('message', function(message) {
     args = args.splice(1);
 
     switch (cmd) {
-            case "!find":
+        /*    case "!find":
 if(!message.member.roles.some(r=>["Raid Leader", "Almost Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
 return;
                var argasd = message.content.split(" ");  
@@ -129,7 +129,7 @@ let founderusr = client.users.get("name", foundusr).id;
            
 
 message.channel.send(`<@${founderusr}>`)
-break;
+break;*/
             
            /* case "!find":
 if(!message.member.roles.some(r=>["Raid Leader", "Almost Raid Leader", "Officer", "Admin", "Head Raid leader"].includes(r.name)) )
