@@ -124,7 +124,7 @@ client.on('message', function(message) {
           if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended Raider\" role created!");
           let verifiedrole = message.guild.roles.find("name", "Raider");
           let time2 = argsss[2];
-let reasonxd = argsss[3];
+let reasonxd = args.slice(2).join(' ')
             if(!reasonxd) return message.reply(":x: " + "| Please provide a reason for the suspension!");
           if(!time2) {
             message.channel.send("Please provide a time for the suspension!");
@@ -390,7 +390,7 @@ console.log("tomb")
                 m.react(message.guild.emojis.get('451382023853178881')) // key
                 m.react(message.guild.emojis.get('450369854231412766'))
                 m.react(message.guild.emojis.get('450369875467173890'))
-                m.react(message.guild.emojis.get('450369909755478028'))
+                
                 m.react(message.guild.emojis.get('450369890721857596'))
                 m.react(message.guild.emojis.get('451510300727050242'))
             }).then(setTimeout(function(m) {
@@ -539,16 +539,7 @@ console.log("nest")
                             value: "react with <:otkey:450387638080372746>",
                             
                         },
-                        {
-                            name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:450369875467173890>",
-                            
-                        },
-                        {
-                            name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:450369854231412766>",
-                            
-                        },
+                        
                         {
                             name: "If you have a Warrior you are willing to bring",
                             value: "react with <:warrior:450369890721857596>",
@@ -576,6 +567,104 @@ console.log("nest")
                 var promises = [];
                 people.forEach(person => {
                     promises.push(person.setVoiceChannel('451511992444780545'));
+                });
+                Promise.all(promises);
+                 client.channels.get("437843820357353472").send({
+                embed: {
+                    color: 0xff040b,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**The AFK-Check has ended!**",
+                    description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
+                }
+            })
+               
+                
+            }, 120000))
+            
+            /*.then(async (m) => {
+                const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
+                const reactions = await m.awaitReactions(filter, {
+                    time: 20000
+                }).then((collected) => {
+                    let mapped = collected.map(m => m.users.id);
+mapped.forEach(id => {
+  const member = guild.member(id);
+  if (!member || !member.voiceChannel) return;
+  member.setVoiceChannel('450366721543503892').catch(e => {});
+});
+                });
+            })*/
+
+
+            break;
+            case "!afk":
+            
+            
+          
+            if (!message.member.roles.some(r => ["Administrator", "Realm Raiders", "Raid Leader", "Trial Raid Leader", "Moderator"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+           
+
+           var argh = message.content.split(" ");
+            
+            let dungeontype = argh[1]
+            if (!dungeontype)
+                return message.reply('Please enter a dungeon for the afk check!')
+            /*var peoplee = client.channels.get('437782399175098368').members.array();
+
+                var promisess = [];
+                peoplee.forEach(person => {
+                    promisess.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);
+            
+            var peopleee = client.channels.get('437816756275380234').members.array();
+
+                var promisesss = [];
+                peopleee.forEach(person => {
+                    promisesss.push(person.setVoiceChannel('442250419994099714'));
+                });
+                Promise.all(promises);*/
+            
+            
+              
+                console.log("event")
+            client.channels.get("437843820357353472").send('@ here', {
+                embed: {
+                    color: 0x6FA8DC,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**An AFK-check for a ${dungeontype} has started!**",
+                    description: "React with <:various:437859855668215808> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
+
+                    fields: [{
+                            name: "If you have a key, and are willing to pop",
+                            value: "react with <:variouskey:451505029090770944>",
+                            
+                        }
+                        
+                        
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                    }
+                }
+            }).then(function(m) {
+                m.react(message.guild.emojis.get('437859855668215808'))// shatters entity
+                m.react(message.guild.emojis.get('451505029090770944'))// key
+                
+            }).then(setTimeout(function(m) {
+                var people = client.channels.get('437782399175098368').members.array();
+
+                var promises = [];
+                people.forEach(person => {
+                    promises.push(person.setVoiceChannel('451860669294444554'));
                 });
                 Promise.all(promises);
                  client.channels.get("437843820357353472").send({
@@ -653,16 +742,7 @@ mapped.forEach(id => {
                             value: "react with <:eventkey:451504659685965826>",
                             
                         },
-                        {
-                            name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:450369875467173890>",
-                            
-                        },
-                        {
-                            name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:450369854231412766>",
-                            
-                        },
+                        
                         {
                             name: "If you have a Warrior you are willing to bring",
                             value: "react with <:warrior:450369890721857596>",
