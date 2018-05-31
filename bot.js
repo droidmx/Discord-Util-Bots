@@ -631,8 +631,8 @@ mapped.forEach(id => {
             
             
               
-                console.log("event")
-            client.channels.get("437843820357353472").send('@ here', {
+                console.log("various")
+            client.channels.get("437843820357353472").send('@here', {
                 embed: {
                     color: 0x6FA8DC,
                     author: {
