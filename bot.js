@@ -125,7 +125,7 @@ client.on('message', function(message) {
           if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended Raider\" role created!");
           let verifiedrole = message.guild.roles.find("name", "Shatters");
           let time2 = argsss[2];
-let reasonxd = argsss[3];
+let reasonxd = args.slice(2).join(' ')
             if(!reasonxd) return message.reply(":x: " + "| Please provide a reason for the suspension!");
           if(!time2) {
             message.channel.send("Please provide a time for the suspension!");
