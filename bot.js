@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 const fs = require('fs');
 const ms = require('ms');
-
+let IGN = JSON.parse(fs.readFileSync('./IGN.json', 'utf8'));
 /*const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
@@ -103,8 +103,11 @@ client.on('guildMemberAdd', member => {
         }
     });
 });
-
-
+/*
+client.on('message', msg => {
+    
+if (msg.content.startsWith("!log")
+    */
 
 client.on('message', function(message) {
     var args = message.content.split(" ");
