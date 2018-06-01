@@ -138,14 +138,25 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
                             },
                         ],
                         footer: {
-                            text: "⚠ Be sure to follow the directions above exactly, or your verification will fail",
+                            text: `:warning:` + " Be sure to follow the directions above exactly, or your verification will fail",
                         }
                     }
+               
 });
     
         console.log(test)
 fs.writeFile('./XP.json', JSON.stringify(test), console.error);
     }
+    if (msg.content.startsWith('done')) {
+        let userdatadone = test[msg.author.id]
+        if (!userdatadone) return msg.reply("no data found")
+        console.log(userdatadone)
+                   let codexd =  userdatadone.code
+                   let ignxd = userdatadone.ign
+                   
+                   console.log(codexd)
+        console.log(ignxd)
+                }
     })
 
 client.on('message', function(message) {
