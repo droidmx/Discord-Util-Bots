@@ -112,7 +112,7 @@ client.on('message', msg => {
         let ruser = argss[1]
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
-userdata = {ign: `${ruser}`, code: `${rcode}`}
+let test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
         msg.delete();
 
                 msg.author.send({
@@ -138,7 +138,7 @@ userdata = {ign: `${ruser}`, code: `${rcode}`}
                             },
                         ],
                         footer: {
-                            text: ":warning: Be sure to follow the directions above exactly, or your verification will fail",
+                            text: "⚠ Be sure to follow the directions above exactly, or your verification will fail",
                         }
                     }
 });
