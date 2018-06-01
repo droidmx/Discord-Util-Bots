@@ -79,7 +79,16 @@ client.user.setPresence({ game: { name: `in Shatters! | !commands`, type: 0 }});
 
 
 client.on('guildMemberAdd', member => {
-
+    const welcomemessage = new Discord.RichEmbed()
+    .setTitle("Welcome to ***Shatters Central***")
+    .setAuthor("Bridge Guardian", client.user.avatarURL)
+    .setDescription("To get started, read #rules! Once you have fully read the rules, go to #verify and follow the instructions to get verified!")
+    .setColor(2899536)
+    .setFooter("Bot coded by ~Droid~#5799, be sure to check #partners for other cool discords!", client.user.avatarURL)
+    
+member.user.send
+})
+        
     client.channels.get("451179074593751040").send({
         embed: {
             color: 0x00FFFF,
