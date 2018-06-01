@@ -109,9 +109,11 @@ client.on('message', msg => {
     if (msg.content.startsWith('!verify')) {
         var argss = msg.content.split(" ");
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
-            msg.reply("You are already verified!")
+            msg.autho.send("You are already verified!")
+            msg.delete();
             return;
         }
+        msg.delete();
         let ruser = argss[1]
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
@@ -161,6 +163,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
             msg.delete()
             return;
         }
+        msg.delete();
         console.log(userdatadone)
                    let codexd =  userdatadone.code
                    let ignxd = userdatadone.ign
@@ -199,7 +202,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
-                                    name: `User Verified | <@${msg.author.id}>`,
+                                    name: `User Verified | <@${msg.author.tag}>`,
                                     icon_url: msg.author.avatarURL
                                 },
                                 fields: [{
