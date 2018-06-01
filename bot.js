@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 const fs = require('fs');
 const ms = require('ms');
-
+let test = JSON.parse(fs.readFileSync('./Test.json', 'utf8'));
 /*const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
@@ -105,7 +105,47 @@ client.on('guildMemberAdd', member => {
     });
 });
 
+client.on('message', msg => {
+    if (msg.content.startsWith('!test')) {
+        let userdata = test[msg.author.id]
+        let ruser = args.slice(0).join("");
+            let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
+let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
+userdata = {ign: `${ruser}`, code: `${rcode}`}
+        msg.delete();
 
+                msg.author.send({
+                    embed: {
+                        color: 0xa3fb7a,
+                        author: {
+                            name: `Verification | @<${msg.author.id}>`,
+                            icon_url: msg.author.avatarURL
+                        },
+                        fields: [{
+                                name: "**Your Code:**",
+                                value: `__**${rcode}**__`,
+                                inline: true,
+                            },
+                            {
+                                name: "**Realmeye Link:**",
+                                value: `https://www.realmeye.com/player/${ruser}`,
+                                inline: true,
+                            },
+                            {
+                                name: `Place your verification code on any line of your description, but __*it must be the only piece of text on that line.*__`,
+                                value: "Once you have placed the code, type `done` in #verify",
+                            },
+                        ],
+                        footer: {
+                            text: ":warning: Be sure to follow the directions above exactly, or your verification will fail",
+                        }
+                    }
+});
+    
+        console.log(test)
+fs.writeFile('./XP.json', JSON.stringify(test), console.error);
+    }
+    })
 
 client.on('message', function(message) {
     var args = message.content.split(" ");
