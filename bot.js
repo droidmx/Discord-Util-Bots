@@ -75,8 +75,7 @@ client.on('raw', event => {
 client.on('ready', () => {
 console.log(`Logged in as ${client.user.tag}!`);
 client.user.setPresence({ game: { name: `in Shatters! | !commands`, type: 0 }});
-    });
-const welcomemessage = new Discord.RichEmbed()
+    const welcomemessage = new Discord.RichEmbed()
     .setTitle("Welcome to ***Shatters Central***")
     .setAuthor("Bridge Guardian", client.user.avatarURL)
     .setDescription("To get started, read #rules! Once you have fully read the rules, go to #verify and follow the instructions to get verified!")
@@ -84,6 +83,8 @@ const welcomemessage = new Discord.RichEmbed()
     .setThumbnail("https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg")
     .setFooter("Bot coded by ~Droid~#5799, be sure to check #partners for other cool discords!", client.user.avatarURL)
     .setTimestamp()
+    });
+
 
 client.on('guildMemberAdd', member => {
     
