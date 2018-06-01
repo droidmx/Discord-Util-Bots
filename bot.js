@@ -114,6 +114,7 @@ client.on('message', msg => {
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
 if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
         msg.delete();
+        let userdata = test[msg.author.id]
 
                 msg.author.send({
                     embed: {
@@ -129,7 +130,7 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
                             },
                             {
                                 name: "**Realmeye Link:**",
-                                value: `https://www.realmeye.com/player/${ruser}`,
+                                value: `https://www.realmeye.com/player/${userdata.ign}`,
                                 inline: true,
                             },
                             {
@@ -148,6 +149,7 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
 fs.writeFile('./test.json', JSON.stringify(test), console.error);
     }
     if (msg.content.startsWith('done')) {
+        msg.delete();
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) 
             return;
         let userdatadone = test[msg.author.id]
