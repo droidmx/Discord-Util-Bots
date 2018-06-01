@@ -21,7 +21,7 @@
         "node-fetch": "^2.0.0",
         "npm": "^5.7.1",
         "opusscript": "0.0.6",
-        "snekfetch": "^3.6.4",
+        "snekfetch": "^3.6.4"
         
     }
 }
