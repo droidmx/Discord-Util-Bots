@@ -107,7 +107,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', msg => {
     if (msg.content.startsWith('!test')) {
-        var argss = message.content.split(" ");
+        var argss = msg.content.split(" ");
         let userdata = test[msg.author.id]
         let ruser = argss[1]
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
