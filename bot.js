@@ -84,10 +84,11 @@ client.on('guildMemberAdd', member => {
     .setAuthor("Bridge Guardian", client.user.avatarURL)
     .setDescription("To get started, read #rules! Once you have fully read the rules, go to #verify and follow the instructions to get verified!")
     .setColor(2899536)
+    .setThumbnail("https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg")
     .setFooter("Bot coded by ~Droid~#5799, be sure to check #partners for other cool discords!", client.user.avatarURL)
+    .setTimestamp()
     
-member.user.send
-})
+member.user.send({welcomemessage})
         
     client.channels.get("451179074593751040").send({
         embed: {
