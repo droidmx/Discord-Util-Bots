@@ -168,19 +168,19 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                         let rlocation = r.body.last_seen
                         let rfame = r.body.fame
 
-                        if (!rdesc.includes(rcode))
-                            return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description. Your previous Realmeye description was:\n```" + brdesc + "```")
+                        if (!rdesc.includes(codexd))
+                            return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description.")
 
 
                         if (rstars < (14))
-                            return msg.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**14**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
+                            return msg.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**14**__.")
 
 
                         if (!rlocation.includes("hidden"))
-                            return msg.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
+                            return msg.author.send("Your location is not hidden so you cannot be verified!")
 
                         if (rfame < (500))
-                            return msg.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**500**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
+                            return msg.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**500**__.")
 
 
                         if (rdesc.includes(codexd))
@@ -188,7 +188,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                         let lelxdppebtw = msg.guild.roles.find("name", "Shatters");
                         // id wasnt working some times, 433784738998910977
                         msg.guild.member(msg.author).addRole(lelxdppebtw.id)
-                        msg.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
+                        msg.author.send("You have successfully been verified!");
                         client.channels.get("451179074593751040").send({
                             embed: {
                                 color: 0xfb7ae4,
