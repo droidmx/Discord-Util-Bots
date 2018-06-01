@@ -112,7 +112,7 @@ client.on('message', msg => {
         let ruser = argss[1]
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
-let test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
+if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
         msg.delete();
 
                 msg.author.send({
