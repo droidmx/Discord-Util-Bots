@@ -109,7 +109,7 @@ client.on('message', msg => {
     if (msg.content.startsWith('!verify')) {
         var argss = msg.content.split(" ");
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
-            msg.autho.send("You are already verified!")
+            msg.author.send("You are already verified!")
             msg.delete();
             return;
         }
