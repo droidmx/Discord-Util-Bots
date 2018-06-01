@@ -106,9 +106,12 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', msg => {
-    if (msg.content.startsWith('!test')) {
+    if (msg.content.startsWith('!verify')) {
         var argss = msg.content.split(" ");
-        
+        if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
+            msg.reply("You are already verified!")
+            return;
+        }
         let ruser = argss[1]
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
@@ -120,7 +123,7 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
                     embed: {
                         color: 0xa3fb7a,
                         author: {
-                            name: `Verification | @<${msg.author.id}>`,
+                            name: `Verification | @${msg.author.tag}`,
                             icon_url: msg.author.avatarURL
                         },
                         fields: [{
@@ -139,7 +142,7 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
                             },
                         ],
                         footer: {
-                            text: `:warning:` + " Be sure to follow the directions above exactly, or your verification will fail",
+                            text: "⚠ Be sure to follow the directions above exactly, or your verification will fail",
                         }
                     }
                
@@ -149,17 +152,20 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
 fs.writeFile('./test.json', JSON.stringify(test), console.error);
     }
     if (msg.content.startsWith('done')) {
-        msg.delete();
+        
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) 
             return;
         let userdatadone = test[msg.author.id]
-        if (!userdatadone) return msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
+        if (!userdatadone) {
+            msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
+            msg.delete()
+            return;
+        }
         console.log(userdatadone)
                    let codexd =  userdatadone.code
                    let ignxd = userdatadone.ign
                    let rrapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ignxd + "&f=c;"
-                   console.log(codexd)
-        console.log(ignxd)
+                   
         
         snekfetch.get(rrapi).then(r => {
                         let rdesc = r.body.description;
@@ -193,7 +199,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
-                                    name: `User Verified | ${msg.author.tag}`,
+                                    name: `User Verified | <@${msg.author.id}>`,
                                     icon_url: msg.author.avatarURL
                                 },
                                 fields: [{
