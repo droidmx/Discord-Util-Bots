@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 const fs = require('fs');
 const ms = require('ms');
-let IGN = JSON.parse(fs.readFileSync('./IGN.json', 'utf8'));
+let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
 /*const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
@@ -103,11 +103,142 @@ client.on('guildMemberAdd', member => {
         }
     });
 });
-/*
 client.on('message', msg => {
+    if (msg.content.startsWith('!verify')) {
+        var argss = msg.content.split(" ");
+        if (msg.member.roles.some(r => ["Raider"].includes(r.name))) {
+            msg.author.send("You are already verified!")
+            msg.delete();
+            return;
+        }
+        msg.delete();
+        let ruser = argss[1]
+            let rcode = ("RR" + Math.floor(Math.random(11111) * 99999));
+let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
+if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
+        msg.delete();
+        let userdata = test[msg.author.id]
+
+                msg.author.send({
+                    embed: {
+                        color: 0xa3fb7a,
+                        author: {
+                            name: `Verification | @${msg.author.tag}`,
+                            icon_url: msg.author.avatarURL
+                        },
+                        fields: [{
+                                name: "**Your Code:**",
+                                value: `__**${userdata.code}**__`,
+                                inline: true,
+                            },
+                            {
+                                name: "**Realmeye Link:**",
+                                value: `https://www.realmeye.com/player/${userdata.ign}`,
+                                inline: true,
+                            },
+                            {
+                                name: `Place your verification code on any line of your description, but __*it must be the only piece of text on that line.*__`,
+                                value: "Once you have placed the code, type `done` in #verify",
+                            },
+                        ],
+                        footer: {
+                            text: "⚠ Be sure to follow the directions above exactly, or your verification will fail",
+                        }
+                    }
+               
+});
     
-if (msg.content.startsWith("!log")
-    */
+        console.log(test)
+fs.writeFile('./test.json', JSON.stringify(test), console.error);
+    }
+    if (msg.content.startsWith('done')) {
+        
+        if (msg.member.roles.some(r => ["Raider"].includes(r.name))) 
+            return;
+        let userdatadone = test[msg.author.id]
+        if (!userdatadone) {
+            msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
+            msg.delete()
+            return;
+        }
+        msg.delete();
+        console.log(userdatadone)
+                   let codexd =  userdatadone.code
+                   let ignxd = userdatadone.ign
+                   let rrapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ignxd + "&f=c;"
+                   
+        
+        snekfetch.get(rrapi).then(r => {
+                        let rdesc = r.body.description;
+                        let rname = r.body.name
+                        let rstars = r.body.rank
+                        let rlocation = r.body.last_seen
+                        let rfame = r.body.fame
+
+                        if (!rdesc.includes(codexd))
+                            return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description.")
+
+
+                        if (rstars < (30))
+                            return msg.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**30**__.")
+
+
+                        if (!rlocation.includes("hidden"))
+                            return msg.author.send("Your location is not hidden so you cannot be verified!")
+
+                        if (rfame < (250))
+                            return msg.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**250**__.")
+
+
+                        if (rdesc.includes(codexd))
+                            msg.guild.member(msg.author).setNickname(`${rname}`)
+                        let lelxdppebtw = msg.guild.roles.find("name", "Raider");
+                        // id wasnt working some times, 433784738998910977
+                        msg.guild.member(msg.author).addRole(lelxdppebtw.id)
+                        msg.author.send("You have successfully been verified!");
+                        client.channels.get("450362350734934016").send({
+                            embed: {
+                                color: 0xfb7ae4,
+                                author: {
+                                    name: `User Verified | <@${msg.author.id}>`,
+                                    icon_url: msg.author.avatarURL
+                                },
+                                fields: [{
+                                        name: "**Realmeye Link:**",
+                                        value: `https://www.realmeye.com/player/${ignxd}`,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "__**User IGN**__",
+                                        value: ignxd,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "__**Character Fame**__",
+                                        value: rfame + " Fame",
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "__**Stars**__",
+                                        value: rstars + " Stars",
+                                        inline: true,
+                                    }
+
+
+                                ],
+                                footer: {
+                                    text: "User has been verified by the bot.",
+                                }
+                            }
+                        });
+
+
+                    })
+
+
+                }
+    })
+
 
 client.on('message', function(message) {
     var args = message.content.split(" ");
@@ -181,7 +312,7 @@ let reasonxd = args.slice(2).join(' ')
 break;
             
 
-        case "!verify":
+      /*  case "!verify":
             let ruser = args.slice(0).join("");
             let rcode = ("RR" + Math.floor(Math.random(11111) * 99999));
             let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
@@ -292,7 +423,7 @@ break;
                 }, 60000);
             })
 
-            break;
+            break;*/
 
             case "!realmeye":
            let user = args.slice(0).join("");
