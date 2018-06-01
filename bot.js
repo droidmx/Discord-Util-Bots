@@ -124,7 +124,7 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
                         },
                         fields: [{
                                 name: "**Your Code:**",
-                                value: `__**${rcode}**__`,
+                                value: `__**${userdata.code}**__`,
                                 inline: true,
                             },
                             {
@@ -145,17 +145,88 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
 });
     
         console.log(test)
-fs.writeFile('./XP.json', JSON.stringify(test), console.error);
+fs.writeFile('./test.json', JSON.stringify(test), console.error);
     }
     if (msg.content.startsWith('done')) {
+        if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) 
+            return;
         let userdatadone = test[msg.author.id]
-        if (!userdatadone) return msg.reply("no data found")
+        if (!userdatadone) return msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
         console.log(userdatadone)
                    let codexd =  userdatadone.code
                    let ignxd = userdatadone.ign
-                   
+                   let rrapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ignxd + "&f=c;"
                    console.log(codexd)
         console.log(ignxd)
+        
+        snekfetch.get(rrapi).then(r => {
+                        let rdesc = r.body.description;
+                        let rname = r.body.name
+                        let rstars = r.body.rank
+                        let rlocation = r.body.last_seen
+                        let rfame = r.body.fame
+
+                        if (!rdesc.includes(rcode))
+                            return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description. Your previous Realmeye description was:\n```" + brdesc + "```")
+
+
+                        if (rstars < (14))
+                            return msg.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**14**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
+
+
+                        if (!rlocation.includes("hidden"))
+                            return msg.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
+
+                        if (rfame < (500))
+                            return msg.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**500**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
+
+
+                        if (rdesc.includes(codexd))
+                            msg.guild.member(msg.author).setNickname(`${rname}`)
+                        let lelxdppebtw = msg.guild.roles.find("name", "Shatters");
+                        // id wasnt working some times, 433784738998910977
+                        msg.guild.member(msg.author).addRole(lelxdppebtw.id)
+                        msg.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
+                        client.channels.get("451179074593751040").send({
+                            embed: {
+                                color: 0xfb7ae4,
+                                author: {
+                                    name: `User Verified | ${msg.author.tag}`,
+                                    icon_url: msg.author.avatarURL
+                                },
+                                fields: [{
+                                        name: "**Realmeye Link:**",
+                                        value: `https://www.realmeye.com/player/${ignxd}`,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "__**User IGN**__",
+                                        value: ignxd,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "__**Character Fame**__",
+                                        value: rfame + " Fame",
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "__**Stars**__",
+                                        value: rstars + " Stars",
+                                        inline: true,
+                                    }
+
+
+                                ],
+                                footer: {
+                                    text: "User has been verified by the bot.",
+                                }
+                            }
+                        });
+
+
+                    })
+
+
                 }
     })
 
