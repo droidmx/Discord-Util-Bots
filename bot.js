@@ -277,7 +277,7 @@ let reasonxd = args.slice(2).join(' ')
 break;
             
 
-        case "!verify":
+      /*  case "!verify":
             let ruser = args.slice(0).join("");
             let rcode = ("RR" + Math.floor(Math.random(11111) * 99999));
             let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
@@ -390,7 +390,7 @@ break;
                 }, 60000);
             })
 
-            break;
+            break;*/
 
             case "!realmeye":
            let user = args.slice(0).join("");
