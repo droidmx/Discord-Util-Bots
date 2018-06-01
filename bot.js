@@ -89,7 +89,28 @@ client.user.setPresence({ game: { name: `in Shatters! | !commands`, type: 0 }});
 client.on('guildMemberAdd', member => {
     
     
-member.user.send({welcomemessage})
+member.user.send({
+        embed: {
+            color: 0x00FFFF,
+            author: {
+                name: `The Bridge Guardian`,
+                icon_url: client.user.avatarURL
+            },
+            fields: [{
+                    name: "Welcome to ***Shatters Central***!",
+                    value: "To get started, read #rules! Once you have fully read the rules, go to #verify and follow the instructions to get verified!",
+                    
+                }
+               
+            ],
+            footer: {
+                text: "Bot coded by ~Droid~#5799, be sure to check #partners for other cool discords!",
+            },
+            thumbnail: {
+                url: "https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
+            }
+        }
+    });
         
     client.channels.get("451179074593751040").send({
         embed: {
