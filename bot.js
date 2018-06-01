@@ -119,6 +119,7 @@ client.on('message', msg => {
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
 if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
         msg.delete();
+        .catch(console.error);
         let userdata = test[msg.author.id]
 
                 msg.author.send({
@@ -152,7 +153,7 @@ if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode
     
         console.log(test)
 fs.writeFile('./test.json', JSON.stringify(test), console.error);
-        .catch(console.error);
+        
     }
     if (msg.content.startsWith('done')) {
         
@@ -238,7 +239,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
 
                     })
 
-.catch(console.error);
+
                 }
     })
 
