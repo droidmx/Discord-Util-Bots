@@ -200,7 +200,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
-                                    name: `User Verified | <@${msg.author.id}>`,
+                                    name: `User Verified | ${msg.author.user}`,
                                     icon_url: msg.author.avatarURL
                                 },
                                 fields: [{
