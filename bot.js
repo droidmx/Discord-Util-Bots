@@ -71,14 +71,14 @@ client.on('raw', event => {
 });
 */
 
-client.on('message', message => {
+client.on('message', async message => {
     if (message.content.toLowerCase() == "!test") {
     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
 console.log("afk check for shatters started")
     
-    client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
+    const test123 = client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
                                                    
    \nReact with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds! 
 \nIf you have a key, and are willing to pop, react with <:shatterskey:434134124631031810>
@@ -101,9 +101,35 @@ console.log("afk check for shatters started")
                 m.react(message.guild.emojis.get('437301360304848899'))
 m.react(message.guild.emojis.get('448582513716101122'))
         
-    })
+})
+        
+        
     
+        
+    const actual = await test123
+    console.log(actual.id)
+        if (!test['hi']) {
+			test['hi'] = actual.id
+		}else{
+			test['hi'] = actual.id
 }
+}
+    
+    if (message.content == '!endafk') {
+        let lmaoxddd = test['hi']
+        let lmaoxd = `${lmaoxddd}`
+        if (test['hi'] == '0') {
+            message.reply('There is no active AFK Check!')
+            return;
+        }
+        let raidstatus = '433789873690902532'
+        raidstatus.fetchMessage(lmaoxd).then(jj=> jj.edit(`**The AFK-Check has ended!**\n Please wait patiently for the next AFK-Check. If you are in the current run, listen to the raid leader's instructions!`))
+        if (!test['hi']) {
+			test['hi'] = '0'
+		}else{
+			test['hi'] = '0'
+}
+    }
 })
                                                                        
 client.on('raw', event => {
