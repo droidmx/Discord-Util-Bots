@@ -116,11 +116,10 @@ client.on('raw', event => {
         
         if (msg.author.id == client.user.id && channel.id == 433789873690902532){
        
-            var re = `\\*\\*"(.+)?(?="\\*\\*)`;
-            var role = msg.content.match(re)[1];
+            
         
             if (user.id != client.user.id){
-                var roleObj = msg.guild.roles.find('name', role);
+                
                 var memberObj = msg.guild.members.get(user.id);
                 
                 if (event.t === "MESSAGE_REACTION_ADD"){
