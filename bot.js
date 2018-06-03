@@ -219,7 +219,7 @@ let argss = message.content.split(" ")
 			test[whitebags] = upcurrr
 		}
 		
-		let something = serverstats.fetchMessage(loledit).then(asd=>
+		let something = serverstats.fetchMessage(loleddit).then(asd=>
 								       asd.edit({
 		embed: {
 		color: 0x00FFFF,
