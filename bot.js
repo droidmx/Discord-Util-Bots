@@ -124,7 +124,7 @@ lelxd.react(message.guild.emojis.get('448582513716101122'))
             return;
         }
         
-        raidstatus.fetchMessage('${lmaoxd}').then(jj=> jj.edit(`**The AFK-Check has ended!**\n Please wait patiently for the next AFK-Check. If you are in the current run, listen to the raid leader's instructions!`))
+        raidstatus.fetchMessage(`${lmaoxd}`).then(jj=> jj.edit(`**The AFK-Check has ended!**\n Please wait patiently for the next AFK-Check. If you are in the current run, listen to the raid leader's instructions!`))
         if (!test['hi']) {
 			test['hi'] = '0'
 		}else{
