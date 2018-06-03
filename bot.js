@@ -79,7 +79,7 @@ client.on('message', async message => {
 
 console.log("afk check for shatters started")
     
-    const test123 = await client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
+    const test123 = client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
                                                    
    \nReact with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds! 
 \nIf you have a key, and are willing to pop, react with <:shatterskey:434134124631031810>
@@ -94,25 +94,23 @@ console.log("afk check for shatters started")
                                                   
                                                   
                                                   
-                                                  `).then(function(m) {
-                m.react(message.guild.emojis.get('433791162411646988'))// shatters entity
-                m.react(message.guild.emojis.get('434134124631031810')) // key
-                m.react(message.guild.emojis.get('437301626118602774'))
-                m.react(message.guild.emojis.get('437301465384484874'))
-                m.react(message.guild.emojis.get('437301360304848899'))
+                                                  `)
+        
+        
+    
+        
+    const lelxd = await test123
+    lelxd.react(message.guild.emojis.get('433791162411646988'))// shatters entity
+                lelxd.react(message.guild.emojis.get('434134124631031810')) // key
+                lelxd.react(message.guild.emojis.get('437301626118602774'))
+                lelxd.react(message.guild.emojis.get('437301465384484874'))
+                lelxd.react(message.guild.emojis.get('437301360304848899'))
 m.react(message.guild.emojis.get('448582513716101122'))
-        
-})
-        
-        
-    
-        
-    
-    console.log(test123.id)
+    console.log(lelxd.id)
         if (!test['hi']) {
-			test['hi'] = test123.id
+			test['hi'] = lelxd.id
 		}else{
-			test['hi'] = test123.id
+			test['hi'] = lelxd.id
 }
 }
     
