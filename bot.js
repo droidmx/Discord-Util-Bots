@@ -131,12 +131,15 @@ let argss = message.content.split(" ")
                 return message.reply("Sorry, you don't have permissions to use this!");
 		let number = argss[1]
 		let actualnumber = parseInt(`${number}`);
-		let orgcounter = test[ppebtw]
-		let updatedcounter = orgcounter + actualnumber
+		
+		
+		console.log(actualnumber)
+		
+		
 		if (!test[ppebtw]) {
-			test[ppebtw] = updatedcounter
+			test[ppebtw] = actualnumber
 		}else{
-			test[ppebtw] = updatedcounter
+			test[ppebtw] = actualnumber
 		}
 	
 	}
@@ -145,12 +148,12 @@ let argss = message.content.split(" ")
                 return message.reply("Sorry, you don't have permissions to use this!");
 		let numberr = argss[1]
 		let actualnumberr = parseInt(`${numberr}`);
-		let orgcounterr = test[ppebtw]
-		let updatedcounterr = orgcounterr + actualnumberr
+		
+		
 		if (!test[ppebtw]) {
-			test[ppebtw] = updatedcounterr
+			test[ppebtw] = actualnumberr
 		}else{
-			test[ppebtw] = updatedcounterr
+			test[ppebtw] = actualnumberr
 		}
 	
 	}
@@ -162,6 +165,12 @@ let argss = message.content.split(" ")
 		let upcurr = curr + 1
 		let loledit = test[fuckingid]
 		let tobesafe = test[whitebags]
+		
+		if (!test[ppebtw]) {
+			test[ppebtw] = upcurr
+		}else{
+			test[ppebtw] = upcurr
+		}
 		
 		let something = serverstats.fetchMessage(loledit).then(asd=>
 								       asd.edit({
@@ -202,6 +211,11 @@ let argss = message.content.split(" ")
 		let upcurrr = curr + 1
 		let loleddit = test[fuckingid]
 		let tobesaafe = test[ppebtw]
+		if (!test[whitebags]) {
+			test[whitebags] = upcurrr
+		}else{
+			test[whitebags] = upcurrr
+		}
 		
 		let something = serverstats.fetchMessage(loledit).then(asd=>
 								       asd.edit({
