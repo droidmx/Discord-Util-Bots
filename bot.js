@@ -129,7 +129,7 @@ let argss = message.content.split(" ")
 	if (message.content == '!setruns') {
 		if (!message.member.roles.some(r => ["Owner"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
-		let number = argss[1]
+		let number = args
 		let actualnumber = parseInt(`${number}`);
 		
 		
@@ -146,7 +146,9 @@ let argss = message.content.split(" ")
 	if (message.content == '!setwhites') {
 		if (!message.member.roles.some(r => ["Owner"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
+		message.channel.send('testing')
 		let numberr = argss[1]
+		console.log(numberr)
 		let actualnumberr = parseInt(`${numberr}`);
 		
 		
