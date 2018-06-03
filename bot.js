@@ -80,7 +80,7 @@ client.on('message', async message => {
 	let args = message.content.split(" ").slice(1);
 let argss = message.content.split(" ")
 	if (!test[ppebtw]) test[ppebtw] = 79
-	if (!test[whitebags]) test[whitebags] = 19
+	if (!test[whitebags]) test[whitebags] = 7
 	
 	
 	
@@ -234,7 +234,7 @@ let argss = message.content.split(" ")
                 },
 		     {
 			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
-			     value: `${loleddit}`,
+			     value: `${upcurrr}`,
 		     }
                
             ],
