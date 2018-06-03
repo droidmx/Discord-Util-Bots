@@ -70,6 +70,95 @@ client.on('raw', event => {
     }   
 });
 */
+let afkcheckmsg = ('@here', {
+                embed: {
+                    color: 0xfbd27a,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "**An AFK-check for a Shatters Raid has started!**",
+                    description: "React with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
+
+                    fields: [{
+                            name: "If you have a key, and are willing to pop",
+                            value: "react with <:shatterskey:434134124631031810>",
+                            
+                        },
+                        {
+                            name: "If you have a Priest you are willing to bring",
+                            value: "react with <:priest:437301626118602774>",
+                            
+                        },
+                        {
+                            name: "If you have a Paladin you are willing to bring",
+                            value: "react with <:paladin:437301465384484874>",
+                            
+                        },
+                        {
+                            name: "If you have a Warrior you are willing to bring",
+                            value: "react with <:warrior:437301360304848899>",
+                           
+                        },
+                        {
+                            name: "If you have a Mystic you are willing to bring",
+                            value: "react with <:mystic:448582513716101122>",
+                            
+                        }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                    }
+                }
+            })
+client.on('message', message => {
+    if (message.content.toLowerCase() == "!test") {
+    if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+
+console.log("afk check for shatters started")
+    
+    client.channels.get("433789873690902532").send(afkcheckmsg).then(function(m) {
+                m.react(message.guild.emojis.get('433791162411646988'))// shatters entity
+                m.react(message.guild.emojis.get('434134124631031810')) // key
+                m.react(message.guild.emojis.get('437301626118602774'))
+                m.react(message.guild.emojis.get('437301465384484874'))
+                m.react(message.guild.emojis.get('437301360304848899'))
+m.react(message.guild.emojis.get('448582513716101122'))
+        
+    })
+    
+}
+})
+                                                                       
+client.on('raw', event => {
+    if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE"){
+        
+        let channel = client.channels.get(event.d.channel_id);
+        let message = channel.fetchMessage(event.d.message_id).then(msg=> {
+        let user = msg.guild.members.get(event.d.user_id);
+        
+        if (msg.author.id == client.user.id && msg.content != afkcheckmsg){
+       
+            var re = `\\*\\*"(.+)?(?="\\*\\*)`;
+            var role = msg.content.match(re)[1];
+        
+            if (user.id != client.user.id){
+                var roleObj = msg.guild.roles.find('name', role);
+                var memberObj = msg.guild.members.get(user.id);
+                
+                if (event.t === "MESSAGE_REACTION_ADD"){
+                    memberObj.setVoiceChannel('433788028264120326')
+                } else {
+                    memberObj.setVoiceChannel('433803796339097610')
+                }
+            }
+        }
+        })
+ 
+    }   
+});                                                                       
 //line 123 is where lhgs specific starts. 
 
 client.on('ready', () => {
