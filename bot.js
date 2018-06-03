@@ -239,7 +239,7 @@ let argss = message.content.split(" ")
                
             ],
             footer: {
-                text: "Bot coded by ${message.author}",
+	text: "Bot coded by ~Droid~#5799",
             },
             thumbnail: {
                 url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
