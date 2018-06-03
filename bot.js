@@ -78,7 +78,7 @@ client.on('message', message => {
 
 console.log("afk check for shatters started")
     
-    client.channels.get("433789873690902532").send(`**An AFK-check for a Shatters Raid has started!**
+    client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
                                                    
    \nReact with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds! 
 \nIf you have a key, and are willing to pop, react with <:shatterskey:434134124631031810>
@@ -114,7 +114,7 @@ client.on('raw', event => {
         let message = channel.fetchMessage(event.d.message_id).then(msg=> {
         let user = msg.guild.members.get(event.d.user_id);
         
-        if (msg.author.id == client.user.id && channel.id == 433789873690902532){
+        if (msg.author.id == client.user.id && msg.content.startsWith(“@here”){
        
             
         
