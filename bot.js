@@ -79,8 +79,8 @@ client.on('message', async message => {
 	let fuckingid = 'jjjjjjjjjjjjjjjjjjjj'
 	let args = message.content.split(" ").slice(1);
 let argss = message.content.split(" ")
-	if (!test[ppebtw]) test[ppebtw] = 0
-	if (!test[whitebags]) test[whitebags] = 0
+	if (!test[ppebtw]) test[ppebtw] = 79
+	if (!test[whitebags]) test[whitebags] = 19
 	
 	
 	
@@ -109,7 +109,7 @@ let argss = message.content.split(" ")
                
             ],
             footer: {
-                text: "Bot coded by ${message.author}",
+                text: "Bot coded by <@368756694114893825>",
             },
             thumbnail: {
                 url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
@@ -194,7 +194,7 @@ let argss = message.content.split(" ")
                
             ],
             footer: {
-                text: "Bot coded by ${message.author}",
+                text: "Bot coded by <@368756694114893825>",
             },
             thumbnail: {
                 url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
