@@ -73,7 +73,7 @@ client.on('raw', event => {
 
 client.on('message', async message => {
 	let raidstatus = message.guild.channels.find("name", "raid-status")
-    if (message.content.toLowerCase() == "!test") {
+    if (message.content.toLowerCase() == "!afkcheck") {
     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
 
@@ -114,7 +114,25 @@ lelxd.react(message.guild.emojis.get('448582513716101122'))
 }
 }
     
-    if (message.content == '!endafk') {
+    if (message.content == '!abortafk') {
+	     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+        let lmaoxd = test['hi']
+        
+        if (test['hi'] == '0') {
+            message.reply('There is no active AFK Check!')
+            return;
+        }
+        
+        raidstatus.fetchMessage(`${lmaoxd}`).then(jj=> jj.edit(`**The AFK-Check has been aborted!**\n Watch Raid Status for another AFK-Check, or an announcement by a Raid Leader!`))
+        if (!test['hi']) {
+			test['hi'] = '0'
+		}else{
+			test['hi'] = '0'
+}
+	    
+    }
+	 if (message.content == '!endafk') {
 	     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
         let lmaoxd = test['hi']
@@ -130,7 +148,23 @@ lelxd.react(message.guild.emojis.get('448582513716101122'))
 		}else{
 			test['hi'] = '0'
 }
+	    
     }
+	if (message.content == '!movequeue') {
+		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+		
+		
+		message.channel.send('Moving Queue!')
+		var people = client.channels.get('433784986072776714').members.array();
+
+                var promises = [];
+                people.forEach(person => {
+                    promises.push(person.setVoiceChannel('433788028264120326'));
+                });
+                Promise.all(promises);
+		
+	}
 })
                                                                        
 client.on('raw', event => {
@@ -405,120 +439,7 @@ let reasonxd = args.slice(2).join(' ')
 break;
             
 
-      /*  case "!verify":
-            let ruser = args.slice(0).join("");
-            let rcode = ("RR" + Math.floor(Math.random(11111) * 99999));
-            let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
-
-            snekfetch.get(rapi).then(h => {
-                let brdesc = h.body.description;
-
-                if (!ruser)
-                    return message.author.send("Please include a username after !verify! Any typos will cause your verification process to fail.")
-
-                message.delete();
-
-                message.author.send({
-                    embed: {
-                        color: 0xa3fb7a,
-                        author: {
-                            name: `Verification | ${message.author.tag}`,
-                            icon_url: message.author.avatarURL
-                        },
-                        fields: [{
-                                name: "**Your Code:**",
-                                value: `__**${rcode}**__`,
-                                inline: true,
-                            },
-                            {
-                                name: "**Realmeye Link:**",
-                                value: `https://www.realmeye.com/player/${ruser}`,
-                                inline: true,
-                            },
-                            {
-                                name: `Place your verification code on any line of your description, but __*it must be the only piece of text on that line.*__`,
-                                value: `Your original Realmeye description will be sent back shortly.`,
-                            },
-                        ],
-                        footer: {
-                            text: "The bot will check in 60 seconds to see if you followed directions.",
-                        }
-                    }
-                });
-
-                setTimeout(function() {
-
-                    snekfetch.get(rapi).then(r => {
-                        let rdesc = r.body.description;
-                        let rname = r.body.name
-                        let rstars = r.body.rank
-                        let rlocation = r.body.last_seen
-                        let rfame = r.body.fame
-
-                        if (!rdesc.includes(rcode))
-                            return message.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description. Your previous Realmeye description was:\n```" + brdesc + "```")
-
-
-                        if (rstars < (14))
-                            return message.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**14**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
-
-
-                        if (!rlocation.includes("hidden"))
-                            return message.author.send("Your location is not hidden so you cannot be verified!\nYour previous Realmeye description was:\n```" + brdesc + "```")
-
-                        if (rfame < (500))
-                            return message.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**500**__.\nYour previous Realmeye description was:\n```" + brdesc + "```")
-
-
-                        if (rdesc.includes(rcode))
-                            message.guild.member(message.author).setNickname(`${rname}`)
-                        let lelxdppebtw = message.guild.roles.find("name", "Shatters");
-                        // id wasnt working some times, 433784738998910977
-                        message.guild.member(message.author).addRole(lelxdppebtw.id)
-                        message.author.send("You have successfully been verified!\nYour previous Realmeye description was:\n```" + brdesc + "```");
-                        client.channels.get("451179074593751040").send({
-                            embed: {
-                                color: 0xfb7ae4,
-                                author: {
-                                    name: `User Verified | ${message.author.tag}`,
-                                    icon_url: message.author.avatarURL
-                                },
-                                fields: [{
-                                        name: "**Realmeye Link:**",
-                                        value: `https://www.realmeye.com/player/${ruser}`,
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**User IGN**__",
-                                        value: ruser,
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**Character Fame**__",
-                                        value: rfame + " Fame",
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**Stars**__",
-                                        value: rstars + " Stars",
-                                        inline: true,
-                                    }
-
-
-                                ],
-                                footer: {
-                                    text: "User has been verified by the bot.",
-                                }
-                            }
-                        });
-
-
-                    })
-
-                }, 60000);
-            })
-
-            break;*/
+      
 
             case "!realmeye":
            let user = args.slice(0).join("");
@@ -602,112 +523,7 @@ let asguild = r.body.guild
 
 
 
-        case "!afkcheck":
-            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-
-            console.log("afk check for shatters started")
-            /*var peoplee = client.channels.get('437782399175098368').members.array();
-
-                var promisess = [];
-                peoplee.forEach(person => {
-                    promisess.push(person.setVoiceChannel('442250419994099714'));
-                });
-                Promise.all(promises);
-            
-            var peopleee = client.channels.get('437816756275380234').members.array();
-
-                var promisesss = [];
-                peopleee.forEach(person => {
-                    promisesss.push(person.setVoiceChannel('442250419994099714'));
-                });
-                Promise.all(promises);*/
-            client.channels.get("433789873690902532").send('@here', {
-                embed: {
-                    color: 0xfbd27a,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: "**An AFK-check for a Shatters Raid has started!**",
-                    description: "React with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds!",
-
-                    fields: [{
-                            name: "If you have a key, and are willing to pop",
-                            value: "react with <:shatterskey:434134124631031810>",
-                            
-                        },
-                        {
-                            name: "If you have a Priest you are willing to bring",
-                            value: "react with <:priest:437301626118602774>",
-                            
-                        },
-                        {
-                            name: "If you have a Paladin you are willing to bring",
-                            value: "react with <:paladin:437301465384484874>",
-                            
-                        },
-                        {
-                            name: "If you have a Warrior you are willing to bring",
-                            value: "react with <:warrior:437301360304848899>",
-                           
-                        },
-                        {
-                            name: "If you have a Mystic you are willing to bring",
-                            value: "react with <:mystic:448582513716101122>",
-                            
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                    }
-                }
-            }).then(function(m) {
-                m.react(message.guild.emojis.get('433791162411646988'))// shatters entity
-                m.react(message.guild.emojis.get('434134124631031810')) // key
-                m.react(message.guild.emojis.get('437301626118602774'))
-                m.react(message.guild.emojis.get('437301465384484874'))
-                m.react(message.guild.emojis.get('437301360304848899'))
-                m.react(message.guild.emojis.get('448582513716101122'))
-            }).then(setTimeout(function(m) {
-                var people = client.channels.get('433784986072776714').members.array();
-
-                var promises = [];
-                people.forEach(person => {
-                    promises.push(person.setVoiceChannel('433788028264120326'));
-                });
-                Promise.all(promises);
-                 client.channels.get("433789873690902532").send({
-                embed: {
-                    color: 0xff040b,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: "**The AFK-Check has ended!**",
-                    description: "Please be patient and wait for the next afk-check. If you are in the run, please listen to the Raid Leader's instructions.",
-                }
-            })
-               
-                
-            }, 120000))
-            /*.then(async (m) => {
-                const filter = (reaction, user) => reaction.emoji.id === '437861607792443395';
-                const reactions = await m.awaitReactions(filter, {
-                    time: 20000
-                }).then((collected) => {
-                    let mapped = collected.map(m => m.users.id);
-mapped.forEach(id => {
-  const member = guild.member(id);
-  if (!member || !member.voiceChannel) return;
-  member.setVoiceChannel('450366721543503892').catch(e => {});
-});
-                });
-            })*/
-
-
-            break;
+        
             
         
 
@@ -1104,8 +920,20 @@ return message.reply("Sorry, you don't have permissions to use this!");
                         },
                         {
                             name: "`!afkcheck`",
-                            value: "Starts an AFK Check. Use in #leader-bot-commands. Work in progress, but it is functional."
-                        }
+                            value: `Starts an AFK Check. Use in <#437466234473283584>. Work in progress, but it is functional.`
+                        },
+			{
+				name: "`!endafk`",
+				value: `Ends an AFK Check. Use in <#437466234473283584>.`
+			},
+			     {
+				     name: "`!abortafk`",
+				     value: `Aborts an AFK Check. Use in <#437466234473283584>. Be sure to update the people in <#433789873690902532>.`
+			     },
+			     {
+				     name: "`!movequeue`",
+				     value: `Moves people from queue to Raiding. Use in <#437466234473283584>, and only when people are asking to be moved.`
+			     }
                         
                     ],
                     footer: {
