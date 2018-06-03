@@ -79,7 +79,7 @@ client.on('message', async message => {
 
 console.log("afk check for shatters started")
     
-    const test123 = client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
+    const test123 = client.channels.get("433789873690902532").send(`@ here **An AFK-check for a Shatters Raid has started!**
                                                    
    \nReact with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds! 
 \nIf you have a key, and are willing to pop, react with <:shatterskey:434134124631031810>
@@ -105,7 +105,7 @@ console.log("afk check for shatters started")
                 lelxd.react(message.guild.emojis.get('437301626118602774'))
                 lelxd.react(message.guild.emojis.get('437301465384484874'))
                 lelxd.react(message.guild.emojis.get('437301360304848899'))
-m.react(message.guild.emojis.get('448582513716101122'))
+lelxd.react(message.guild.emojis.get('448582513716101122'))
     console.log(lelxd.id)
         if (!test['hi']) {
 			test['hi'] = lelxd.id
@@ -117,14 +117,14 @@ m.react(message.guild.emojis.get('448582513716101122'))
     if (message.content == '!endafk') {
 	     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
-        let lmaoxddd = test['hi']
-        let lmaoxd = `${lmaoxddd}`
+        let lmaoxd = test['hi']
+        
         if (test['hi'] == '0') {
             message.reply('There is no active AFK Check!')
             return;
         }
         
-        raidstatus.fetchMessage(lmaoxd).then(jj=> jj.edit(`**The AFK-Check has ended!**\n Please wait patiently for the next AFK-Check. If you are in the current run, listen to the raid leader's instructions!`))
+        raidstatus.fetchMessage('${lmaoxd}').then(jj=> jj.edit(`**The AFK-Check has ended!**\n Please wait patiently for the next AFK-Check. If you are in the current run, listen to the raid leader's instructions!`))
         if (!test['hi']) {
 			test['hi'] = '0'
 		}else{
@@ -142,7 +142,7 @@ client.on('raw', event => {
         let message = channel.fetchMessage(event.d.message_id).then(msg=> {
         let user = msg.guild.members.get(event.d.user_id);
         
-        if (msg.author.id == client.user.id && msg.content.startsWith('@here')){
+        if (msg.author.id == client.user.id && msg.content.startsWith('@ here')){
        
             
         
