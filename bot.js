@@ -109,7 +109,7 @@ let argss = message.content.split(" ")
                
             ],
             footer: {
-                text: "Bot coded by <@368756694114893825>",
+                text: "Bot coded by ~Droid~#5799",
             },
             thumbnail: {
                 url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
@@ -194,7 +194,7 @@ let argss = message.content.split(" ")
                
             ],
             footer: {
-                text: "Bot coded by <@368756694114893825>",
+                text: "Bot coded by ~Droid~#5799",
             },
             thumbnail: {
                 url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
@@ -210,7 +210,7 @@ let argss = message.content.split(" ")
                 return message.reply("Sorry, you don't have permissions to use this!");
 		
 		let currr = test[whitebags]
-		let upcurrr = curr + 1
+		let upcurrr = currr + 1
 		let loleddit = test[fuckingid]
 		let tobesaafe = test[ppebtw]
 		if (!test[whitebags]) {
