@@ -116,6 +116,8 @@ m.react(message.guild.emojis.get('448582513716101122'))
 }
     
     if (message.content == '!endafk') {
+	     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
         let lmaoxddd = test['hi']
         let lmaoxd = `${lmaoxddd}`
         if (test['hi'] == '0') {
