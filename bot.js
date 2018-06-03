@@ -114,7 +114,7 @@ client.on('raw', event => {
         let message = channel.fetchMessage(event.d.message_id).then(msg=> {
         let user = msg.guild.members.get(event.d.user_id);
         
-        if (msg.author.id == client.user.id && channel == 433789873690902532){
+        if (msg.author.id == client.user.id && channel.id == 433789873690902532){
        
             var re = `\\*\\*"(.+)?(?="\\*\\*)`;
             var role = msg.content.match(re)[1];
