@@ -73,6 +73,167 @@ client.on('raw', event => {
 
 client.on('message', async message => {
 	let raidstatus = message.guild.channels.find("name", "raid-status")
+	let serverstats = message.guild.channels.find('name', 'server-stats')
+	let ppebtw = 'someshitidefk'
+	let whitebags = 'lmaoooooooooooooooooo'
+	let fuckingid = 'jjjjjjjjjjjjjjjjjjjj'
+	let args = message.content.split(" ").slice(1);
+let argss = message.content.split(" ")
+	if (!test[ppebtw]) test[ppebtw] = 0
+	if (!test[whitebags]) test[whitebags] = 0
+	
+	
+	
+	
+	if (message.content.startsWith('110035482131415926535897932384626')) {
+	
+	// ACTUAL NEST: <:nest:384850069062418433>
+	let counterxd = test[ppebtw]
+	let whitebagsxd = test[whitebags]
+	const bihluh = message.channel.send({
+		embed: {
+		color: 0x00FFFF,
+            author: {
+                name: `Shatters Central`,
+                icon_url: client.user.avatarURL
+            },
+            fields: [{
+                    name: "Shatters Completed <:Shatters:433791162411646988> :",
+                    value: `${counterxd}`,
+                    
+                },
+		     {
+			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
+			     value: `${whitebagsxd}`,
+		     }
+               
+            ],
+            footer: {
+                text: "Bot coded by ${message.author}",
+            },
+            thumbnail: {
+                url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
+			}
+		
+		}
+	})
+	const npending = await bihluh
+	console.log(npending.id)
+	if (!test[fuckingid]) {
+			test[fuckingid] = npending.id
+		}else{
+			test[fuckingid] = npending.id
+		}
+		
+}
+	if (message.content == '!setruns') {
+		if (!message.member.roles.some(r => ["Owner"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+		let number = argss[1]
+		let actualnumber = parseInt(`${number}`);
+		let orgcounter = test[ppebtw]
+		let updatedcounter = orgcounter + actualnumber
+		if (!test[ppebtw]) {
+			test[ppebtw] = updatedcounter
+		}else{
+			test[ppebtw] = updatedcounter
+		}
+	
+	}
+	if (message.content == '!setwhites') {
+		if (!message.member.roles.some(r => ["Owner"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+		let numberr = argss[1]
+		let actualnumberr = parseInt(`${numberr}`);
+		let orgcounterr = test[ppebtw]
+		let updatedcounterr = orgcounterr + actualnumberr
+		if (!test[ppebtw]) {
+			test[ppebtw] = updatedcounterr
+		}else{
+			test[ppebtw] = updatedcounterr
+		}
+	
+	}
+	if (message.content =='!runfinished') {
+		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+		
+		let curr = test[ppebtw]
+		let upcurr = curr + 1
+		let loledit = test[fuckingid]
+		let tobesafe = test[whitebags]
+		
+		let something = serverstats.fetchMessage(loledit).then(asd=>
+								       asd.edit({
+		embed: {
+		color: 0x00FFFF,
+            author: {
+                name: `Shatters Central`,
+                icon_url: client.user.avatarURL
+            },
+            fields: [{
+                    name: "Shatters Completed <:Shatters:433791162411646988> :",
+                    value: `${upcurr}`,
+                    
+                },
+		     {
+			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
+			     value: `${tobesafe}`,
+		     }
+               
+            ],
+            footer: {
+                text: "Bot coded by ${message.author}",
+            },
+            thumbnail: {
+                url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
+			}
+		
+		}
+	})
+		
+		)
+	}
+	if (message.content =='!whitebag') {
+		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
+                return message.reply("Sorry, you don't have permissions to use this!");
+		
+		let currr = test[whitebags]
+		let upcurrr = curr + 1
+		let loleddit = test[fuckingid]
+		let tobesaafe = test[ppebtw]
+		
+		let something = serverstats.fetchMessage(loledit).then(asd=>
+								       asd.edit({
+		embed: {
+		color: 0x00FFFF,
+            author: {
+                name: `Shatters Central`,
+                icon_url: client.user.avatarURL
+            },
+            fields: [{
+                    name: "Shatters Completed <:Shatters:433791162411646988> :",
+                    value: `${tobesaafe}`,
+                    
+                },
+		     {
+			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
+			     value: `${loleddit}`,
+		     }
+               
+            ],
+            footer: {
+                text: "Bot coded by ${message.author}",
+            },
+            thumbnail: {
+                url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
+			}
+		
+		}
+	})
+		
+		)
+	}
     if (message.content.toLowerCase() == "!afkcheck") {
     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
