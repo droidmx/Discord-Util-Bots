@@ -1064,7 +1064,7 @@ let asguild = r.body.guild
         case "!headcount":
               if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Head Raid leader"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
-    	client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
+    	client.channels.get('433789873690902532').send("Headcount @here ! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
              
         oldMessage.react(message.guild.emojis.get('433791162411646988'))
         oldMessage.react(message.guild.emojis.get('434134124631031810'))
