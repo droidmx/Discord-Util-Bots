@@ -81,7 +81,7 @@ client.on('message', async message => {
 let argss = message.content.split(" ")
 	if (!test[ppebtw]) test[ppebtw] = 82
 	if (!test[whitebags]) test[whitebags] = 10
-	if (!test[fuckingid]) test[fuckingid] = 452917899829706773
+	if (!test[fuckingid]) test[fuckingid] = 453314721836433408
 	
 	
 	
@@ -452,7 +452,11 @@ client.on('message', msg => {
         let ruser = argss[1]
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
-if (!test[msg.author.id]) test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
+if (!test[msg.author.id]) {
+	test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
+}else{
+	test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
+}
         msg.delete();
         
         let userdata = test[msg.author.id]
