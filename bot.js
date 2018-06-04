@@ -450,6 +450,7 @@ client.on('message', msg => {
         }
         msg.delete();
         let ruser = argss[1]
+	if (!ruser) return msg.reply('Please provide your username after `!verify`')
             let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
 let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
 if (!test[msg.author.id]) {
