@@ -79,8 +79,8 @@ client.on('message', async message => {
 	let fuckingid = 'jjjjjjjjjjjjjjjjjjjj'
 	let args = message.content.split(" ").slice(1);
 let argss = message.content.split(" ")
-	if (!test[ppebtw]) test[ppebtw] = 79
-	if (!test[whitebags]) test[whitebags] = 7
+	if (!test[ppebtw]) test[ppebtw] = 82
+	if (!test[whitebags]) test[whitebags] = 10
 	if (!test[fuckingid]) test[fuckingid] = 452917899829706773
 	
 	
