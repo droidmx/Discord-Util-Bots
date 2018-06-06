@@ -157,7 +157,7 @@ client.on('message', function(message) {
                       .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
                       .setTimestamp()
-                      .addField("**Current Requirements**", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
+                      .addField("**Current Requirements**", "As of now, the current requirements are 2000 Alive Fame, and either one 8/8 or two 6/8's or two 7/8's.")
                       .addField("**Character Information**", `${person} has **${sixeight}** 6/8 character(s), **${seveneight}** 7/8 character(s) and **${eighteight}** 8/8 character(s)`, true)
                       .addField("**Fame Information**", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
                       .addField("**Requirements**", `${person} ***does***  meet the current requirements!`);
@@ -173,7 +173,7 @@ client.on('message', function(message) {
                       .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
                       .setTimestamp()
-                      .addField("**Current Requirements**", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
+                      .addField("**Current Requirements**", "As of now, the current requirements are 2000 Alive Fame, and either one 8/8 or two 6/8's or two 7/8's.")
                       .addField("**Character Information**", `${person} has **${sixeight}** 6/8 character(s), **${seveneight}** 7/8 character(s) and **${eighteight}** 8/8 character(s)`, true)
                       .addField("**Fame Information**", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
                       .addField("**Requirements**", `${person} ***does not***  meet the current requirements!`);
