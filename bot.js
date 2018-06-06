@@ -116,7 +116,7 @@ client.on('message', function(message) {
                
             }
             let realmeye = "http://www.tiffit.net/RealmInfo/api/user?u=" + person + "&f="
-            snekfetch.get(realmeye.then(s=> {
+            snekfetch.get(realmeye).then(s=> {
                 if (!s.body.error) {
                     if (!s.body.fame) {
                         message.reply("The user you provided has their fame hidden!")
@@ -173,7 +173,7 @@ client.on('message', function(message) {
                     return;
                 }
                 
-          }))  //endofapi 
+          }) //endofapi 
             
             
             
