@@ -154,7 +154,7 @@ client.on('message', function(message) {
                         let meetsreqs = 'does'
                     }else{
                       let meetreqs = 'does not'
-                      
+                      }
                       const finalmessage = new Discord.RichEmbed()
                       .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
@@ -167,7 +167,7 @@ client.on('message', function(message) {
                       message.channel.send({finalmessage});
                       
                       
-                    }
+                    
                 }else{
                     message.reply("The user was not found, please provide a valid IGN")
                     return;
