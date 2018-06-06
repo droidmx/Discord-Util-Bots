@@ -153,7 +153,7 @@ client.on('message', function(message) {
                     if (points >= 11) {
                         let meetsreqs = 'does'
                     }else{
-                      let meetreqs = 'does not'
+                      let meetsreqs = 'does not'
                       }
                       const finalmessage = new Discord.RichEmbed()
                       .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
