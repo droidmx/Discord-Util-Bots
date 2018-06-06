@@ -153,25 +153,36 @@ client.on('message', function(message) {
                     if (points >= 11) {
                         const meetsreqs = `does`
                         console.log(meetsreqs)
-                        
-                    }
-                    
-                    if (points < 11) {
-                      const meetsreqs = `does not`
-                      console.lot(meetsreqs)
-                        
-                      }
-                      
-                      const finalmessage = new Discord.RichEmbed()
+                         const finalmessage = new Discord.RichEmbed()
                       .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
                       .setTimestamp()
                       .addField("__**Current Requirements**__", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
                       .addField("__**Character Information**__", `${person} has ${sixeight} 6/8's, ${7/8} 7/8's and ${eighteight} 8/8's`, true)
                       .addField("__**Fame Information**__", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
-                      .addField("__**Requirements**__", `***${person} ` + meetsreqs + ` meet the current requirements!***`);
+                      .addField("__**Requirements**__", `${person} ***does*** meet the current requirements!`);
                       
                       message.channel.sendEmbed(finalmessage);
+                        
+                    }
+                    
+                    if (points < 11) {
+                      const meetsreqs = `does not`
+                      console.lot(meetsreqs)
+                        const finalmessage = new Discord.RichEmbed()
+                      .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
+                      .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
+                      .setTimestamp()
+                      .addField("__**Current Requirements**__", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
+                      .addField("__**Character Information**__", `${person} has ${sixeight} 6/8's, ${7/8} 7/8's and ${eighteight} 8/8's`, true)
+                      .addField("__**Fame Information**__", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
+                      .addField("__**Requirements**__", `${person} ***does not*** meet the current requirements!`);
+                      
+                      message.channel.sendEmbed(finalmessage);
+                        
+                      }
+                      
+                     
                       
                     
                 }else{
