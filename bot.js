@@ -108,7 +108,77 @@ client.on('message', function(message) {
             
            
 
-
+        case '!checkreqs':
+            let person = args.slice(0).join('');
+            if (!person) {
+             message.reply("You did not provide a user to search for! Use `!checkreqs IGN` to search a user!")
+                return;
+               
+            }
+            let realmeye = "http://www.tiffit.net/RealmInfo/api/user?u=" + person + "&f="
+            snekfetch.get(realmeye.then(s=> {
+                if (!s.body.error) {
+                    if (!s.body.fame) {
+                        message.reply("The user you provided has their fame hidden!")
+                                      return;
+                    }
+                    if (!s.body.characters[0]) {
+                        message.reply('The user you provided has their characters hidden or has no characters!')
+                    }
+                let points = 0
+                let personfame = s.body.fame
+                let personstars = s.body.stars
+                let sixeight = 0
+                let seveneight = 0
+                let eighteight = 0
+                if (s.body.fame < 2000) {
+                    points += 1
+                    
+                }
+                let personcharstats = s.body.characters
+                for (i in personcharstats) {
+                    if (personcharstats[i].stats_maxed == '8/8')  {
+                        points += 10
+                        eighteight += 1 
+                    }
+                    if (personcharstats[i].stats_maxed == '7/8')  {
+                        points += 5
+                        seveneight += 1 
+                    }
+                    if (personcharstats[i].stats_maxed == '6/8')  {
+                        points += 5
+                        sixeight += 1 
+                    }
+                }
+                    if (points >= 11) {
+                        let meetsreqs = 'does'
+                    }else{
+                      let meetreqs = 'does not'
+                      
+                      const finalmessage = new Discord.RichEmbed()
+                      .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
+                      .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
+                      .setTimestamp()
+                      .addField("__**Current Requirements**__", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
+                      .addField("__**Character Information**__", `${person} has ${sixeight} 6/8's, ${7/8} 7/8's and ${eighteight} 8/8's`, true)
+                      .addField("__**Fame Information**__", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
+                      .addField("__**Requirements**__", `***${person} ${meetsreqs} meet the current requirements!***`)
+                      
+                      message.channel.send({finalmessage})
+                      
+                      
+                    }
+                }else{
+                    message.reply("The user was not found, please provide a valid IGN")
+                    return;
+                }
+                
+          }))  //endofapi 
+            
+            
+            
+            
+            break;
 
         case "!verify":
             let ruser = args.slice(0).join("");
