@@ -127,7 +127,7 @@ client.on('message', function(message) {
                     }
                 let points = 0
                 let personfame = s.body.fame
-                let personstars = s.body.stars
+                let personstars = s.body.rank
                 let sixeight = 0
                 let seveneight = 0
                 let eighteight = 0
