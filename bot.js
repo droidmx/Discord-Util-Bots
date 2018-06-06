@@ -162,9 +162,9 @@ client.on('message', function(message) {
                       .addField("__**Current Requirements**__", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
                       .addField("__**Character Information**__", `${person} has ${sixeight} 6/8's, ${7/8} 7/8's and ${eighteight} 8/8's`, true)
                       .addField("__**Fame Information**__", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
-                      .addField("__**Requirements**__", `***${person} ${meetsreqs} meet the current requirements!***`)
+                      .addField("__**Requirements**__", `***${person} ${meetsreqs} meet the current requirements!***`);
                       
-                      message.channel.send({finalmessage})
+                      message.channel.send({finalmessage});
                       
                       
                     }
