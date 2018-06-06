@@ -168,7 +168,7 @@ client.on('message', function(message) {
                     
                     if (points < 11) {
                       const meetsreqs = `does not`
-                      console.lot(meetsreqs)
+                      console.log(meetsreqs)
                         const finalmessage = new Discord.RichEmbed()
                       .setAuthor(`Requirements Check for ${person}`, client.user.avatarURL)
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
