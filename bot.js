@@ -158,9 +158,9 @@ client.on('message', function(message) {
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
                       .setTimestamp()
                       .addField("**Current Requirements**", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
-                      .addField("**Character Information**", `${person} has ${sixeight} 6/8's, ${seveneight} 7/8's and ${eighteight} 8/8's`, true)
+                      .addField("**Character Information**", `${person} has **${sixeight}** 6/8 character(s), **${seveneight}** 7/8 character(s) and **${eighteight}** 8/8 character(s)`, true)
                       .addField("**Fame Information**", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
-                      .addField("**Requirements**", `${person} ***does*** meet the current requirements!`);
+                      .addField("**Requirements**", `${person} ***does***  meet the current requirements!`);
                       
                       message.channel.sendEmbed(finalmessage);
                         
@@ -174,9 +174,9 @@ client.on('message', function(message) {
                       .setThumbnail("https://www.realmeye.com/s/c7/img/eye-big.png")
                       .setTimestamp()
                       .addField("**Current Requirements**", "As of now, the current requirements are 200 Alive Fame, and either one 8/8 or 2 6/8's or 7/8's.")
-                      .addField("**Character Information**", `${person} has ${sixeight} 6/8's, ${7/8} 7/8's and ${eighteight} 8/8's`, true)
+                      .addField("**Character Information**", `${person} has **${sixeight}** 6/8 character(s), **${seveneight}** 7/8 character(s) and **${eighteight}** 8/8 character(s)`, true)
                       .addField("**Fame Information**", `${person} has ${personfame} Alive Fame, and has ${personstars} Stars!`, true)
-                      .addField("**Requirements**", `${person} ***does not*** meet the current requirements!`);
+                      .addField("**Requirements**", `${person} ***does not***  meet the current requirements!`);
                       
                       message.channel.sendEmbed(finalmessage);
                         
