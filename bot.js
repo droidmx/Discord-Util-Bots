@@ -151,13 +151,13 @@ client.on('message', function(message) {
                     }
                 }
                     if (points >= 11) {
-                        let meetsreqs = 'does'
+                        const meetsreqs = `does`
                         console.log(meetsreqs)
                         
                     }
                     
                     if (points < 11) {
-                      let meetsreqs = 'does not'
+                      const meetsreqs = `does not`
                       console.lot(meetsreqs)
                         
                       }
