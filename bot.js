@@ -285,12 +285,13 @@ console.log("afk check for shatters started")
     
         
     const lelxd = await test123
-    lelxd.react(message.guild.emojis.get('433791162411646988'))// shatters entity
-                lelxd.react(message.guild.emojis.get('434134124631031810')) // key
+    await lelxd.react(message.guild.emojis.get('433791162411646988'))// shatters entity
+             await lelxd.react(message.guild.emojis.get('434134124631031810')) // key
                 lelxd.react(message.guild.emojis.get('437301626118602774'))
                 lelxd.react(message.guild.emojis.get('437301465384484874'))
                 lelxd.react(message.guild.emojis.get('437301360304848899'))
 lelxd.react(message.guild.emojis.get('448582513716101122'))
+	    
     console.log(lelxd.id)
         if (!test['hi']) {
 			test['hi'] = lelxd.id
@@ -370,6 +371,7 @@ client.on('raw', event => {
                 var memberObj = msg.guild.members.get(user.id);
                 
                 if (event.t === "MESSAGE_REACTION_ADD"){
+			wait(5000)
                     memberObj.setVoiceChannel('433788028264120326')
                 } else {
                     memberObj.setVoiceChannel('433803796339097610')
