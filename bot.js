@@ -70,6 +70,13 @@ client.on('raw', event => {
     }   
 });
 */
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
 
 client.on('message', async message => {
 	let raidstatus = message.guild.channels.find("name", "raid-status")
