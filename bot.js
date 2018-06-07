@@ -478,7 +478,7 @@ if (!test[msg.author.id]) {
                         },
                         fields: [{
                                 name: "**Your Code:**",
-                                value: `__**${userdata.code}**__`,
+                                value: `**${userdata.code}**`,
                                 inline: true,
                             },
                             {
@@ -487,7 +487,7 @@ if (!test[msg.author.id]) {
                                 inline: true,
                             },
                             {
-                                name: `Place your verification code on any line of your description, but __*it must be the only piece of text on that line.*__`,
+                                name: `Place your verification code on any line of your description, but _*it MUST be the only piece of text on that line.*`,
                                 value: "Once you have placed the code, type `done` in #verify",
                             },
                         ],
