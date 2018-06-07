@@ -122,7 +122,7 @@ client.on('message', function(message) {
                         message.reply("The user you provided has their fame hidden!")
                                       return;
                     }
-                    if (!s.body.characters[0]) {
+                    if (s.body.characters === []) {
                         message.reply('The user you provided has their characters hidden or has no characters!')
                     }
                 let points = 0
