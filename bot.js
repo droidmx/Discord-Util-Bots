@@ -220,8 +220,8 @@ let argss = message.content.split(" ")
 			test[whitebags] = upcurrr
 		}
 		
-		let something = serverstats.fetchMessage(loleddit).then(asd=>
-								       asd.edit({
+		let ssomething = serverstats.fetchMessage(loleddit).then(aaasd=>
+								       aaasd.edit({
 		embed: {
 		color: 0x00FFFF,
             author: {
@@ -235,7 +235,7 @@ let argss = message.content.split(" ")
                 },
 		     {
 			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
-			     value: `${upcurrr}`,
+			     value: `${test[whitebags]}`,
 		     }
                
             ],
@@ -401,13 +401,13 @@ member.user.send({
             },
             fields: [{
                     name: "Welcome to ***Shatters Central***!",
-                    value: "To get started, read #rules! Once you have fully read the rules, go to #verify and follow the instructions to get verified!",
+                    value: "To get started, read <#433789483222040577>! Once you have fully read the rules, go to <#433792597962522624> and follow the instructions to get verified!",
                     
                 }
                
             ],
             footer: {
-                text: "Bot coded by ~Droid~#5799, be sure to check #partners for other cool discords!",
+                text: "Bot coded by ~Droid~#5799, be sure to check <#433856093148676108> for other cool discords!",
             },
             thumbnail: {
                 url: "https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
@@ -466,7 +466,7 @@ if (!test[msg.author.id]) {
                     embed: {
                         color: 0xa3fb7a,
                         author: {
-                            name: `Verification | @${msg.author.tag}`,
+                            name: `Verification | ${ruser}`,
                             icon_url: msg.author.avatarURL
                         },
                         fields: [{
