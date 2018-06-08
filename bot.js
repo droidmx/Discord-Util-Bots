@@ -449,7 +449,63 @@ member.user.send({
     });
 });
 
-client.on('message', msg => {
+client.on('message', async msg => {
+	if (msg.content.startsWith("!starttime")) {
+		if (!test['timer']) {
+		test['timer'] = 10	
+		}else{
+			test['timer'] = 10
+		}
+		if (!test['user']) {
+		test['user'] = msg.author.id	
+		}else{
+			test['user'] = msg.author.id
+		}
+	    msg.channel.send(`${msg.author} has started the stopwatch! Type \`stop\` to end the timer! Timer automatically stops at 25 minutes! Starting in 5 seconds`)
+	    wait(5000)
+	    const timermessage = msg.channel.send(`:timer: Stopwatch | User: ${msg.author}
+\n Time Elapsed: 0 seconds
+`)
+	    const timemsg = await timermessage
+	    
+		    if (!test['timerid']) {
+			test['timerid'] = timemsg.id    
+		    }else{
+			test['timerid'] = timemsg.id    
+		    }
+		if (!test['timer']) {
+		test['timer'] = 0	
+		}else{
+		test['timer'] = 0	
+		}
+		for (i in 1500) {
+			if (test['timer'] == 10) {
+			timemsg.edit(`:timer: Stopwatch | User: ${msg.author}
+\n Time Elapsed: 0 seconds
+`)
+				
+			}
+			if (i == 1500) {
+				timemsg.edit(`:timer: Stopwatch Ended
+\n Total Time Elapsed: ${i} seconds
+`)
+			}
+		timemsg.edit(`:timer: Stopwatch | User: ${msg.author}
+\n Time Elapsed: ${i} seconds
+`)
+		}
+	    }
+	if (msg.content.startsWith('stop')) {
+	if (!msg.author.id == test['user']){
+		return;
+	}
+		if (!test['timer']) {
+		test['timer'] = 10	
+		}else{
+		test['timer'] = 10	
+		}
+		
+	}
     if (msg.content.startsWith('!verify')) {
         var argss = msg.content.split(" ");
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
