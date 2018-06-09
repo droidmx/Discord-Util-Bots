@@ -452,9 +452,9 @@ member.user.send({
 client.on('message', async msg => {
 	if (msg.content.startsWith("!starttime")) {
 		if (!test['timer']) {
-		test['timer'] = 10	
+		test['timer'] = 0	
 		}else{
-			test['timer'] = 10
+			test['timer'] = 0
 		}
 		if (!test['user']) {
 		test['user'] = msg.author.id	
