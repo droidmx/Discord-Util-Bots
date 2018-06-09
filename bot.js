@@ -450,7 +450,12 @@ member.user.send({
 });
 
 client.on('message', async msg => {
+	let raidstatuss = msg.guild.channels.find("name", "raid-status")
 	if (msg.content.startsWith("!starttime")) {
+		  if (!msg.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Officer", "Owner"].includes(r.name))) {
+			  msg.reply("Message is only allowed to be used by raid leaders for timing runs! Once the command is fully tested, it will be released to the public.")
+			  return;
+		  }
 		if (!test['timer']) {
 		test['timer'] = 0	
 		}else{
@@ -463,11 +468,11 @@ client.on('message', async msg => {
 		}
 	    msg.channel.send(`${msg.author} has started the stopwatch! Type \`stop\` to end the timer! Timer automatically stops at 25 minutes! Starting in 5 seconds`)
 	    wait(5000)
-	    const timermessage = msg.channel.send(`:timer: Stopwatch | User: ${msg.author}
+	    const timermessage = client.channels.get("433789873690902532").send(`:timer: Stopwatch | User: ${msg.author}
 \n Time Elapsed: 0 seconds
 `)
 	    const timemsg = await timermessage
-	    
+	    raidstatuss.fetchMessage(timermessage.id).then(lol=> {
 		    if (!test['timerid']) {
 			test['timerid'] = timemsg.id    
 		    }else{
@@ -481,21 +486,23 @@ client.on('message', async msg => {
 		
 		for (i = 0; i < 1500; i++) {
 			if (test['timer'] == 10) {
-			timemsg.edit(`:timer: Stopwatch | User: ${msg.author}
+			lol.edit(`:timer: Stopwatch | User: ${msg.author}
 \n Time Elapsed: 0 seconds
 `)
 				
 			}
 			if (i == 1500) {
-				timemsg.edit(`:timer: Stopwatch Ended
+				lol.edit(`:timer: Stopwatch Ended
 \n Total Time Elapsed: ${i} seconds
 `)
 			}
-		timemsg.edit(`:timer: Stopwatch | User: ${msg.author}
+		lol.edit(`:timer: Stopwatch | User: ${msg.author}
 \n Time Elapsed: ${i} seconds
 `)
 			wait(1000)
 		}
+	    })
+	    
 	    }
 	if (msg.content.startsWith('stop')) {
 	if (!msg.author.id == test['user']){
@@ -506,8 +513,9 @@ client.on('message', async msg => {
 		}else{
 		test['timer'] = 10	
 		}
-		
-	}
+	    }
+	    
+	
     if (msg.content.startsWith('!verify')) {
         var argss = msg.content.split(" ");
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
