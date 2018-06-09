@@ -485,6 +485,7 @@ client.on('message', async msg => {
 		}
 		
 		for (i = 0; i < 1500; i++) {
+			var ll = i.toString()
 			if (test['timer'] == 10) {
 			lol.edit(`:timer: Stopwatch | User: ${msg.author}
 \n Time Elapsed: 0 seconds
@@ -493,11 +494,11 @@ client.on('message', async msg => {
 			}
 			if (i == 1500) {
 				lol.edit(`:timer: Stopwatch Ended
-\n Total Time Elapsed: ${i} seconds
+\n Total Time Elapsed: ${ll} seconds
 `)
 			}
 		lol.edit(`:timer: Stopwatch | User: ${msg.author}
-\n Time Elapsed: ${i} seconds
+\n Time Elapsed: ${ll} seconds
 `)
 			wait(1000)
 		}
