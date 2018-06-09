@@ -626,7 +626,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                                 },
                                 fields: [{
                                         name: "**Realmeye Link:**",
-                                        value: `https://www.realmeye.com/player/${ignxd}`,
+                                        value: `https://www.realmeye.com/player/${msg.author}`,
                                         inline: true,
                                     },
                                     {
