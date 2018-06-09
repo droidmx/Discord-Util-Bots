@@ -493,6 +493,7 @@ client.on('message', async msg => {
 		timemsg.edit(`:timer: Stopwatch | User: ${msg.author}
 \n Time Elapsed: ${i} seconds
 `)
+			wait(1000)
 		}
 	    }
 	if (msg.content.startsWith('stop')) {
