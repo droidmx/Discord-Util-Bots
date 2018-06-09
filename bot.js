@@ -478,7 +478,8 @@ client.on('message', async msg => {
 		}else{
 		test['timer'] = 0	
 		}
-		for (i in 1500) {
+		
+		for (i = 0; i < 1500; i++) {
 			if (test['timer'] == 10) {
 			timemsg.edit(`:timer: Stopwatch | User: ${msg.author}
 \n Time Elapsed: 0 seconds
