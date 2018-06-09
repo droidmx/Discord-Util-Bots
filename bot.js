@@ -451,7 +451,8 @@ member.user.send({
 
 client.on('message', async msg => {
 	let raidstatuss = msg.guild.channels.find("name", "raid-status")
-	if (msg.content.startsWith("!starttime")) {
+	
+	/*if (msg.content.startsWith("!starttime")) {
 		  if (!msg.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Officer", "Owner"].includes(r.name))) {
 			  msg.reply("Message is only allowed to be used by raid leaders for timing runs! Once the command is fully tested, it will be released to the public.")
 			  return;
@@ -516,7 +517,7 @@ client.on('message', async msg => {
 		}
 	    }
 	    
-	
+	*/
     if (msg.content.startsWith('!verify')) {
         var argss = msg.content.split(" ");
         if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
@@ -620,7 +621,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
-                                    name: `User Verified | <@${msg.author.tag}>`,
+                                    name: `User Verified | ${msg.author}`,
                                     icon_url: msg.author.avatarURL
                                 },
                                 fields: [{
