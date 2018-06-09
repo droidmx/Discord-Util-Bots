@@ -472,7 +472,7 @@ client.on('message', async msg => {
 \n Time Elapsed: 0 seconds
 `)
 	    const timemsg = await timermessage
-	    raidstatuss.fetchMessage(timermessage.id).then(lol=> {
+	    raidstatuss.fetchMessage(timemsg.id).then(lol=> {
 		    if (!test['timerid']) {
 			test['timerid'] = timemsg.id    
 		    }else{
