@@ -589,10 +589,15 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                             embed: {
                                 color: 0xfb7ae4,
                                 author: {
-                                    name: `User Verified | ${msg.author}`,
+                                    name: `User Verified`,
                                     icon_url: msg.author.avatarURL
                                 },
                                 fields: [{
+					name: "**Discord Profile**",
+					value: `${msg.author}`,
+					inline: true,
+				},
+					{
                                         name: "**Realmeye Link:**",
                                         value: `https://www.realmeye.com/player/${rname}`,
                                         inline: true,
