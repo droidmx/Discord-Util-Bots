@@ -134,39 +134,7 @@ let argss = message.content.split(" ")
 		}
 		
 }
-	if (message.content == '!setruns') {
-		if (!message.member.roles.some(r => ["Owner"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-		let number = args
-		let actualnumber = parseInt(`${number}`);
-		
-		
-		console.log(actualnumber)
-		
-		
-		if (!test[ppebtw]) {
-			test[ppebtw] = actualnumber
-		}else{
-			test[ppebtw] = actualnumber
-		}
 	
-	}
-	if (message.content == '!setwhites') {
-		if (!message.member.roles.some(r => ["Owner"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-		message.channel.send('testing')
-		let numberr = argss[1]
-		console.log(numberr)
-		let actualnumberr = parseInt(`${numberr}`);
-		
-		
-		if (!test[ppebtw]) {
-			test[ppebtw] = actualnumberr
-		}else{
-			test[ppebtw] = actualnumberr
-		}
-	
-	}
 	if (message.content =='!runfinished') {
 		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
                 return message.reply("Sorry, you don't have permissions to use this!");
@@ -371,7 +339,7 @@ client.on('raw', event => {
                 var memberObj = msg.guild.members.get(user.id);
                 
                 if (event.t === "MESSAGE_REACTION_ADD"){
-			wait(5000)
+			wait(10000)
                     memberObj.setVoiceChannel('433788028264120326')
                 } else {
                     memberObj.setVoiceChannel('433803796339097610')
@@ -626,7 +594,7 @@ fs.writeFile('./test.json', JSON.stringify(test), console.error);
                                 },
                                 fields: [{
                                         name: "**Realmeye Link:**",
-                                        value: `https://www.realmeye.com/player/${msg.author}`,
+                                        value: `https://www.realmeye.com/player/${rname}`,
                                         inline: true,
                                     },
                                     {
