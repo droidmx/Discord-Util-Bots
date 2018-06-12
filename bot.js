@@ -17,7 +17,7 @@ function wait(ms){
      end = new Date().getTime();
   }
 }
-client.on('message', message => {
+client.on('message', async message => {
     if (message.content === '!classpoll') {
         if (!message.member.roles.some(r => ["-=+|Founder|+=-", "-=+Head Admin+=-", "-=Mod=-"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
@@ -47,14 +47,14 @@ return message.reply("Sorry, you don't have permissions to use this!");
   if (message.content === '!clearall') {
     if (!message.member.roles.some(r => ["-=+|Founder|+=-"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
-  
+  let amt = 100
       console.log(message.guild.channels.size)
     message.guild.channels.array().forEach(channel =>{
         if (channel.parentID == '449924740958650368') return;
-        channel.fetchMessages()
-          .then(messages => {
-            channel.bulkDelete(messages);
-            messagesDeleted = messages.array().length; // number of messages deleted
+        const fetched = await channel.fetchMessages({limit: amt});
+          .
+            channel.bulkDelete(fetched);
+            messagesDeleted = fetched.array().length; // number of messages deleted
             
             // Logging the number of messages deleted on both the channel and console.
             message.author.sendMessage("Clear of <#" + channel.id + "> was successful . Total messages deleted: "+ messagesDeleted);
