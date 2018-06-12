@@ -51,9 +51,7 @@ return message.reply("Sorry, you don't have permissions to use this!");
       console.log(message.guild.channels.size)
     message.guild.channels.array().forEach(channel =>{
         if (channel.parentID == '449924740958650368') return;
-        channel.fetchMessages({
-      limit: '9999'
-    })
+        channel.fetchMessages()
           .then(messages => {
             channel.bulkDelete(messages);
             messagesDeleted = messages.array().length; // number of messages deleted
