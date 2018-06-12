@@ -47,17 +47,19 @@ return message.reply("Sorry, you don't have permissions to use this!");
   if (message.content === '!clearall') {
     if (!message.member.roles.some(r => ["-=+|Founder|+=-"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
-      var array = ['455988206903623695', '455987104619692043', '454642295023861760', '454641313929887765', '449935593112207361', '454641489054531596', '454641257793454110', '454641426865586187', '449912619395055626', '449925590573645864', '449925525973237776', '449925551579332608', '455327899000504330'];
+  
       console.log(message.guild.channels.size)
-    for (i in array) {
-        var specifics = client.channels.get(array[i])
-        specifics.fetchMessages()
+    member.guild.channels.array().forEach(channel =>{
+        
+        channel.fetchMessages({
+      limit: '9999'
+    })
           .then(messages => {
-            specifics.bulkDelete(messages);
+            channel.bulkDelete(messages);
             messagesDeleted = messages.array().length; // number of messages deleted
-            wait(1000)
+            
             // Logging the number of messages deleted on both the channel and console.
-            message.author.sendMessage("Deletion of messages successful. Total messages deleted: "+messagesDeleted);
+            message.author.sendMessage("Clear of <#" + channel.id + "> was successful . Total messages deleted: "+ messagesDeleted);
         
           })
           .catch(err => {
@@ -65,8 +67,8 @@ return message.reply("Sorry, you don't have permissions to use this!");
             console.log(err);
             message.author.send(`${err} \n Go talk to Droid`)
           });
-    }
-      console.log(array)
+    })
+      
   }
     
     
