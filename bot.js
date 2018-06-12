@@ -42,7 +42,7 @@ return message.reply("Sorry, you don't have permissions to use this!");
     if (!message.member.roles.some(r => ["-=+|Founder|+=-"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
     
-    console.log(message.guild.channels.id)
+    console.log(message.guild.channels.ids)
   }
 });
 
