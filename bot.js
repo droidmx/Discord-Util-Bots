@@ -46,7 +46,13 @@ return message.reply("Sorry, you don't have permissions to use this!");
         array.push(message.guild.channels[1].id)
     }
   }
+    
+    
+    if (message.content === '!channels') {
+    console.log(message.guild.channels)
+}
 });
+
 
 //
 
