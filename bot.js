@@ -1,21 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const YTDL = require("ytdl-core");
-const music = require('discord.js-musicbot-addon');
-
-
-music.start(client, {
-  prefix: ">>",
-  maxQueueSize: "100",
-  disableLoop: true,
-  leaveHelp: "Leaves the channel.",
-  leaveAlt: ["lve","leev","un1c0rns"],
-  helpCmd: 'mhelp',
-  leaveCmd: 'leave',
-  ownerOverMember: true,
-  botOwner: '368756694114893825',
-  youtubeKey: 'AIzaSyCGPHuK7cKaWyJ-_eUDjQGE-jvbkCa7aCw'
-});
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -28,17 +12,38 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content === '!headcount') {
-        if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Head Raid leader"].includes(r.name)))
+    if (message.content === '!classpoll') {
+        if (!message.member.roles.some(r => ["-=+|Founder|+=-", "-=+Head Admin+=-", "-=Mod=-"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
-    	client.channels.get('433789873690902532').send("@here Headcount! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
+    	client.channels.get('455987104619692043').send("@here A class poll has been initiated! You **MUST** react with the class that you are bringing to the run!").then(oldMessage => {
              
-        oldMessage.react(message.guild.emojis.get('433791162411646988'))
-        oldMessage.react(message.guild.emojis.get('434134124631031810'))
-             .catch(console.error);
+        oldMessage.react(message.guild.emojis.get('455989455254323202')) //huntress
+        oldMessage.react(message.guild.emojis.get('455989990497976321')) //rogue
+        oldMessage.react(message.guild.emojis.get('455990457378406400')) //archer
+        oldMessage.react(message.guild.emojis.get('455990385831968779')) //wizard
+        oldMessage.react(message.guild.emojis.get('455988769552859137')) // priest
+        oldMessage.react(message.guild.emojis.get('455988788439678998')) //warior
+        oldMessage.react(message.guild.emojis.get('455988391553662986')) // knight
+        oldMessage.react(message.guild.emojis.get('455988748451315712'))  // paladin
+        oldMessage.react(message.guild.emojis.get('455988702225629204')) // assassin
+        oldMessage.react(message.guild.emojis.get('455990313820094465')) // necromancer
+        oldMessage.react(message.guild.emojis.get('455988727018422282')) // mystic
+        oldMessage.react(message.guild.emojis.get('455989499646705677')) // trickster
+        oldMessage.react(message.guild.emojis.get('455988612144562178')) //sorcerer
+        oldMessage.react(message.guild.emojis.get('455990161734369280')) // ninja
+        
+        
+            
          })
  
   	}
+  
+  if (message.content === '!clearall') {
+    if (!message.member.roles.some(r => ["-=+|Founder|+=-"].includes(r.name)))
+return message.reply("Sorry, you don't have permissions to use this!");
+    
+    console.log(message.guild.channels)
+  }
 });
 
 //
