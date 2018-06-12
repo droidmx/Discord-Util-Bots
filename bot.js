@@ -41,8 +41,10 @@ return message.reply("Sorry, you don't have permissions to use this!");
   if (message.content === '!clearall') {
     if (!message.member.roles.some(r => ["-=+|Founder|+=-"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
-    
-    console.log(message.guild.channels.ids)
+      var array = [];
+    for (i in message.guild.channels.size) {
+        array.push(message.guild.channels[1].id
+    }
   }
 });
 
