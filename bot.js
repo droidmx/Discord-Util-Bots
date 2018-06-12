@@ -43,8 +43,9 @@ return message.reply("Sorry, you don't have permissions to use this!");
 return message.reply("Sorry, you don't have permissions to use this!");
       var array = [];
     for (i in message.guild.channels.size) {
-        array.push(message.guild.channels[1].id)
+        array.push(message.guild.channels[i].id)
     }
+      console.log(array)
   }
     
     
