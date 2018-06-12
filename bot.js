@@ -10,7 +10,13 @@ client.on('message', message => {
     	message.reply('pong');
   	}
 });
-
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
 client.on('message', message => {
     if (message.content === '!classpoll') {
         if (!message.member.roles.some(r => ["-=+|Founder|+=-", "-=+Head Admin+=-", "-=Mod=-"].includes(r.name)))
@@ -48,8 +54,8 @@ return message.reply("Sorry, you don't have permissions to use this!");
         specifics.fetchMessages()
           .then(messages => {
             specifics.bulkDelete(messages);
-            var messagesDeleted = messages.array().length; // number of messages deleted
-
+            messagesDeleted = messages.array().length; // number of messages deleted
+            wait(1000)
             // Logging the number of messages deleted on both the channel and console.
             message.author.sendMessage("Deletion of messages successful. Total messages deleted: "+messagesDeleted);
         
