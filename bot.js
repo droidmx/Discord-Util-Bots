@@ -52,6 +52,7 @@ client.on('message', async msg => { //start message handler
                     description: `\`>>bal @member\`: Check the balance of another member!\n\`>>bal help\`: Shows this menu\n\`>>bal\`: Check your balance!`
                 }
             })
+            return;
         }
         if (!balmember) {
             msg.channel.send({
@@ -61,7 +62,7 @@ client.on('message', async msg => { //start message handler
                         name: msg.author.username,
                         icon_url: msg.author.avatarURL
                     },
-                    title: `Current Balance for ${msg.author}`,
+                    title: `Current Balance:`,
                     description: `$${user[msg.author.id].money}!`
                 }
             })
@@ -86,8 +87,8 @@ client.on('message', async msg => { //start message handler
                         name: msg.author.username,
                         icon_url: msg.author.avatarURL
                     },
-                    title: `Current Balance for ${balmember}`,
-                    description: `$${user[balmember.id].money}!`
+                    title: `Current Balance for:`,
+                    description: `${balmember}: $${user[balmember.id].money}!`
                 }
             })
         }
@@ -148,12 +149,12 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: `Incorrect Format`,
-                    description: `Valid amount not provided! Usage:\`>>bal @member\``
+                    description: `Valid amount not provided! Usage:\`>>bal @member amount\``
                 }
             })
             return;
         }
-        if (amt < user[msg.author.id].money) {
+        if (amt > user[msg.author.id].money) {
             msg.channel.send({
                 embed: {
                     color: 0xFF0000,
