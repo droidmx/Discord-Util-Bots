@@ -47,14 +47,14 @@ return message.reply("Sorry, you don't have permissions to use this!");
   if (message.content === '!clearall') {
     if (!message.member.roles.some(r => ["-=+|Founder|+=-", "Programmer"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
-  let amt = 100
+ 
       console.log(message.guild.channels.size)
     message.guild.channels.array().forEach(async channel =>{
         if (channel.parentID == 449924740958650368) {  
             message.author.send(`<#${channel.id}> was ommitted`) 
             return; 
         }
-        const fetched = await channel.fetchMessages({limit: amt});
+        const fetched = await channel.fetchMessages();
           
             channel.bulkDelete(fetched);
             messagesDeleted = fetched.array().length; // number of messages deleted
