@@ -80,11 +80,11 @@ client.on('message', async msg => { //start message handler
                         value: "See your current balance!"
                     },
                     {
-                        name: '>>slots <number>',
+                        name: '`>>slots <number>`',
                         value: 'Take your chances to get some money!'
                     },
                     {
-                        name: '>>slots info',
+                        name: '`>>slots info`',
                         value: 'Get the odds on your outcome!'
                     }
 
@@ -106,7 +106,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: "Daily Reward",
-                    description: "You have recieved your daily reward of $50! You can collect your next reward " + moment().endOf('day').fromNow()
+                    description: "You have recieved your daily reward of $50!"
                 }
             })
 
