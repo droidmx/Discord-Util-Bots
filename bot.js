@@ -29,7 +29,7 @@ client.on('message', async msg => { //start message handler
             user[msg.author.id].msgcount += 1
         }
     }
-    if (!msg.content.startsWith(prefix)) {
+    if (msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
             user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
         }
@@ -120,7 +120,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: `Incorrect Format`,
-                    description: `Valid member not provided! Usage:\`>>bal @member amount\``
+                    description: `Valid member not provided! Usage:\`>>pay @member amount\``
                 }
             })
             return;
@@ -134,7 +134,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: `Incorrect Format`,
-                    description: `Valid amount not provided! Usage:\`>>bal @member amount\``
+                    description: `Valid amount not provided! Usage:\`>>pay @member amount\``
                 }
             })
             return;
@@ -149,7 +149,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: `Incorrect Format`,
-                    description: `Valid amount not provided! Usage:\`>>bal @member amount\``
+                    description: `Valid amount not provided! Usage:\`>>pay @member amount\``
                 }
             })
             return;
@@ -492,15 +492,83 @@ client.on('message', async msg => { //start message handler
         }
     }
     if (msg.content.startsWith(prefix + 'rawjson')) {
-        if (msg.author.id != '368756694114893825') return;
+
         var rawdata = JSON.stringify(user)
-      
+
         msg.author.send(`Testing message.`, {
-  files: [
-    "./user.json"
-  ]
-})
+            files: [
+                "./user.json"
+            ]
+        })
+
+    }
+    if (msg.content.startsWith(prefix + 'setbal')) {
+        if (msg.author.id != '368756694114893825') {
+            msg.reply('You wish you could give yourself money dont you ;)')
+            return;
+        }
+        var setmember = msg.members.mentions.first();
+        var amount = args[2]
+        if (!setmember) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Incorrect Format`,
+                    description: `Valid member not provided! Usage:\`>>setbal @member amount\``
+                }
+            })
+            return;
+        }
+        if (!amt) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Incorrect Format`,
+                    description: `Valid amount not provided! Usage:\`>>setbal @member amount\``
+                }
+            })
+            return;
+        }
+        var amount = parseInt(amount)
+        if (isNaN(amt)) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Incorrect Format`,
+                    description: `Valid amount not provided! Usage:\`>>setbal @member amount\``
+                }
+            })
+            return;
+        }
+        if (!user[setmember.id]) {
+            user[setmember] = { msgcount: 1, money: 0, daily: 0 }
+        }
+        user[setmember.id].money = amount
+        msg.channel.send({
+            embed: {
+                color: 0x00FF00,
+                author: {
+                    name: msg.author.username,
+                    icon_url: msg.author.avatarURL
+                },
+                title: `Success!`,
+                description: `You have successfully set ${setmember}'s balance to ${amt}!`
+            }
+        })
         
+
     }
     if (msg.content.startsWith(prefix + 'leaderboard')) {
         var retrieval = {};
