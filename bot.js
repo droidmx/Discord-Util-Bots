@@ -30,10 +30,30 @@ client.on('message', async msg => { //start message handler
     if (msg.content.startsWith(prefix + 'bal')) {
         if (!user[msg.author.id]) {
             user[msg.author.id] = { msgcount: 1, money: 0 }
-            msg.reply(`You have $${user[msg.author.id].money}!`)
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Current Balance:`,
+                    description: `$${user[msg.author.id].money}!`
+                }
+            })
         }
         else {
-            msg.reply(`You have $${user[msg.author.id].money}!`)
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Current Balance:`,
+                    description: `$${user[msg.author.id].money}!`
+                }
+            })
         }
     }
     if (msg.content.startsWith(prefix + 'daily')) {
@@ -41,11 +61,19 @@ client.on('message', async msg => { //start message handler
             user[msg.author.id].money += 50
             msg.channel.send({
                 embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
                     title: "Daily Reward",
-                    description: "You have recieved your daily reward of $50!"
+                    description: "You have recieved your daily reward of $50! You can collect your next reward " + moment().endOf('day').fromNow()
                 }
             })
+
         }
+
+
     }
     if (msg.content.startsWith(prefix + 'slots')) {
         var bet = args[1]
