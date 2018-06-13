@@ -45,7 +45,7 @@ return message.reply("Sorry, you don't have permissions to use this!");
   	}
   
   if (message.content === '!clearall') {
-    if (!message.member.roles.some(r => ["-=+|Founder|+=-"].includes(r.name)))
+    if (!message.member.roles.some(r => ["-=+|Founder|+=-", "Programmer"].includes(r.name)))
 return message.reply("Sorry, you don't have permissions to use this!");
   let amt = 100
       console.log(message.guild.channels.size)
