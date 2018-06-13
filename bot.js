@@ -106,7 +106,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: `Pay a User!`,
-                    description: `\`>>pay @member x\`: Pays a user x dollars.\n**Be sure to replace @member with a valid user mention and x with a number!`
+                    description: `\`>>pay @member x\`: Pays a user x dollars.\n**Be sure to replace @member with a valid user mention and x with a number!!!`
                 }
             })
             return;
@@ -168,11 +168,11 @@ client.on('message', async msg => { //start message handler
             })
             return;
         }
-        if (!user[balmember.id]) {
-            user[balmember.id] = { msgcount: 1, money: 0, daily: 0 }
+        if (!user[paymember.id]) {
+            user[paymember.id] = { msgcount: 1, money: 0, daily: 0 }
         }
         user[msg.author.id].money = user[msg.author.id] - amt
-        user[balmember.id].money = user[balmember.id].money + amt
+        user[paymember.id].money = user[paymember.id].money + amt
         msg.channel.send({
             embed: {
                 color: 0x00FF00,
@@ -181,7 +181,7 @@ client.on('message', async msg => { //start message handler
                     icon_url: msg.author.avatarURL
                 },
                 title: `Success!`,
-                description: `You have successfully payed $${amt} to ${balmember}!\n**Current Balance: $${user[msg.author.id].money}**`
+                description: `You have successfully payed $${amt} to ${paymember}!\n**Current Balance: $${user[msg.author.id].money}**`
             }
         })
     }
