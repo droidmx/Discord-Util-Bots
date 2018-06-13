@@ -366,16 +366,37 @@ client.on('message', async msg => { //start message handler
     if (msg.content.startsWith(prefix + 'leaderboard')) {
         var retrieval = {};
         var sorting = []
-        
+
         for (var key in user) {
             if (user.hasOwnProperty(key)) {
                 var value = user[key].money;
                 retrieval[value] = key
                 sorting.push(value)
             }
-            console.log(sorting)
-            console.log(retrieval)
+
         }
+        console.log(sorting)
+        console.log(retrieval)
+        sorting.sort((a, b) => b - a);
+        var message = `
+        **1)** <@${retrieval[sorting[0]]}> with ${sorting[0]}
+        **2)** <@${retrieval[sorting[1]]}> with ${sorting[1]}
+        **3)** <@${retrieval[sorting[2]]}> with ${sorting[2]}
+        **4)** <@${retrieval[sorting[3]]}> with ${sorting[3]}
+        **5)** <@${retrieval[sorting[4]]}> with ${sorting[4]}
+        `
+        
+        msg.channel.send({
+                embed: {
+                    color: 000000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: "The Top 5 users are: ",
+                    description: message
+                }
+            });
     }
 
 }); //end message handler
