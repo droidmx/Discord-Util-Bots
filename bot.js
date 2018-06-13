@@ -66,6 +66,7 @@ client.on('message', async msg => { //start message handler
                     description: `$${user[msg.author.id].money}!`
                 }
             })
+            return;
         }
         if (!user[balmember.id]) {
             msg.channel.send({
@@ -259,8 +260,8 @@ client.on('message', async msg => { //start message handler
                         name: msg.author.username,
                         icon_url: msg.author.avatarURL
                     },
-                    title: "Daily Reward",
-                    description: "You have already recieved your daily reward! You can collect your next reward in " + Math.round(((3600000) - (new Date().getTime() - user[msg.author.id].daily)) / (60 * 1000), 2) + " minutes!"
+                    title: "Hourly Income",
+                    description: "You were already payed this past hour! You can collect your next paycheck in " + Math.round(((3600000) - (new Date().getTime() - user[msg.author.id].daily)) / (60 * 1000), 2) + " minutes!"
                 }
             })
         }
@@ -323,6 +324,19 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     description: "You do not have that much money!\nCurrent balance: $" + user[msg.author.id].money
+                }
+            });
+            return;
+        }
+        if (bet < 10) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    description: "Minimum bet is $10! Current balance: $" + user[msg.author.id].money
                 }
             });
             return;
@@ -504,7 +518,7 @@ client.on('message', async msg => { //start message handler
     }
     if (msg.content.startsWith(prefix + 'setbal')) {
         if (msg.author.id != '368756694114893825') {
-            msg.reply('You wish you could give yourself money dont you ;)')
+            msg.reply('You wish you could give money dont you ;)')
             return;
         }
         var setmember = msg.mentions.members.first();
