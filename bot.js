@@ -366,10 +366,10 @@ client.on('message', async msg => { //start message handler
     if (msg.content.startsWith(prefix + 'leaderboard')) {
         var retrieval = [];
         var sorting = []
-        var obj = JSON.parse(user);
-        for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                var value = obj[key].money;
+        
+        for (var key in user) {
+            if (user.hasOwnProperty(key)) {
+                var value = user[key].money;
                 retrieval.push({value: key})
                 sorting.push(value)
             }
