@@ -28,6 +28,14 @@ client.on('message', async msg => { //start message handler
             user[msg.author.id].msgcount += 1
         }
     }
+    if (!msg.content.startsWith(prefix)) {
+        if (!user[msg.author.id]) {
+            user[msg.author.id] = { msgcount: 1, money: 0, daily: 'yes' }
+        }
+        else {
+            user[msg.author.id].msgcount += 1
+        }
+    }
     if (msg.content.startsWith(prefix + 'bal')) {
         if (!user[msg.author.id]) {
             user[msg.author.id] = { msgcount: 1, money: 0 }
