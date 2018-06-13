@@ -7,7 +7,7 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "11.1.0",
+    "discord.js": "11.3.0",
     "request": "2.81.0",
     "youtube-audio-stream": "^0.2.0",
         "youtube-dl": "^1.12.2",
