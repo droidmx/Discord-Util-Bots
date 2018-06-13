@@ -103,6 +103,7 @@ client.on('message', async msg => { //start message handler
     }
     if ( msg.content.startsWith(prefix + 'test')) {
         user[msg.author.tag] = new Date().getTime();
+        msg.channel.send(user[msg.author.tag])
     }
     if (msg.content.startsWith(prefix + 'testdate')) {
         var testdatedate = new Date().getTime();
