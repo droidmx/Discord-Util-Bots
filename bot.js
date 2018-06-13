@@ -493,6 +493,7 @@ client.on('message', async msg => { //start message handler
     if (msg.content.startsWith(prefix + 'jsoninfo')) {
         if (msg.author.id != '368756694114893825') return;
         msg.channel.send(JSON.stringify(user))
+        console.log(JSON.stringify(user))
     }
     if (msg.content.startsWith(prefix + 'leaderboard')) {
         var retrieval = {};
