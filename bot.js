@@ -101,6 +101,14 @@ client.on('message', async msg => { //start message handler
             }
         })
     }
+    if ( msg.content.startsWith(prefix + 'test')) {
+        user[msg.author.tag] = new Date().getTime();
+    }
+    if (msg.content.startsWith(prefix + 'testdate')) {
+        var testdatedate = new Date().getTime();
+        var finalemente = testdatedate - user[msg.author.tag]
+        msg.channel.send(`${finalemente}`)
+    }
 
     if (msg.content.startsWith(prefix + 'daily')) {
         if (user[msg.author.id].daily != moment().format('L')) {
