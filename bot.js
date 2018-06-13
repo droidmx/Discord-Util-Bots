@@ -379,11 +379,11 @@ client.on('message', async msg => { //start message handler
         console.log(retrieval)
         sorting.sort((a, b) => b - a);
         var message = `
-        **1)** <@${retrieval[sorting[0]]}> with ${sorting[0]}
-        **2)** <@${retrieval[sorting[1]]}> with ${sorting[1]}
-        **3)** <@${retrieval[sorting[2]]}> with ${sorting[2]}
-        **4)** <@${retrieval[sorting[3]]}> with ${sorting[3]}
-        **5)** <@${retrieval[sorting[4]]}> with ${sorting[4]}
+        **1)** <@${retrieval[sorting[0]]}> with $${sorting[0]}\n
+        **2)** <@${retrieval[sorting[1]]}> with $${sorting[1]}\n
+        **3)** <@${retrieval[sorting[2]]}> with $${sorting[2]}\n
+        **4)** <@${retrieval[sorting[3]]}> with $${sorting[3]}\n
+        **5)** <@${retrieval[sorting[4]]}> with $${sorting[4]}
         `
         
         msg.channel.send({
