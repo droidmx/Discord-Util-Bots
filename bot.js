@@ -73,6 +73,10 @@ return message.reply("Sorry, you don't have permissions to use this!");
     if (message.content === '!channels') {
     console.log(message.guild.channels)
 }
+    if (message.content === '!test') {
+     let testchannel message.guild.channel.find("name", "useful-info")
+        message.channel.send(testchannel.parentID)
+    }
     if (message.content == '!clearchannel') {
 
       // Check the following permissions before deleting messages:
