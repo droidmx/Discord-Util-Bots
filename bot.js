@@ -566,7 +566,7 @@ client.on('message', async msg => { //start message handler
                     icon_url: msg.author.avatarURL
                 },
                 title: `Success!`,
-                description: `You have successfully set ${setmember}'s balance to ${amt}!`
+                description: `You have successfully set ${setmember}'s balance to ${amount}!`
             }
         })
         
