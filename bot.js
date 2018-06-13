@@ -22,7 +22,7 @@ client.on('message', async msg => { //start message handler
     let args = msg.content.split(' ');
     if (!msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
+            user[msg.author.id] = { msgcount: 1, money: 50, daily: 0 }
         }
         else {
             user[msg.author.id].msgcount += 1
@@ -30,7 +30,7 @@ client.on('message', async msg => { //start message handler
     }
     if (!msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
+            user[msg.author.id] = { msgcount: 1, money: 50, daily: 0 }
         }
         else {
             user[msg.author.id].msgcount += 1
