@@ -106,7 +106,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: `Pay a User!`,
-                    description: `\`>>pay @member x\`: Pays a user x dollars.\n**Be sure to replace @member with a valid user mention and x with a number!!!`
+                    description: `\`>>pay @member x\`: Pays a user x dollars.\n**Be sure to replace @member with a valid user mention and x with a number!**`
                 }
             })
             return;
