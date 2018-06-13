@@ -363,6 +363,20 @@ client.on('message', async msg => { //start message handler
         if (msg.author.id != '368756694114893825') return;
         msg.channel.send(JSON.stringify(user))
     }
+    if (msg.content.startsWith(prefix + 'leaderboard')) {
+        var retrieval = [];
+        var sorting = []
+        var obj = JSON.parse(user);
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                var value = obj[key].money;
+                retrieval.push({value: key})
+                sorting.push(value)
+            }
+            console.log(sorting)
+            console.log(retrieval)
+        }
+    }
 
 }); //end message handler
 
