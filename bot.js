@@ -171,7 +171,7 @@ client.on('message', async msg => { //start message handler
         if (!user[paymember.id]) {
             user[paymember.id] = { msgcount: 1, money: 0, daily: 0 }
         }
-        user[msg.author.id].money = user[msg.author.id] - amt
+        user[msg.author.id].money = user[msg.author.id].money - amt
         user[paymember.id].money = user[paymember.id].money + amt
         msg.channel.send({
             embed: {
