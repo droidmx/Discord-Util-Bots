@@ -364,13 +364,13 @@ client.on('message', async msg => { //start message handler
         msg.channel.send(JSON.stringify(user))
     }
     if (msg.content.startsWith(prefix + 'leaderboard')) {
-        var retrieval = [];
+        var retrieval = {};
         var sorting = []
         
         for (var key in user) {
             if (user.hasOwnProperty(key)) {
                 var value = user[key].money;
-                retrieval.push({value: key})
+                retrieval[value] = key
                 sorting.push(value)
             }
             console.log(sorting)
