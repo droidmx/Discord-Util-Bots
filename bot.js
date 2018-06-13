@@ -67,21 +67,26 @@ client.on('message', async msg => { //start message handler
                     title: `**Commands**`,
                     description: `All commands on this bot are economy-related!`,
                     fields: [{
-                            name: '`!help`',
+                            name: '`>>help`',
                             value: "Shows this menu"
                         },
                         {
-                            name: '`!daily`',
+                            name: '`>>daily`',
                             value: "Collect your daily income!"
                         },
                         {
-                            name: '`!bal`',
+                            name: '`>>bal`',
                             value: "See your current balance!"
                         },
                         {
-                            name: '!slots <number>',
+                            name: '>>slots <number>',
                             value: 'Take your chances to get some money!'
+                        },
+                        {
+                            name: '>>slots info',
+                            value: 'Get the odds on your outcome!'
                         }
+                          
                         
                     ]
                 }
@@ -154,7 +159,7 @@ if (msg.content.startsWith(prefix + 'slots')) {
         });
         return;
     }
-    if (bet < user[msg.author.id].money) {
+    if (bet > user[msg.author.id].money) {
         msg.channel.send({
             embed: {
                 color: 0xFF0000,
