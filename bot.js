@@ -523,7 +523,7 @@ client.on('message', async msg => { //start message handler
             })
             return;
         }
-        if (!amt) {
+        if (!amount) {
             msg.channel.send({
                 embed: {
                     color: 0xFF0000,
@@ -538,7 +538,7 @@ client.on('message', async msg => { //start message handler
             return;
         }
         var amount = parseInt(amount)
-        if (isNaN(amt)) {
+        if (isNaN(amount)) {
             msg.channel.send({
                 embed: {
                     color: 0xFF0000,
