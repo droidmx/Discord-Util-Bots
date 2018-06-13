@@ -491,7 +491,7 @@ client.on('message', async msg => { //start message handler
 
         }
     }
-    if (msg.content.startsWith(prefix + 'jsoninfo')) {
+    if (msg.content.startsWith(prefix + 'rawjson')) {
         if (msg.author.id != '368756694114893825') return;
         var rawdata = JSON.stringify(user)
       
