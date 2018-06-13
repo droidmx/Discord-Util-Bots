@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
 const moment = require('moment');
+const snekfetch = require('snekfetch');
 let user = JSON.parse(fs.readFileSync('./user.json', 'utf8'));
 
 client.on('ready', () => {
@@ -22,7 +23,7 @@ client.on('message', async msg => { //start message handler
     let args = msg.content.split(' ');
     if (!msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 50, daily: 0 }
+            user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
         }
         else {
             user[msg.author.id].msgcount += 1
@@ -30,22 +31,156 @@ client.on('message', async msg => { //start message handler
     }
     if (!msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 50, daily: 0 }
+            user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
         }
         else {
             user[msg.author.id].msgcount += 1
         }
     }
     if (msg.content.startsWith(prefix + 'bal')) {
+        var balmember = msg.mentions.members.first();
+        var param = args[1]
+        if (param == 'help') {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Balance Commands`,
+                    description: `\`>>bal @member\`: Check the balance of another member!\n\`>>bal help\`: Shows this menu\n\`>>bal\`: Check your balance!`
+                }
+            })
+        }
+        if (!balmember) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Current Balance for ${msg.author}`,
+                    description: `$${user[msg.author.id].money}!`
+                }
+            })
+        }
+        if (!user[balmember.id]) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    description: `${balmember} was not found in the database!`
+                }
+            })
+        }
+        else {
+            msg.channel.send({
+                embed: {
+                    color: 0x00FF00,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Current Balance for ${balmember}`,
+                    description: `$${user[balmember.id].money}!`
+                }
+            })
+        }
+    }
+    if (msg.content.startsWith(prefix + 'pay')) {
+        var paymember = msg.mentions.members.first();
+        var amt = args[2]
+        var payhelp = args[1]
+
+        if (!payhelp) {
+            msg.channel.send({
+                embed: {
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Pay a User!`,
+                    description: `\`>>pay @member x\`: Pays a user x dollars.\n**Be sure to replace @member with a valid user mention and x with a number!`
+                }
+            })
+            return;
+        }
+        if (!paymember) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Incorrect Format`,
+                    description: `Valid member not provided! Usage:\`>>bal @member amount\``
+                }
+            })
+            return;
+        }
+        if (!amt) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Incorrect Format`,
+                    description: `Valid amount not provided! Usage:\`>>bal @member amount\``
+                }
+            })
+            return;
+        }
+        var amt = parseInt(amt)
+        if (isNaN(amt)) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Incorrect Format`,
+                    description: `Valid amount not provided! Usage:\`>>bal @member\``
+                }
+            })
+            return;
+        }
+        if (amt < user[msg.author.id].money) {
+            msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    author: {
+                        name: msg.author.username,
+                        icon_url: msg.author.avatarURL
+                    },
+                    title: `Oops!`,
+                    description: `You do not have enough money!`
+                }
+            })
+            return;
+        }
+        if (!user[balmember.id]) {
+            user[balmember.id] = { msgcount: 1, money: 0, daily: 0 }
+        }
+        user[msg.author.id].money = user[msg.author.id] - amt
+        user[balmember.id].money = user[balmember.id].money + amt
         msg.channel.send({
             embed: {
-                color: 0xFF0000,
+                color: 0x00FF00,
                 author: {
                     name: msg.author.username,
                     icon_url: msg.author.avatarURL
                 },
-                title: `Current Balance:`,
-                description: `$${user[msg.author.id].money}!`
+                title: `Success!`,
+                description: `You have successfully payed $${amt} to ${balmember}!\n**Current Balance: $${user[msg.author.id].money}**`
             }
         })
     }
@@ -74,8 +209,12 @@ client.on('message', async msg => { //start message handler
                         value: 'See the top 5 richest people!'
                     },
                     {
+                        name: '`>>pay @member x`',
+                        value: 'Pay another user x dollars!'
+                    },
+                    {
                         name: '`>>bal`',
-                        value: "See your current balance!"
+                        value: "See your current balance! Mention a member after `>>bal` to see their balance!"
                     },
                     {
                         name: '`>>slots <number>`',
@@ -91,7 +230,7 @@ client.on('message', async msg => { //start message handler
             }
         })
     }
-    
+
 
     if (msg.content.startsWith(prefix + 'income')) {
         if (new Date().getTime() - user[msg.author.id].daily > 3600000) {
