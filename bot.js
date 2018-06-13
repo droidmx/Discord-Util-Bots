@@ -59,7 +59,7 @@ client.on('message', async msg => { //start message handler
     if (msg.content == prefix + 'help') {
         msg.channel.send({
                 embed: {
-                    color: 0xFF0000,
+                    color: 0xFFFFFF,
                     author: {
                         name: client.username,
                         icon_url: client.avatarURL
@@ -79,7 +79,7 @@ client.on('message', async msg => { //start message handler
                             value: "See your current balance!"
                         },
                         {
-                            name: '`!slots <number>',
+                            name: '!slots <number>',
                             value: 'Take your chances to get some money!'
                         }
                         
