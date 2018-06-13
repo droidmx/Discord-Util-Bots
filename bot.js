@@ -507,7 +507,7 @@ client.on('message', async msg => { //start message handler
             msg.reply('You wish you could give yourself money dont you ;)')
             return;
         }
-        var setmember = msg.members.mentions.first();
+        var setmember = msg.mentions.members.first();
         var amount = args[2]
         if (!setmember) {
             msg.channel.send({
