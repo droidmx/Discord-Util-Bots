@@ -22,7 +22,7 @@ client.on('message', async msg => { //start message handler
     let args = msg.content.split(' ');
     if (!msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 0, daily: 'yes' }
+            user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
         }
         else {
             user[msg.author.id].msgcount += 1
@@ -30,41 +30,27 @@ client.on('message', async msg => { //start message handler
     }
     if (!msg.content.startsWith(prefix)) {
         if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 0, daily: 'yes' }
+            user[msg.author.id] = { msgcount: 1, money: 0, daily: 0 }
         }
         else {
             user[msg.author.id].msgcount += 1
         }
     }
     if (msg.content.startsWith(prefix + 'bal')) {
-        if (!user[msg.author.id]) {
-            user[msg.author.id] = { msgcount: 1, money: 0 }
-            msg.channel.send({
-                embed: {
-                    color: 0xFF0000,
-                    author: {
-                        name: msg.author.username,
-                        icon_url: msg.author.avatarURL
-                    },
-                    title: `Current Balance:`,
-                    description: `$${user[msg.author.id].money}!`
-                }
-            })
-        }
-        else {
-            msg.channel.send({
-                embed: {
-                    color: 0xFF0000,
-                    author: {
-                        name: msg.author.username,
-                        icon_url: msg.author.avatarURL
-                    },
-                    title: `Current Balance:`,
-                    description: `$${user[msg.author.id].money}!`
-                }
-            })
-        }
+        msg.channel.send({
+            embed: {
+                color: 0xFF0000,
+                author: {
+                    name: msg.author.username,
+                    icon_url: msg.author.avatarURL
+                },
+                title: `Current Balance:`,
+                description: `$${user[msg.author.id].money}!`
+            }
+        })
     }
+
+
     if (msg.content == prefix + 'help') {
         msg.channel.send({
             embed: {
@@ -80,8 +66,12 @@ client.on('message', async msg => { //start message handler
                         value: "Shows this menu"
                     },
                     {
-                        name: '`>>daily`',
-                        value: "Collect your daily income!"
+                        name: '`>>income`',
+                        value: "Collect your hourly income! Your income increases per hour the more you type!"
+                    },
+                    {
+                        name: '`>>leaderboard`',
+                        value: 'See the top 5 richest people!'
                     },
                     {
                         name: '`>>bal`',
@@ -101,20 +91,13 @@ client.on('message', async msg => { //start message handler
             }
         })
     }
-    if ( msg.content.startsWith(prefix + 'test')) {
-        user[msg.author.tag] = new Date().getTime();
-        msg.channel.send(user[msg.author.tag])
-    }
-    if (msg.content.startsWith(prefix + 'testdate')) {
-        var testdatedate = new Date().getTime();
-        var finalemente = testdatedate - user[msg.author.tag]
-        msg.channel.send(`${finalemente}`)
-    }
+    
 
-    if (msg.content.startsWith(prefix + 'daily')) {
-        if (user[msg.author.id].daily != moment().format('L')) {
-            user[msg.author.id].money += 50
-            user[msg.author.id].daily = moment().format('L')
+    if (msg.content.startsWith(prefix + 'income')) {
+        if (new Date().getTime() - user[msg.author.id].daily > 3600000) {
+            var income = 250 + user[msg.author.id].msgcount
+            user[msg.author.id].money += 250 + user[msg.author.id].msgcount
+            user[msg.author.id].daily = new Date().getTime()
             msg.channel.send({
                 embed: {
                     color: 0x00FFFF,
@@ -122,8 +105,8 @@ client.on('message', async msg => { //start message handler
                         name: msg.author.username,
                         icon_url: msg.author.avatarURL
                     },
-                    title: "Daily Reward",
-                    description: "You have recieved your daily reward of $50!"
+                    title: "Hourly Income",
+                    description: `You have recieved your hourly reward of $${income}`
                 }
             })
 
@@ -137,7 +120,7 @@ client.on('message', async msg => { //start message handler
                         icon_url: msg.author.avatarURL
                     },
                     title: "Daily Reward",
-                    description: "You have already recieved your daily reward! You can collect your next reward " + moment().endOf('day').fromNow()
+                    description: "You have already recieved your daily reward! You can collect your next reward in " + Math.round(((3600000) - (new Date().getTime() - user[msg.author.id].daily)) / (60 * 1000), 2) + " minutes!"
                 }
             })
         }
