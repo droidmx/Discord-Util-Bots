@@ -5,7 +5,8 @@ const moment = require('moment');
 let user = JSON.parse(fs.readFileSync('./user.json', 'utf8'));
 
 client.on('ready', () => {
-    console.log('I am ready!');
+    console.log(`Logged in as ${client.user.tag}!`);
+client.user.setPresence({ game: { name: `casino games | >>help`, type: 0 }});
 });
 
 const prefix = '>>'
