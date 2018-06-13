@@ -274,8 +274,8 @@ client.on('message', async msg => { //start message handler
             message += border_top + "\n";
             message += possible_fails[Math.floor(Math.random() * (possible_fails.length))] + "   <\n";
             message += border_bottom + "\n\n";
-            test[msg.author.id].money = test[msg.author.id].money - bet
-            message += "You have $" + test[msg.author.id].money + " left.";
+            user[msg.author.id].money = user[msg.author.id].money - bet
+            message += "You have $" + user[msg.author.id].money + " left.";
             msg.channel.send({
                 embed: {
                     color: 000000,
