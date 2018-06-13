@@ -49,10 +49,10 @@ return message.reply("Sorry, you don't have permissions to use this!");
 return message.reply("Sorry, you don't have permissions to use this!");
   let amt = 100
       console.log(message.guild.channels.size)
-    message.guild.channels.array().forEach(channel =>{
+    message.guild.channels.array().forEach(async channel =>{
         if (channel.parentID == '449924740958650368') return;
         const fetched = await channel.fetchMessages({limit: amt});
-          .
+          
             channel.bulkDelete(fetched);
             messagesDeleted = fetched.array().length; // number of messages deleted
             
@@ -65,9 +65,9 @@ return message.reply("Sorry, you don't have permissions to use this!");
             console.log(err);
             message.author.send(`${err} \n Go talk to Droid`)
           });
-    })
+    }
       
-  }
+  
     
     
     if (message.content === '!channels') {
