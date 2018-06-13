@@ -75,7 +75,7 @@ return message.reply("Sorry, you don't have permissions to use this!");
 }
     if (message.content === '!test') {
      let testchannel = message.guild.channels.find("name", "useful-info")
-        message.channel.send(testchannel.parentID)
+        console.log(testchannel.parentID)
     }
     if (message.content == '!clearchannel') {
 
