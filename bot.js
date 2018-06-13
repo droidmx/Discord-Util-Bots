@@ -553,9 +553,11 @@ client.on('message', async msg => { //start message handler
             return;
         }
         if (!user[setmember.id]) {
-            user[setmember] = { msgcount: 1, money: 0, daily: 0 }
+            user[setmember.id] = { msgcount: 1, money: amount, daily: 0 }
+        }else{
+            user[setmember.id].money = amount
         }
-        user[setmember.id].money = amount
+        
         msg.channel.send({
             embed: {
                 color: 0x00FF00,
