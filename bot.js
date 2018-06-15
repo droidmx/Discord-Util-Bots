@@ -93,7 +93,7 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', async message => {
-let args = message.content.toLowerCase().split(' ');
+let args = message.content.split(' ');
 let msg = args.slice(0, -1).join(' ');
 if (message.channel.id != '457259123566706740') {
     return;
@@ -104,43 +104,43 @@ if (message.author.id != '435395940715855872') {
 }
 
 if (message.content.startsWith('**Parasite Chambers Portal**')) {
-    client.channels.get('457270832364912670').send(`<@&457261792763052032> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457261792763052032> ${msg}`)
     return;
 }
 if (message.content.startsWith('**Tomb of the Ancients Portal**')) {
-    client.channels.get('457270832364912670').send(`<@&457261671006863392> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457261671006863392> ${msg}`)
     return;
 }
 if (message.content.startsWith('**The Shatters**')) {
-    client.channels.get('457270832364912670').send(`<@&457261732100833313> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457261732100833313> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Davy Jones**' Locker Portal")) {
-    client.channels.get('457270832364912670').send(`<@&457261692750004254> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457261692750004254> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Lair of Draconis Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457262219940593664> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457262219940593664> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Ice Cave Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457262491232108544> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457262491232108544> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Candyland Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457262549902295061> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457262549902295061> ${msg}`)
     return;
 }
 if (message.content.startsWith("**The Epic Hive Portal**")) {
-    client.channel.get('457270832364912670').send(`<@&457263144008548352> \n ${msg}`)
+    client.channel.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
     return;
 }
 if (message.content.startsWith("**The Epic Hive Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457263144008548352> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Puppet Encore Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457264788712587264> \n ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457264788712587264> ${msg}`)
     return;
 }
 client.channels.get('457270832364912670').send(`${msg}`)
