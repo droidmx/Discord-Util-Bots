@@ -115,7 +115,7 @@ if (message.content.startsWith('**The Shatters**')) {
     client.channels.get('457270832364912670').send(`<@&457261732100833313> ${msg}`)
     return;
 }
-if (message.content.startsWith("**Davy Jones**' Locker Portal")) {
+if (message.content.startsWith("**Davy Jones' Locker Portal**")) {
     client.channels.get('457270832364912670').send(`<@&457261692750004254> ${msg}`)
     return;
 }
