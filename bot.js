@@ -83,7 +83,7 @@ client.on('guildMemberAdd', member => {
 
             ],
             footer: {
-                text: ":warning: Nexus Keys Policy: The goal of this discord is **NOT** to crash or ruin runs. It is simply for users to partake in dungeons ONLY opened in the nexus, which are meant to be public anyways!",
+                text: `⚠ Nexus Keys Policy: The goal of this discord is **NOT** to crash or ruin runs. It is simply for users to partake in dungeons ONLY opened in the nexus, which are meant to be public anyways!`,
             },
             thumbnail: {
                 url: "https://cdn.discordapp.com/icons/457258624574816267/0cafaa1a599e4d318aaa637cd6983dc6.jpg"
