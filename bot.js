@@ -103,43 +103,43 @@ if (message.author.id != '435395940715855872') {
     return;
 }
 
-if (message.startsWith('Parasite Chambers Portal')) {
+if (message.content.startsWith('Parasite Chambers Portal')) {
     client.channels.get('457270832364912670').send(`<@&457261792763052032> \n ${msg}`)
     return;
 }
-if (message.startsWith('Tomb of the Ancients Portal')) {
+if (message.content.startsWith('Tomb of the Ancients Portal')) {
     client.channels.get('457270832364912670').send(`<@&457261671006863392> \n ${msg}`)
     return;
 }
-if (message.startsWith('The Shatters')) {
+if (message.content.startsWith('The Shatters')) {
     client.channels.get('457270832364912670').send(`<@&457261732100833313> \n ${msg}`)
     return;
 }
-if (message.startsWith("Davy Jones' Locker Portal")) {
+if (message.content.startsWith("Davy Jones' Locker Portal")) {
     client.channels.get('457270832364912670').send(`<@&457261692750004254> \n ${msg}`)
     return;
 }
-if (message.startsWith("Lair of Draconis Portal")) {
+if (message.content.startsWith("Lair of Draconis Portal")) {
     client.channels.get('457270832364912670').send(`<@&457262219940593664> \n ${msg}`)
     return;
 }
-if (message.startsWith("Ice Cave Portal")) {
+if (message.content.startsWith("Ice Cave Portal")) {
     client.channels.get('457270832364912670').send(`<@&457262491232108544> \n ${msg}`)
     return;
 }
-if (message.startsWith("Candyland Portal")) {
+if (message.content.startsWith("Candyland Portal")) {
     client.channels.get('457270832364912670').send(`<@&457262549902295061> \n ${msg}`)
     return;
 }
-if (message.startsWith("The Epic Hive Portal")) {
+if (message.content.startsWith("The Epic Hive Portal")) {
     client.channel.get('457270832364912670').send(`<@&457263144008548352> \n ${msg}`)
     return;
 }
-if (message.startsWith("The Epic Hive Portal")) {
+if (message.content.startsWith("The Epic Hive Portal")) {
     client.channels.get('457270832364912670').send(`<@&457263144008548352> \n ${msg}`)
     return;
 }
-if (message.startsWith("Puppet Encore Portal")) {
+if (message.content.startsWith("Puppet Encore Portal")) {
     client.channels.get('457270832364912670').send(`<@&457264788712587264> \n ${msg}`)
     return;
 }
