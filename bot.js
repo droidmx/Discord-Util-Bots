@@ -92,7 +92,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', async message => {
 let args = message.content.toLowerCase().split(' ');
-let msg = args.content.slice(0, -1).join(' ');
+let msg = args.slice(0, -1).join(' ');
 if (message.channel.id != '457259123566706740') {
     return;
 }
