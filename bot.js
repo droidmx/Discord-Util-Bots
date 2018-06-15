@@ -8,7 +8,9 @@ const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
 const roles = ["Tombs", "Davys", "Shatters", "Parasites", "Ocean Trenches", "LODs", "Ice Caves", "Candy Lands", "Nests", "Puppet Encores"];
 const reactions = ["457281264656056334", "457282330168524800", "457283291230371862", "🇵", "457283651084746752", "457283904857047081", "<:icecave:457284349973364738>", "457285343205392395", "457285806659338241", "457286160696475650"];
-
+client.on('ready', () => {
+    client.user.setActivity('the nexus', { type: 'WATCHING' })
+});
 if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
 
 //Function to generate the role messages, based on your settings
