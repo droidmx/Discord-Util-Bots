@@ -135,8 +135,8 @@ if (message.content.startsWith("**The Epic Hive Portal**")) {
     client.channel.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
     return;
 }
-if (message.content.startsWith("**The Epic Hive Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
+if (message.content.startsWith("**Ocean Trench Portal**")) {
+    client.channels.get('457270832364912670').send(`<@&457261828414767104> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Puppet Encore Portal**")) {
