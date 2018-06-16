@@ -141,6 +141,10 @@ if (message.content.startsWith("**Deadwater Docks**")) {
     client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
     return;
 }
+if (message.content.startsWith("**The Crawling Depths**")) {
+    client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
+    return;
+}
 if (message.content.startsWith("**Woodland Labyrinth**")) {
     client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
     return;
