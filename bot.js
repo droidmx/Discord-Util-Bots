@@ -132,7 +132,7 @@ if (message.content.startsWith("**Candyland Portal**")) {
     return;
 }
 if (message.content.startsWith("**The Epic Hive Portal**")) {
-    client.channel.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Ocean Trench Portal**")) {
