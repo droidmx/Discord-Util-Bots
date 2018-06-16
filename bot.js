@@ -149,7 +149,7 @@ if (message.content.startsWith("**Woodland Labyrinth**")) {
     client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
     return;
 }
-if (message.content.startsWith("**Lost Halls**")) {
+if (message.content.startsWith("**Lost Halls Portal**")) {
     client.channels.get('457270832364912670').send(`<@&457351150824325130> ${msg}`)
     return;
 }
