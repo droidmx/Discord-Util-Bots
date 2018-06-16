@@ -6,8 +6,8 @@ const ms = require('ms');
 const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
-const roles = ["Tombs", "Davys", "Shatters", "Parasites", "Ocean Trenches", "LODs", "Ice Caves", "Candy Lands", "Nests", "Puppet Encores"];
-const reactions = ["457281264656056334", "457282330168524800", "457283291230371862", "🇵", "457283651084746752", "457283904857047081", "457284349973364738", "457285343205392395", "457285806659338241", "457286160696475650"];
+const roles = ["Tombs", "Davys", "Shatters", "Parasites", "Ocean Trenches", "LODs", "Ice Caves", "Candy Lands", "Puppet Encores", "Lost Halls", "Epic Dungeons", "Various Dungeons"];
+const reactions = ["457281264656056334", "457282330168524800", "457283291230371862", "🇵", "457283651084746752", "457283904857047081", "457284349973364738", "457285343205392395", "457286160696475650", "457352595820904458", "457352404091011106", "457352455890665474"];
 client.on('ready', () => {
     client.user.setActivity('the nexus', { type: 'WATCHING' })
 });
@@ -67,7 +67,9 @@ client.on('raw', event => {
 
 client.on('guildMemberAdd', member => {
 
-
+    var memberrole = member.guild.roles.find('name', 'Member');
+    member.addRole(memberrole)
+    client.channels.get('457266459807055883').send(`Welcome ${member} to Nexus Keys!`)
     member.user.send({
         embed: {
             color: 0x00FFFF,
@@ -132,7 +134,19 @@ if (message.content.startsWith("**Candyland Portal**")) {
     return;
 }
 if (message.content.startsWith("**The Epic Hive Portal**")) {
-    client.channels.get('457270832364912670').send(`<@&457263144008548352> ${msg}`)
+    client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
+    return;
+}
+if (message.content.startsWith("**Deadwater Docks**")) {
+    client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
+    return;
+}
+if (message.content.startsWith("**Woodland Labyrinth**")) {
+    client.channels.get('457270832364912670').send(`<@&457349360838115368> ${msg}`)
+    return;
+}
+if (message.content.startsWith("**Lost Halls**")) {
+    client.channels.get('457270832364912670').send(`<@&457351150824325130> ${msg}`)
     return;
 }
 if (message.content.startsWith("**Ocean Trench Portal**")) {
@@ -143,7 +157,7 @@ if (message.content.startsWith("**Puppet Encore Portal**")) {
     client.channels.get('457270832364912670').send(`<@&457264788712587264> ${msg}`)
     return;
 }
-client.channels.get('457270832364912670').send(`${msg}`)
+client.channels.get('457270832364912670').send(`<@&457349779601752085> ${msg}`)
 
 });
 
