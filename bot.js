@@ -218,12 +218,12 @@ client.on('message', async msg => { // start message handler
             if (!rdesc.includes(codexd))
                 return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description.")
             if (rdesc.includes(codexd))
-                msg.guild.member(msg.author).setNickname(`${rname}`)
+                msg.guild.member(msg.author).setNickname(rname)
             let lelxdppebtw = msg.guild.roles.find("name", "Verified");
 
             msg.guild.member(msg.author).addRole(lelxdppebtw.id)
             msg.author.send("You have successfully been verified!");
-            if (rguild == "Donquixote Pirates ") {
+            if (rguild.includes("Donquixote Pirates")) {
                 if (rguildrank == "Initiate") {
                     var guildrole = msg.guild.roles.find("name", "Guild Initiates")
                     msg.guild.member(msg.author).addRole(guildrole.id)
@@ -250,6 +250,8 @@ client.on('message', async msg => { // start message handler
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
                 
+            }else{
+                console.log(`${msg.author.username} not in guild`)
             }
         })
 
