@@ -142,7 +142,126 @@ client.on('message', async msg => { // start message handler
             })
         })
     }
-}) //end message handler
+    // end update functions
+    if (msg.content.startsWith('!verify')) {
+        var argss = msg.content.split(" ");
+        if (msg.member.roles.some(r => ["Verified"].includes(r.name))) {
+            msg.author.send("You are already verified!")
+            msg.delete();
+            return;
+        }
+        msg.delete();
+        let ruser = argss[1]
+        if (!ruser) return msg.author.send('Please provide your username after `!verify`')
+        let rcode = ("DP" + Math.floor(Math.random(11111) * 99999));
+        if (!test[msg.author.id]) {
+            test[msg.author.id] = { ign: `${ruser}`, code: `${rcode}` }
+        }
+        else {
+            test[msg.author.id] = { ign: `${ruser}`, code: `${rcode}` }
+        }
+        msg.delete();
+
+        let userdata = test[msg.author.id]
+
+        msg.author.send({
+            embed: {
+                color: 0xa3fb7a,
+                author: {
+                    name: `Verification | ${ruser}`,
+                    icon_url: msg.author.avatarURL
+                },
+                fields: [{
+                        name: "**Your Code:**",
+                        value: `**${userdata.code}**`,
+                        inline: true,
+                    },
+                    {
+                        name: "**Realmeye Link:**",
+                        value: `https://www.realmeye.com/player/${userdata.ign}`,
+                        inline: true,
+                    },
+                    {
+                        name: `Place your verification code on any line of your description, but __*it **MUST** be the only piece of text on that line.*__`,
+                        value: "Once you have placed the code, type `done` in <#458060339708428288>",
+                    },
+                ],
+                footer: {
+                    text: "⚠ Be sure to follow the directions above exactly, or your verification will fail",
+                }
+            }
+
+        })
+    }
+
+    if (msg.content.startsWith('done')) {
+
+        if (msg.member.roles.some(r => ["Verified"].includes(r.name)))
+            return;
+        let userdatadone = test[msg.author.id]
+        if (!userdatadone) {
+            msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
+            msg.delete()
+            return;
+        }
+        msg.delete();
+        console.log(userdatadone)
+        let codexd = userdatadone.code
+        let ignxd = userdatadone.ign
+        let rrapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ignxd + "&f=c;"
+
+        snekfetch.get(rrapi).then(r => {
+            var rguild = r.body.guild
+            var rguildrank = r.body.guild.guild_rank
+            var rname = r.body.name;
+            var rdesc = r.body.description;
+            if (!rdesc.includes(codexd))
+                return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description.")
+            if (rdesc.includes(codexd))
+                msg.guild.member(msg.author).setNickname(`${rname}`)
+            let lelxdppebtw = msg.guild.roles.find("name", "Verified");
+
+            msg.guild.member(msg.author).addRole(lelxdppebtw.id)
+            msg.author.send("You have successfully been verified!");
+            if (rguild.includes('Donquixote Pirates')) {
+                if (rguildrank == 'Initiate') {
+                    var guildrole = msg.guild.roles.find("name", "Guild Initiate")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
+                }
+                if (rguildrank == 'Member') {
+                    var guildrole = msg.guild.roles.find("name", "Guild Member")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
+                }
+                if (rguildrank == 'Officer') {
+                    var guildrole = msg.guild.roles.find("name", "Guild Officer")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
+                }
+                if (rguildrank == 'Leader') {
+                    var guildrole = msg.guild.roles.find("name", "Guild Leader")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
+                }
+                if (rguildrank == 'Founder') {
+                    var guildrole = msg.guild.roles.find("name", "Guild Founder")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
+                }
+                
+            }
+        })
+
+
+
+
+    }
+}); //end message handler
+
+
+
+
 
 fs.writeFile('./test.json', JSON.stringify(test), console.error);
 client.login(process.env.BOT_TOKEN)
