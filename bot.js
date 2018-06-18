@@ -131,7 +131,7 @@ client.on('message', async msg => { // start message handler
                                 value: initiates
                             }
                         ],
-                        timestamp: "Updated " + new Date(),
+                        timestamp: new Date(),
                         footer: {
                             icon_url: client.user.avatarURL,
                             text: "© Droid"
@@ -255,6 +255,7 @@ client.on('message', async msg => { // start message handler
         })
     }
     if (msg.content.toLowerCase().startsWith('>update')) {
+        console.log(msg.author.username.toLowerCase())
         snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + msg.author.username.toLowerCase() + "&f=c;").then(u => {
             if (!u.body.error) {
                 var rguild = u.body.guild
