@@ -303,12 +303,13 @@ client.on('message', async msg => { // start message handler
         if (!msg.member.roles.some(r => ["Guild Founders", "Advanced AI"].includes(r.name)))
             return msg.reply("Sorry, you don't have permissions to use this!");
 
-        var users = msg.guild.members
+        var users = msg.guild.members.array();
         var updatedlist = ''
         var notinguildlist = ''
         var errorlist = ''
         users.forEach((user) => {
-            snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + user.nickname.toLowerCase() + "&f=c;").then(u => {
+            msg.guild.member(user).nickname.toLowerCase()
+            snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + msg.guild.member(user).nickname.toLowerCase() + "&f=c;").then(u => {
                 if (!u.body.error) {
                     var rguild = u.body.guild
                     var rguildrank = u.body.guild_rank
