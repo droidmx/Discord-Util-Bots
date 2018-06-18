@@ -39,7 +39,7 @@ if(msg.author.id === client.user.id) return;
                 \nMain Server: **${activeserver}** | Server Rank: **${serverrank}**
                 \n**====================================**
                 `
-            guildstats.send({
+            test['fetchmessage'] = guildstats.send({
                 embed: {
                     color: 3447003,
                     author: {
@@ -56,7 +56,11 @@ if(msg.author.id === client.user.id) return;
                     }
                 }
             })
+            
         })
+        const logid = await test['fetchmessage']
+        test['guildstats'] = logid.id
+        
     }
     else {
         guildstats.fetchMessage(test['guildstats']).then(guildstatsmessage => {
