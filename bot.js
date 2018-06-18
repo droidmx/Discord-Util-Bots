@@ -223,29 +223,29 @@ client.on('message', async msg => { // start message handler
 
             msg.guild.member(msg.author).addRole(lelxdppebtw.id)
             msg.author.send("You have successfully been verified!");
-            if (rguild.includes('Donquixote Pirates')) {
+            if (rguild == "Donquixote Pirates ") {
                 if (rguildrank == 'Initiate') {
-                    var guildrole = msg.guild.roles.find("name", "Guild Initiate")
+                    var guildrole = msg.guild.roles.find("name", "Guild Initiates")
                     msg.guild.member(msg.author).addRole(guildrole.id)
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
                 if (rguildrank == 'Member') {
-                    var guildrole = msg.guild.roles.find("name", "Guild Member")
+                    var guildrole = msg.guild.roles.find("name", "Guild Members")
                     msg.guild.member(msg.author).addRole(guildrole.id)
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
                 if (rguildrank == 'Officer') {
-                    var guildrole = msg.guild.roles.find("name", "Guild Officer")
+                    var guildrole = msg.guild.roles.find("name", "Guild Officers")
                     msg.guild.member(msg.author).addRole(guildrole.id)
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
                 if (rguildrank == 'Leader') {
-                    var guildrole = msg.guild.roles.find("name", "Guild Leader")
+                    var guildrole = msg.guild.roles.find("name", "Guild Leaders")
                     msg.guild.member(msg.author).addRole(guildrole.id)
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
                 if (rguildrank == 'Founder') {
-                    var guildrole = msg.guild.roles.find("name", "Guild Founder")
+                    var guildrole = msg.guild.roles.find("name", "Guild Founders")
                     msg.guild.member(msg.author).addRole(guildrole.id)
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
