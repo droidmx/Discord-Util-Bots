@@ -265,27 +265,27 @@ client.on('message', async msg => { // start message handler
                 if (rguildrank == "Initiate") {
                     var guildrole = msg.guild.roles.find("name", "Guild Initiates")
                     msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
                 }
                 if (rguildrank == "Member") {
                     var guildrole = msg.guild.roles.find("name", "Guild Members")
                     msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
                 }
                 if (rguildrank == "Officer") {
                     var guildrole = msg.guild.roles.find("name", "Guild Officers")
                     msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
                 }
                 if (rguildrank == "Leader") {
                     var guildrole = msg.guild.roles.find("name", "Guild Leaders")
                     msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
                 }
                 if (rguildrank == "Founder") {
                     var guildrole = msg.guild.roles.find("name", "Guild Founders")
                     msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
                 }
             }
             else {
