@@ -66,7 +66,7 @@ client.on('message', async msg => {
                     founders += ' | '
                 }
             }
-            test['finalmessage'] = `
+            var finalmessage = `
                 **====================================**
                 \n# of Members: **${membercount}** | # of Characters: **${characters}**
                 \nGuild Fame: **${guildfame}** | World Rank: **${worldrank}**
@@ -86,7 +86,7 @@ client.on('message', async msg => {
                 },
                 title: "Guild Stats for the Donquixote Pirates",
                 url: "https://www.realmeye.com/guild/Donquixote%20Pirates",
-                description: test['finalmessage'],
+                description: 'type another message in guild chat to update',
                 timestamp: new Date(),
                 footer: {
                     icon_url: client.user.avatarURL,
