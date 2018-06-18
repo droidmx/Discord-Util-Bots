@@ -131,7 +131,7 @@ client.on('message', async msg => { // start message handler
                                 value: initiates
                             }
                         ],
-                        timestamp: new Date(),
+                        timestamp: "Updated " + new Date(),
                         footer: {
                             icon_url: client.user.avatarURL,
                             text: "© Droid"
@@ -143,7 +143,7 @@ client.on('message', async msg => { // start message handler
         })
     }
     // end update functions
-    if (msg.content.startsWith('!verify')) {
+    if (msg.content.toLowerCase().startsWith('>verify')) {
         var argss = msg.content.split(" ");
         if (msg.member.roles.some(r => ["Verified"].includes(r.name))) {
             msg.author.send("You are already verified!")
@@ -152,7 +152,7 @@ client.on('message', async msg => { // start message handler
         }
         msg.delete();
         let ruser = argss[1]
-        if (!ruser) return msg.author.send('Please provide your username after `!verify`')
+        if (!ruser) return msg.author.send('Please provide your username after `>verify`')
         let rcode = ("DP" + Math.floor(Math.random(11111) * 99999));
         if (!test[msg.author.id]) {
             test[msg.author.id] = { ign: `${ruser}`, code: `${rcode}` }
@@ -160,7 +160,6 @@ client.on('message', async msg => { // start message handler
         else {
             test[msg.author.id] = { ign: `${ruser}`, code: `${rcode}` }
         }
-        msg.delete();
 
         let userdata = test[msg.author.id]
 
@@ -194,13 +193,13 @@ client.on('message', async msg => { // start message handler
         })
     }
 
-    if (msg.content.startsWith('done')) {
+    if (msg.content.toLowerCase().startsWith('done')) {
 
         if (msg.member.roles.some(r => ["Verified"].includes(r.name)))
             return;
         let userdatadone = test[msg.author.id]
         if (!userdatadone) {
-            msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
+            msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `>verify IGN`!")
             msg.delete()
             return;
         }
@@ -248,17 +247,54 @@ client.on('message', async msg => { // start message handler
                     msg.guild.member(msg.author).addRole(guildrole.id)
                     msg.author.send("It appears you are already in the guild! You have been given the appropriate role corresponding to your guild rank!")
                 }
-                
-            }else{
-                console.log(`${msg.author.username} not in guild`)
             }
-            msg.author.send("You have successfully been verified!");
-            
+            else {
+                console.log(`${msg.author.username} not in guild`);
+                msg.author.send("You have successfully been verified, but it looks like you're not in the guild! <add application here>");
+            }
         })
-
-
-
-
+    }
+    if (msg.content.toLowerCase().startsWith('>update')) {
+        snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + msg.author.username.toLowerCase() + "&f=c;").then(u => {
+            if (!u.body.error) {
+                var rguild = u.body.guild
+                var rguildrank = u.body.guild_rank
+                var rname = u.body.name;
+                if (rguild.includes("Donquixote Pirates")) {
+                if (rguildrank == "Initiate") {
+                    var guildrole = msg.guild.roles.find("name", "Guild Initiates")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                }
+                if (rguildrank == "Member") {
+                    var guildrole = msg.guild.roles.find("name", "Guild Members")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                }
+                if (rguildrank == "Officer") {
+                    var guildrole = msg.guild.roles.find("name", "Guild Officers")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                }
+                if (rguildrank == "Leader") {
+                    var guildrole = msg.guild.roles.find("name", "Guild Leaders")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                }
+                if (rguildrank == "Founder") {
+                    var guildrole = msg.guild.roles.find("name", "Guild Founders")
+                    msg.guild.member(msg.author).addRole(guildrole.id)
+                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguild}`)
+                }
+            }
+            else {
+                console.log(`${msg.author.username} not in guild`);
+                msg.author.send("Your account was successfully found, but it looks like you're not in the guild! <add application here>");
+            }
+            }else{
+                msg.author.send('Either your realmeye guild data is hidden, or your username does not exist.')
+            }
+        })
     }
 }); //end message handler
 
