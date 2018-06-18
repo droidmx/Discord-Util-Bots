@@ -31,7 +31,7 @@ if(msg.author.id === client.user.id) return;
             var worldrank = g.body.fame.rank
             var activeserver = g.body.most_active.server
             var serverrank = g.body.most_active.rank
-            var finalmessage = `
+            test['finalmessage'] `
                 **====================================**
                 \nGuild Information for **${guildname}**
                 \n# of Members: **${membercount}** | # of Characters: **${characters}**
@@ -39,7 +39,10 @@ if(msg.author.id === client.user.id) return;
                 \nMain Server: **${activeserver}** | Server Rank: **${serverrank}**
                 \n**====================================**
                 `
-            test['fetchmessage'] = guildstats.send({
+            
+            
+        })
+        const lol = guildstats.send({
                 embed: {
                     color: 3447003,
                     author: {
@@ -48,7 +51,7 @@ if(msg.author.id === client.user.id) return;
                     },
                     title: "Guild Stats for the Donquixote Pirates",
                     url: "https://www.realmeye.com/guild/Donquixote%20Pirates",
-                    description: finalmessage,
+                    description: test['finalmessage'],
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
@@ -56,9 +59,7 @@ if(msg.author.id === client.user.id) return;
                     }
                 }
             })
-            
-        })
-        const logid = await test['fetchmessage']
+        const logid = await lol
         test['guildstats'] = logid.id
         
     }
