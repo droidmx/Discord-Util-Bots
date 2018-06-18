@@ -14,6 +14,7 @@ function wait(ms) {
 }
 
 client.on('message', async msg => {
+if(msg.author.id === client.user.id) return;
     let guildapi = "http://www.tiffit.net/RealmInfo/api/guild?g=Donquixote Pirates&fe"
     let guildstats = msg.guild.channels.find('name', 'guild-stats');
     if (!test['guildstats']) {
