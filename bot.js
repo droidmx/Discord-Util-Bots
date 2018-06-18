@@ -31,7 +31,7 @@ if(msg.author.id === client.user.id) return;
             var worldrank = g.body.fame.rank
             var activeserver = g.body.most_active.server
             var serverrank = g.body.most_active.rank
-            test['finalmessage'] `
+            test['finalmessage'] = `
                 **====================================**
                 \nGuild Information for **${guildname}**
                 \n# of Members: **${membercount}** | # of Characters: **${characters}**
