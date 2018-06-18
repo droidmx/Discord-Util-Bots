@@ -13,6 +13,7 @@ function wait(ms) {
     }
 }
 
+
 client.on('message', async msg => { // start message handler
     if (msg.author.id === client.user.id) return;
     let guildapi = "http://www.tiffit.net/RealmInfo/api/guild?g=Donquixote Pirates&fe"
@@ -262,40 +263,108 @@ client.on('message', async msg => { // start message handler
                 var rguildrank = u.body.guild_rank
                 var rname = u.body.name;
                 if (rguild.includes("Donquixote Pirates")) {
-                if (rguildrank == "Initiate") {
-                    var guildrole = msg.guild.roles.find("name", "Guild Initiates")
-                    msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                    if (rguildrank == "Initiate") {
+                        var guildrole = msg.guild.roles.find("name", "Guild Initiates")
+                        msg.guild.member(msg.author).addRole(guildrole.id)
+                        msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                    }
+                    if (rguildrank == "Member") {
+                        var guildrole = msg.guild.roles.find("name", "Guild Members")
+                        msg.guild.member(msg.author).addRole(guildrole.id)
+                        msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                    }
+                    if (rguildrank == "Officer") {
+                        var guildrole = msg.guild.roles.find("name", "Guild Officers")
+                        msg.guild.member(msg.author).addRole(guildrole.id)
+                        msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                    }
+                    if (rguildrank == "Leader") {
+                        var guildrole = msg.guild.roles.find("name", "Guild Leaders")
+                        msg.guild.member(msg.author).addRole(guildrole.id)
+                        msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                    }
+                    if (rguildrank == "Founder") {
+                        var guildrole = msg.guild.roles.find("name", "Guild Founders")
+                        msg.guild.member(msg.author).addRole(guildrole.id)
+                        msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                    }
                 }
-                if (rguildrank == "Member") {
-                    var guildrole = msg.guild.roles.find("name", "Guild Members")
-                    msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
-                }
-                if (rguildrank == "Officer") {
-                    var guildrole = msg.guild.roles.find("name", "Guild Officers")
-                    msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
-                }
-                if (rguildrank == "Leader") {
-                    var guildrole = msg.guild.roles.find("name", "Guild Leaders")
-                    msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
-                }
-                if (rguildrank == "Founder") {
-                    var guildrole = msg.guild.roles.find("name", "Guild Founders")
-                    msg.guild.member(msg.author).addRole(guildrole.id)
-                    msg.author.send(`Your account was successfully updated, your current guild rank is ${rguildrank}`)
+                else {
+                    console.log(`${msg.author.username} not in guild`);
+                    msg.author.send("Your account was successfully found, but it looks like you're not in the guild! <add application here>");
                 }
             }
             else {
-                console.log(`${msg.author.username} not in guild`);
-                msg.author.send("Your account was successfully found, but it looks like you're not in the guild! <add application here>");
-            }
-            }else{
                 msg.author.send('Either your realmeye guild data is hidden, or your username does not exist.')
             }
         })
+    }
+    if (msg.content.toLowerCase().startsWith('>>updateall')) {
+        if (!msg.member.roles.some(r => ["Guild Founder"].includes(r.name)))
+            return msg.reply("Sorry, you don't have permissions to use this!");
+
+        var users = msg.guild.members
+        var updatedlist = ''
+        var notinguildlist = ''
+        var errorlist = ''
+        users.forEach((user) => {
+            snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + user.nickname.toLowerCase() + "&f=c;").then(u => {
+                if (!u.body.error) {
+                    var rguild = u.body.guild
+                    var rguildrank = u.body.guild_rank
+                    var rname = u.body.name;
+                    if (rguild.includes("Donquixote Pirates")) {
+                        if (rguildrank == "Initiate") {
+                            var guildrole = msg.guild.roles.find("name", "Guild Initiates")
+                            msg.guild.member(user).addRole(guildrole.id)
+                            updatedlist += user.nickname + `: ${rguildrank} \n`
+                        }
+                        if (rguildrank == "Member") {
+                            var guildrole = msg.guild.roles.find("name", "Guild Members")
+                            msg.guild.member(user).addRole(guildrole.id)
+                            updatedlist += user.nickname + `: ${rguildrank} \n`
+                        }
+                        if (rguildrank == "Officer") {
+                            var guildrole = msg.guild.roles.find("name", "Guild Officers")
+                            msg.guild.member(user).addRole(guildrole.id)
+                            updatedlist += user.nickname + `: ${rguildrank} \n`
+                        }
+                        if (rguildrank == "Leader") {
+                            var guildrole = msg.guild.roles.find("name", "Guild Leaders")
+                            msg.guild.member(user).addRole(guildrole.id)
+                            updatedlist += user.nickname + `: ${rguildrank} \n`
+                        }
+                        if (rguildrank == "Founder") {
+                            var guildrole = msg.guild.roles.find("name", "Guild Founders")
+                            msg.guild.member(user).addRole(guildrole.id)
+                            updatedlist += user.nickname + `: ${rguildrank} \n`
+                        }
+                    }
+                    else {
+                        console.log(`${msg.author.username} not in guild`);
+                        notinguildlist += `${user.nickname} : ${rguildrank} \n`
+                    }
+                }
+                else {
+                    errorlist += `${user.nickname} : ${rguild} \notinguildlist`
+                }
+            })
+        })
+        msg.channel.send(`
+        **======================**
+        \n **Successfully Updated Members:**
+        \n${updatedlist}
+        **======================**
+        \n**Not in Guild List:**
+        \n${notinguildlist}
+        **======================**
+        \n**Error List:**
+        \n${errorlist}
+        
+        
+        
+        
+        `)
     }
 }); //end message handler
 
