@@ -300,7 +300,7 @@ client.on('message', async msg => { // start message handler
         })
     }
     if (msg.content.toLowerCase().startsWith('>>updateall')) {
-        if (!msg.member.roles.some(r => ["Guild Founder"].includes(r.name)))
+        if (!msg.member.roles.some(r => ["Guild Founders", "Advanced AI"].includes(r.name)))
             return msg.reply("Sorry, you don't have permissions to use this!");
 
         var users = msg.guild.members
