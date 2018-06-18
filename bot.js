@@ -255,8 +255,8 @@ client.on('message', async msg => { // start message handler
         })
     }
     if (msg.content.toLowerCase().startsWith('>update')) {
-        console.log(msg.author.username.toLowerCase())
-        snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + msg.author.username.toLowerCase() + "&f=c;").then(u => {
+        console.log(msg.author.nickname.toLowerCase())
+        snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + msg.author.nickname.toLowerCase() + "&f=c;").then(u => {
             if (!u.body.error) {
                 var rguild = u.body.guild
                 var rguildrank = u.body.guild_rank
