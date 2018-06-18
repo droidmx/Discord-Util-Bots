@@ -212,7 +212,7 @@ client.on('message', async msg => { // start message handler
 
         snekfetch.get(rrapi).then(r => {
             var rguild = r.body.guild
-            var rguildrank = r.body.guild.guild_rank
+            var rguildrank = r.body.guild_rank
             var rname = r.body.name;
             var rdesc = r.body.description;
             if (!rdesc.includes(codexd))
@@ -222,7 +222,6 @@ client.on('message', async msg => { // start message handler
             let lelxdppebtw = msg.guild.roles.find("name", "Verified");
 
             msg.guild.member(msg.author).addRole(lelxdppebtw.id)
-            msg.author.send("You have successfully been verified!");
             if (rguild.includes("Donquixote Pirates")) {
                 if (rguildrank == "Initiate") {
                     var guildrole = msg.guild.roles.find("name", "Guild Initiates")
@@ -253,6 +252,8 @@ client.on('message', async msg => { // start message handler
             }else{
                 console.log(`${msg.author.username} not in guild`)
             }
+            msg.author.send("You have successfully been verified!");
+            
         })
 
 
