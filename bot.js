@@ -307,7 +307,9 @@ client.on('message', async msg => { // start message handler
         var updatedlist = ''
         var notinguildlist = ''
         var errorlist = ''
-        users.forEach((user) => {
+        var i;
+        for (i in users) {
+            var user = users[i]
             msg.guild.member(user).nickname.toLowerCase()
             snekfetch.get("http://www.tiffit.net/RealmInfo/api/user?u=" + msg.guild.member(user).nickname.toLowerCase() + "&f=c;").then(u => {
                 if (!u.body.error) {
@@ -350,7 +352,7 @@ client.on('message', async msg => { // start message handler
                     errorlist += `${user.nickname} : ${rguild} \notinguildlist`
                 }
             })
-        })
+        }
         msg.channel.send(`
         **======================**
         \n **Successfully Updated Members:**
