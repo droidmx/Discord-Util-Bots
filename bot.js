@@ -13,10 +13,17 @@ music.start(client, {
   leaveAlt: ["fuckoff", "fuckingleave"],
   helpCmd: "mhelp",
   thumbnailType: "high",
-  maxQueueSize: "10",
+  maxQueueSize: 5,
   enableQueueStat: true,
   ownerOverMember: true,
   clearOnLeave: true,
+  anyoneCanSkip: true,
+  anyoneCanPause: true,
+  logging: true,
+  requesterName: true,
+  embedColor: "RANDOM",
+  checkQueues: true,
+  pauseAlt: ['stop', 'wait'],
   botOwner: "368756694114893825"
 });
 
@@ -218,6 +225,10 @@ client.on('message', async msg => { //start message handler
                 fields: [{
                         name: '`>>help`',
                         value: "Shows this menu"
+                    },
+                    {
+                        name: '`>>mhelp`',
+                        value: "Shows the music commands"
                     },
                     {
                         name: '`>>income`',
