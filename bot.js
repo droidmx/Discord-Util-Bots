@@ -4,7 +4,24 @@ const fs = require('fs');
 const moment = require('moment');
 const snekfetch = require('snekfetch');
 let user = JSON.parse(fs.readFileSync('./user.json', 'utf8'));
+const Music = require('discord.js-musicbot-addon');
+Music.start(client, {
+  youtubeKey: "AIzaSyAAKSiOkapv22Kt3OWNOAWeTcXJ0yLmJ90",
+  prefix: ">>",
+  leaveAlt: ["fuckoff", "fuckingleave"],
+  helpCmd: "mhelp",
+  thumbnailType: "high",
+  maxQueueSize: "10",
+  enableQueueStat: true,
+  anyoneCanAdjust: true,
+  anyoneCanLeave: true,
+  ownerOverMember: true,
+  clearOnLeave: true,
+  botOwner: "368756694114893825"
+});
 
+
+//
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setPresence({ game: { name: `casino games | >>help`, type: 0 } });
