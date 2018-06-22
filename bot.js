@@ -15,8 +15,6 @@ music.start(client, {
   thumbnailType: "high",
   maxQueueSize: "10",
   enableQueueStat: true,
-  anyoneCanAdjust: true,
-  anyoneCanLeave: true,
   ownerOverMember: true,
   clearOnLeave: true,
   botOwner: "368756694114893825"
