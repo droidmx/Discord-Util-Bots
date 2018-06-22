@@ -4,8 +4,10 @@ const fs = require('fs');
 const moment = require('moment');
 const snekfetch = require('snekfetch');
 let user = JSON.parse(fs.readFileSync('./user.json', 'utf8'));
-const Music = require('discord.js-musicbot-addon');
-Music.start(client, {
+const music = require('discord.js-musicbot-addon');
+
+
+music.start(client, {
   youtubeKey: "AIzaSyAAKSiOkapv22Kt3OWNOAWeTcXJ0yLmJ90",
   prefix: ">>",
   leaveAlt: ["fuckoff", "fuckingleave"],
