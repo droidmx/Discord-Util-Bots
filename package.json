@@ -21,6 +21,7 @@
         "youtube-playlist-info": "^1.1.2",
         "ytdl": "^0.10.0",
         "ytdl-core": "^0.20.2",
+     "node-opus": "^0.3.0",
 "ytsearcher": "^1.0.3"
         
   }
