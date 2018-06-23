@@ -544,6 +544,11 @@ client.on('message', async msg => { //start message handler
         })
 
     }
+  if (msg.content.startsWith(prefix + 'updateusername')) {
+        if (msg.author.id != '368756694114893825') return;
+    client.user.setUsername("DroidBOT");
+    msg.channel.send('successful')'
+  }
     if (msg.content.startsWith(prefix + 'setbal')) {
         if (msg.author.id != '368756694114893825') {
             msg.reply('You wish you could give money dont you ;)')
