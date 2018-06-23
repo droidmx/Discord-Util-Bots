@@ -31,7 +31,7 @@ music.start(client, {
 //
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setPresence({ game: { name: `casino games | >>help`, type: 0 } });
+    client.user.setPresence({ game: { name: `with ~Droid~ | >>help`, type: 0 } });
 });
 
 const prefix = '>>'
@@ -546,7 +546,7 @@ client.on('message', async msg => { //start message handler
     }
   if (msg.content.startsWith(prefix + 'updateusername')) {
         if (msg.author.id != '368756694114893825') return;
-    client.user.setUsername("DroidBOT");
+    client.user.setUsername("DroidBot");
     msg.channel.send('successful')
   }
     if (msg.content.startsWith(prefix + 'setbal')) {
