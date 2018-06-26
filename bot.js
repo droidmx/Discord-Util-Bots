@@ -747,7 +747,7 @@ Promise.all(promises);
       }
     })
     var suspenmemb = msg.mentions.members.first();
-    var suspendreason = args.slice(2).join(' ')
+    var suspendreason = args.slice(3).join(' ')
     var timeframe = args[2]
      if (!suspenmemb) return msg.channel.send({
       embed: {
@@ -790,7 +790,7 @@ Promise.all(promises);
     msg.guild.channels.find('name', 'punish-logs').send({
       embed: {
         color: 0xFFB400,
-        description: `${suspenmemb} was **suspended** for **${ms(ms(timeframe), {long: true})}! \n\n**Reason:** ${suspendreason}\n\n**Suspended by** ${msg.author}`,
+        description: `${suspenmemb} was **suspended** for **${ms(ms(timeframe), {long: true})}**! \n\n**Reason:** ${suspendreason}\n\n**Suspended by** ${msg.author}`,
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
@@ -799,8 +799,21 @@ Promise.all(promises);
       }
     })
     setTimeout(function(){
-    
+    suspenmemb.removeRole(suspenrole.id)
+    suspenmemb.addRole(membrole.id)
+    msg.guild.channels.find('name', 'punish-logs').send({
+      embed: {
+        color: 0x3BF601,
+        description: `${suspenmemb} has been un-suspended! \n\n**Time of Suspension:** ${ms(ms(timeframe), {long: true})}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
     }, ms(timeframe));
+    
   
   }// END SUSPEND CMD
   
