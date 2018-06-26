@@ -1,1173 +1,1001 @@
-const Discord = require("discord.js");
+
+const Discord = require("discord.js")
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
-const fs = require('fs');
-const ms = require('ms');
+const fs = require("fs");
+const ms = require("ms");
 let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
-/*const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
-const setupCMD = "!createrolemessage"
-let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
-const roles = ["RotMG", "NSFW", "Raid Ping"];
-const reactions = ["444719782869073922", "444720053427109898", "444720908196642847"];
-//Load up the bot...
-//If there isn't a reaction for every role, scold the user!
-if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
-//Function to generate the role messages, based on your settings
-function generateMessages(){
-    var messages = [];
-    messages.push(initialMessage);
-    for (let role of roles) messages.push(`React below to get the **"${role}"** role!`); //DONT CHANGE THIS
-    return messages;
-}
-client.on("message", message => {
-    if (message.author.id == yourID && message.content.toLowerCase() == setupCMD){
-        var toSend = generateMessages();
-        let mappedArray = [[toSend[0], false], ...toSend.slice(1).map( (message, idx) => [message, reactions[idx]])];
-        for (let mapObj of mappedArray){
-            message.channel.send(mapObj[0]).then( sent => {
-                if (mapObj[1]){
-                  sent.react(mapObj[1]);  
-                } 
-            });
-        }
-    }
-})
+let raid = JSON.parse(fs.readFileSync('./raid.json', 'utf8'));
+
+
+
+var lmaoxd;
+
 client.on('raw', event => {
-    if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE"){
-        
-        let channel = client.channels.get(event.d.channel_id);
-        let message = channel.fetchMessage(event.d.message_id).then(msg=> {
-        let user = msg.guild.members.get(event.d.user_id);
-        
-        if (msg.author.id == client.user.id && msg.content != initialMessage){
-       
-            var re = `\\*\\*"(.+)?(?="\\*\\*)`;
-            var role = msg.content.match(re)[1];
-        
-            if (user.id != client.user.id){
-                var roleObj = msg.guild.roles.find('name', role);
-                var memberObj = msg.guild.members.get(user.id);
-                
-                if (event.t === "MESSAGE_REACTION_ADD"){
-                    memberObj.addRole(roleObj)
-                } else {
-                    memberObj.removeRole(roleObj);
-                }
-            }
-        }
-        })
- 
-    }   
+if (event.t == 'VOICE_STATE_UPDATE') {
+var voiceguild = client.guilds.get(event.d.guild_id)
+
+var voicechannel = client.channels.get(event.d.channel_id)
+
+var voicemember = voiceguild.members.get(event.d.user_id)
+
+if (raid['queuemove'] == 'yes' && voicechannel.id == voiceguild.channels.find('name', 'Queue').id) {
+voicemember.setVoiceChannel(voiceguild.channels.find('name', 'Raiding').id)
+}
+
+}
+
+})
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({
+    game: {
+      name: `Realm of the Mad God`,
+      type: 0
+    }
+  })
+  client.user.setStatus('dnd');
 });
-*/
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
+const prefix = '-'
+client.on('message', async msg => { // START MESSAGE HANDLER
+  if (msg.author.bot) return;
+  let args = msg.content.split(" ");
+  if (msg.content.toLowerCase().startsWith(prefix + 'verify')) { //START VERIFY CMD
+    let verifchannel = msg.guild.channels.find("name", "verify")
+    if (msg.channel.id != verifchannel.id) {
+      return;
+    }
+    msg.delete();
+    if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
+      msg.author.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:error:459473621233041428> You are already verified!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      return;
+    }
+    let ruser = args[1]
+    if (!ruser) {
+      msg.author.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:error:459473621233041428> You did not provide a IGN to check!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      return;
+    }
+    if (ruser.toLowerCase() == 'ign') {
+      msg.author.send({
+        embed: {
+          color: 0xFFB400,
+          description: "<:warn:459473619613908994> Follow the directions carefully! You are supposed to replace 'IGN' with your RotMG Username. Please try again.",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      return;
+    }
+    let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
+    let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f="
+    test[msg.author.id] = {
+      ign: `${ruser}`,
+      code: `${rcode}`
+    }
+    let userdata = test[msg.author.id]
+    var verifmsg = `:vibration_mode: Your verification code is **__${rcode}__** and the IGN you provided is **__${ruser}__**\n
+\nOnce you have confirmed that you have provided the correct RotMG Username, paste your code **anywhere** in your RealmEye description. Then, type \`-done\` in <#433792597962522624> to finish.`
+    msg.author.send({
+      embed: {
+        color: 0x42017E,
+        author: {
+          name: "Realm Raiders Verification",
+          icon_url: msg.author.avatarURL
+        },
+        description: verifmsg,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    console.log(test)
+  } //END VERIFY CMD
+  if (msg.content.toLowerCase().startsWith('-done')) { //START DONE CMD
+    let verifchannel = msg.guild.channels.find("name", "verify")
+
+    if (msg.channel.id != verifchannel.id) {
+      return;
+    }
+
+    if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
+      msg.author.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:error:459473621233041428> You are already verified!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      msg.delete();
+      return;
+    }
+    let userdatadone = test[msg.author.id]
+    if (!userdatadone) {
+      msg.author.send({
+        embed: {
+          color: 0xFFB400,
+          description: "<:warn:459473619613908994> Your IGN and Code were not found in the database, please go to <#433792597962522624> and type `-verify IGN` first. Be sure to replace IGN with you RotMG Username!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      msg.delete(100)
+      return;
+    }
+    msg.delete(100);
+    console.log(userdatadone)
+    let ccodexd = userdatadone.code
+    let ignxd = userdatadone.ign
+    let rrapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ignxd + "&f="
+    snekfetch.get(rrapi).then(r => {
+      let rdesc = r.body.description;
+      let rname = r.body.name
+      let rstars = r.body.rank
+      let rlocation = r.body.last_seen
+      let rfame = r.body.fame
+      let points = 0
+      let chars = r.body.characters
+      if (r.body.error == "No User Found!") return msg.author.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:error:459473621233041428> Your Realmeye Profile was not found. Either you have provided an incorrect IGN, or your realmeye profile is hidden!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      if (!chars[0].stats_maxed) {
+        msg.author.send({
+          embed: {
+            color: 0xFFB400,
+            description: "<:warn:459473619613908994> Your characters are hidden, you cannot be verified until they are visible!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        return;
+      }
+      var i;
+      for (i in chars) {
+        if (chars[i].stats_maxed == '2/8') {
+          points += 10
+        }
+        if (chars[i].stats_maxed == '3/8') {
+          points += 10
+        }
+        if (chars[i].stats_maxed == '4/8') {
+          points += 10
+        }
+        if (chars[i].stats_maxed == '5/8') {
+          points += 10
+        }
+        if (chars[i].stats_maxed == '6/8') {
+          points += 10
+        }
+        if (chars[i].stats_maxed == '7/8') {
+          points += 10
+        }
+        if (chars[i].stats_maxed == '8/8') {
+          points += 10
+        }
+      }
+      if (!rdesc.join('').includes(ccodexd))
+        return msg.author.send({
+          embed: {
+            color: 0xFFB400,
+            description: "<:warn:459473619613908994> Your code was not found in any line of your description. Please wait 30 seconds before trying again! \n\n:exclamation: Tip: Refresh your Realmeye page 3 times to ensure the code is in the description!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+      if (!points >= 10)
+        return msg.author.send({
+          embed: {
+            color: 0xFFB400,
+            description: "<:warn:459473619613908994> You do not have a character with 2 or more stats maxed, therefore you do not meet requirements. If you wish to appeal about your case, please PM an Admin+",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+      if (!rlocation.includes("hidden"))
+        return msg.author.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:error:459473621233041428> Your location is not hidden, you cannot be verified until your last-seen location is hidden!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+
+      if (rfame < (500))
+        return msg.author.send({
+          embed: {
+            color: 0xFFB400,
+            description: "<:warn:459473619613908994> You do not have 500 alive fame, therefore you do not meet requirements. If you wish to appeal about your case, please PM an Admin+",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+      if (rdesc.join('').includes(ccodexd)) {
+        msg.guild.member(msg.author).setNickname(`${rname}.`)
+        msg.guild.member(msg.author).addRole(msg.guild.roles.find('name', 'Shatters'));
+        msg.author.send({
+          embed: {
+            color: 0x3BF601,
+            description: "<:check:459473621031583765> You have successfully been verified!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        });
+        msg.guild.channels.find("name", "bot-logs").send({
+          embed: {
+            color: 0xfb7ae4,
+            author: {
+              name: `User Verified | ${ignxd}`,
+              icon_url: msg.author.avatarURL
+            },
+            fields: [{
+            name: "**User**",
+            value: `${msg.author}`,
+            inline: true,
+            },
+            
+            {
+                name: "**Realmeye Link:**",
+                value: `https://www.realmeye.com/player/${ignxd}`,
+                inline: true,
+              },
+              {
+                name: "__**User IGN**__",
+                value: ignxd,
+                inline: true,
+              },
+              {
+                name: "__**Character Fame**__",
+                value: rfame + " Fame",
+                inline: true,
+              },
+              {
+                name: "__**Stars**__",
+                value: rstars + " Stars",
+                inline: true,
+              }
+            ],
+            footer: {
+              text: "User has been verified by the bot.",
+            }
+          }
+        });
+      }
+    })
+
+  } //END DONE CMD
+  if (msg.content.toLowerCase().startsWith('-afkcheck')) { //START AFK CMD
+    if (!msg.member.roles.some(r => ["Raid Leader", "Almost Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (msg.channel.name != 'leader-bot-commands') return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> Command used in wrong channel. Correct Channel: <#437466234473283584>",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    
+  
+      
+      raid['portal'] = '<:portal:433791162411646988>'
+      raid['key'] = '<:shatterskey:460200528039903242>'
+      
+
+      const afkid = await msg.guild.channels.find('name', 'raid-status').send('@here', {
+        embed: {
+          color: 0x006400,
+          author: {
+            name: "Shatters Central",
+            icon_url: "https://static.drips.pw/rotmg/wiki/Environment/Portals/The%20Shatters.png"
+          },
+          title: `**${msg.author.username} has started an AFK-Check for a __Shatters__ run!**`,
+          description: "React with <:portal:433791162411646988> and join queue to ensure you are in the next run! The AFK-Check will end when the Raid Leader has finished preparations! \nIn addition to reacting with <:portal:433791162411646988>,",
+
+          fields: [{
+              name: "If you have a key, and are willing to pop",
+              value: "react with <:shatterskey:460200528039903242>",
+
+            },
+            {
+              name: "If you have a Priest you are willing to bring",
+              value: "react with <:priest:460200880138878996>",
+
+            },
+            {
+              name: "If you have a Paladin you are willing to bring",
+              value: "react with <:paladin:460200880046735361>",
+
+            },
+            {
+              name: "If you have a Warrior you are willing to bring",
+              value: "react with <:warrior:460200880172433428>",
+
+            },
+            {
+              name: "If you have a Rogue you are willing to bring",
+              value: "react with <:rogue:461235735287169029>",
+
+            }
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "Shatters Central | © Droid & Co."
+          }
+        }
+      })
+      await afkid.react('433791162411646988') // portal
+      await afkid.react('460200528039903242') //key
+      await afkid.react('460200880138878996')
+      await afkid.react('460200880046735361')
+      await afkid.react('460200880172433428')
+      await afkid.react('461235735287169029')
+      raid['afkid'] = afkid.id
+      console.log(raid['afkid'])
+   
+   
+
+
+
+  } // END AFK COMMAND
+  if (msg.content.toLowerCase().startsWith('-endafk')) { //START ENDAFK CMD
+    if (!msg.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (msg.channel.name != 'leader-bot-commands') return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> Command used in wrong channel. Correct Channel: <#437466234473283584>",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!raid['afkid'] || raid['afkid'] == 0) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> There is no active AFK-Check!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
+      var keys = mesg.reactions.map(m => m.users.map(u => u.username).join(', ')) //.map(m => m.users.map(u => u.username));
+
+      var priests = mesg.reactions.find(reaction => reaction.emoji.id === '460200880138878996').count - 1
+      var paladins = mesg.reactions.find(reaction => reaction.emoji.id === '460200880046735361').count - 1
+      var warriors = mesg.reactions.find(reaction => reaction.emoji.id === '460200880172433428').count - 1
+      var rogues = mesg.reactions.find(reaction => reaction.emoji.id === '461235735287169029').count - 1
+
+      var reactions = mesg.reactions.map(m => m.users.map(u => u.id));
+      var allusers = [];
+      var promises = [];
+      var queuepromise = client.channels.get('433784986072776714').members.array()
+      var raidingpromise = client.channels.get('433788028264120326').members.array()
+      var afkpromise = client.channels.get('433803796339097610').members.array()
+      var i;
+      for (i in queuepromise) {
+        allusers.push(queuepromise[i].id)
+      }
+      for (i in raidingpromise) {
+        allusers.push(raidingpromise[i].id)
+      }
+      for (i in afkpromise) {
+        allusers.push(afkpromise[i].id)
+      }
+      for (i in allusers) {
+        var user = msg.guild.members.get(allusers[i])
+        if (reactions[0].includes(allusers[i])) {
+          promises.push(user.setVoiceChannel('433788028264120326'))
+        } else {
+          promises.push(user.setVoiceChannel('433803796339097610'))
+        }
+      }
+      mesg.edit({
+        embed: {
+          color: 0x006400,
+          
+          title: `${msg.author.username} has ended the AFK-Check for the __Shatters__ run`,
+          description: `If you have been moved to the Raiding VC, please wait for further instructions. The run has not started yet, so if you wish to participate, join the 'queue' voice channel!
+          \n ${raid['portal']} Raiders: **${reactions[0].length - 1}**
+          \n ${raid['key']} Key Holders: **${keys[1].slice(7)}**
+          \n <:priest:450369875467173890> Priests: **${priests}**
+          \n <:paladin:450369854231412766> Paladins: **${paladins}**
+          \n <:warrior:450369890721857596> Warriors: **${warriors}**
+          \n <:rogue:451510300727050242> Rogues: **${rogues}**`,
+          timestamp: new Date(),
+         footer: {
+            icon_url: client.user.avatarURL,
+            text: "Shatters Central | © Droid & Co."
+          }
+        }
+      })
+    })
+    raid['queuemove'] = 'yes'
+    
+  } //END ENDAFK CMD
+  
+  
+if (msg.content.toLowerCase().startsWith('-startrun')) {
+if (!msg.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (msg.channel.name != 'leader-bot-commands') return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> Command used in wrong channel. Correct Channel: <#437466234473283584>",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+raid['queuemove'] = 'no'
+ msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
+ mesg.edit({
+        embed: {
+          color: raid['color'],
+          
+          title: `${msg.author.username} has started the run for the __Shatters__`,
+          description: `The raid is currently **in session**. Please wait for the run to end and for another AFK-Check to be initiated!`,
+          timestamp: new Date(),
+         footer: {
+            icon_url: client.user.avatarURL,
+            text: "Shatters Central | © Droid & Co."
+          }
+        }
+      })
+ });
+
+}
+if (msg.content.toLowerCase().startsWith('-endrun')) {
+if (!msg.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (msg.channel.name != 'leader-bot-commands') return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> Command used in wrong channel. Correct Channel: <#437466234473283584>",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
+ mesg.edit({
+        embed: {
+          color: raid['color'],
+          
+          title: `The run for the __Shatters__ has ended`,
+          description: `The raid is currently **finished**. If you participated in the run, please provide feedback for ${msg.author.username} in <#433803620647960586>`,
+          timestamp: new Date(),
+         footer: {
+            icon_url: client.user.avatarURL,
+            text: "Shatters Central | © Droid & Co."
+          }
+        }
+      })
+ });
+ raid['afkid'] = 0
 }
 
-client.on('message', async message => {
-	let raidstatus = message.guild.channels.find("name", "raid-status")
-	let serverstats = message.guild.channels.find('name', 'server-stats')
-	let ppebtw = 'someshitidefk'
-	let whitebags = 'lmaoooooooooooooooooo'
-	let fuckingid = 'jjjjjjjjjjjjjjjjjjjj'
-	let args = message.content.split(" ").slice(1);
-let argss = message.content.split(" ")
-	if (!test[ppebtw]) test[ppebtw] = 90
-	if (!test[whitebags]) test[whitebags] = 14
-	if (!test[fuckingid]) test[fuckingid] = 453314721836433408
-	
-	
-	
-	
-	if (message.content.startsWith('110035482131415926535897932384626')) {
-	
-	// ACTUAL NEST: <:nest:384850069062418433>
-	let counterxd = test[ppebtw]
-	let whitebagsxd = test[whitebags]
-	const bihluh = message.channel.send({
-		embed: {
-		color: 0x00FFFF,
-            author: {
-                name: `Shatters Central`,
-                icon_url: client.user.avatarURL
-            },
-            fields: [{
-                    name: "Shatters Completed <:Shatters:433791162411646988> :",
-                    value: `${counterxd}`,
-                    
-                },
-		     {
-			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
-			     value: `${whitebagsxd}`,
-		     }
-               
-            ],
-            footer: {
-                text: "Bot coded by ~Droid~#5799",
-            },
-            thumbnail: {
-                url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
-			}
-		
-		}
-	})
-	const npending = await bihluh
-	console.log(npending.id)
-	if (!test[fuckingid]) {
-			test[fuckingid] = npending.id
-		}else{
-			test[fuckingid] = npending.id
-		}
-		
-}
-	
-	if (message.content =='!runfinished') {
-		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-		
-		let curr = test[ppebtw]
-		let upcurr = curr + 1
-		let loledit = test[fuckingid]
-		let tobesafe = test[whitebags]
-		
-		if (!test[ppebtw]) {
-			test[ppebtw] = upcurr
-		}else{
-			test[ppebtw] = upcurr
-		}
-		
-		let something = serverstats.fetchMessage(loledit).then(asd=>
-								       asd.edit({
-		embed: {
-		color: 0x00FFFF,
-            author: {
-                name: `Shatters Central`,
-                icon_url: client.user.avatarURL
-            },
-            fields: [{
-                    name: "Shatters Completed <:Shatters:433791162411646988> :",
-                    value: `${upcurr}`,
-                    
-                },
-		     {
-			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
-			     value: `${tobesafe}`,
-		     }
-               
-            ],
-            footer: {
-                text: "Bot coded by ~Droid~#5799",
-            },
-            thumbnail: {
-                url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
-			}
-		
-		}
-	})
-		
-		)
-	}
-	if (message.content =='!whitebag') {
-		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-		
-		let currr = test[whitebags]
-		let upcurrr = currr + 1
-		let loleddit = test[fuckingid]
-		let tobesaafe = test[ppebtw]
-		if (!test[whitebags]) {
-			test[whitebags] = upcurrr
-		}else{
-			test[whitebags] = upcurrr
-		}
-		
-		let ssomething = serverstats.fetchMessage(loleddit).then(aaasd=>
-								       aaasd.edit({
-		embed: {
-		color: 0x00FFFF,
-            author: {
-                name: `Shatters Central`,
-                icon_url: client.user.avatarURL
-            },
-            fields: [{
-                    name: "Shatters Completed <:Shatters:433791162411646988> :",
-                    value: `${tobesaafe}`,
-                    
-                },
-		     {
-			     name: "White Bags Dropped <:whitebag:448626318364508171> :",
-			     value: `${test[whitebags]}`,
-		     }
-               
-            ],
-            footer: {
-	text: "Bot coded by ~Droid~#5799",
-            },
-            thumbnail: {
-                url: "https://images-ext-1.discordapp.net/external/PBcvr7DY5Zy1-bWGSo8tDgegAh43lAYMXvEAycBxXys/https/cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
-			}
-		
-		}
-	})
-		
-		)
-	}
-    if (message.content.toLowerCase() == "!afkcheck") {
-    if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
 
-console.log("afk check for shatters started")
-    
-    const test123 = client.channels.get("433789873690902532").send(`@here **An AFK-check for a Shatters Raid has started!**
-                                                   
-   \nReact with <:Shatters:433791162411646988> and join queue to ensure you are in the next run! The AFK Check will end in 120 seconds! 
-\nIf you have a key, and are willing to pop, react with <:shatterskey:434134124631031810>
-\nIf you have a Priest you are willing to bring, react with <:priest:437301626118602774>
-\nIf you have a Paladin you are willing to bring, react with <:paladin:437301465384484874>
-\nIf you have a Warrior you are willing to bring, react with <:warrior:437301360304848899>
-\nIf you have a Mystic you are willing to bring, react with <:mystic:448582513716101122>
-                                                   
-                                                  
-                                                  
-                                                  
-                                                  
-                                                  
-                                                  `)
-        
-        
-    
-        
-    const lelxd = await test123
-    await lelxd.react(message.guild.emojis.get('433791162411646988'))// shatters entity
-             await lelxd.react(message.guild.emojis.get('434134124631031810')) // key
-                lelxd.react(message.guild.emojis.get('437301626118602774'))
-                lelxd.react(message.guild.emojis.get('437301465384484874'))
-                lelxd.react(message.guild.emojis.get('437301360304848899'))
-lelxd.react(message.guild.emojis.get('448582513716101122'))
-	    
-    console.log(lelxd.id)
-        if (!test['hi']) {
-			test['hi'] = lelxd.id
-		}else{
-			test['hi'] = lelxd.id
-}
-}
-    
-    if (message.content == '!abortafk') {
-	     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-        let lmaoxd = test['hi']
-        
-        if (test['hi'] == '0') {
-            message.reply('There is no active AFK Check!')
-            return;
+  if (msg.content.toLowerCase().startsWith('-abortafk')) { //START ABORTAFK CMD
+    if (!msg.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-        
-        raidstatus.fetchMessage(`${lmaoxd}`).then(jj=> jj.edit(`**The AFK-Check has been aborted!**\n Watch Raid Status for another AFK-Check, or an announcement by a Raid Leader!`))
-        if (!test['hi']) {
-			test['hi'] = '0'
-		}else{
-			test['hi'] = '0'
-}
-	    
-    }
-	 if (message.content == '!endafk') {
-	     if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-        let lmaoxd = test['hi']
-        
-        if (test['hi'] == '0') {
-            message.reply('There is no active AFK Check!')
-            return;
+      }
+    })
+    if (msg.channel.name != 'leader-bot-commands') return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> Command used in wrong channel. Correct Channel: <#437466234473283584>",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-        
-        raidstatus.fetchMessage(`${lmaoxd}`).then(jj=> jj.edit(`**The AFK-Check has ended!**\n Please wait patiently for the next AFK-Check. If you are in the current run, listen to the raid leader's instructions!`))
-        if (!test['hi']) {
-			test['hi'] = '0'
-		}else{
-			test['hi'] = '0'
-}
-	    
-    }
-	if (message.content == '!movequeue') {
-		if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Head Raid Leader", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-		
-		
-		message.channel.send('Moving Queue!')
-		var people = client.channels.get('433784986072776714').members.array();
+      }
+    })
+    if (!raid['afkid'] || raid['afkid'] == 0) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> There is no active AFK-Check!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
+      mesg.edit({
+        embed: {
+          color: 0xFF0000,
+          
+          title: `${msg.author.username} has aborted the AFK-Check for the __Shatters__ run`,
+          description: `Please wait for further instructions from a Leader`,
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "Shatters Central | © Droid & Co."
+          }
+        }
+      })
+    });
+    raid['afkid'] = 0
+    raid['queuemove'] = 'no'
+  } //END ABORTAFK CMD
+  if (msg.content.toLowerCase().startsWith('-suspend')) {//START SUSPEND CMD
+  if (!msg.member.roles.some(r => ["Owner", "Admin", "Officer", "Raid Leader", "Almost Raid Leader", "Chat Mod"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    var suspenmemb = msg.member.mentions.first();
+    var suspendreason = args.slice(2).join(' ')
+    var timeframe = args[2]
+     if (!suspenmemb) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please mention a valid member to warn!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!timeframe) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please provide a time for the suspension!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!suspendreason) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please provide a reason for the warn!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    var membrole = msg.guild.roles.find("name", "Shatters");
+    var suspenrole = msg.guild.roles.find("name", "Suspended")
+    suspenmemb.addRole(suspenrole.id)
+    suspenmemb.removeRole(membrole.id)
+    raid[suspenmemb.id] = ms(timeframe)
+    msg.guild.channels.find('name', 'punish-logs').send({
+      embed: {
+        color: 0xFFB400,
+        description: `${suspenmemb} was **suspended** for **${ms(ms(timeframe), {long: true})}! \n\n**Reason:** ${suspendreason}\n\n**Suspended by** ${msg.author}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    setTimeout(function(){
+    
+    }, ms(timeframe));
+  
+  }// END SUSPEND CMD
+  
+  if (msg.content.toLowerCase().startsWith('-movequeue')) {
+  if (!msg.member.roles.some(r => ["Raid Leader", "Almost Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    msg.react('👍')
+    msg.channel.send('Moving Queue!')
+    var people = client.channels.get('433784986072776714').members.array();
 
                 var promises = [];
                 people.forEach(person => {
                     promises.push(person.setVoiceChannel('433788028264120326'));
                 });
-                Promise.all(promises);
-		
-	}
-})
-                                                                       
-client.on('raw', event => {
-    
-    if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE"){
-        
-        let channel = client.channels.get(event.d.channel_id);
-	    
-        let message = channel.fetchMessage(event.d.message_id).then(msg=> {
-        let user = msg.guild.members.get(event.d.user_id);
-        
-        if (msg.author.id == client.user.id && msg.content.startsWith('@here')){
-       
-            
-        
-            if (user.id != client.user.id){
-                
-                var memberObj = msg.guild.members.get(user.id);
-                
-                if (event.t === "MESSAGE_REACTION_ADD"){
-			wait(10000)
-                    memberObj.setVoiceChannel('433788028264120326')
-                } else {
-                    memberObj.setVoiceChannel('433803796339097610')
-                }
-            }
+Promise.all(promises);
+  }
+  
+  
+  if (msg.content.toLowerCase().startsWith('-warn')) { //START WARN CMD
+    if (!msg.member.roles.some(r => ["Owner", "Admin", "Officer", "Raid Leader", "Almost Raid Leader", "Chat Mod"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-        })
- 
-    }   
-});                                                                       
-//line 123 is where lhgs specific starts. 
-
-client.on('ready', () => {
-console.log(`Logged in as ${client.user.tag}!`);
-client.user.setPresence({ game: { name: `in Shatters! | !commands`, type: 0 }});
-    const welcomemessage = new Discord.RichEmbed()
-    .setTitle("Welcome to ***Shatters Central***")
-    .setAuthor("Bridge Guardian", client.user.avatarURL)
-    .setDescription("To get started, read #rules! Once you have fully read the rules, go to #verify and follow the instructions to get verified!")
-    .setColor(2899536)
-    .setThumbnail("https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg")
-    .setFooter("Bot coded by ~Droid~#5799, be sure to check #partners for other cool discords!", client.user.avatarURL)
-    .setTimestamp()
-    });
-
-
-client.on('guildMemberAdd', member => {
-    
-    
-member.user.send({
-        embed: {
-            color: 0x00FFFF,
-            author: {
-                name: `The Bridge Guardian`,
-                icon_url: client.user.avatarURL
-            },
-            fields: [{
-                    name: "Welcome to ***Shatters Central***!",
-                    value: "To get started, read <#433789483222040577>! Once you have fully read the rules, go to <#433792597962522624> and follow the instructions to get verified!",
-                    
-                }
-               
-            ],
-            footer: {
-                text: "Bot coded by ~Droid~#5799, be sure to check <#433856093148676108> for other cool discords!",
-            },
-            thumbnail: {
-                url: "https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
-            }
+      }
+    })
+    var warnmemb = msg.mentions.members.first();
+    var warnmsg = args.splice(1).slice(1).join(' ');
+    if (!warnmemb) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please mention a valid member to warn!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-    });
-        
-    client.channels.get("451179074593751040").send({
-        embed: {
-            color: 0x00FFFF,
-            author: {
-                name: `New User | ${member.user.tag}`,
-                icon_url: member.user.avatarURL
-            },
-            fields: [{
-                    name: "__**Username:**__",
-                    value: `${member.user}`,
-                    inline: true,
-                },
-                {
-                    name: "__**Account Created:**__",
-                    value: `${member.user.createdAt}`,
-                    inline: true,
-                }
-            ],
-            footer: {
-                text: "~Droid~#5799",
-            }
+      }
+    })
+    if (!warnmsg) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please provide a reason for the warn!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-    });
-});
-
-client.on('message', async msg => {
-	let raidstatuss = msg.guild.channels.find("name", "raid-status")
-	
-	/*if (msg.content.startsWith("!starttime")) {
-		  if (!msg.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Officer", "Owner"].includes(r.name))) {
-			  msg.reply("Message is only allowed to be used by raid leaders for timing runs! Once the command is fully tested, it will be released to the public.")
-			  return;
-		  }
-		if (!test['timer']) {
-		test['timer'] = 0	
-		}else{
-			test['timer'] = 0
-		}
-		if (!test['user']) {
-		test['user'] = msg.author.id	
-		}else{
-			test['user'] = msg.author.id
-		}
-	    msg.channel.send(`${msg.author} has started the stopwatch! Type \`stop\` to end the timer! Timer automatically stops at 25 minutes! Starting in 5 seconds`)
-	    wait(5000)
-	    const timermessage = client.channels.get("433789873690902532").send(`:timer: Stopwatch | User: ${msg.author}
-\n Time Elapsed: 0 seconds
-`)
-	    const timemsg = await timermessage
-	    raidstatuss.fetchMessage(timemsg.id).then(lol=> {
-		    if (!test['timerid']) {
-			test['timerid'] = timemsg.id    
-		    }else{
-			test['timerid'] = timemsg.id    
-		    }
-		if (!test['timer']) {
-		test['timer'] = 0	
-		}else{
-		test['timer'] = 0	
-		}
-		
-		for (i = 0; i < 1500; i++) {
-			var ll = i.toString()
-			if (test['timer'] == 10) {
-			lol.edit(`:timer: Stopwatch | User: ${msg.author}
-\n Time Elapsed: 0 seconds
-`)
-				
-			}
-			if (i == 1500) {
-				lol.edit(`:timer: Stopwatch Ended
-\n Total Time Elapsed: ${ll} seconds
-`)
-			}
-		lol.edit(`:timer: Stopwatch | User: ${msg.author}
-\n Time Elapsed: ${ll} seconds
-`)
-			wait(1000)
-		}
-	    })
-	    
-	    }
-	if (msg.content.startsWith('stop')) {
-	if (!msg.author.id == test['user']){
-		return;
-	}
-		if (!test['timer']) {
-		test['timer'] = 10	
-		}else{
-		test['timer'] = 10	
-		}
-	    }
-	    
-	*/
-    if (msg.content.startsWith('!verify')) {
-        var argss = msg.content.split(" ");
-        if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) {
-            msg.author.send("You are already verified!")
-            msg.delete();
-            return;
+      }
+    })
+    warnmemb.send({
+      embed: {
+        color: 0xFFB400,
+        description: `You have been **warned** in Shatters Central by ${msg.author}! \n\n**Reason:** ${warnmsg} \n\n:joystick: To continue using our server, please abide by our rules in the future to avoid more punishment.\n\n<:signquestionicon:459473621304213525> Questions about your warning? Please message an administrator **privately** to dispute it.`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-        msg.delete();
-        let ruser = argss[1]
-	if (!ruser) return msg.author.send('Please provide your username after `!verify`')
-            let rcode = ("SC" + Math.floor(Math.random(11111) * 99999));
-let rapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=c;"
-if (!test[msg.author.id]) {
-	test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
-}else{
-	test[msg.author.id] = {ign: `${ruser}`, code: `${rcode}`}
-}
-        msg.delete();
-        
-        let userdata = test[msg.author.id]
-
-                msg.author.send({
-                    embed: {
-                        color: 0xa3fb7a,
-                        author: {
-                            name: `Verification | ${ruser}`,
-                            icon_url: msg.author.avatarURL
-                        },
-                        fields: [{
-                                name: "**Your Code:**",
-                                value: `**${userdata.code}**`,
-                                inline: true,
-                            },
-                            {
-                                name: "**Realmeye Link:**",
-                                value: `https://www.realmeye.com/player/${userdata.ign}`,
-                                inline: true,
-                            },
-                            {
-                                name: `Place your verification code on any line of your description, but _*it MUST be the only piece of text on that line.*`,
-                                value: "Once you have placed the code, type `done` in #verify",
-                            },
-                        ],
-                        footer: {
-                            text: "⚠ Be sure to follow the directions above exactly, or your verification will fail",
-                        }
-                    }
-               
-});
-    
-        console.log(test)
-fs.writeFile('./test.json', JSON.stringify(test), console.error);
-        
-    }
-    if (msg.content.startsWith('done')) {
-        
-        if (msg.member.roles.some(r => ["Shatters"].includes(r.name))) 
-            return;
-        let userdatadone = test[msg.author.id]
-        if (!userdatadone) {
-            msg.author.send("Your IGN and Code was not found in the database, please go to #verify and type `!verify IGN`!")
-            msg.delete()
-            return;
+      }
+    })
+    msg.channel.send({
+      embed: {
+        color: 0x3BF601,
+        description: `<:check:459473621031583765> ${warnmemb} was successfully warned!`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
         }
-        msg.delete();
-        console.log(userdatadone)
-                   let codexd =  userdatadone.code
-                   let ignxd = userdatadone.ign
-                   let rrapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + ignxd + "&f=c;"
-                   
-        
-        snekfetch.get(rrapi).then(r => {
-                        let rdesc = r.body.description;
-                        let rname = r.body.name
-                        let rstars = r.body.rank
-                        let rlocation = r.body.last_seen
-                        let rfame = r.body.fame
-
-                        if (!rdesc.includes(codexd))
-                            return msg.author.send("Your code was not found in any line of your description. Make sure that your code is the ONLY piece of text in one line of your description.")
-
-
-                        if (rstars < (14))
-                            return msg.author.send("You do not have enough stars to be verified! You have " + rstars + ". You need __**14**__.")
-
-
-                        if (!rlocation.includes("hidden"))
-                            return msg.author.send("Your location is not hidden so you cannot be verified!")
-
-                        if (rfame < (500))
-                            return msg.author.send("Your do not have enough fame to be verified! You have " + rfame + ". You need __**500**__.")
-
-
-                        if (rdesc.includes(codexd))
-                            msg.guild.member(msg.author).setNickname(`${rname}`)
-                        let lelxdppebtw = msg.guild.roles.find("name", "Shatters");
-                        // id wasnt working some times, 433784738998910977
-                        msg.guild.member(msg.author).addRole(lelxdppebtw.id)
-                        msg.author.send("You have successfully been verified!");
-                        client.channels.get("451179074593751040").send({
-                            embed: {
-                                color: 0xfb7ae4,
-                                author: {
-                                    name: `User Verified`,
-                                    icon_url: msg.author.avatarURL
-                                },
-                                fields: [{
-					name: "**Discord Profile**",
-					value: `${msg.author}`,
-					inline: true,
-				},
-					{
-                                        name: "**Realmeye Link:**",
-                                        value: `https://www.realmeye.com/player/${rname}`,
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**User IGN**__",
-                                        value: ignxd,
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**Character Fame**__",
-                                        value: rfame + " Fame",
-                                        inline: true,
-                                    },
-                                    {
-                                        name: "__**Stars**__",
-                                        value: rstars + " Stars",
-                                        inline: true,
-                                    }
-
-
-                                ],
-                                footer: {
-                                    text: "User has been verified by the bot.",
-                                }
-                            }
-                        });
-
-
-                    })
-
-
-                }
+      }
+    })
+    msg.guild.channels.find('name', 'punish-logs').send({
+      embed: {
+        color: 0xFFB400,
+        description: `${warnmemb} was **warned**! \n\n**Reason:** ${warnmsg}\n\n**Warned by** ${msg.author}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
     })
 
-client.on('message', function(message) {
-    var args = message.content.split(" ");
-    var cmd = args[0];
-
-    args = args.splice(1);
-
-    switch (cmd) {
-            
-            case "!suspend":
-            var argsss = message.content.split(" ");
-        if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Officer"].includes(r.name)))
-                return message.reply(":x: Sorry, you don't have permissions to use this!");
-          let member2 = message.mentions.members.first();
-          if(!member2) return message.reply(":x: " + "| You need to mention a user/member!");
-          let muteRole2 = message.guild.roles.find("name", "Suspended");
-          if(!muteRole2) return message.reply(":x: " + "| You do not have the \"Suspended Raider\" role created!");
-          let verifiedrole = message.guild.roles.find("name", "Shatters");
-          let time2 = argsss[2];
-let reasonxd = args.slice(2).join(' ')
-            if(!reasonxd) return message.reply(":x: " + "| Please provide a reason for the suspension!");
-          if(!time2) {
-            message.channel.send("Please provide a time for the suspension!");
-          }else {
-            member2.addRole(muteRole2.id);
-            member2.removeRole(verifiedrole.id);
-            client.channels.get("433798601148334081").send(member2 + ` has been suspended for ${ms(ms(time2), {long: true})}, Reason: ${reasonxd}!`);
-
-            setTimeout(function(){
-              member2.removeRole(muteRole2.id);
-              member2.addRole(verifiedrole.id);
-              client.channels.get("433798601148334081").send(member2 + ` has been unsuspended, suspension lasted for ${ms(ms(time2), {long: true})}`)
-
-            }, ms(time2));
-
-            };
-            
-break;
-            
-
-      
-
-            case "!realmeye":
-           let user = args.slice(0).join("");
-           let rapii = "http://www.tiffit.net/RealmInfo/api/user?u=" + user + "&f=c;";
-          
-           message.delete();
-           if(!user)
-return message.channel.send("Please include a username after `!realmeye`.")
-           
-           snekfetch.get(rapii).then(r => {
-let asdesc = r.body.description;
-let asname = r.body.name
-let asstars = r.body.rank
-let aslocation = r.body.last_seen
-let asfame = r.body.fame
-let ascount = r.body.characterCount
-let asacctfame = r.body.account_fame
-let ascreated = r.body.created
-let asskins = r.body.skins
-let asguild = r.body.guild
+  } //END WARN CMD
 
 
-           
-           message.channel.send({embed: {
-  color: 0xfbd27a,
-  author: {
-    name: "Realmeye Info for" + user,
-    icon_url: client.user.avatarURL
-  },
-  fields: [
-      {
-      name: "Description",
-      value: "Desc: " + asdesc,
-      inline: true
-    },
-    {
-      name: "Stars",
-      value: "Stars: " + asstars,
-      inline: true
-    },
-    {
-      name: "Last-seen Location",
-      value: "server: " + aslocation, 
-      inline: true
-    },
-    {
-      name: "Character Fame",
-      value: "Fame: " + asfame, 
-      inline: true
-    },
-           {
-             name: "Account Fame",
-             value: "Fame: " + asacctfame, 
-             inlint: true
-           },
-           {
-             name: "Account Created",
-             value: "Date: " + ascreated,
-             inline: true
-           },
-           {
-             name: "Skin Count",
-             value: "Skins: " + asskins,
-             inline: true
-           },
-           {
-             name: "Guild",
-             value: "Guild:" + asguild,
-             inline: true
-           }
-  ],
-  timestamp: new Date(),
-  footer: {
-    icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
-    text: "~Droid~#5799"
-  }//end
-  }})
-})
+  if (msg.content.toLowerCase().startsWith('-kick')) { //START KICK CMD
+    if (!msg.member.roles.some(r => ["Owner", "Admin", "Officer"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    var kickmemb = msg.mentions.members.first();
+    var kickmsg = args.splice(1).slice(1).join(' ');
+    if (!kickmemb) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please mention a valid member to kick!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!kickmsg) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please provide a reason for the kick!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!kickmemb.kickable) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> This member is not kickable!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    kickmemb.send({
+      embed: {
+        color: 0xFFB400,
+        description: `You have been **kicked** from Shatters Central by ${msg.author}! \n\n**Reason:** ${kickmsg} \n\n:joystick: To continue using our server, please abide by our rules in the future to avoid more punishment. You will also have to re-verify.\n\n<:signquestionicon:459473621304213525> Questions about your kick? Please message an administrator **privately** to dispute it.`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
 
-  break;
-
-
-
-        
-            
-        
-
-        case "!info":
-            message.delete();
-
-            message.channel.send({
-                embed: {
-                    color: 0xfbd27a,
-                    author: {
-                        name: "Bridge Guardian Info",
-                        icon_url: client.user.avatarURL
-                    },
-                    fields: [{
-                            name: "__**Version**__",
-                            value: "1.0.0",
-                            inline: true,
-                        },
-                        {
-                            name: "__**Release Date**__",
-                            value: "5/27/18",
-                            inline: true,
-                        },
-                        {
-                            name: "__**Information**__",
-                            value: "The Bridge Guardian was coded using JavaScript and serves Shatters Central."
-                        },
-                        {
-                            name: "__**Shatters Central Invite**__",
-                            value: "Invite people to Shatters Central! : https://discord.gg/zNZUHbe"
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: "https://cdn.discordapp.com/avatars/160140367554019329/a423acbb3957e25bce788915eda9414a.png?size=2048",
-                        text: "~Droid~#5799"
-                    }
-                }
-            });
-            break;
-
-        case "!userinfo":
-
-            let uiembed = new Discord.RichEmbed()
-                .setAuthor(message.author.username)
-                .setDescription("This is " + message.author.username + "'s info!")
-                .setThumbnail(message.author.avatarURL)
-                .setColor("0xff040b")
-                .addField("Full Username:", `${message.author.username}#${message.author.discriminator}`)
-                .addField("User ID:", message.author.id)
-                .addField("Created At:", message.author.createdAt);
-
-            message.channel.sendEmbed(uiembed)
-            break;
-
-      /*  case "!suggest":
-            let suggestion = args.slice(0).join(' ');
-            if (!suggestion)
-                return message.reply("Please include a suggestion for the bot!")
-            message.delete();
-            message.reply("Thank you for the suggestion!")
-            client.channels.get("441416698420265000").send({
-                    embed: {
-                        color: 0x927afb,
-                        author: {
-                            name: "New Suggestion!",
-                            icon_url: client.user.avatarURL,
-                        },
-                        title: "**Suggestion:**",
-                        description: suggestion,
-                        fields: [{
-                            name: "*Idea Sent in by:*",
-                            value: "" + message.author + "\n*Vote whether or not this is a good suggestion.*",
-                        }],
-                        timestamp: new Date(),
-                        footer: {
-                            icon_url: client.user.avatarURL,
-                        }
-                    }
-                })
-                .then(message => {
-                    message.react("✅")
-                    message.react("❎")
-                })
-            break;
-*/
-        case "!rotmgchars":
-            message.channel.send({
-                embed: {
-                    color: 0x000000,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    thumbnail: {
-                        url: 'https://steamuserimages-a.akamaihd.net/ugc/615025248066186198/CCF7A2CA7AAC3180249A4C8E8346C0DA68A4D839/'
-                    },
-                    title: "**Realm Characters**",
-                    description: "These are all of the current Realm of the Mad God characters.",
-                    fields: [{
-                            name: "__**Rogue**__ : Uses a medium ranged dagger. Special ability is cloaking.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Archer**__ : Uses a long ranged bow. Special ability is shooting debuffs.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Wizard**__ : Uses a long ranged staff. Special ability is burst of damage within a range.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Priest**__ : Uses a long ranged wand. Special ability is AoE healing.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Warrior**__ : Uses a short ranged sword. Special ability is berserk mode.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Knight**__ : Uses a short ranged sword. Special ability is shield bash.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Paladin**__ : Uses a short ranged sword. Special ability is AoE buff.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Assassin**__ : Uses a medium ranged dagger. Special ability is throwing poisons that damage over time.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Necromancer**__ : Uses a long ranged staff. Special ability is lifesteal.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Huntress**__ : Uses a long ranged bow. Special ability is placing damaging traps.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Mystic**__ : Uses a long ranged staff. Special ability is stasising enemies.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Trickster**__ : Uses a medium ranged dagger. Special ability is sending out decoys.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Sorcerer**__ : Uses a long ranged wand. Special ability is damage dealt across enemies.",
-                            value: "\u200b"
-                        },
-                        {
-                            name: "__**Ninja**__ : Uses a medium ranged katana. Special ability is shooting damaging shuriken.",
-                            value: "\u200b"
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                    }
-                }
-            });
-            break;
-
-        case "!warn":
-            let members = message.mentions.members.first();
-
-            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Officer", "Chat Mod", "Raid Leader", "Almost Raid Leader"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-
-            if (!members)
-                return message.reply("Please mention a valid member of this server!");
-
-            let reason = args.slice(1).join(' ');
-            if (!reason)
-                return message.reply("Please indicate a reason for the warn!");
-
-            message.channel.send(`***✅ ${members.user.tag} has been warned.***`);
-            client.channels.get("433798601148334081").send({
-                embed: {
-                    color: 0xff040b,
-                    author: {
-                        name: `Warn | ${members.user.tag} `,
-                        icon_url: members.user.avatarURL
-                    },
-                    fields: [{
-                            name: "User",
-                            value: `${members.user}`,
-                            inline: true,
-                        },
-                        {
-                            name: "Moderator",
-                            value: `${message.author}`,
-                            inline: true,
-                        },
-                        {
-                            name: "Reason",
-                            value: `${reason}`,
-                            inline: true,
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        text: `ID: ${members.user.id}`,
-                    }
-                }
-            });
-            message.mentions.users.first().send(`You were warned in Shatters Central, Reason: ${reason}`);
-            break;
-
-        case "!kick":
-            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Owner", "Admin", "Officer", "Head Raid Leader"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-
-            let member = message.mentions.members.first();
-
-            if (!member)
-                return message.reply("Please mention a valid member of this server");
-            if (!member.kickable)
-                return message.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
-
-            let kreason = args.slice(1).join(" ");
-            if (!kreason)
-                return message.reply("Please indicate a reason for the kick!");
-
-            let kkreason = args.slice(1).join(' ');
-            member.kick(kreason)
-                .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-            client.channels.get("433798601148334081").send({
-                embed: {
-                    color: 0xff040b,
-                    author: {
-                        name: `Ban | ${member.user.tag} `,
-                        icon_url: member.user.avatarURL
-                    },
-                    fields: [{
-                            name: "User",
-                            value: `${member.user}`,
-                            inline: true,
-                        },
-                        {
-                            name: "Moderator",
-                            value: `${message.author}`,
-                            inline: true,
-                        },
-                        {
-                            name: "Reason",
-                            value: `${kreason}`,
-                            inline: true,
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        text: `ID: ${member.user.id}`,
-                    }
-                }
-            });
-            message.channel.send(`***${member.user.tag} was kicked.***`);
-            break;
-
-        case "!ban":
-            let bmember = message.mentions.members.first();
-
-            if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Admin", "Owner"].includes(r.name)))
-                return message.reply("Sorry, you don't have permissions to use this!");
-
-            if (!bmember)
-                return message.reply("Please mention a valid member of this server");
-            if (!bmember.bannable)
-                return message.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
-
-            let breason = args.slice(1).join(' ');
-            if (!breason)
-                return message.reply("Please indicate a reason for the ban!");
-
-            bmember.ban(breason)
-                .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-            client.channels.get("433798601148334081").send({
-                embed: {
-                    color: 0xff040b,
-                    author: {
-                        name: `Ban | ${bmember.user.tag} `,
-                        icon_url: bmember.user.avatarURL
-                    },
-                    fields: [{
-                            name: "User",
-                            value: `${bmember.user}`,
-                            inline: true,
-                        },
-                        {
-                            name: "Moderator",
-                            value: `${message.author}`,
-                            inline: true,
-                        },
-                        {
-                            name: "Reason",
-                            value: `${breason}`,
-                            inline: true,
-                        }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        text: `ID: ${bmember.user.id}`,
-                    }
-                }
-            });
-            message.channel.send(`***✅ ${bmember.user.tag} was banned!***`);
-            break;
-
-        /*case "!rotmg":
-            message.guild.member(message.author).addRole("442240483327213578");
-            message.channel.send("The user " + message.author + " was given the role ``RotMG``");
-            break;
-        case "!rrotmg":
-            message.guild.member(message.author).removeRole("442240483327213578");
-            message.channel.send("The user " + message.author + " got ``RotMG`` removed.");
-            break;*/
+    kickmemb.kick(kickmsg).catch(error => msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: `<:error:459473621233041428> An error ocurred. Err Msg: ${error}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    }))
+    msg.channel.send({
+      embed: {
+        color: 0x3BF601,
+        description: `<:check:459473621031583765> ${kickmemb} was successfully kicked!`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    msg.guild.channels.find('name', 'punish-logs').send({
+      embed: {
+        color: 0xFF0000,
+        description: `${kickmemb} was **kicked**! \n\n**Reason:** ${kickmsg}\n\n**Kicked by** ${msg.author}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
 
 
-        case "!commands":
-            message.channel.send({
-                embed: {
-                    color: 0x7aa3fb,
-                    author: {},
-                    thumbnail: {
-                        url: "http://simpleicon.com/wp-content/uploads/gear-2.png"
-                    },
-                    title: "__**Commands**__",
-                    fields: [{
-                            name: "`!rotmgchars`",
-                            value: "This command shows all existing characters in ROTMG"
-                        },
-                        {
-                            name: "`!commands`",
-                            value: "This command displays all available commands."
-                        },
-                        
-                        {
-                            name: "`!info`",
-                            value: "Shows details about the bot!"
-                        },
-                        {
-                            name: "`!userinfo`",
-                            value: "This command will display your Discord account information."
-                        },
-                        
-                        {
-                            name: "`!realmeye <IGN>`",
-                            value: "Gives basic data of a RotMG Player"
-                        }
-                    ],
-                    footer: {
-                        text: "If you have any question, feel free to pm Droid! More commands are coming!"
-                    }
-                }
-            });
-            break;
-        case "!headcount":
-              if (!message.member.roles.some(r => ["Administrator", "Shatters Central", "Raid Leader", "Almost Raid Leader", "Head Raid leader"].includes(r.name)))
-return message.reply("Sorry, you don't have permissions to use this!");
-    	client.channels.get('433789873690902532').send("Headcount @here ! React with <:Shatters:433791162411646988> to participate and <:Key:434134124631031810> if you have a key and are willing to pop!").then(oldMessage => {
-             
-        oldMessage.react(message.guild.emojis.get('433791162411646988'))
-        oldMessage.react(message.guild.emojis.get('434134124631031810'))
-             .catch(console.error);
-})
-            break;
-        case "!staffcommands":
-            message.channel.send({
-                embed: {
-                    color: 0x7aa3fb,
-                    author: {},
-                    thumbnail: {
-                        url: "http://simpleicon.com/wp-content/uploads/gear-2.png"
-                    },
-                    title: "__**Staff Commands**__",
-                    fields: [{
-                            name: "`!warn <@user> <reason>`",
-                            value: "Warns a user of an infraction, be sure to include reason."
-                        },
-                        {
-                            name: "`!kick <@user> <reason>`",
-                            value: "Kicks a user from the server."
-                        },
-                        {
-                            name: "`!ban <@user> <reason>`",
-                            value: "Bans user from the server."
-                        },
-                        {
-                            name: "`!suspend <@user> <time: h, d, w> <reason>`",
-                            value: "Suspends a user from participating in runs for a set amount of time. Example `!suspend @Droid 5d hacking`"
-                        },
-                        {
-                            name: "`!afkcheck`",
-                            value: `Starts an AFK Check. Use in <#437466234473283584>. Work in progress, but it is functional.`
-                        },
-			{
-				name: "`!endafk`",
-				value: `Ends an AFK Check. Use in <#437466234473283584>.`
-			},
-			     {
-				     name: "`!abortafk`",
-				     value: `Aborts an AFK Check. Use in <#437466234473283584>. Be sure to update the people in <#433789873690902532>.`
-			     },
-			     {
-				     name: "`!movequeue`",
-				     value: `Moves people from queue to Raiding. Use in <#437466234473283584>, and only when people are asking to be moved.`
-			     }
-                        
-                    ],
-                    footer: {
-                        text: "Use these commands only when necessary"
-                    }
-                }
-            });
-            break;
+  } // END KICK CMD
+  if (msg.content.toLowerCase().startsWith('-ban')) { //START BAN CMD
+    if (!msg.member.roles.some(r => ["Owner", "Admin"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    var banmemb = msg.mentions.members.first();
+    var banmsg = args.splice(1).slice(1).join(' ');
+    if (!banmemb) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please mention a valid member to ban!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!banmsg) return msg.channel.send({
+      embed: {
+        color: 0xFFB400,
+        description: "<:warn:459473619613908994> Please provide a reason for the ban!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (!banmemb.bannable) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> This member is not bannable!",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    banmemb.send({
+      embed: {
+        color: 0xFFB400,
+        description: `You have been **banned** from Shatters Central by ${msg.author}! \n\n**Reason:** ${banmsg} \n\n<:signquestionicon:459473621304213525> Questions about your ban? Please message an administrator **privately** to dispute it.`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
 
-        
+    banmemb.ban(banmsg).catch(error => msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: `<:error:459473621233041428> An error ocurred. Err Msg: ${error}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    }))
+    msg.channel.send({
+      embed: {
+        color: 0x3BF601,
+        description: `<:check:459473621031583765> ${banmemb} was successfully banned!`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    msg.guild.channels.find('name', 'punish-logs').send({
+      embed: {
+        color: 0x000000,
+        description: `${banmemb} was **banned**! \n\n**Reason:** ${banmsg}\n\n**Banned by** ${msg.author}`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
 
 
+  } // END BAN CMD
+   
 
-    }
-});
 
-client.login(process.env.BOT_TOKEN);
+}); // END MESSAGE HANDLER
+
+fs.writeFile('./test.json', JSON.stringify(test), console.error);
+fs.writeFile('./raid.json', JSON.stringify(test), console.error);
+client.login(process.env.BOT_TOKEN)
