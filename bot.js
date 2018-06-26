@@ -10,7 +10,56 @@ let raid = JSON.parse(fs.readFileSync('./raid.json', 'utf8'));
 
 
 var lmaoxd;
-
+client.on('guildMemberAdd', member => {
+    
+    
+member.user.send({
+        embed: {
+            color: 0x00FFFF,
+            author: {
+                name: `The Bridge Guardian`,
+                icon_url: client.user.avatarURL
+            },
+            fields: [{
+                    name: "Welcome to ***Shatters Central***!",
+                    value: "To get started, read <#433789483222040577>! Once you have fully read the rules, go to <#433792597962522624> and follow the instructions to get verified!",
+                    
+                }
+               
+            ],
+            footer: {
+                text: "Bot coded by ~Droid~#5799, be sure to check <#433856093148676108> for other cool discords!",
+            },
+            thumbnail: {
+                url: "https://cdn.discordapp.com/icons/433784235443355648/b5de61dee0b1deafb66f952791215f1c.jpg"
+            }
+        }
+    });
+        
+    client.channels.get("451179074593751040").send({
+        embed: {
+            color: 0x00FFFF,
+            author: {
+                name: `New User | ${member.user.tag}`,
+                icon_url: member.user.avatarURL
+            },
+            fields: [{
+                    name: "__**Username:**__",
+                    value: `${member.user}`,
+                    inline: true,
+                },
+                {
+                    name: "__**Account Created:**__",
+                    value: `${member.user.createdAt}`,
+                    inline: true,
+                }
+            ],
+            footer: {
+                text: "~Droid~#5799",
+            }
+        }
+    });
+});
 client.on('raw', event => {
 if (event.t == 'VOICE_STATE_UPDATE') {
 var voiceguild = client.guilds.get(event.d.guild_id)
