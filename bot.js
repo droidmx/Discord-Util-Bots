@@ -370,6 +370,39 @@ client.on('message', async msg => { // START MESSAGE HANDLER
     })
 
   } //END DONE CMD
+  if (msg.content.toLowerCase().startsWith('-hc')) {
+  if (!msg.member.roles.some(r => ["Raid Leader", "Almost Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> You do not have permission to use this command",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+    if (msg.channel.name != 'leader-bot-commands') return msg.channel.send({
+      embed: {
+        color: 0xFF0000,
+        description: "<:error:459473621233041428> Command used in wrong channel. Correct Channel: <#437466234473283584>",
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+  }
+  const headcount = await msg.guild.channels.find('name', 'raid-status').send('@here A Headcount has been started! React with <:portal:433791162411646988> if you wish to start a shatters run, and <:shatterskey:460200528039903242> if you have a key and are willing to pop!')
+  
+  await headcount.react('433791162411646988')
+  await headcount.react('460200528039903242')
+  
+  
+  
+  }
+    
   if (msg.content.toLowerCase().startsWith('-afkcheck')) { //START AFK CMD
     if (!msg.member.roles.some(r => ["Raid Leader", "Almost Raid Leader", "Head Raid Leader", "rl-tag"].includes(r.name))) return msg.channel.send({
       embed: {
@@ -627,6 +660,13 @@ msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).
         }
       })
  });
+ var people = client.channels.get('433788028264120326').members.array();
+
+                var promises = [];
+                people.forEach(person => {
+                    promises.push(person.setVoiceChannel('433784986072776714'));
+                });
+Promise.all(promises);
  raid['afkid'] = 0
 }
 
