@@ -746,7 +746,7 @@ Promise.all(promises);
         }
       }
     })
-    var suspenmemb = msg.member.mentions.first();
+    var suspenmemb = msg.mentions.member.first();
     var suspendreason = args.slice(2).join(' ')
     var timeframe = args[2]
      if (!suspenmemb) return msg.channel.send({
