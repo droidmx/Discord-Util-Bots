@@ -393,7 +393,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         }
       }
     })
-  }
+  
   const headcount = await msg.guild.channels.find('name', 'raid-status').send('@here A Headcount has been started! React with <:portal:433791162411646988> if you wish to start a shatters run, and <:shatterskey:460200528039903242> if you have a key and are willing to pop!')
   
   await headcount.react('433791162411646988')
