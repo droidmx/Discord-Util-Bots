@@ -151,7 +151,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       embed: {
         color: 0x42017E,
         author: {
-          name: "Realm Raiders Verification",
+          name: "Shatters Central Verification",
           icon_url: msg.author.avatarURL
         },
         description: verifmsg,
