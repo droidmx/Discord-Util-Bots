@@ -746,13 +746,13 @@ Promise.all(promises);
         }
       }
     })
-    var suspenmemb = msg.mentions.member.first();
+    var suspenmemb = msg.mentions.members.first();
     var suspendreason = args.slice(2).join(' ')
     var timeframe = args[2]
      if (!suspenmemb) return msg.channel.send({
       embed: {
         color: 0xFFB400,
-        description: "<:warn:459473619613908994> Please mention a valid member to warn!",
+        description: "<:warn:459473619613908994> Please mention a valid member to suspend!",
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
