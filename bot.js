@@ -393,7 +393,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         }
       }
     })
-  
+  }
   const headcount = await msg.guild.channels.find('name', 'raid-status').send('@here A Headcount has been started! React with <:portal:433791162411646988> if you wish to start a shatters run, and <:shatterskey:460200528039903242> if you have a key and are willing to pop!')
   
   await headcount.react('433791162411646988')
@@ -562,12 +562,12 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           
           title: `${msg.author.username} has ended the AFK-Check for the __Shatters__ run`,
           description: `If you have been moved to the Raiding VC, please wait for further instructions. The run has not started yet, so if you wish to participate, join the 'queue' voice channel!
-          \n ${raid['portal']} Raiders: **${reactions[0].length - 1}**
-          \n ${raid['key']} Key Holders: **${keys[1].slice(7)}**
-          \n <:priest:450369875467173890> Priests: **${priests}**
-          \n <:paladin:450369854231412766> Paladins: **${paladins}**
-          \n <:warrior:450369890721857596> Warriors: **${warriors}**
-          \n <:rogue:451510300727050242> Rogues: **${rogues}**`,
+          \n <:portal:433791162411646988> Raiders: **${reactions[0].length - 1}**
+          \n <:shatterskey:460200528039903242> Key Holders: **${keys[1].slice(17)}**
+          \n <:priest:460200880138878996> Priests: **${priests}**
+          \n <:paladin:460200880046735361> Paladins: **${paladins}**
+          \n <:warrior:460200880172433428> Warriors: **${warriors}**
+          \n <:rogue:461235735287169029> Rogues: **${rogues}**`,
           timestamp: new Date(),
          footer: {
             icon_url: client.user.avatarURL,
@@ -608,7 +608,7 @@ raid['queuemove'] = 'no'
  msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
  mesg.edit({
         embed: {
-          color: raid['color'],
+          color: 0x006400,
           
           title: `${msg.author.username} has started the run for the __Shatters__`,
           description: `The raid is currently **in session**. Please wait for the run to end and for another AFK-Check to be initiated!`,
@@ -648,7 +648,7 @@ if (!msg.member.roles.some(r => ["Raid Leader", "Trial Raid Leader", "Head Raid 
 msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
  mesg.edit({
         embed: {
-          color: raid['color'],
+          color: 0x006400,
           
           title: `The run for the __Shatters__ has ended`,
           description: `The raid is currently **finished**. If you participated in the run, please provide feedback for ${msg.author.username} in <#433803620647960586>`,
