@@ -11,7 +11,12 @@
         "async": "^2.6.0",
         "core-js": "^2.5.3",
         "core.js": "^0.4.2",
-        "discord.js": "github:hydrabolt/discord.js#11.3-dev",
+        "discord": "^0.8.2",
+    "discord.js": "^11.3.2",
+    "snekfetch": "^4.0.4",
+    "ms": "^2.1.1",
+    "FileSync": "^1.0.1",
+    "fs": "^0.0.2",
         "enmap": "^2.0.1",
         "enmap-level": "^2.0.0",
         "enmap-rethink": "^2.0.1",
@@ -20,8 +25,8 @@
         "ffmpeg.js": "^3.1.9001",
         "node-fetch": "^2.0.0",
         "npm": "^5.7.1",
-        "opusscript": "0.0.6",
-        "snekfetch": "^3.6.4"
+        "opusscript": "0.0.6"
+       
         
     }
 }
