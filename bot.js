@@ -536,7 +536,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       }
     })
     msg.guild.channels.find('name', 'raid-status').fetchMessage(`${raid['afkid']}`).then(mesg => {
-      var keys = mesg.reactions.map(m => m.users.map(u => u.nickname).join(', ')) //.map(m => m.users.map(u => u.username));
+      var keys = mesg.reactions.map(m => m.users.map(u => u.username).join(', ')) //.map(m => m.users.map(u => u.username));
 
       var priests = mesg.reactions.find(reaction => reaction.emoji.id === '460200880138878996').count - 1
       var paladins = mesg.reactions.find(reaction => reaction.emoji.id === '460200880046735361').count - 1
