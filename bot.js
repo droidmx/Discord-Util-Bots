@@ -60,7 +60,7 @@ member.user.send({
         }
     });
 });
-client.on('raw', event => {
+ /*client.on('raw', event => {
 if (event.t == 'VOICE_STATE_UPDATE') {
 var voiceguild = client.guilds.get(event.d.guild_id)
 
@@ -74,7 +74,7 @@ voicemember.setVoiceChannel(voiceguild.channels.find('name', 'Raiding').id)
 
 }
 
-})
+}) */
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setPresence({
