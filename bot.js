@@ -97,13 +97,14 @@ client.on('guildMemberAdd', member => {
 client.on('message', async message => {
 let args = message.content.split(' ');
 let msg = args.slice(0, -1).join(' ');
-if (message.channel.id != '457259123566706740') {
-    return;
-}
+
 
 if (message.author.id != '435395940715855872') {
     return;
 }
+    if (message.channel.id == '457281496294621195') {
+     client.channels.get('465893078033629194').send(`${msg}`)   
+    }
 
 if (message.content.startsWith('**Parasite Chambers Portal**')) {
     client.channels.get('457270832364912670').send(`<@&457261792763052032> ${msg}`)
@@ -161,7 +162,7 @@ if (message.content.startsWith("**Puppet Encore Portal**")) {
     client.channels.get('457270832364912670').send(`<@&457264788712587264> ${msg}`)
     return;
 }
-client.channels.get('457270832364912670').send(`<@&457349779601752085> ${msg}`)
+if (message.channel.id == '457259123566706740') { client.channels.get('457270832364912670').send(`<@&457349779601752085> ${msg}`) }
 
 });
 
