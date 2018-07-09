@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 const fs = require('fs');
 const ms = require('ms');
+const moment = require('moment')
 const yourID = "368756694114893825"; //Instructions on how to get this: https://redd.it/40zgse
 const setupCMD = "!createrolemessage"
 let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
@@ -103,7 +104,86 @@ if (message.author.id != '435395940715855872') {
     return;
 }
     if (message.channel.id == '457281496294621195') {
-     client.channels.get('465893078033629194').send(`${msg}`)   
+    var tracked = `${args[0]} `
+        if (message.content.includes('entered in')) {
+        
+        tracked += 'entered '
+        if (message.content.includes('USEast2')) {
+     tracked += ' <@&465896364060966922> '
+     }
+             if (message.content.includes('USWest')) {
+     tracked += '@USWest '
+     }
+             if (message.content.includes('USSouth')) {
+     tracked += '@USSouth '
+     }
+     if (message.content.includes('USNorthWest')) {
+     tracked += '@USNorthWest '
+     }
+     if (message.content.includes('USSouth2')) {
+     tracked += '@USSouth2 '
+     }
+     if (message.content.includes('USSouth3')) {
+     tracked += '@USSouth3 '
+     }
+     if (message.content.includes('EUWest')) {
+     tracked += '@EUWest '
+     }
+     if (message.content.includes('USMidWest2')) {
+     tracked += '@USMidWest2 '
+     }
+     if (message.content.includes('EUNorth')) {
+     tracked += '@EUNorth '
+     }
+     if (message.content.includes('USEast')) {
+     tracked += '@USEast '
+     }
+     if (message.content.includes('USSouthWest')) {
+     tracked += '@USSouthWest '
+     }
+     if (message.content.includes('AsiaEast')) {
+     tracked += '@AsiaEast '
+     }
+     if (message.content.includes('EUNorth2')) {
+     tracked += '@EUNorth2 '
+     }
+     if (message.content.includes('EUWest2')) {
+     tracked += '@EUWest2 '
+     }
+     if (message.content.includes('USEast3')) {
+     tracked += '@USEast3 '
+     }
+     if (message.content.includes('EUEast')) {
+     tracked += '@EUEast '
+     }
+     if (message.content.includes('AsiaSouthEast')) {
+     tracked += '@AsiaSouthEast '
+     }
+     if (message.content.includes('EUSouthWest')) {
+     tracked += '@EUSouthWest '
+     }
+     if (message.content.includes('EUSouth')) {
+     tracked += '@EUSouth '
+     }
+     if (message.content.includes('USMidWest')) {
+     tracked += '@USMidWest '
+     }
+     if (message.content.includes('USWest3')) {
+     tracked += '@USWest3 '
+     }
+     if (message.content.includes('Australia')) {
+     tracked += '@Australia '
+     }
+     
+     
+     
+     
+     
+     
+    tracked += `\`${moment().format("LT")}\``
+    client.channels.get('465894086168281109').send(tracked)
+    }
+        
     }
 
 if (message.content.startsWith('**Parasite Chambers Portal**')) {
