@@ -105,6 +105,91 @@ if (message.author.id != '435395940715855872') {
 }
     if (message.channel.id == '457281496294621195') {
     var tracked = `__${args[0]}__ `
+    if (message.content.includes('near')) {
+     tracked += '\`entered\` '
+        if (message.content.includes('**USEast2**')) {
+     tracked += ' <@&465896364060966922> '
+     }
+             if (message.content.includes('**USWest**')) {
+     tracked += '<@&465895420078325790> '
+     }
+             if (message.content.includes('**USSouth**')) {
+     tracked += '<@&465895487447367680> '
+     }
+     if (message.content.includes('**USNorthWest**')) {
+     tracked += '<@&465895535274885130> '
+     }
+     if (message.content.includes('**USSouth2**')) {
+     tracked += '<@&465895591617101844> '
+     }
+     if (message.content.includes('**USSouth3**')) {
+     tracked += '<@&465895643664351245> '
+     }
+     if (message.content.includes('**EUWest**')) {
+     tracked += '<@&465895685154275338> '
+     }
+     if (message.content.includes('**USMidWest2**')) {
+     tracked += '<@&465895737293537294> '
+     }
+     if (message.content.includes('**EUNorth**')) {
+     tracked += '<@&465895790645346304> '
+     }
+     if (message.content.includes('**USEast**')) {
+     tracked += '<@&465895853610237991> '
+     }
+     if (message.content.includes('**USSouthWest**')) {
+     tracked += '<@&465895968961855488> '
+     }
+     if (message.content.includes('**AsiaEast**')) {
+     tracked += '<@&465896024800624650> '
+     }
+     if (message.content.includes('**EUNorth2**')) {
+     tracked += '<@&465896065846214676> '
+     }
+     if (message.content.includes('**EUWest2**')) {
+     tracked += '<@&465896101426495499> '
+     }
+     if (message.content.includes('**USEast3**')) {
+     tracked += '<@&465896146066210837> '
+     }
+     if (message.content.includes('**EUEast**')) {
+     tracked += '<@&465896186331529216> '
+     }
+     if (message.content.includes('**AsiaSouthEast**')) {
+     tracked += '<@&465896284629499904> '
+     }
+     if (message.content.includes('**EUSouthWest**')) {
+     tracked += '<@&465896500048691203> '
+     }
+     if (message.content.includes('**EUSouth**')) {
+     tracked += '<@&465896546412789761> '
+     }
+     if (message.content.includes('**USMidWest**')) {
+     tracked += '<@&465896587428757504> '
+     }
+     if (message.content.includes('**USWest3**')) {
+     tracked += '<@&465896638528094209> '
+     }
+     if (message.content.includes('**Australia**')) {
+     tracked += '<@&465896691216941057> '
+     }
+     if (message.content.includes('**Right Bazaar**')) {
+     
+     tracked += '<@&465907033527418880> '
+     }
+      if (message.content.includes('**Left Bazaar**')) {
+     
+     tracked += '<@&465907242441637912> '
+     }
+     
+     
+     
+     
+     
+    tracked += `\`[${moment().format("LT")}]\``
+    client.channels.get('465893078033629194').send(tracked)
+    
+    }
         if (message.content.includes('entered in')) {
         
         tracked += '\`entered\` '
