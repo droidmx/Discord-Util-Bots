@@ -47,9 +47,11 @@ client.channels.get('467445547557453837').send(`**EDZ AFK-Check was started!** |
 //PUB HALLS
 //format: <@!206929656689983489>
 if (msg.channel.id == '379779029479194624') {
+if (msg.content.includes('React to the AFK check below!')) {
 var lhsmention = msg.mentions.members.first()
 var lhsrl = lhsmention.username
 client.channels.get('467445547557453837').send(`**PUB HALLS AFK-Check was started!** | Raid Leader: **${lhsrl}** | \`[${moment().format("LT")}]\``)
+}
 
 }
    
