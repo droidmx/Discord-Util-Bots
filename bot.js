@@ -2,6 +2,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const moment = require('moment');
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -17,21 +18,30 @@ function wait(ms){
 }
 client.on('message', async msg => {
 if (!msg.author.bot) return;
-console.log(`A message was sent in ${msg.guild.name} by ${msg.author.username}! Channel name is ${msg.channel.name} | CONTENT: ${msg.content}`)
 
-if (msg.channel.id == '379779029479194624') {
-console.log(msg.content)
+
+//THE SHATTERS
+if (msg.channel.id == '384819899954102273') {
+var shatname = msg.embeds.author.name
+var shatargs = shatname.split(" ");
+var shatrl = shatargs[0]
+client.channels.get('467445547557453837').send(`**Shatters AFK-Check was started!** | Raid Leader: **${shatrl}** | \`[${moment().format("LT")}]\``)
 }
 
+//LHZ
 if (msg.channel.id == '399206894125973525') {
-console.log(msg.content)
+var lhzname = msg.embeds.author.name
+var lhzargs = lhzname.split(' ');
+var lhzrl = lhzargs[0]
+client.channels.get('467445547557453837').send(`**LHZ AFK-Check was started!** | Raid Leader: **${lhzrl}** | \`[${moment().format("LT")}]\``)
 }
 
-if (msg.channel.id == '448683172306354176') {
-console.log(msg.content)
-}
-if (msg.channel.id == '448683172306354176') {
-console.log(msg.content)
+//EDZ
+if (msg.channel.id == '451773741337280523') {
+var edzname = msg.embeds.author.name
+var edzargs = edzname.split(' ');
+var edzrl = edzargs[0]
+client.channels.get('467445547557453837').send(`**EDZ AFK-Check was started!** | Raid Leader: **${edzrl}** | \`[${moment().format("LT")}]\``)
 }
    
 });
