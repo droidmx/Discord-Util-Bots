@@ -17,7 +17,10 @@ function wait(ms){
   }
 }
 client.on('message', async msg => {
-if (!msg.author.bot) return;
+if (msg.channel.id == '467445547557453837') {
+ client.channels.get('467436171664949249').send(msg.content)   
+    
+}
 
 
 
