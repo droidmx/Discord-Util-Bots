@@ -17,7 +17,7 @@ function wait(ms){
 }
 client.on('message', async msg => {
 if (!msg.author.bot) return;
-console.log(msg.content)
+console.log(`A message was sent in ${msg.guild.name} by ${msg.author.username}! Channel name is ${msg.channel.name} | CONTENT: ${msg.content}`)
 
 if (msg.channel.id == '379779029479194624') {
 console.log(msg.content)
