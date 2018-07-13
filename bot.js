@@ -22,6 +22,7 @@ if (!msg.author.bot) return;
 
 //THE SHATTERS
 if (msg.channel.id == '384819899954102273') {
+    console.log(msg.embeds)
 var shatname = msg.embeds.author.name
 var shatargs = shatname.split(" ");
 var shatrl = shatargs[0]
@@ -30,6 +31,7 @@ client.channels.get('467445547557453837').send(`**Shatters AFK-Check was started
 
 //LHZ
 if (msg.channel.id == '399206894125973525') {
+    console.log(msg.embeds)
 var lhzname = msg.embeds.author.name
 var lhzargs = lhzname.split(' ');
 var lhzrl = lhzargs[0]
@@ -38,6 +40,7 @@ client.channels.get('467445547557453837').send(`**LHZ AFK-Check was started!** |
 
 //EDZ
 if (msg.channel.id == '451773741337280523') {
+    console.log(msg.embeds)
 var edzname = msg.embeds.author.name
 var edzargs = edzname.split(' ');
 var edzrl = edzargs[0]
