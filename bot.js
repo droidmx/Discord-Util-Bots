@@ -25,7 +25,7 @@ if (msg.channel.id == '384819899954102273') {
 var shatname = msg.embeds[0].author.name
 var shatargs = shatname.split(" ");
 var shatrl = shatargs[0]
-client.channels.get('467445547557453837').send(`**Shatters AFK-Check was started!** | Raid Leader: **${shatrl}** | \`[${moment().format("LT")}]\``)
+client.channels.get('467445547557453837').send(`**The Shatters AFK-Check was started!** | Raid Leader: **${shatrl}** | \`[${moment().format("LT")}]\``)
 }
 
 //LHZ
@@ -58,10 +58,20 @@ client.channels.get('467445547557453837').send(`**PUB HALLS AFK-Check was starte
 
 if (msg.channel.id == '448683172306354176') {
 console.log(msg.embeds[0].author.name)
+console.log(msg.embeds)
 var lbname = msg.embeds[0].author.name
 var lbargs = lbname.split(' ');
 var lbrl = lbargs[0]
-client.channels.get('467445547557453837').send(`**LHZ AFK-Check was started!** | Raid Leader: **${lbrl}** | \`[${moment().format("LT")}]\``)
+client.channels.get('467445547557453837').send(`**Lost Boys AFK-Check was started!** | Raid Leader: **${lbrl}** | \`[${moment().format("LT")}]\``)
+client.channel.get('467523440845520896').send('<@227937398997123073> LB afk started check logs')
+}
+
+
+//PUB SHATS
+if (msg.channel.id == '451181425115398184') {
+if (msg.content.includes('AFK Check')) {
+client.channels.get('467445547557453837').send(`**Pub Shatts AFK-Check was started!** | Raid Leader: **${lbrl}** | \`[${moment().format("LT")}]\``)
+}
 
 }
    
