@@ -57,12 +57,11 @@ client.on('message', async msg => {
     }
 
     if (msg.channel.id == '448683172306354176') {
-        /*console.log(msg.embeds[0].author.name)
-        console.log(msg.embeds)
-        var lbname = msg.embeds[0].author.name
-        var lbargs = lbname.split(' ');
-        var lbrl = lbargs[0]*/
-        client.channels.get('467445547557453837').send(`**Lost Boys AFK-Check was started!** | Raid Leader: **UNKNOWN, WORK IN PROGRESS** | \`[${moment().format("LT")}]\``)
+      console.log(msg.embeds)
+      var lbname = msg.embeds[0].fields[0].name
+      var lbargs = lbname.split(' ');
+      var lbrl = lbargs[0]
+        client.channels.get('467445547557453837').send(`**Lost Boys AFK-Check was started!** | Raid Leader: **${lbrl}** | \`[${moment().format("LT")}]\``)
         client.channel.get('467523440845520896').send('<@227937398997123073> LB afk started check logs')
     }
 
