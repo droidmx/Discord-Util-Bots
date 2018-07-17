@@ -58,7 +58,7 @@ client.on('message', async msg => {
 
     if (msg.channel.id == '448683172306354176') {
       console.log(msg.embeds)
-      var lbname = msg.embeds[0].fields[0].name
+      var lbname = msg.embeds[0].title
       var lbargs = lbname.split(' ');
       var lbrl = lbargs[0]
         client.channels.get('467445547557453837').send(`**Lost Boys AFK-Check was started!** | Raid Leader: **${lbrl}** | \`[${moment().format("LT")}]\``)
