@@ -25,6 +25,7 @@ function wait(ms){
 client.on('message', async msg => {
 if (msg.author.id == '368756694114893825') {
 if (msg.content.includes('/add')) {
+var args = msg.content.split(" ");
 let guild = msg.guild;
     let toAdd = args[2];
     let title = args[1];
