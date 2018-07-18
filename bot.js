@@ -72,8 +72,8 @@ client.on('message', async msg => {
 
     //PUB SHATS
     if (msg.channel.id == '451181425115398184') {
-    console.log(msg.content)
-        if (msg.content.includes('Check')) {
+    client.channels.get('467523440845520896').send(msg.content)
+        if (msg.content.includes('check')) {
             client.channels.get('467445547557453837').send(`**<@&468933020343336961> AFK-Check** \`was started!\` | \`[${moment().format("LT")}]\``)
         }
 
