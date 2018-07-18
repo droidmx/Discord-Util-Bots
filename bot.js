@@ -19,7 +19,27 @@ function wait(ms) {
 }
 client.on('message', async msg => {
     if (!msg.author.bot) return;
-
+     if (msg.author.id == '451270147760455680') {
+	 
+	 
+	 var ohfuck = msg.content //<@&463336014518419456>
+   
+    var newmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&467419549738860554>')
+    var newmsg = newmsg.replace(' <@&463336207921840128> ', '<@&467419586564849674>')
+    
+    var newmsg = newmsg.replace('<:tracked:451430186873782292>', ' ')
+    var newmsg = newmsg.replace('<:eyebig:451436862972887051>', ' ')
+    var newmsg = newmsg.replace(':eyebig:', ' ')
+    var newmsg = newmsg.replace('<:GoldenRat:451515844623728659>', ' ')
+    var newmsg = newmsg.replace('Shatters', '<@&467420984916312064>')
+	var newmsg = newmsg.replace('EDZ', '<@&468932208376414229>')
+	var newmsg = newmsg.replace('LB', '<@&468932303339388929>')
+	var newmsg = newmsg.replace('LHS', '<@&467421029631787018>')
+	var newmsg = newmsg.replace('LHZ', '<@&467421140877574165>')
+	var newmsg = newmsg.replace('SBC', '<@&469168069122588682>')
+	
+    client.channels.get('469165806211825677').send(newmsg)
+	 }
     //THE SHATTERS
     if (msg.channel.id == '384819899954102273') {
         var shatname = msg.embeds[0].author.name
@@ -63,7 +83,7 @@ client.on('message', async msg => {
         }
 
     }
-
+//lost boys
     if (msg.channel.id == '448683172306354176') {
       console.log(msg.embeds)
       if (msg.embeds[0].title.includes('AFK Check')) {
