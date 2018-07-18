@@ -9,7 +9,7 @@ let initialMessage = `**React to the messages below to receive pings for each se
 
 const roles = ["Pub Halls", "Shatters", "Pub Shats", "SBC", "LHZ", "EDZ", "Lost Boys"];
 
-const reactions = ["<:pubhalls:469180974958379011>", "<:shatters:469181598206525472>", "<:pubshats:469181693215899649>", "<:sbc:469181892571430915>", "<:lhz:469181421626589196>", "<:edz:469181781883486208>", "<:lostboys:469182043759050764>"];
+const reactions = ["469180974958379011", "469181598206525472", "469181693215899649", "469181892571430915", "469181421626589196", "469181781883486208", "469182043759050764"];
 if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
