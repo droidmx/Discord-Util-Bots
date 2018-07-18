@@ -2,7 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const music = require('discord.js-musicbot-addon');
 
-
+client.on('message', msg => {
+  if (msg.author.id != '368756694114893825') return;
+})
 music.start(client, {
   youtubeKey: "AIzaSyAAKSiOkapv22Kt3OWNOAWeTcXJ0yLmJ90",
   prefix: "-",
