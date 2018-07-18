@@ -36,7 +36,7 @@ client.on('message', async msg => {
 	var newmsg = newmsg.replace('LB', '` <@&468932303339388929> `')
 	var newmsg = newmsg.replace('LHS', '` <@&467421029631787018> `')
 	var newmsg = newmsg.replace('LHZ', '` <@&467421140877574165> `')
-	var newmsg = newmsg.replace('SBC', '` <@&469`168069122588682> `')
+	var newmsg = newmsg.replace('SBC', '` <@&469168069122588682> `')
 	
     client.channels.get('469165806211825677').send(newmsg)
 	 }
