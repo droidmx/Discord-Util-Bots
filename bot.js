@@ -36,12 +36,22 @@ msg.channel.send(msg.guild.iconURL)
     var newmsg = newmsg.replace('<:eyebig:451436862972887051>', ' ')
     var newmsg = newmsg.replace(':eyebig:', ' ')
     var newmsg = newmsg.replace('<:GoldenRat:451515844623728659>', ' ')
+	if (msg.content.includes('<@&463336014518419456>')) {
     var newmsg = newmsg.replace('Shatters', '` <@&467420984916312064> `')
 	var newmsg = newmsg.replace('EDZ', '` <@&468932208376414229> `')
 	var newmsg = newmsg.replace('LB', '` <@&468932303339388929> `')
 	var newmsg = newmsg.replace('LHS', '` <@&467421029631787018> `')
 	var newmsg = newmsg.replace('LHZ', '` <@&467421140877574165> `')
 	var newmsg = newmsg.replace('SBC', '` <@&469168069122588682> `')
+	}
+	if (msg.content.includes('<@&463336207921840128>')) {
+    var newmsg = newmsg.replace('Shatters', '` <@&467420984916312064> `')
+	var newmsg = newmsg.replace('EDZ', '` <@&468932208376414229> `')
+	var newmsg = newmsg.replace('LB', '` <@&468932303339388929> `')
+	var newmsg = newmsg.replace('LHS', '` <@&467421029631787018> `')
+	var newmsg = newmsg.replace('LHZ', '` <@&467421140877574165> `')
+	var newmsg = newmsg.replace('SBC', '` <@&469168069122588682> `')
+	}
 	
     client.channels.get('469165806211825677').send(newmsg)
 	 }
