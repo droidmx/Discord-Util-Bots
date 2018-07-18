@@ -5,7 +5,7 @@ const client = new Discord.Client();
 const moment = require('moment');
 
 client.on('ready', () => {
-    console.log('I am ready!');
+    console.log(`Logged in as ${client.user.tag}`);
 });
 
 
@@ -25,6 +25,8 @@ client.on('message', async msg => {
         var shatname = msg.embeds[0].author.name
         var shatargs = shatname.split(" ");
         var shatrl = shatargs[0]
+        
+        
         client.channels.get('467445547557453837').send(`**<@&467420984916312064> AFK-Check** \`was started!\` | \`Raid Leader:\` **${shatrl}** | \`[${moment().format("LT")}]\``)
     }
 
@@ -70,7 +72,8 @@ client.on('message', async msg => {
 
     //PUB SHATS
     if (msg.channel.id == '451181425115398184') {
-        if (msg.content.includes('AFK Check')) {
+    console.log(msg.content)
+        if (msg.content.includes('Check')) {
             client.channels.get('467445547557453837').send(`**<@&468933020343336961> AFK-Check** \`was started!\` | \`[${moment().format("LT")}]\``)
         }
 
