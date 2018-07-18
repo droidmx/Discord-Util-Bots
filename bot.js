@@ -5,7 +5,7 @@ const music = require('discord.js-musicbot-addon');
 
 music.start(client, {
   youtubeKey: "AIzaSyAAKSiOkapv22Kt3OWNOAWeTcXJ0yLmJ90",
-  prefix: ">>",
+  prefix: "-",
   leaveAlt: ["fuckoff", "fuckingleave"],
   helpCmd: "mhelp",
   thumbnailType: "high",
