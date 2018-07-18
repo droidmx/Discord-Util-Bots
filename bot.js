@@ -92,7 +92,7 @@ client.on('raw', event => {
 
 
 
-                if (user.id != bot.user.id) {
+                if (user.id != client.user.id) {
 
                     var roleObj = msg.guild.roles.find('name', role);
 
