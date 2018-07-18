@@ -20,7 +20,7 @@ client.on('message', async msg => {
 if (msg.channel.id == '467445547557453837') {
  client.channels.get('467436171664949249').send(msg.content)       
 }
-if (msg.channel.id == '467520575070404610') {
+if (msg.channel.id == '469165806211825677') {
  client.channels.get('467421795490856960').send(msg.content)   
 }
     if (msg.channel.id == '467532711960248321') {
