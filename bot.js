@@ -90,7 +90,7 @@ msg.channel.send(msg.guild.iconURL)
     //format: <@!206929656689983489>
     if (msg.channel.id == '379779029479194624') {
         console.log(msg.content)
-        if (msg.content.includes('AFK check')) {
+        if (msg.content.includes('started by')) {
             var lhsmention = msg.mentions.users.last()
             var lhsrl = msg.guild.member(lhsmention).nickname
             client.channels.get('467445547557453837').send(`**<@&467421029631787018> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhsrl}** | \`[${moment().format("LT")}]\``)
