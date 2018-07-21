@@ -29,29 +29,22 @@ msg.channel.send(msg.guild.iconURL)
 	 
 	 var ohfuck = msg.content //<@&463336014518419456>
    
-    var newmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&467419549738860554>')
-    var newmsg = newmsg.replace(' <@&463336207921840128> ', '<@&467419586564849674>')
+    var newmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&470283151638396959>') 	//right baz
+    var newmsg = newmsg.replace(' <@&463336207921840128> ', '<@&470282988702269450>') //left baz
     
     var newmsg = newmsg.replace('<:tracked:451430186873782292>', ' ')
     var newmsg = newmsg.replace('<:eyebig:451436862972887051>', ' ')
     var newmsg = newmsg.replace(':eyebig:', ' ')
     var newmsg = newmsg.replace('<:GoldenRat:451515844623728659>', ' ')
-	if (msg.content.includes('<@&463336014518419456>')) {
-    var newmsg = newmsg.replace('Shatters', '` <@&467420984916312064> `')
-	var newmsg = newmsg.replace('EDZ', '` <@&468932208376414229> `')
-	var newmsg = newmsg.replace('LB', '` <@&468932303339388929> `')
-	var newmsg = newmsg.replace('LHS', '` <@&467421029631787018> `')
-	var newmsg = newmsg.replace('LHZ', '` <@&467421140877574165> `')
-	var newmsg = newmsg.replace('SBC', '` <@&469168069122588682> `')
-	}
-	if (msg.content.includes('<@&463336207921840128>')) {
-    var newmsg = newmsg.replace('Shatters', '` <@&467420984916312064> `')
-	var newmsg = newmsg.replace('EDZ', '` <@&468932208376414229> `')
-	var newmsg = newmsg.replace('LB', '` <@&468932303339388929> `')
-	var newmsg = newmsg.replace('LHS', '` <@&467421029631787018> `')
-	var newmsg = newmsg.replace('LHZ', '` <@&467421140877574165> `')
-	var newmsg = newmsg.replace('SBC', '` <@&469168069122588682> `')
-	}
+	
+	if (msg.channel.id == '451252037657821199') return client.channels.get('470284006538084362').send(newmsg)
+    var newmsg = newmsg.replace('Shatters', '` <@&470283258698006538> `')
+	var newmsg = newmsg.replace('EDZ', '` <@&470283382056681482> `')
+	var newmsg = newmsg.replace('LB', '` <@&470283575636262933> `')
+	var newmsg = newmsg.replace('LHS', '` <@&470283421881466900> `')
+	var newmsg = newmsg.replace('LHZ', '` <@&470283520661520396> `')
+	var newmsg = newmsg.replace('SBC', '` <@&470283200518684674> `')
+	
 	
     client.channels.get('469165806211825677').send(newmsg)
 	 }
@@ -62,7 +55,7 @@ msg.channel.send(msg.guild.iconURL)
         var shatrl = shatargs[0]
         
         if (!shatname.includes('AFK Check')) return console.log('SHATTERS FALSE ALARM')
-        client.channels.get('467445547557453837').send(`**<@&467420984916312064> AFK-Check** \`was started!\` | \`Raid Leader:\` **${shatrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&470283258698006538> AFK-Check** \`was started!\` | \`Raid Leader:\` **${shatrl}** | \`[${moment().format("LT")}]\``)
 		console.log('THE SHATTERS AFK NOTIF SENT')
     }
 
@@ -72,7 +65,7 @@ msg.channel.send(msg.guild.iconURL)
         var lhzargs = lhzname.split(' ');
         var lhzrl = lhzargs[0]
 		if (!lhzname.includes('AFK Check')) return console.log('LHZ FALSE ALARM')
-        client.channels.get('467445547557453837').send(`**<@&467421140877574165> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhzrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&470283520661520396> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhzrl}** | \`[${moment().format("LT")}]\``)
 		console.log('LHZ AFK NOTIF SENT')
     }
 
@@ -82,7 +75,7 @@ msg.channel.send(msg.guild.iconURL)
         var edzargs = edzname.split(' ');
         var edzrl = edzargs[0]
 		if (!edzname.includes('AFK Check')) return console.log('EDZ FALSE ALARM')
-        client.channels.get('467445547557453837').send(`**<@&468932208376414229> AFK-Check** \`was started!\` | \`Raid Leader:\` **${edzrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&470283382056681482> AFK-Check** \`was started!\` | \`Raid Leader:\` **${edzrl}** | \`[${moment().format("LT")}]\``)
 		console.log('EDZ AFK NOTIF SENT')
     }
 
@@ -93,7 +86,7 @@ msg.channel.send(msg.guild.iconURL)
         if (msg.content.includes('started by')) {
             var lhsmention = msg.mentions.users.last()
             var lhsrl = msg.guild.member(lhsmention).nickname
-            client.channels.get('467445547557453837').send(`**<@&467421029631787018> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhsrl}** | \`[${moment().format("LT")}]\``)
+            client.channels.get('467445547557453837').send(`**<@&470283421881466900> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhsrl}** | \`[${moment().format("LT")}]\``)
 			console.log('PUB HALLS AFK NOTIF SENT')
         }
 
@@ -105,7 +98,7 @@ msg.channel.send(msg.guild.iconURL)
       var lbname = msg.embeds[0].title
       var lbargs = lbname.split(' ');
       var lbrl = lbargs[0].slice(1)
-        client.channels.get('467445547557453837').send(`**<@&468932303339388929> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lbrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&470283575636262933> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lbrl}** | \`[${moment().format("LT")}]\``)
 		console.log('LOST BOYS AFK NOTIF SENT')
        
         }
@@ -116,7 +109,7 @@ msg.channel.send(msg.guild.iconURL)
     if (msg.channel.id == '451181425115398184') {
     client.channels.get('467523440845520896').send(msg.content)
         if (msg.content.includes('check')) {
-            client.channels.get('467445547557453837').send(`**<@&468933020343336961> AFK-Check** \`was started!\` | \`[${moment().format("LT")}]\``)
+            client.channels.get('467445547557453837').send(`**<@&470288369004445696> AFK-Check** \`was started!\` | \`[${moment().format("LT")}]\``)
 			console.log('PUB SHATS AFK NOTIF SENT')
         }
 
