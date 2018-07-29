@@ -26,6 +26,7 @@ client.on('message', async msg => {
     if (!msg.author.bot) return;
 	if (msg.channel.id == '436281824583483402') {
 		console.log(msg.embeds)
+		console.log(msg.embeds[0].fields)
 		//console.log(msg.toString)
 		//console.log(msg.mentions)
 		
