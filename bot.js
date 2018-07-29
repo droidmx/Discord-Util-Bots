@@ -24,16 +24,18 @@ client.on('message', async msg => {
         }
     }
     if (!msg.author.bot) return;
-    if (msg.author.id == '451270147760455680') {
-
-        if (msg.channel.id == '436281386362470414') return;
-        if (msg.channel.id == '468159288838455307') return;
-		if (msg.channel.id == '436281824583483402') {
+	if (msg.channel.id == '436281824583483402') {
 		console.log(msg.embeds)
 		console.log(msg.toString)
 		console.log(msg.mentions)
 		
 		}
+    if (msg.author.id == '451270147760455680') {
+
+        if (msg.channel.id == '436281386362470414') return;
+        if (msg.channel.id == '468159288838455307') return;
+		
+		
         var ohfuck = msg.content //<@&463336014518419456>
 
         var newmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&470283151638396959>') //right baz
