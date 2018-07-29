@@ -28,6 +28,7 @@ client.on('message', async msg => {
 		console.log(msg.embeds)
 		console.log(msg.embeds[0].fields[0])
 		console.log(msg.embeds[0].fields[1])
+		console.log(msg.embeds[0].fields[2])
 		//console.log(msg.toString)
 		//console.log(msg.mentions)
 		
