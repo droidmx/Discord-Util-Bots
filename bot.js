@@ -39,7 +39,7 @@ client.on('message', async msg => {
         var lhzmsg = lhzmsg.replace('<:eyebig:451436862972887051>', ' ')
         var lhzmsg = lhzmsg.replace(':eyebig:', ' ')
         var lhzmsg = lhzmsg.replace('<:GoldenRat:451515844623728659>', ' ')
-		var lhzmsg = lhzmsg.replace('LHS', ' <@&473598220476612629> ')
+		var lhzmsg = lhzmsg.replace('LHS', '` <@&473598220476612629> `')
 		client.channels.get('473598509942177812').send(lhzmsg)
 		}
         var newmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&470283151638396959>') //right baz
