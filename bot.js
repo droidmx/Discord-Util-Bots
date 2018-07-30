@@ -24,23 +24,24 @@ client.on('message', async msg => {
         }
     }
     if (!msg.author.bot) return;
-	if (msg.channel.id == '436281824583483402') {
-		console.log(msg.embeds)
-		console.log(msg.embeds[0].fields[0])
-		console.log(msg.embeds[0].fields[1])
-		console.log(msg.embeds[0].fields[2])
-		//console.log(msg.toString)
-		//console.log(msg.mentions)
-		
-		}
+	
     if (msg.author.id == '451270147760455680') {
 
         if (msg.channel.id == '436281386362470414') return;
         if (msg.channel.id == '468159288838455307') return;
-		
+		if (msg.channel.id == '469930443605803035') return;
 		
         var ohfuck = msg.content //<@&463336014518419456>
-
+		if (msg.content.includes('LHS')) {
+		var lhzmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&473596143079653379>')
+		var lhzmsg = lhzmsg.replace(' <@&463336207921840128> ', '<@&473596223883051041>') //left baz
+		var lhzmsg = lhzmsg.replace('<:tracked:451430186873782292>', ' ')
+        var lhzmsg = lhzmsg.replace('<:eyebig:451436862972887051>', ' ')
+        var lhzmsg = lhzmsg.replace(':eyebig:', ' ')
+        var lhzmsg = lhzmsg.replace('<:GoldenRat:451515844623728659>', ' ')
+		var lhzmsg = lhzmsg.replace('LHS', ' <@&473598220476612629> ')
+		client.channels.get('473598509942177812').send(lhzmsg)
+		}
         var newmsg = ohfuck.replace(' <@&463336014518419456> ', '<@&470283151638396959>') //right baz
         var newmsg = newmsg.replace(' <@&463336207921840128> ', '<@&470282988702269450>') //left baz
 
@@ -100,6 +101,7 @@ client.on('message', async msg => {
             var lhsrl = msg.guild.member(lhsmention).nickname
             client.channels.get('467445547557453837').send(`**<@&470283421881466900> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhsrl}** | \`[${moment().format("LT")}]\``)
             console.log('PUB HALLS AFK NOTIF SENT')
+			client.channels.get('473595190402088963').send(`**PUB HALLS AFK-Check** \`was started by\` **${lhsrl}** at \`[${moment().format("LT")}]\``)
         }
 
     }
