@@ -38,10 +38,13 @@ client.on('message', async msg => {
 	client.channels.get('473859409580130304').send(msg.content)
 	}
 	if (msg.channel.id == '372109908008632321') {
-	
+	var lmfao = msg.content.split(' ').slice()
 	var eventmsg = msg.content
 
 var eventmsg = eventmsg.replace('<@&374038654374379521>', 'Mountain Temple')
+var eventmsg = eventmsg.replace('<@&473889994411343893>', 'Megamad Activator')
+
+var eventmsg = eventmsg.replace('<@&473889996315820082>', 'Megamad Oryx Stone Guardian')
 
 var eventmsg = eventmsg.replace('<@&374038670384168960>', '**USSouth2**')
 
