@@ -26,7 +26,7 @@ client.on('message', async msg => {
             var roless = msg.guild.roles.array()
 			client.channels.get('473856524931039232').send(`var eventmsg = msg.content`)
             for (i in roless)
-                client.channels.get('473856524931039232').send(`var eventmsg = eventmsg.replace('<@${roless[i].id}>', '${roless[i].name}')`)
+                client.channels.get('473856524931039232').send(`var eventmsg = eventmsg.replace('<@&${roless[i].id}>', '${roless[i].name}')`)
         }
     }
     if (!msg.author.bot) return;
