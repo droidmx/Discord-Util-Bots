@@ -1,3 +1,5 @@
+
+
 //
 
 const Discord = require('discord.js');
@@ -30,7 +32,160 @@ client.on('message', async msg => {
         }
     }
     if (!msg.author.bot) return;
+	if (msg.author.id == '372129170895011860') {
+	if (msg.channel.id == '471944790234234880') {
+	var splitthisshit = msg.content.split(' ');
+	var newshit = splitthisshit.slice(1).join(' ');
+	client.channels.get('473859409580130304').send(newshit)
+	}
+	if (msg.channel.id == '372109908008632321') {
 	
+	var eventmsg = msg.content
+
+var eventmsg = eventmsg.replace('<@&374038654374379521>', 'Mountain Temple')
+
+var eventmsg = eventmsg.replace('<@&374038670384168960>', 'USSouth2')
+
+var eventmsg = eventmsg.replace('<@&374038656757006346>', 'USWest')
+
+var eventmsg = eventmsg.replace('<@&374038649232424972>', 'Oasis Giant')
+
+var eventmsg = eventmsg.replace('<@&374038648120803338>', 'Lich')
+
+var eventmsg = eventmsg.replace('<@&391771844522278915>', 'Event Keeper')
+
+var eventmsg = eventmsg.replace('<@&374038672112353283>', 'EUNorth2')
+
+var eventmsg = eventmsg.replace('<@&416237660223569921>', 'Tatsumaki')
+
+var eventmsg = eventmsg.replace('<@&374038639795240972>', 'Rock Dragon')
+
+var eventmsg = eventmsg.replace('<@&374038641351327755>', 'Skull Shrine')
+
+var eventmsg = eventmsg.replace('<@&429166372807770112>', 'Biff the Buffed Bunny')
+
+var eventmsg = eventmsg.replace('<@&374038648946950154>', 'Ent')
+
+var eventmsg = eventmsg.replace('<@&374038653816537098>', 'Turkey God')
+
+var eventmsg = eventmsg.replace('<@&374038671847849984>', 'USWest3')
+
+
+var eventmsg = eventmsg.replace('<@&374038652432547841>', 'Red Demon')
+
+var eventmsg = eventmsg.replace('<@&429166371163734029>', 'Egg')
+
+var eventmsg = eventmsg.replace('<@&374038657138425860>', 'USMidWest')
+
+var eventmsg = eventmsg.replace('<@&392944809666543616>', 'Permafrost Lord Activated')
+
+var eventmsg = eventmsg.replace('<@&391039518268194817>', 'Permafrost Lord')
+
+var eventmsg = eventmsg.replace('<@&374038658870673429>', 'USEast')
+
+var eventmsg = eventmsg.replace('<@&374038650339459092>', 'Phoenix Lord')
+
+var eventmsg = eventmsg.replace('<@&374038662398083073>', 'EUNorth')
+
+var eventmsg = eventmsg.replace('<@&374038644408713216>', 'Pentaract')
+
+var eventmsg = eventmsg.replace('<@&441807185937301514>', 'We are legit people')
+
+var eventmsg = eventmsg.replace('<@&372121294130511872>', 'Emoji Lord')
+
+var eventmsg = eventmsg.replace('<@&374038655716818945>', 'Lost Halls')
+
+var eventmsg = eventmsg.replace('<@&374038651362869250>', 'Cyclop God')
+
+var eventmsg = eventmsg.replace('<@&374038661127208970>', 'USSouthWest')
+
+var eventmsg = eventmsg.replace('<@&374038647416160256>', 'Deathmage')
+
+var eventmsg = eventmsg.replace('<@&470160368656842754>', 'DoNotPlay')
+
+var eventmsg = eventmsg.replace('<@&389090194390777868>', 'Bot')
+
+var eventmsg = eventmsg.replace('<@&374038655368560648>', 'Killer Queen Bee')
+
+var eventmsg = eventmsg.replace('<@&374038668765167617>', 'EUWest2')
+
+var eventmsg = eventmsg.replace('<@&374077505956741121>', 'spawned')
+
+var eventmsg = eventmsg.replace('<@&383429030294061067>', 'Meme Keeper')
+
+var eventmsg = eventmsg.replace('<@&374038640722051072>', 'Ghost Ship')
+
+var eventmsg = eventmsg.replace('<@&374038664856076288>', 'USMidWest2')
+
+var eventmsg = eventmsg.replace('<@&389654203137523736>', 'Crystal')
+
+var eventmsg = eventmsg.replace('<@&374038665414049803>', 'USEast2')
+
+var eventmsg = eventmsg.replace('<@&374038661546901506>', 'EUEast')
+
+var eventmsg = eventmsg.replace('<@&389667042179153920>', 'closed')
+
+var eventmsg = eventmsg.replace('<@&449251147010670593>', 'new role')
+
+var eventmsg = eventmsg.replace('<@&374038667133452289>', 'AsiaEast')
+
+var eventmsg = eventmsg.replace('<@&372111824725737495>', 'Pay2Win')
+
+var eventmsg = eventmsg.replace('<@&409065965851246592>', 'Australia')
+
+var eventmsg = eventmsg.replace('<@&471927329610924032>', 'Survived P2R')
+
+var eventmsg = eventmsg.replace('<@&374038645235253258>', 'Grand Sphinx')
+
+var eventmsg = eventmsg.replace('<@&408663917527564288>', 'Pay2Play')
+
+var eventmsg = eventmsg.replace('<@&374038673261330432>', 'USWest2')
+
+var eventmsg = eventmsg.replace('<@&374038639342125056>', 'Shatters')
+
+var eventmsg = eventmsg.replace('<@&374038670857994261>', 'USEast3')
+
+var eventmsg = eventmsg.replace('<@&374038641934336001>', 'Pumpkin Shrine')
+
+var eventmsg = eventmsg.replace('<@&374038659311075330>', 'AsiaSouthEast')
+
+var eventmsg = eventmsg.replace('<@&449238546755354625>', 'Master Key')
+
+var eventmsg = eventmsg.replace('<@&374038666214899713>', 'USNorthWest')
+
+var eventmsg = eventmsg.replace('<@&372119367803994116>', 'BANHAMMER 40k')
+
+var eventmsg = eventmsg.replace('<@&374038645927051264>', 'Lord of the Lost Lands')
+
+var eventmsg = eventmsg.replace('<@&372120046639513601>', 'Pay2Respect')
+
+var eventmsg = eventmsg.replace('<@&399764689644552194>', 'Donator')
+
+var eventmsg = eventmsg.replace('<@&374038657977548803>', 'EUWest')
+
+var eventmsg = eventmsg.replace('<@&372110257650139136>', 'Best Eu North Is South')
+
+var eventmsg = eventmsg.replace('<@&374038651048296448>', 'Ghost King')
+
+var eventmsg = eventmsg.replace('<@&374038653120544778>', 'Zombie Horde')
+
+var eventmsg = eventmsg.replace('<@&374038642525470744>', 'Cube God')
+
+
+
+var eventmsg = eventmsg.replace('<@&374038660028432386>', 'USSouth')
+
+var eventmsg = eventmsg.replace('<@&374038669432061954>', 'EUSouth')
+
+var eventmsg = eventmsg.replace('<@&374038668131827712>', 'USSouth3')
+
+var eventmsg = eventmsg.replace('<@&374038663790592001>', 'EUSouthWest')
+
+var eventmsg = eventmsg.replace('<@&374038646375841793>', 'Hermit God')
+
+client.channels.get('473859424360988683').send(eventmsg)
+	}
+	}
     if (msg.author.id == '451270147760455680') {
 
         if (msg.channel.id == '436281386362470414') return;
