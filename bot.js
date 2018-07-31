@@ -42,9 +42,9 @@ client.on('message', async msg => {
 	var eventmsg = msg.content
 
 var eventmsg = eventmsg.replace('<@&374038654374379521>', 'Mountain Temple')
-var eventmsg = eventmsg.replace('<@&473889994411343893>', 'Megamad Activator')
+var eventmsg = eventmsg.replace('<@&473889994411343893>', '<@&473941236701724673>')
 
-var eventmsg = eventmsg.replace('<@&473889996315820082>', 'Megamad Oryx Stone Guardian')
+var eventmsg = eventmsg.replace('<@&473889996315820082>', '<@&473941236701724673>')
 
 var eventmsg = eventmsg.replace('<@&374038670384168960>', '**USSouth2**')
 
@@ -99,7 +99,7 @@ var eventmsg = eventmsg.replace('<@&374038655716818945>', 'Lost Halls')
 
 var eventmsg = eventmsg.replace('<@&374038651362869250>', 'Cyclop God')
 
-var eventmsg = eventmsg.replace('<@&374038661127208970>', 'USSouthWest')
+var eventmsg = eventmsg.replace('<@&374038661127208970>', '**USSouthWest**')
 
 var eventmsg = eventmsg.replace('<@&374038647416160256>', 'Deathmage')
 
@@ -184,8 +184,12 @@ var eventmsg = eventmsg.replace('<@&374038668131827712>', '**USSouth3**')
 var eventmsg = eventmsg.replace('<@&374038663790592001>', '**EUSouthWest**')
 
 var eventmsg = eventmsg.replace('<@&374038646375841793>', 'Hermit God')
-
+if (eventmsg.includes('<@&473941236701724673>')) {
 client.channels.get('473859424360988683').send(eventmsg)
+}
+if (eventmsg.includes('closed')) {
+client.channels.get('473859424360988683').send(eventmsg)
+}
 	}
 	}
     if (msg.author.id == '451270147760455680') {
