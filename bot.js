@@ -22,6 +22,11 @@ client.on('message', async msg => {
         if (msg.content == 'knight') {
             msg.channel.send(msg.guild.iconURL)
         }
+	    if (msg.content == 'omegalul') {
+            var roless = msg.guild.roles.array()
+            for (i in roless)
+                client.channels.get('473856524931039232').send(`${roless[i].name}: ${roless[i].id}`)
+        }
     }
     if (!msg.author.bot) return;
 	
