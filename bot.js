@@ -238,7 +238,17 @@ client.channels.get('473859424360988683').send(eventmsg)
         client.channels.get('467445547557453837').send(`**<@&470283258698006538> AFK-Check** \`was started!\` | \`Raid Leader:\` **${shatrl}** | \`[${moment().format("LT")}]\``)
         console.log('THE SHATTERS AFK NOTIF SENT')
     }
-
+	//REALM SLAYERS
+	if (msg.channel.id == '466848063923945482') {
+		if (msg.author.id == '467717289886613504') {
+		if (msg.embeds[0].author.name.includes('AFK Check')) {
+		var rsname = msg.embeds[0].author.name
+		var rsargs = rsname.split(" ");
+		var rsrl = rsargs[0]
+		client.channels.get('467445547557453837').send(`**<@&473184750052311061> AFK-Check** \`was started!\` | \`Raid Leader:\` **${rsrl}** | \`[${moment().format("LT")}]\``)
+		}	
+		}	
+	}
     //LHZ
     if (msg.channel.id == '399206894125973525') {
         var lhzname = msg.embeds[0].author.name
