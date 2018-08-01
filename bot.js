@@ -22,7 +22,7 @@ client.on('message', async msg => {
             }
         }
         if (msg.channel.parentID == '440958049864122370') {
-            
+            if (msg.content.includes('opened in')) return;
             if (msg.content != '') {
 			
 			
