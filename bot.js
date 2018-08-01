@@ -24,6 +24,7 @@ if (msg.channel.id == '467701033292922882') {
   }   
  }   
    if (msg.channel.id == '467701268358365195') {
+	   console.log(msg.embeds[0].author.name)
     console.log(msg.content)
        console.log(msg.embeds[0].description)
    }
