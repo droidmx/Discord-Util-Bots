@@ -107,7 +107,7 @@ client.on('message', async msg => {
 				var trackmsg = trackmsg.replace('Peaches Lost Hallz', '<@&470283520661520396> ') //LHZ
 				var trackmsg = trackmsg.replace('<@&467702511818768386>', '<@&470282988702269450>') //left baz
 				var trackmsg = trackmsg.replace('<@&436911695697412106>', 'LOD Key')
-				client.channels.get('469165806211825677').send(trackmsg)
+				client.channels.get('469165806211825677').send(`${moment().format("LT")} ${trackmsg}`)
 			}
         }
     }
