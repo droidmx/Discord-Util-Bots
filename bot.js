@@ -81,7 +81,7 @@ client.on('message', async msg => {
 				var trackmsg = trackmsg.replace('<@&467699886746238976>', 'Vial')
 				var trackmsg = trackmsg.replace('Nexus Defense Force', '<@&474333302342418459> ') //ndf
 				var trackmsg = trackmsg.replace('<@&436911642387808256>', 'Shaitan Key')
-				var trackmsg = trackmsg.replace('Epic Dungeonz', '<@&470283382056681482>') //edz
+				var trackmsg = trackmsg.replace('Epic Dungeonz', '<@&470283382056681482> ') //edz
 				var trackmsg = trackmsg.replace('<@&436911551597772800>', 'IceCave key')
 				var trackmsg = trackmsg.replace('<@&435834006769238036>', 'Woodland Key')
 				var trackmsg = trackmsg.replace('<@&435834079141691392>', 'Puppet Key')
@@ -104,7 +104,7 @@ client.on('message', async msg => {
 				var trackmsg = trackmsg.replace('<@&435834236453257227>', 'Sewers Key')
 				var trackmsg = trackmsg.replace('Pub Shatters', '<@&470288369004445696> ') //pub shat
 				var trackmsg = trackmsg.replace('<@&436911462607355924>', 'DDocks key')
-				var trackmsg = trackmsg.replace('Peaches Lost Hallz', '<@&470283520661520396>') //LHZ
+				var trackmsg = trackmsg.replace('Peaches Lost Hallz', '<@&470283520661520396> ') //LHZ
 				var trackmsg = trackmsg.replace('<@&467702511818768386>', '<@&470282988702269450>') //left baz
 				var trackmsg = trackmsg.replace('<@&436911695697412106>', 'LOD Key')
 				client.channels.get('469165806211825677').send(trackmsg)
