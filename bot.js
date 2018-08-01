@@ -65,7 +65,7 @@ client.on('message', async msg => {
 				var trackmsg = trackmsg.replace('<@&467697456457580546>', '<@&470283520661520396>') //LHZ
 				var trackmsg = trackmsg.replace('<@&467702511818768386>', '<@&470282988702269450>') //left baz
 				var trackmsg = trackmsg.replace('<@&436911695697412106>', 'LOD Key')
-				client.channels.get('469165806211825677').send(trackmsg)
+				client.channels.get('470284006538084362').send(trackmsg)
             }else{
 			if (msg.embeds[0].author.name == 'Over 15k Charfame') return;
 			var trackmsg = msg.embeds[0].author.name + msg.embeds[0].description
