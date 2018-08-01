@@ -10,7 +10,7 @@ client.on('message', async msg => {
 if (msg.author.id == '368756694114893825') {
     if (msg.content == 'lmfao') {
     var roless = msg.guild.roles.array()
-			client.channels.get('473856524931039232').send(`var trackmsg = msg.content`)
+			client.channels.get('467532711960248321').send(`var trackmsg = msg.content`)
             for (i in roless) client.channels.get('467532711960248321').send(`\`\`\`var trackmsg = eventmsg.replace('<@&${roless[i].id}>', '${roless[i].name}')\`\`\``)    
         
     }
