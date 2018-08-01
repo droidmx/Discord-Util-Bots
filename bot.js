@@ -22,10 +22,8 @@ client.on('message', async msg => {
             }
         }
         if (msg.channel.parentID == '440958049864122370') {
-            console.log(msg.embeds[0].author.name)
-            console.log(msg.content)
-            console.log(msg.embeds[0].description)
-            if (!msg.embeds[0].author) {
+            
+            if (msg.content != '') {
 			
 			
                 var trackmsg = msg.content
