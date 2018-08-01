@@ -70,6 +70,7 @@ client.on('message', async msg => {
 			if (msg.embeds[0].author.name == 'Over 15k Charfame') return;
 			var trackmsg = msg.embeds[0].author.name + msg.embeds[0].description
 			var trackmsg = trackmsg.replace('<@&435834111438094341>', 'OT Key')
+			var trackmsg = trackmsg.replace('<@&467709392431611915>', '<@&470283258698006538> ') //shatters
                 var trackmsg = trackmsg.replace('<@&467700059707015168>', 'LH Key')
                 var trackmsg = trackmsg.replace('Fametrainer', '<@&474333353919905822> ') // fametrainer
                 var trackmsg = trackmsg.replace('Pubhalls', '<@&470283421881466900> ') //pubhalls
@@ -88,7 +89,7 @@ client.on('message', async msg => {
 				var trackmsg = trackmsg.replace('Spooky Boy Central', '<@&470283200518684674> ') //sbc
 				var trackmsg = trackmsg.replace('<@&435834051023208478>', 'Encore Key')
 				var trackmsg = trackmsg.replace('RealmSlayers', '<@&473184750052311061>') //REALM SLAYERS
-				var trackmsg = trackmsg.replace('<@&440967768758812672>', '<@&474344913274929173> ') //CLOSE TO LEFT BAZ
+				var trackmsg = trackmsg.replace('<@&440967768758812672>', '<@&474344913274929173>') //CLOSE TO LEFT BAZ
 				var trackmsg = trackmsg.replace('<@&435825838186037269>', 'Tomb Key')
 				var trackmsg = trackmsg.replace('<@&445886794513252352>', 'Botter')
 				var trackmsg = trackmsg.replace('<@&435834148142317598>', 'Nest Key')
