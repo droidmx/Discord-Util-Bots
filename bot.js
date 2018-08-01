@@ -28,6 +28,7 @@ client.on('message', async msg => {
 			
                 var trackmsg = msg.content
                 var trackmsg = trackmsg.replace('<@&435834111438094341>', 'OT Key')
+				var trackmsg = trackmsg.replace('<@&467709392431611915>', '<@&470283258698006538> ') //shatters
                 var trackmsg = trackmsg.replace('<@&467700059707015168>', 'LH Key')
                 var trackmsg = trackmsg.replace('<@&467696871725465610>', '<@&474333353919905822>') // fametrainer
                 var trackmsg = trackmsg.replace('<@&467697021055270941>', '<@&470283421881466900>') //pubhalls
@@ -70,7 +71,7 @@ client.on('message', async msg => {
 			if (msg.embeds[0].author.name == 'Over 15k Charfame') return;
 			var trackmsg = msg.embeds[0].author.name + msg.embeds[0].description
 			var trackmsg = trackmsg.replace('<@&435834111438094341>', 'OT Key')
-			var trackmsg = trackmsg.replace('<@&467709392431611915>', '<@&470283258698006538> ') //shatters
+			var trackmsg = trackmsg.replace('Peach Shatters', '<@&470283258698006538> ') //shatters
                 var trackmsg = trackmsg.replace('<@&467700059707015168>', 'LH Key')
                 var trackmsg = trackmsg.replace('Fametrainer', '<@&474333353919905822> ') // fametrainer
                 var trackmsg = trackmsg.replace('Pubhalls', '<@&470283421881466900> ') //pubhalls
