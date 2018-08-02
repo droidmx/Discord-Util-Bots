@@ -34,8 +34,24 @@ client.on('message', async msg => {
     if (!msg.author.bot) return;
 	if (msg.author.id == '372129170895011860') {
 	if (msg.channel.id == '471944790234234880') {
+		var newrealmargs = msg.content.split(' ');
+		console.log(newrealmargs)
+	var newrealmmsg = msg.content
+	var newrealmmsg = newrealmmsg.replace('Server:', '**Server:**')
+	var newrealmmsg = newrealmmsg.replace('Realm:', '**Realm:**')
+	var newrealmmsg = newrealmmsg.replace('World:', '**World:**')
 	
-	client.channels.get('473859409580130304').send(msg.content)
+	client.channels.get('473859409580130304').send({
+                embed: {
+                    color: 0xFF0000,
+                    description: newrealmmsg,
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "New Realm Notifier"
+                    }
+                }
+})
 	}
 	if (msg.channel.id == '372109908008632321') {
 	var lmfao = msg.content.split(' ').slice()
