@@ -241,7 +241,8 @@ client.channels.get('473859424360988683').send(eventmsg)
 	//REALM SLAYERS
 	if (msg.channel.id == '466848063923945482') {
 		if (msg.author.id == '467717289886613504') {
-		if (msg.embeds[0].author.name.includes('AFK Check')) {
+			console.log(msg.embeds[0])
+		if (msg.embeds[0].author.name.includes('AFK')) {
 		var rsname = msg.embeds[0].author.name
 		var rsargs = rsname.split(" ");
 		var rsrl = rsargs[0]
