@@ -245,7 +245,7 @@ client.channels.get('473859424360988683').send(eventmsg)
         var shatrl = shatargs[0]
 
         if (!shatname.includes('AFK Check')) return console.log('SHATTERS FALSE ALARM')
-        client.channels.get('467445547557453837').send(`**<@&470283258698006538> AFK-Check** \`was started!\` | \`Raid Leader:\` **${shatrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&492494805734260746> AFK-Check** \`was started!\` | \`Raid Leader:\` **${shatrl}** | \`[${moment().format("LT")}]\``)
         console.log('THE SHATTERS AFK NOTIF SENT')
     }
 	//REALM SLAYERS
@@ -256,7 +256,7 @@ client.channels.get('473859424360988683').send(eventmsg)
 		var rsname = msg.embeds[0].author.name
 		var rsargs = rsname.split(" ");
 		var rsrl = rsargs[0]
-		client.channels.get('467445547557453837').send(`**<@&473184750052311061> AFK-Check** \`was started!\` | \`Raid Leader:\` **${rsrl}** | \`[${moment().format("LT")}]\``)
+		client.channels.get('467445547557453837').send(`**<@&492494916098719759> AFK-Check** \`was started!\` | \`Raid Leader:\` **${rsrl}** | \`[${moment().format("LT")}]\``)
 		}	
 		}	
 	}
@@ -266,7 +266,7 @@ client.channels.get('473859424360988683').send(eventmsg)
         var lhzargs = lhzname.split(' ');
         var lhzrl = lhzargs[0]
         if (!lhzname.includes('AFK Check')) return console.log('LHZ FALSE ALARM')
-        client.channels.get('467445547557453837').send(`**<@&470283520661520396> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhzrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&492495303119732737> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lhzrl}** | \`[${moment().format("LT")}]\``)
         console.log('LHZ AFK NOTIF SENT')
     }
 
@@ -276,7 +276,7 @@ client.channels.get('473859424360988683').send(eventmsg)
         var edzargs = edzname.split(' ');
         var edzrl = edzargs[0]
         if (!edzname.includes('AFK Check')) return console.log('EDZ FALSE ALARM')
-        client.channels.get('467445547557453837').send(`**<@&470283382056681482> AFK-Check** \`was started!\` | \`Raid Leader:\` **${edzrl}** | \`[${moment().format("LT")}]\``)
+        client.channels.get('467445547557453837').send(`**<@&492495835830157312> AFK-Check** \`was started!\` | \`Raid Leader:\` **${edzrl}** | \`[${moment().format("LT")}]\``)
         console.log('EDZ AFK NOTIF SENT')
     }
 
@@ -300,7 +300,7 @@ client.channels.get('473859424360988683').send(eventmsg)
             var lbname = msg.embeds[0].title
             var lbargs = lbname.split(' ');
             var lbrl = lbargs[0].slice(1)
-            client.channels.get('467445547557453837').send(`**<@&470283575636262933> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lbrl}** | \`[${moment().format("LT")}]\``)
+            client.channels.get('467445547557453837').send(`**<@&492495924203880460> AFK-Check** \`was started!\` | \`Raid Leader:\` **${lbrl}** | \`[${moment().format("LT")}]\``)
             console.log('LOST BOYS AFK NOTIF SENT')
 
         }
