@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
-    client.user.setActivity('the Nexus | /help', {
+    client.user.setActivity('the Simulacrum', {
             type: 'WATCHING'
         }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
         .catch(console.error);
@@ -12,6 +12,20 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   
+    if (msg.content.toLowerCase().includes('b*rs')){
+        msg.channel.send({
+            embed: {
+                color: 0xFF0000,
+                description: "**BE GONE NOTBARS BOT**",
+                timestamp: new Date(),
+                footer: {
+                    icon_url: client.user.avatarURL,
+                    text: "© BARS Incorporated"
+                }
+            }
+        });
+        
+    }
   if (msg.content.toLowerCase().includes('bars')) {
    msg.channel.send({
             embed: {
