@@ -11,8 +11,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  
-    if (msg.content.toLowerCase().includes('b*rs') && msg.author.id = '694303681197113374'){
+  if (msg.author.id = '694303681197113374'){
+    if (msg.content.toLowerCase().includes('b*rs')){
         msg.channel.send({
             embed: {
                 color: 0xFF0000,
@@ -25,7 +25,7 @@ client.on('message', msg => {
             }
         });
         
-    }
+    }}
   if (msg.content.toLowerCase().includes('bars')) {
    msg.channel.send({
             embed: {
