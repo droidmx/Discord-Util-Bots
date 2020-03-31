@@ -12,7 +12,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   
-  if (msg.content.startsWith('bars')) {
+  if (msg.content.toLowerCase().includes('bars')) {
    msg.channel.send({
             embed: {
                 color: 0xFF0000,
