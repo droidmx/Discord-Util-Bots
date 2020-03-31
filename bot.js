@@ -12,15 +12,15 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   
-    if (msg.content.toLowerCase().includes('b*rs')){
+    if (msg.content.toLowerCase().includes('b*rs') && msg.author.id = '694303681197113374'){
         msg.channel.send({
             embed: {
                 color: 0xFF0000,
-                description: "**BE GONE NOTBARS BOT**",
+                description: "**BARS**",
                 timestamp: new Date(),
                 footer: {
                     icon_url: client.user.avatarURL,
-                    text: "© BARS Incorporated"
+                    text: "© this message is sponsored by tej"
                 }
             }
         });
