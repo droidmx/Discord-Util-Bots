@@ -13,7 +13,17 @@ client.on('ready', () => {
 client.on('message', msg => {
   
   if (msg.content.startsWith('bars')) {
-   msg.channel.send("BARS ON BARS ON BARS"); 
+   msg.channel.send({
+            embed: {
+                color: 0xFF0000,
+                description: "**BARS ON BARS ON BARS**",
+                timestamp: new Date(),
+                footer: {
+                    icon_url: client.user.avatarURL,
+                    text: "© BARS Incorporated"
+                }
+            }
+        });
     
   }
 })
