@@ -13,20 +13,10 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (msg.author.id = '694303681197113374'){
     if (msg.content.toLowerCase().includes('b*rs')){
-        msg.channel.send({
-            embed: {
-                color: 0xFF0000,
-                description: "**BARS**",
-                timestamp: new Date(),
-                footer: {
-                    icon_url: client.user.avatarURL,
-                    text: "© this message is sponsored by tej"
-                }
-            }
-        });
+        msg.channel.send('no, bars');
         
     }}
-  if (msg.content.toLowerCase().includes('bars')) {
+  /*if (msg.content.toLowerCase().includes('bars')) {
    msg.channel.send({
             embed: {
                 color: 0xFF0000,
@@ -39,7 +29,7 @@ client.on('message', msg => {
             }
         });
     
-  }
+  }*/
 })
 
 client.login(process.env.BOT_TOKEN);
